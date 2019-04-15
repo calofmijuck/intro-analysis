@@ -52,10 +52,71 @@
 \numl{1}
 \begin{enumerate}
 	\item[(1)]
-	\item[(2)]
+	\begin{itemize}
+		\item $\inte A = \{(x, y) \in \R : xy > 1\}$\\
+		$x_0y_0 > 1$ 이라고 하자. $\epsilon < \frac{x_0y_0-1}{\abs{x_0}+\abs{y_0}}$ 에 대해, $\abs{x_0 - x} < \epsilon, \abs{y-y_0}<\epsilon$ 라 하면
+		$$\begin{aligned}
+			xy - 1 &= \abs{xy} - 1 = \abs{x}\abs{y} - 1 \geq (\abs{x_0} - \epsilon)(\abs{y_0} - \epsilon) - 1\\
+			&= \abs{x_0}\abs{y_0} - 1 - \epsilon(\abs{x_0} + \abs{y_0}) + \epsilon^2 > \epsilon^2 > 0
+		\end{aligned}$$
+		이므로 $N((x_0, y_0), \epsilon) \subset A$.
+		\item $A' = \{(x, y) \in \R : xy \geq 1\}$\\
+		$x_0y_0\geq 1$ 라고 하자. $\epsilon>0$에 대하여 $(x_0 + \frac{y_0}{2\abs{y_0}}\epsilon)y_0 = x_0y_0 + \abs{y_0}\epsilon/2 > 1$ 이다. 그러므로 $(x_0+\frac{y_0}{2\abs{y_0}}\epsilon, y_0)\in A$ 이고 이는 $N((x_0, y_0), \epsilon)$ 의 원소이고 $(x_0, y_0)$ 과 다른 점이므로 $N((x_0, y_0), \epsilon) \cap A\bs\{(x_0, y_0) \} \neq \emptyset$.
+		\item $\overline{A} = A$
+	\end{itemize}
+
+	\item[(2)] 
+	\begin{itemize}
+		\item $\inte A = \emptyset$\\
+		$A\subset \Q$ 임은 자명하다. 임의의 $\epsilon>0$, $x\in A$ 에 대하여 $N(x, \epsilon) = (x - \epsilon,  x + \epsilon)$ 에는 무리수가 반드시 존재한다. 따라서 $N(x, \epsilon) \nsubseteq A$ 이므로 $A$ 의 어떠한 점도 내점이 될 수 없다.
+		\item $A' = \{-1, 1\}$\\
+		$\forall \epsilon>0$, $0 < \abs{(-1)^n - (-1)^n \frac{n}{n+1}} < \epsilon$ 인 $n$ 이 존재하는지 확인하면 된다.
+		$$\abs{(-1)^n - (-1)^n \frac{n}{n+1}} = \abs{1 - \frac{n}{n+1}} = \frac{1}{n+1} < \frac{1}{n} < \epsilon$$
+		이 되도록 하는 $n$은 $\lceil1/\epsilon \rceil$ 보다 크기만 하면 된다.
+		\item $\overline{A} = A \cup \{-1, 1\}$
+	\end{itemize}
+
 	\item[(3)]
+	\begin{itemize}
+		\item $\inte A = \emptyset $\\
+		$\alpha = (x_0, y_0, 0) \in A$ 라 하자. $\forall \epsilon>0$, $N(\alpha, \epsilon)$ 에는 $(x_0, y_0, \epsilon/2)$ 이 존재하며 이는 $A$의 원소가 아니다. $N(\alpha, \epsilon) \nsubseteq A$ 이므로 $A$ 의 어떠한 점도 내점이 될 수 없다.
+		\item $A' = \{(x, y, z)\in \R^3: x^2+y^2 \leq 1, z=0 \}$\\
+		$r\in [0, 1], \theta \in [0, 2\pi)$ 에 대해 $r\beta = r(\cos\theta, \sin\theta, 0)\in A$ 이라 두자. 임의의 $\epsilon>0$ 에 대해 $\min\{(r - \epsilon/2), r/2\} \cdot \beta \in N(r\beta, \epsilon)\cap A\bs \{r\beta\}$ 이므로 극한점이 된다.
+		\item $\overline{A} = \{(x, y, z)\in \R^3: x^2+y^2 \leq 1, z=0 \}$
+	\end{itemize}
+
 	\item[(4)]
+	\begin{itemize}
+		\item $\inte A = \emptyset$\\
+		$A$ 의 원소들의 성분은 전부 유리수이다. $\alpha \in A$ 일 때, 임의의 $\epsilon > 0$ 에 대하여 $N(\alpha, \epsilon)$ 에는 반드시 무리수가 존재한다. $N(\alpha, \epsilon) \nsubseteq A$ 이므로 내점이 존재하지 않는다. 
+		\item $A' = \{(x, 0) \in \R^2: x\geq0  \}$\\
+		임의의 $z = (x, 0)$ $(x \geq 0)$, $\epsilon > 0$ 에 대해 $N(z, \epsilon)$ 중 구간 $I_1 = \{(k, 0): x - \epsilon < k <x + \epsilon\}$ 과 $I_2 = \{(x, y): 0 < y < \epsilon \}$ 를 생각하자. \\
+		우선 $I_1$ 에 존재하는 $x$ 가 아닌 양의 유리수 $p/q$ ($\gcd(p, q) = 1$) 을 하나 택한다. 그리고 $\epsilon' = \sqrt{\epsilon^2 - (x - p/q)^2}$ 에 대해, 충분히 큰 $n$ 을 잡는다. \\
+		그러면 $y = 1/n < \epsilon'$ 이 되게 할 수 있다. 이러한 $n$ 을 $n'$ 으로 고정하고, $p/q = m/n'$ 이 되게 하는 $m$을 $n'p/q$ 로 잡아준다. \\
+		그러면 $\left(m/n, 1/n\right) \in N(z, \epsilon)$ 가 된다.\\
+		($\because (x-p/q)^2 + (1/n')^2 < (x-p/q)^2 + \epsilon'^2 = \epsilon^2$) \\
+		그리고 $(m/n, 1/n)\in A\bs \{z\}$ 이므로 이 점은 극한점이 된다.		
+		\item $\overline{A} = A\cup \{(x, 0) \in \R^2: x\geq 0\}$		
+	\end{itemize}
+
 	\item[(5)]
+	\begin{itemize}
+		\item $\inte A = \{(x, y)\in \R^2: \abs{x} < 1, \abs{x+y}<1 \}$\\
+		$z = (x_0, y_0)$ 가 $\abs{x_0} < 1$, $\abs{x_0+y_0} <1$ 을 만족한다고 하자. 임의의 양수 $$0 < \epsilon < \min\left\{1-x_0, x_0 + 1, \frac{1-\abs{x_0+y_0}}{2} \right\}$$
+		에 대하여 $\abs{x-x_0} < \epsilon$, $\abs{y - y_0} < \epsilon$ 를 가정하면 $\abs{x} < 1$ 은 자동으로 얻어진다.\\
+		$$\begin{aligned}
+			\abs{x+y} &= \abs{x - x_0 + y - y_0 + x_0 + y_0} \leq \abs{x-x_0} + \abs{y-y_0} + \abs{x_0+y_0}\\
+			&< 2\epsilon + \abs{x_0+y_0} < 1
+		\end{aligned}$$
+		이므로 $N(z, \epsilon) \subset A$ 이다.
+		\item $A' = \{(x, y)\in \R^2: \abs{x} \leq 1, \abs{x+y} \leq 1 \}$\\
+		$\inte A$ 의 점들은 전부 $A'$ 에 속하므로 $\abs{x+y} = 1$ 인 점들에 대해서 보인다.\\
+		$z = (x_0, y_0)$ 가 $\abs{x_0} \leq 1$, $\abs{x_0+y_0} = 1$ 을 만족한다고 하자.\\
+		$y_0 \neq 0$ 인 경우, $(x_0, y_0 - \frac{y_0}{2\abs{y_0}}\epsilon) \in N(z, \epsilon)$ for $0 < \epsilon < 1$. 그리고 $$\abs{x_0 + y_0 - \frac{y_0}{2\abs{y_0}}\epsilon} + \abs{\frac{y_0}{2\abs{y_0}}\epsilon}\leq \abs{x_0+y_0} = 1$$
+		와 $\abs{\frac{y_0}{2\abs{y_0}}\epsilon} = \epsilon/2$ 로부터 $\abs{x_0 + y_0 - \frac{y_0}{2\abs{y_0}}\epsilon} < 1- \epsilon/2$ 이므로 $(x_0, y_0 - \frac{y_0}{2\abs{y_0}}\epsilon)\in A\bs \{z\}$. 따라서 극한점이 된다. $\epsilon \geq 1$ 의 경우에는 $(x_0, y_0 - \frac{y_0}{2\abs{y_0}})$ 으로 두면 된다.  \\
+		$y_0 = 0$ 인 경우, $x = \pm 1$ 이다. $\forall \epsilon > 0$ 에 대해 $(\pm 1, \pm1 \mp \epsilon)$ 에 속하는 적당한 실수를 잡아주면 $N(z, \epsilon) \cap A\bs \{z\} \neq \emptyset$ 이므로 극한점이 된다. 
+		\item $\overline{A} = \{(x, y)\in \R^2: \abs{x} \leq 1, \abs{x+y} \leq 1 \}$
+	\end{itemize}
 \end{enumerate}
 
 \numl{2}
