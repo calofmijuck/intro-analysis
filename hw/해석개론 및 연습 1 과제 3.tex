@@ -178,15 +178,15 @@ $$U_k = \left\{(x, y)\in \R^2: \abs{x}+2\abs{y} < 1-\frac{1}{k} \right\}$$
 따라서 $\abs{a_n-a} \geq \epsilon$ 인 $n$ 들에 대해 차례대로 $n_1 < n_2 < \cdots$ 로 잡으면\footnote{자연수의 집합은 셀 수 있다. 혹은 well-ordering principle 에 의해 최소의 원소가 항상 존재한다.} 이렇게 얻어진 부분수열 $\span{a_{n_k}}$ 는 절대 $a$ 로 수렴 할수 없으므로 모순이다. 
 
 \numl{8} 주어진 관계식을 다음과 같이 변형한다. $$na_{n+1} \leq na_n-ca_n \imp ca_n \leq na_n - na_{n+1} \imp (c-1)a_n\leq (n-1)a_n-na_{n+1}$$
-이제 $b_n := (n-1)a_n$ $(n\geq 1)$ 으로 정의하면,
+이제 $b_n := (n-1)a_n / (c - 1)$ $(n\geq 1)$ 으로 정의하면,
 \begin{itemize}
-	\item $a_n>0$ 이므로 $b_n >0$ 이 되어 아래로 유계이다.
-	\item $b_{n+1} - b_n \geq (c-1)a_n > 0$ ($c>1$) 에서 $b_n < b_{n+1}$ 이므로 감소수열이다.
+	\item $a_n>0, c > 1$ 이므로 $b_n \geq0$ 이 되어 아래로 유계이다.
+	\item $b_{n+1} - b_n \geq a_n > 0$ ($c>1$) 에서 $b_n < b_{n+1}$ 이므로 감소수열이다.
 \end{itemize}
 따라서 단조수렴정리에 의해 $b_n$ 은 수렴한다. 그 극한값을 $\beta$ 로 두자. 이제 $k = N, N+1, \dots, n$ 에 대해 부등식을 변변 더하면
-$$\sum_{k=N}^n (c-1)a_k \leq \sum_{k=N}^n(b_k - b_{k+1}) = b_N-b_{n+1}$$ 를 얻고 $n\ra \infty$ 인 극한을 취하면 다음 식을 얻는다.
-$$0 < \sum_{k=N}^\infty a_k < \sum_{k=N}^\infty (c-1)a_k \leq b_N-\lim_{n\ra \infty} b_{n+1} = b_N-\beta $$
-$\sum_{k=N}^\infty a_k$ 는 비교판정법에 의해 수렴하며, 유한개의 항을 더한 $\sum_{n=1}^\infty a_n$ 도 수렴한다.
+$$\sum_{k=N}^n a_k \leq \sum_{k=N}^n(b_k - b_{k+1}) = b_N-b_{n+1}$$ 를 얻고 $n\ra \infty$ 인 극한을 취하면 다음 식을 얻는다.
+$$0 < \sum_{k=N}^\infty a_k \leq b_N-\lim_{n\ra \infty} b_{n+1} = b_N-\beta $$
+$\sum_{k=N}^\infty a_k$ 는 비교판정법에 의해 수렴하며, 항을 유한개 더한 $\sum_{n=1}^\infty a_n$ 도 수렴한다.
 
 \end{enumerate}
 \end{document}
