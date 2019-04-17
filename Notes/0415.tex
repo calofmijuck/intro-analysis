@@ -43,7 +43,11 @@ Then we have $X \cap V = \bigcup_{x\in U} X\cap N(x, \epsilon_x) = \bigcup_{x\in
 \textbf{Cor}. $U$: open in $X$, $Y\subset X$. \mimp $U\cap Y$: open in $Y$.\\
 \pf. $U = X\cap V$ ($V$: open) \mimp $U\cap Y = X\cap V\cap Y = V \cap (X\cap Y) = V\cap Y$.\\
 \\
-\defn. $S\subset \R^d$: \textbf{disconnected} \miff Exists \textbf{non-empty} sets $U, V$ such that $U, V$ is a decomposition of $S$, and $U, V$ are open in $S$.\\
+\defn. $S\subset \R^d$: \textbf{disconnected} \miff There exists \textbf{non-empty} sets $U, V$ such that \begin{enumerate}
+	\item $U\cap V = \emptyset$
+	\item $U\cup V = S$
+	\item $U$ and $V$ are open in $S$
+\end{enumerate}
 $S\subset \R^d$: \textbf{connected} \miff $S$ is not disconnected.\\
 \\
 \textbf{Question}. Find all $A\subset \R^d$ such that $A$ is open and closed.\\
@@ -75,3 +79,4 @@ and since $c$ was the supremum, contradiction.
 \textbf{(2\mimp 3)} $\inf S = u$, $\sup S = v$. (If $S$ is not bounded below, $u = -\infty$, if $S$ is not bounded above, $v = \infty$). Then if $c\in (u, v) \imp c\in S$. There exists $a, b\in S$ such that $u \leq a < c < b \leq v$, meaning that $S$ must be one of $[u, v], [u, v), (u, v], (u, v)$.\\
 \\
 \textbf{(3\mimp 2)} Trivial.
+\pagebreak
