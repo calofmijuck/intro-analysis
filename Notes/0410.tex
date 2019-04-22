@@ -40,7 +40,7 @@ Main Theorem: \textbf{Heine-Borel Theorem}
 	(Contradiction) Suppose there is no finite subcover of $B$.\\
 	\textbf{Claim}. There exists $B = B_1 \supset B_2\supset \cdots$ (closed boxes) such that
 	\begin{itemize}
-		\item $\diam (B_n) = \frac{1}{2^n}\diam(B_1)$
+		\item $\diam (B_n) = \frac{1}{2^{n-1}}\diam(B_1)$
 		\item There is no finite subcover of $\{U_i:i\in I \}$ covering $B_n$.
 	\end{itemize}
 	By Lemma 2.3.1, there exists $x\in \bigcap_{n=1}^\infty B_n$. Since $x\in B$, $\exists U_i$ such that $x\in U_i$. Then $\exists \epsilon>0$ such that $N(x, \epsilon) \subset U_i$.\footnote{$n$이 충분히 크면 ball 안에 box 가 들어가고 box 는 $U_i$ 안에 있다? Claim 의 2번째에 모순.} Set $\frac{1}{2^{n-1}}\diam (B_1)<\epsilon$. \\

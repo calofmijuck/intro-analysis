@@ -8,7 +8,7 @@ Given family of \textbf{compact} sets $\{K_i:i\in I\}$, for all \textbf{finite} 
 \pf. (Contradiction) $\bigcap_{i\in I} K_i = \emptyset$ \mimp $\bigcup_{i\in I} K^C = \R^d$. (Complement)\\
 Take any $K_a$ ($a\in I$), then $K_a \subset \bigcup_{i\in I} K_i^C(=\R^d)$ \mimp $\{ K_i^C: i\in I\}$ is an open cover of $K_a$. Then there exists a finite subcover, $\{K_i^C: i\in J \}$ ($K_a$ is compact) Now we can write $K_a\subset \bigcup_{i\in J} K_i^C$. Take complement on both sides to get $K_a^C\supset \bigcap_{i\in J}K_i$. Then $K_a\cap \bigcap_{i\in J} K_i = \emptyset$, contradiction.\\
 \\
-\rmk. Let $K_i = [a_i, b_i]$ (Compact in $\R$) and set $K_1\supset K_2\subset \cdots$\\
+\rmk. Let $K_i = [a_i, b_i]$ (Compact in $\R$) and set $K_1\supset K_2\supset \cdots$\\
 \mimp For $J = \{j_1, \dots, j_m\}$ ($j_1 < \cdots < j_m$), $\bigcap_{i\in J} K_i = K_{j_m} \neq \emptyset$\\
 \mimp $\bigcap_{i=1}^\infty K_i \neq \emptyset$ (축소구간정리)\\
 \\
@@ -63,7 +63,7 @@ If $A$ is open and closed \mimp $A$: open, $A^C$: open. Then $\R^d = A\cup A^C$,
 \end{enumerate} 
 \rmk. Prop 2.5.1 (1'\miff 2') + Disscussion above (2\miff 3)\\
 \pf.\\
-\textbf{(1\mimp 2)} (Contradiction) Assume $a, b\in S, c\notin S$ for some $a<c<b$. Set $U = (-\infty, c)\cap S$, $V = (c, \infty)\cap S$. $U, V$ are non-empty.\footnote{Always check! $a\in U, b\in V$.} $U \cap V = \emptyset$ and $U\cup V = S$. (Note that $c\in S$) And $U, V$ are open in $S$. (Prop 2.2.5) Then $S$ is disconnected.\\
+\textbf{(1\mimp 2)} (Contradiction) Assume $a, b\in S, c\notin S$ for some $a<c<b$. Set $U = (-\infty, c)\cap S$, $V = (c, \infty)\cap S$. $U, V$ are non-empty.\footnote{Always check! $a\in U, b\in V$.} $U \cap V = \emptyset$ and $U\cup V = S$. (Note that $c\notin S$) And $U, V$ are open in $S$. (Prop 2.2.5) Then $S$ is disconnected.\\
 \\
 \textbf{(2\mimp 1)} (Contradiction) Assume $S$ is disconnected. There exists $U, V$ that satisfy the definition of disconnected set. For $a\in U, b\in V$, (WLOG $a<b$). By (2), $[a, b]\subset S$.\\
 Let $c = \sup([a, b]\cap U)$.\\
