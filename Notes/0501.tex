@@ -41,7 +41,7 @@ Consider $f:(0, 1)\ra \R$, $f(x) = 1/x$. $x_n = 1/n$ converges, and is a Cauchy 
 	\item $f:(0, 1)\ra\R$, $f(x) = 1/x $.\\
 	Consider $A = [0, 1)$. It is impossible to find a continuous extension.
 \end{enumerate}~\\
-\textbf{Cor 3.3.3} Suppose $f:X\ra Y$ is uniformly continuous. Then there exists a unique continuous extension of $f$ to $\overline{A}$.\footnote{$Y$ is assumed to be extended to $\R^d$.}\\
+\textbf{Cor 3.3.3} Suppose $f:X\ra Y$ is uniformly continuous. Then there exists a unique continuous extension of $f$ to $\overline{X}$.\footnote{$Y$ is assumed to be extended to $\R^d$.}\\
 \pf. Take $x_0\in \overline{X}\bs X$. Set $g(x) = f(x)$ for $x\in X$. Now for $g(x_0)$, recall that $x_0\in \overline{X}$, so there exists a sequence $\span{x_n}$ in $X$ s.t. $x_n\ra x_0$. Since $\span{x_n}$ is convergent, $\span{x_n}$ is Cauchy sequence and by Thm 3.3.2, $\span{f(x_n)}$ is also a Cauchy sequence. Thus $\span{f(x_n)}$ converges. Define $g(x_0)$ as the limit of $f(x_n)$.\\
 Now we must check if $g(x_0)$ is well-defined. In other words: For any two sequence $\span{x_n}, \span{y_n}$ that converge to $x_0$, does $f(x_n), f(y_n)$ converge to the same value?\\
 Consider $\span{z_n} = x_1, y_1, x_2, y_2, \dots$. It is trivial that $z_n\ra x_0$. Since $\span{z_n}$ is Cauchy, $\span{f(z_n)}$ is also Cauchy by uniform continuity. Let its limit be $\gamma$. Then $\span{f(x_n)}, \span{f(y_n)}$ is a subsequence of $\span{f(z_n)}$, thus they both must converge to $\gamma$. Uniqueness directly follows from this proof, and we can easily check that $g$ is continuous.
