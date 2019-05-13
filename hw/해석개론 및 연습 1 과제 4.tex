@@ -33,6 +33,7 @@
 \newcommand{\imp}{\implies}
 \newcommand{\bs}{\backslash}
 \newcommand{\diam}{\text{diam}}
+\newcommand{\dist}{\text{dist}}
 \newcommand{\mimp}{$\implies$}
 \newcommand{\miff}{$\iff$}
 \newcommand{\R}{\mathbb{R}}
@@ -122,9 +123,33 @@
 	\item False. Consider $f(x) = \frac{1}{x^2+1}$. $f$ is continuous. Set $A = (0, \infty)$. Then $\overline{A} = [0, \infty)$, $f(\overline{A}) = (0, 1)$, while $\overline{f(A)} = [0, 1]$.
 \end{enumerate}
 
-\item (Urysohn's Lemma)
+\item Define $f_A(x) = \dist(\{x\}, A)$, $f_B(x) = \dist(\{x\}, B)$. Then $$f(x) = \frac{f_B(x)}{f_A(x) + f_B(x)}$$
+is a function that satisfies the requirements. The following should be checked.
+\begin{enumerate}
+	\item[(i)] Is $f: \R^d \ra [0, 1]$ ?\\
+	The value of the $\dist$ function is always greater than equal to 0, and $f(x) \leq 1$ is trivial.\\
+	Also note that the denominator is never $0$ since $A, B$ are disjoint.
+	\item[(ii)] $x\in A \imp f(x) = 1$ ?\\
+	If $x\in A$, $f_A(x) = 0$, $f_B(x) > 0$. ($A\cap B = \emptyset$) Thus $f(x) = \frac{f_B(x)}{0+f_B(x)} = 1$.
+	\item[(iii)] $x\in B \imp f(x) = 0$ ?\\
+	If $x\in B$, $f_B(x) = 0$, $f_A(x) > 0$. ($A\cap B = \emptyset$) Thus $f(x) = \frac{0}{f_A(x)+0} = 0$.
+	\item[(iv)] Are $f_A, f_B$ continuous ?\\
+	We will show that $f_A$ is uniformly continuous. For $x, y\in \R^d$, and any $a\in A$, the following holds by triangle inequality.
+	$$\dist(\{x\}, \{a\}) \leq \dist(\{x\}, \{y\}) + \dist(\{y\}, \{a\})$$
+	Taking infimum over all $a\in A$ gives
+	$$\dist(\{x\}, A) \leq \dist(\{x\}, \{y\}) + \dist(\{y\}, A)$$
+	Switching roles for $x, y$ will give us another inequality, and combining it with the above inequality will give us
+	$$\abs{f_A(x)-f_A(y)} = \abs{\dist(\{x\}, A) - \dist(\{x\}, A)} \leq \dist(\{x\}, \{y\}) = \norm{x - y}$$
+	Therefore, for all $\epsilon > 0$, setting $\delta = \epsilon$ will make $f_A$ satisfy the definition of uniform continuity. Thus $f_A$ is (uniformly) continuous.	The proof is symmetric for $f_B$.
+	\item[(v)] Is $f$ continuous ?\\
+	Since the denominator is never 0 and $f_A, f_B$ are continuous, $f$ is continuous.
+\end{enumerate}
 
-\item 
+\item (\mimp) Define a function $F:X\ra X\times \R$ as $F(x) = (x, f(x))$. Then $F(X) = E$. To show compactness of $E$, we will show that $F$ is continuous.\\
+For $x\in X$, consider a sequence $\span{x_n}$ in $X$ converging to $x$. ($X$ is closed) By the continuity of $f$, $\span{f(x_n)}$ converges to $f(x)$. Therefore $\span{F(x_n)}$ converges to $(x, f(x)) = F(x)$. Thus $F$ is continuous, and because $X$ is compact, its image $E=F(X)$ is also compact.\\
+($\impliedby$) Since $E$ is compact, it is closed, and consider a sequence $(x_n, f(x_n))$ in $E$ that converges to $(x, f(x))$. Then $x_n$ is a sequence in $X$, and if $x_n \ra x$, $x\in X$. ($X$ is closed) Then we know that $f(x_n)$ must converge to $f(x)$ ($*$), which implies continuity of $f$ on $X$.
+\\
+($*$) If $(x_n, f(x_n))\ra (x, f(x))$ and $x_n\ra x$, then $f(x_n)\ra f(x)$.
 
 \item We first prove the following inequality.\\
 \textbf{Claim}. For convex function $f:(a, b)\ra \R$ and $a < x < y < z$, $$\frac{f(y) - f(x)}{y - x} \leq \frac{f(z) - f(y)}{z - y}$$
@@ -138,8 +163,23 @@ and
 $$\frac{f(x) - f(y)}{x -y} \geq \frac{f(y) - f(x_1)}{y - x_1} \geq \frac{f(x_1) - f(x_0)}{x_1-x_0} $$, therefore $$\abs{\frac{f(x)-f(y)}{x - y}} \leq C = \max\left\{\frac{\abs{f(x_1) - f(x_0)}}{x_1-x_0}, \frac{\abs{f(x_3) - f(x_2)}}{x_3-x_2} \right\}$$
 and the inequality above can be shown similarly for $x < y$.\\
 Therefore if $\abs{x - y} <\delta$, $\abs{f(x) - f(y)} \leq C\abs{x - y} \leq C \dfrac{\epsilon}{C} =\epsilon$. $f(x)$ is continuous.
-\item 
 
-\item 
+\item Since $f$ is continuous, $f$ has a maximum at $\alpha_x \in [a, x]$, by EVT. Then $f^*(x) = f(\alpha_x)$.\\
+If $x_1 < x_2$, $f^*(x_2) = \sup \{f(y):y\in[a, x_2] \} = \max\{f(a_{x_1}), \sup\{f(y):y\in[x_1, x_2]\} \} \geq f(\alpha_{x_1}) = f^*(x_1)$. Therefore $f^*$ is increasing.\\
+For continuity, let $x_0\in X = [a, b]$, and let $f^*(x_0) = M (=\sup\{f(y): y\in[a, x_0] \})$.
+\begin{enumerate}
+	\item[Case 1.]  $f(x_0) < M$\\
+	Since $f$ is continuous, for $\epsilon = M - f(x_0)$, there exists $\delta_1 > 0$ s.t. $\abs{x - x_0} < \delta_1, x\in X \imp \abs{f(x) - f(x_0)} < \epsilon$. Then $f(x) - f(x_0) < \epsilon \imp f(x) < M$, in this interval. Thus $\abs{x - x_0} < \delta_1, x\in X \imp f^*(x) = M$.
+	\item[Case 2.] $f(x_0) = M$\\
+	For all $\epsilon > 0$, $\exists\,\delta_2 > 0$ s.t. $\abs{x - x_0} < \delta_2, x\in X \imp \abs{f(x) - f(x_0)} < \epsilon \imp M - \epsilon < f(x) < M + \epsilon$. Therefore we have $M - \epsilon < f^*(x) < M + \epsilon$, by the continuity of $f$. Now we have $\abs{f^*(x) - f^*(x_0)} < \epsilon$. 
+\end{enumerate}
+For both cases, setting $\delta = \min\{\delta_1, \delta_2\}$ will give us $\abs{f^*(x) - f^*(x_0)} < \epsilon$. Thus $f^*$ is continuous.
+
+\item Consider $$f(x) = \frac{1}{x}\sin \frac{1}{x} \quad x\in (0, 1]$$
+Since $1/x$ and $\sin x$ are continuous on $(0, 1]$, $\R$ respectively, $f$ is also continuous on $(0, 1]$. Suppose $f$ attains maximum value $M$ at $x_0$. It is trivial that $M > 0$, because $M \geq f(2/\pi) = \pi/2 > 0$. From this result we also know that $\sin\frac{1}{x_0} > 0$.\\
+Then for $x' = \left(1/x_0+ 2\pi \right)\inv (<1)$, $f(x') = \left(\frac{1}{x_0} + 2\pi\right)\sin\left(\frac{1}{x_0}+2\pi\right) = M + 2\pi \sin \frac{1}{x_0} > M$, contradicting the choice of $M$. Therefore $f$ has no maximum. Similarly, if $f$ attains minimum value $m$ at $x_1$, we know that $\sin \frac{1}{x_1} < 0$, and setting $x' = (1/x_1 + 2\pi)\inv$ will let us arrive at a contradiction, which contradicts the choice of $m$. Thus $f$ is continuous on $(0, 1]$ but has no minimum or maximum.
+
+
+
 \end{enumerate}
 \end{document}

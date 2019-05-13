@@ -28,7 +28,7 @@ Suppose $\norm{x - y}< \delta$. For some $k$, $x\in U_{x_k}$, and then $y\in N(x
 \\
 \thm{ 3.3.2} Suppose $f:X\ra Y$ is uniformly continuous. If $\span{x_n}$ is a Cauchy sequence in $X$, $\span{f(x_n)}$ is also a Cauchy sequence.\\
 \pf. Given $\epsilon > 0$, $\exists\,\delta >0$ s.t. $\norm{x - y} < \delta \imp \norm{f(x) - f(y)} < \epsilon$. For this $\delta$, $\exists\,N$ s.t. $m, n\geq N\imp \norm{x_m-x_n} < \delta$. Then we have $$m, n\geq N \imp \norm{x_m-x_n} < \delta \imp \norm{f(x_m) - f(x_n)} < \epsilon$$
-\rmk. If $f:X\ra Y$ is continuous, $\span{x_n} \ra x$ then $\span{f(x_n) \ra f(x)}$. In this case, $\span{x_n}, x$ must be in $X$, $\span{f(x_n)}, f(x)$ must be in $Y$.\\
+\rmk. If $f:X\ra Y$ is continuous, $\span{x_n} \ra x$ then $\span{f(x_n)} \ra f(x)$. In this case, $\span{x_n}, x$ must be in $X$, $\span{f(x_n)}, f(x)$ must be in $Y$.\\
 Consider $f:(0, 1)\ra \R$, $f(x) = 1/x$. $x_n = 1/n$ converges, and is a Cauchy sequence. But $f(x_n) = n$ is not Cauchy. The limit value of $\span{x_n}$ does not have to be in $X$ for a uniform continuous function.\\
 \\
 \defn. Suppose $f:X\ra Y$ is continuous, $X\subset A, Y\subset B$. If $g:A\ra B$ satisfies $g(x) = f(x)$ for $x\in X$, and if $g$ is continuous on $A$, we say that $g$ is a \textbf{continuous extension} of $f$ to $ A $.\\
