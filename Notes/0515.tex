@@ -10,7 +10,7 @@
 	\item Minimum of $f$ is not $f(a), f(b)$\\
 	(Proof is identical to that of (2))
 \end{enumerate}~\\
-\textbf{Cor 4.2.2} \textbf{(Cauchy's Mean Value Theorem)} Suppose $f, g:[a, b]\ra \R$ are continuous on $[a, b]$ and differentiable on $(a, b)$. Then there exists $c\in (a, b)$ s.t. $$(g(a) - g(b))f'(c) = (f(a) - f(b))g'(c)$$
+\thm{ 4.2.2} \textbf{(Cauchy's Mean Value Theorem)} Suppose $f, g:[a, b]\ra \R$ are continuous on $[a, b]$ and differentiable on $(a, b)$. Then there exists $c\in (a, b)$ s.t. $$(g(a) - g(b))f'(c) = (f(a) - f(b))g'(c)$$
 \pf. Set $h(x) = (g(a) - g(b))f(x) - (f(a)-f(b))g(x)$ and apply Rolle's Thm.\\
 \\
 \thm{ 4.2.3} \textbf{(Mean Value Theorem)} Suppose $f :[a, b]\ra \R$ is continuous on $[a, b]$ and differentiable on $(a, b)$. Then there exists $c\in (a, b)$ s.t. $$f'(c) = \frac{f(b)-f(a)}{b - a}$$
@@ -23,7 +23,7 @@ $$\abs{\frac{f(x)}{g(x)} - \alpha} = \abs{\frac{f'(c_x)}{g'(c_x)} - \alpha} < \e
 since $\abs{c_x - x_0} < \abs{x - x_0} < \delta$.\\
 \\
 \textbf{4.3 Taylor Expansion}\\
-Suppose $I$ is a closed interval, and $a$ is an endpoint of $I$.\\
+Suppose $I$ is a closed interval, and $a\in I$.\\
 \\
 \thm{ 4.3.1} Suppose $f, g:I\ra \R \in C^\infty(I)$. If $x\in \inte (I)$, there exists $c_x$ between $a$ and $x$ s.t. $$ \left(f(x) - \sum_{k =0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k\right)g^{(n+1)}(c_x) = \left(g(x) - \sum_{k =0}^n \frac{g^{(k)}(a)}{k!}(x-a)^k\right)f^{(n+1)}(c_x)$$
 \\
@@ -49,5 +49,6 @@ By Taylor's Theorem, $\exists\,c_x \in J$ s.t. $$\abs{f(x) - S_n(x)} \leq \abs{f
 The last term converges to $0$ since factorials increase faster than exponents.\\
 \\
 \ex. $f(x) = \sin x$ satisfies the conditions of Prop 4.3.3, and calculating $f^{(k)}(0)$ gives $$\sin x = \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)!}x^{2k+1}$$
+\ex. $f(x) = e^x$, at $a = 0$. $x\in \R_{\geq 0}$, $\{f^{(n)}(t):t\in [0, x], n\in \N \}$ is bounded by $e^x$. Thus $f(x) = \sum_{k =0}^\infty x^k/k!$ $ (x\geq0)$
 
 \pagebreak
