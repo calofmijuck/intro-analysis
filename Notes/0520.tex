@@ -72,11 +72,11 @@ then we define \textbf{lower/upper Riemann sum}s as\footnote{We define it this w
 	$$L(f, P) \leq L(f, Q)\leq U(f, Q)\leq U(f, P)$$
 	\item $P, P' \in \mc{P}[a, b] \imp L(f, P)\leq U(f, P')$
 \end{enumerate}
-\pf. (1) : For partition $P$, consider an interval $[x_{i}, x_{i+1}]$. This interval adds $M_{i+1}(x_{i+1}-x_i)$ to the upper sum $U(f, P)$. Meanwhile, in partition $Q$, $[x_i, x_{i+1}]$ can be considered as $[y_a, y_b]$ for some $a, b$ and this interval adds $\sum_{j=a+1}^b M_{j}^Q(y_{j+1}-y_j)$ to the upper sum $U(f, Q)$.\\
+\pf. (1) : For partition $P$, consider an interval $[x_{i}, x_{i+1}]$. This interval adds $M_{i+1}(x_{i+1}-x_i)$ to the upper sum $U(f, P)$. Meanwhile, in partition $Q$, $[x_i, x_{i+1}]$ can be considered as $[y_a, y_b]$ for some $a, b$ and this interval adds $\sum_{j=a+1}^b M_{j}^Q(y_{j}-y_{j-1})$ to the upper sum $U(f, Q)$.\\
 $$M_{i+1} =\sup\{f(t): t\in [x_i, x_{i+1}]\} \qquad M_{j}^Q = \sup\{f(t): t\in [y_{j-1}, y_j] \}$$
 If $j = a+1, \dots, b$, $M_{j}^Q\leq M_{i+1}$, and thus
 $$
-	\sum_{j=a+1}^b M_j^Q (y_i-y_{j-1}) \leq \sum_{j=a+1}^b M_{i+1}(y_j - y_{j-1}) = M_{i+1}(y_b-y_a) = M_{i+1}(x_{i+1}-x_i)
+	\sum_{j=a+1}^b M_j^Q (y_j-y_{j-1}) \leq \sum_{j=a+1}^b M_{i+1}(y_j - y_{j-1}) = M_{i+1}(y_b-y_a) = M_{i+1}(x_{i+1}-x_i)
 $$
 (2) : $L(f, P)\leq L(f, P\cup P') \leq U(f, P\cup P') \leq U(f, P')$\\
 \\

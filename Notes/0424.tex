@@ -21,7 +21,7 @@ Thus we have continuity.\\
 \ex.
 \begin{enumerate}
 	\item Polynomials are continuous. Use continuity of $f(x)=x$.
-	\item $f(x) = \sqrt{x}$.\footnote{연속이지만 고른연속은 아닌 함수}
+	\item $f(x) = \sqrt{x}$.
 	\item $f(x) = \sqrt{x^4+1}$ is continuous.
 	\item $f(x) = \begin{cases}
 		1 & (x\in \Q)\\
@@ -29,9 +29,9 @@ Thus we have continuity.\\
 	\end{cases}$ is not continuous.\\
 	\pf. $x_0\in \R$. Suppose there exists a sequence $\span{x_n}$ in $\Q$ converging to $x_0$. Then $\span{f(x_n)}\ra 1$. ($x_n = \lfloor nx_0 \rfloor / n$) But there also exists a sequence $\span{x_n}$ in $\R\bs\Q$ converging to $x_0$. Then $\span{f(x_n)} \ra 0$. ($x_n = \lfloor \sqrt{2}nx_0\rfloor / \sqrt{2}n$) $f(x)$ cannot be continuous anywhere.
 \end{enumerate}
-\textbf{3.2 최대최소정리와 중간값정리}\\
-\thm{ 3.2.1} Suppose $f:X\ra Y$ is surjective and $X$ is compact. Then $Y$ is compact.\footnote{연속성이 필요없나?}\\
-\pf. Suppose $\{U_i: i\in I\}$ is an open cover of $Y$. $V_i = U_i \cap Y$ is an open set in $Y$, and $\{V_i: i\in I\}$ is also an open cover of $Y$. Consider $\{f\inv (V_i):i\in I \}$, which is an open cover of $X$.\footnote{Check at assignment 3.5.} Since $X$ is compact, there exists a finite subcover $\{f\inv(V_i): i \in J\}$ ($J\subset I$) of $X$. Then $\{V_i: i\in J\}$ is a finite subcover of $Y$. $$Y = f(X) = f\left(\bigcup_{i\in J} f\inv(V_i)\right) = \bigcup_{i\in J} f(f\inv(V_i)) \subset \bigcup_{i\in J} V_i$$
+\textbf{3.2 Extreme Value Theorem \& Intermediate Value Theorem}\\
+\thm{ 3.2.1} If $f:X\ra Y$ is continuous, surjective and $X$: compact, then $Y$: compact.\\
+\pf. Suppose $\{U_i: i\in I\}$ is an open cover of $Y$. $V_i = U_i \cap Y$ is an open set in $Y$, and $\{V_i: i\in I\}$ is also an open cover of $Y$. Consider $\{f\inv (V_i):i\in I \}$, which is an open cover of $X$. Since $X$ is compact, there exists a finite subcover $\{f\inv(V_i): i \in J\}$ ($J\subset I$) of $X$. Then $\{V_i: i\in J\}$ is a finite subcover of $Y$. $$Y = f(X) = f\left(\bigcup_{i\in J} f\inv(V_i)\right) = \bigcup_{i\in J} f(f\inv(V_i)) \subset \bigcup_{i\in J} V_i$$
 We have a finite subcover of $Y$. Thus $Y$ is compact.\\
 \\
 \textbf{Check}. $\forall A\subset X$. $f$: surjective $\imp $, $f(f\inv(A)) = A$. $f$: injective $\imp f\inv(f(A)) = A$.\\
