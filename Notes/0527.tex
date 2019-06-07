@@ -1,7 +1,9 @@
 \section*{May 27th, 2019}
 Currently: We are given bounded $f: [a, b]\ra\R$. For $P\in \mc{P}[a, b]$, we defined $U(f, P)$ and $L(f, P)$. Then we defined $\uint{_a^b} f$ and $\lint{_a^b}$, and $f$ was Riemann Integrable when these two values were the same.\\
 \\
-\thm{ 5.1.5} If $f:[a, b]\ra\R$ is Riemann Integrable, then $\abs{f}$ is also Riemann Integrable. Also, the following holds.$$ \int_a^b \abs{f} \leq\abs{\int_a^b f} $$\\
+\thm{ 5.1.5} If $f:[a, b]\ra\R$ is Riemann Integrable, then $\abs{f}$ is also Riemann Integrable. Also, the following holds.$$ \int_a^b \abs{f} \leq\abs{\int_a^b f} $$
+\pf. From $\abs{\abs{f(x)} - \abs{f(y)}} \leq \abs{f(x)-f(y)}$, and for $\epsilon > 0$, $$U(\abs{f}, P) - L(\abs{f}, P) \leq U(f, P) - L(f, P) < \epsilon$$
+Thus $\abs{f}$ is integrable, and $-\abs{f}\leq f \leq \abs{f}$ gives the inequality.\\
 \\
 \textbf{5.2 Riemann Integrable Functions}\\
 \thm{ 5.2.1} Suppose $f:[a, b]\ra\R$ is \underline{continuous}. Then $f$ is Riemann Integrable.\\
@@ -28,11 +30,11 @@ $$\begin{aligned}
 \end{aligned}$$
 \\
 \defn. For $P = \{a = x_0 < x_1 < \cdots < x_n = b \}\in \mc{P}[a, b]$, define the \textbf{norm} of $P$ as\footnote{기존에 알고있던 norm 의 성질을 만족하지는 않는다. 좋은 이름은 아니다.}
-$$\norm{P} = \max_{1\leq i \leq n} (x_i - x_{i-1})$$
+$$\norm{P} = \max_{1\leq i \leq n} \{x_i - x_{i-1}\}$$
 And we say that $P$ is finer than $Q$ if $\norm{P} \leq \norm{Q}$. Also, if $P\subset Q$, $\norm{Q}\leq \norm{P}$.\\
 \\
 \defn. \textbf{Riemann Sum} $R(f, P)$ is defined as
-$$R(f, P) = \sum_{i=1}^n f(t_i)(x_i-x_{i-1}) \quad (t\in [x_{i-1}, x_i])$$
+$$R(f, P) = \sum_{i=1}^n f(t_i)(x_i-x_{i-1}) \quad (t_i\in [x_{i-1}, x_i])$$
 \rmk. 
 \begin{enumerate}
 	\item $R(f, P) = R(f, P, t_1, t_2, \dots, t_n)$

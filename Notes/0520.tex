@@ -1,6 +1,6 @@
 \section*{May 20th, 2019}
 
-\ex. $f(x) = \log(1+x)$, $I=[0, \infty)$ $\overset{?}{\imp} f(x) = \sum_{k=1}^\infty (-1)^k\dfrac{x^k}{k}$\\
+\ex. $f(x) = \log(1+x)$, $I=[0, \infty)$ $\overset{?}{\imp} f(x) = \ds \sum_{k=1}^\infty (-1)^k\dfrac{x^k}{k}$\\
 This cannot be done \textit{yet}. (Chap 6)\\
 \\
 \defn. Suppose $f: X\ra \R$ ($X\subset \R^d$).
@@ -31,7 +31,7 @@ x^2\sin\dfrac{1}{x} & (x \neq 0)\\
 \thm{ 4.2.6} \textbf{(Darboux's Theorem)} Suppose $F:I\ra\R$ is a differentiable function defined on a closed interval, and let $F'=f$. If $a, b$ are points in $I$ with $a < b$ and $f(a) < \alpha < f(b)$, then there exists $c\in (a, b)$ s.t. $f(c) = \alpha$.\\
 \pf. Define $G(x) = F(x) - \alpha x$. $G(x)$ is continuous and differentiable on $I$ and has a minimum $G(c)$. $G'(a) = F'(a) - \alpha = f(a) - \alpha < 0$, $G'(b) = F'(b) - \alpha = f(b) - \alpha > 0$. Since $c$ is minimum, it must be a local minimum. If $c = a$, $G'(c) \geq 0$, if $c = b$, $G'(c) \leq 0$. Thus $c \neq a, b$ and $c \in (a, b)$, therefore we have $G'(c) = f(c) - \alpha = 0$. \\
 \\
-\textbf{Cor 4.2.7} Suppose $F:I\ra\R$ is a differentiable function and $F'=f$. If $J\subset I$, $f(J)$ is also an interval.\footnote{Intermediate value property 를 이용하여 구간의 상이 \textbf{연결집합}임을 보일 수 있었다!}\\
+\textbf{Cor 4.2.7} Suppose $F:I\ra\R$ is a differentiable function and $F'=f$. For any interval $J\subset I$, $f(J)$ is also an interval.\footnote{Intermediate value property 를 이용하여 구간의 상이 \textbf{연결집합}임을 보일 수 있었다!}\\
 \\
 \ex. Does $f(x) = \begin{cases}
 	x & (x < 0) \\ x + 1 & (x \geq 0)

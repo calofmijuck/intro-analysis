@@ -13,10 +13,10 @@ For this section, suppose $f: I \ra \R$, $I = (a, b), (-\infty, b), (a, \infty),
 \prop{ 4.1.1} The following are equivalent for $f:I\ra \R$, $x_0\in I$.
 \begin{enumerate}
 	\item $f$ is differentiable at $x_0$.
-	\item $\exists\,\alpha\in \R, \exists\,\delta > 0$ s.t.
+	\item $\exists\,\alpha\in \R, \exists\,\eta : N(0, \delta) \setminus \{0\} \ra \R$ s.t.
 	\begin{enumerate}
-		\item $f(x_0+h) - f(x_0) = \alpha h + \abs{h}\cdot \eta(h)$ ($\eta: (-\delta, \delta) \bs \{0\} \ra \R$)\footnote{$\abs{h}$ 로 정의한 이유는 벡터 함수를 다루기 위함!}
-		\item $\ds \lim_{h\ra 0} \eta(h) = 0$
+		\item $f(x_0+h) - f(x_0) = \alpha h + \abs{h}\cdot \eta(h)$.\footnote{$\abs{h}$ 로 정의한 이유는 벡터 함수를 다루기 위함!}
+		\item $\ds \lim_{h\ra 0} \eta(h) = 0$.
 	\end{enumerate}
 \end{enumerate}
 \pf. (\textbf{1\mimp2}) Define $$\eta(h) := \frac{f(x_0+h)-f(x_0) - f'(x_0)h}{\abs{h}} \quad (h\neq 0)$$
