@@ -4,7 +4,7 @@
 \thm{ 5.5.4} Thm 5.5.2 holds for BV function $\alpha$.\footnote{리만 적분에서는 norm 이 작기만 하면 되었는데, 스틸체스는 그렇지 않아요. 예를 들어 $\alpha$ 가 불연속점을 가질 때 불연속을 포함하게 자르면 안 됐죠. 그니까 어떤 잘 써는 partition $P_0$ 에 대해 그거 보다 저 잘 썰면 스틸체스합이 수렴한다는 뜻입니다.}\\
 \pf. Define $V(x) = V_a^x(\alpha)$ as \textbf{variation of $\alpha$ on $ [a, x] $}. Let $\alpha = V - (V-\alpha)$ where $V$ is monotonically increasing. Note that $\alpha$, $V-\alpha$ are both monotonically increasing.\\
 \\
-\textbf{(1\mimp2)} Exists monotonically increasing $\alpha_1, \alpha_2$ s.t. $f\in \mc{R}(\alpha_1)$, $f\in \mc{R}(\alpha_2)$. Let $\int_a^b f\,d\alpha_1 = A$, $\int_a^b f\,d\alpha_2 = A_2$. Then $A = A_1-A_2$. By Thm 5.5.2, there exists $P_1$ s.t. $\abs{S(f, P, \alpha_1) - A_1} < \frac{\epsilon}{2}$ if $P_1\subset P$. Also, there exists $P_2$ s.t. $\abs{S(f, P, \alpha_2) - A_2} < \frac{\epsilon}{2}$ if $P_2\subset P$. Now set $P_0 = P_1\cup P_2$, and for $P \supset P_0$, 
+\textbf{(1\mimp2)} Exists monotonically increasing $\alpha_1, \alpha_2$ s.t. $f\in \mc{R}(\alpha_1)$, $f\in \mc{R}(\alpha_2)$. Let $\int_a^b f\,d\alpha_1 = A_1$, $\int_a^b f\,d\alpha_2 = A_2$. Then $A = A_1-A_2$. By Thm 5.5.2, there exists $P_1$ s.t. $\abs{S(f, P, \alpha_1) - A_1} < \frac{\epsilon}{2}$ if $P_1\subset P$. Also, there exists $P_2$ s.t. $\abs{S(f, P, \alpha_2) - A_2} < \frac{\epsilon}{2}$ if $P_2\subset P$. Now set $P_0 = P_1\cup P_2$, and for $P \supset P_0$, 
 $$\abs{S(f, P, \alpha) - A} = \abs{S(f, P, \alpha_1)- A_1 -(S(f, P, \alpha_2) - A_2)} \leq \frac{\epsilon}{2} + \frac{\epsilon}{2}  =\epsilon$$\\
 \textbf{(2\mimp1)} \textbf{Claim}. (2) implies
 \begin{enumerate}
@@ -60,7 +60,7 @@ $\epsilon = \epsilon'(2M+2V(\alpha) + 2)$ will show what we wanted.\\
 \thm{ 5.5.5} Suppose $\alpha \in C_1 : [a, b]\ra\R$. If $f \in \mc{R}(\alpha)$,
 $f\alpha'$ is Riemann Integrable, and
 $$\int_a^b f \,d\alpha = \int_a^b f(x)\alpha'(x)\,dx = \int_a^b f \alpha'$$
-\pf. $S(f, P, \alpha) = \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) = \sum_{i=1}^n f(t_i)\alpha'(s_i)(x_i-x_{i-1})$
+\pf. $S(f, P, \alpha) = \sum_{i=1}^n f(t_i)(\alpha(x_i) - \alpha(x_{i-1})) = \sum_{i=1}^n f(t_i)\alpha'(s_i)(x_i-x_{i-1})$ for $s_i\in(x_{i-1}, x_i)$ by MVT, and 
 $R(f\alpha', P) = \sum_{i=1}^n f(t_i)\alpha'(t_i)(x_{i}-x_{i-1})$
 \begin{enumerate}
 	\item $\exists\,P_0$ s.t. $P\supset P_0 \imp \abs{S(f, P, \alpha) -A} < \frac{\epsilon}{2}$ (Thm 5.5.4)
@@ -85,7 +85,7 @@ now $f\alpha'$ is Riemann Integrable and the integral is equal to $A$.\\
 		x & (x < 0) \\ 0 & (x\geq 0)
 	\end{cases}$$
 	These are both increasing, then splitting the integral and a simple calculation yields $\frac{1}{2}.$
-	\item $\int_{-1}^1 x^2\,d\alpha$ for $\alpha(x) = \begin{cases}
+	\item $\int_{-1}^1 x^3\,d\alpha$ for $\alpha(x) = \begin{cases}
 		-x & (-1\leq x\leq 0) \\ x+1 & (0 < x\leq 1)
 	\end{cases}$.\\
 	Let $\alpha=\beta_1 + \beta_2$ s.t. $\beta_1(x) = \abs{x}$ and $\beta_2(x) = 1$ for $x > 0$, 0 otherwise. $\beta_1, \beta_2$ are both BV, and their sum $\alpha$ is BV.\\

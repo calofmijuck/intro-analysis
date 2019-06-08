@@ -13,11 +13,11 @@ is uniformly continuous. If $f$ is continuous then $F$ is differentiable.\\
 \prob{ 5.6.3} If $f, g$ are integrable, $fg$ is integrable.\\
 \pf.
 \begin{enumerate}
-	\item $0\leq \sup\{\abs{f(x)}: a \leq x\leq b\} = M < \infty$. For given $\epsilon>0$, $\exists P = \{a = x_0 < x_1 < \cdots < x_n=b\}$ s.t.
+	\item $0\leq \sup\{\abs{f(x)}: a \leq x\leq b\} = M < \infty$. For given $\epsilon>0$, $\exists\, P = \{a = x_0 < x_1 < \cdots < x_n=b\}$ s.t.
 	$$\sum_{i=1}^n(x_{i}-x_{i-1})(M_i-m_i) < \frac{\epsilon}{2M+1}$$
 	Since $$\abs{f(x)^2 - f(y)^2} \leq \abs{f(x)-f(y)}(\abs{f(x)} + \abs{f(y)}) \leq 2M\abs{f(x)-f(y)}$$
-	, let $\tilde{M_i}, \tilde{m_i}$ be supremum and infimum of $f^2$ in $[x_{i-1}, x_i]$. Then $$\tilde{M_i} - \tilde{m_i} \leq 2M(M_i-m_i)$$
-	Thus $$ \sum_{i=1}^n(x_{i}-x_{i-1})(\tilde{M_i} - \tilde{m_i}) \leq \sum_{i=1}^n (x_{i} - x_{i-1}) 2M(M_i -m_i) \leq 2M \cdot \frac{\epsilon}{2M+1} < \epsilon $$
+	, let $\widetilde{M_i}, \widetilde{m_i}$ be supremum and infimum of $f^2$ in $[x_{i-1}, x_i]$. Then $$\widetilde{M_i} - \widetilde{m_i} \leq 2M(M_i-m_i)$$
+	Thus $$ \sum_{i=1}^n(x_{i}-x_{i-1})(\widetilde{M_i} - \widetilde{m_i}) \leq \sum_{i=1}^n (x_{i} - x_{i-1}) 2M(M_i -m_i) \leq 2M \cdot \frac{\epsilon}{2M+1} < \epsilon $$
 	and $f^2$ is integrable.
 	\item Now write $fg = \frac{1}{4}[(f+g)^2-(f-g)^2]$ to observe that $fg$ is integrable.
 \end{enumerate}~\\
@@ -47,7 +47,7 @@ $$\lim_{n\ra\infty} \left(\int_a^b \abs{f(x)}^n dx\right)^{1/n} = \max\{\abs{f(x
 	\item[($\leq$)] For all $n$, $\ds \left(\int_a^b \abs{f(x)}^n dx\right)^{1/n} \leq (M^n (b-a))^{1/n} = M(b-a)^{1/n}$.\\
 	Take $\limsup$ on both sides to get (LHS) $\leq M$.
 	\item[($\geq$)] $\exists\,c\in[a, b]$ s.t. $f(c) = M$.\\
-	$\forall\epsilon > 0$, we want to show that $$\liminf_n \left(\int_a^b \abs{f(x)}^ndx\right)^{1/n} \geq M - \epsilon$$
+	$\forall\epsilon > 0$, we want to show that $$\liminf_{n\ra\infty} \left(\int_a^b \abs{f(x)}^ndx\right)^{1/n} \geq M - \epsilon$$
 	$\exists\,\delta >0$ s.t. $[c-\delta, c+\delta]\subset [a, b]$, and $x\in [c-\delta, c+\delta] \imp M - \epsilon \leq \abs{f(x)} \leq M$.
 	$$\left(\int_a^b \abs{f(x)}^ndx\right)^{1/n} \geq \left(\int_{c-\delta}^{c+\delta} \abs{f(x)}^n dx\right)^{1/n} \geq (2\delta)^{1/n} (M-\epsilon)$$
 	Take $\liminf$ on both sides to show the desired inequality.

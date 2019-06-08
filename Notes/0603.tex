@@ -15,7 +15,7 @@ If $\{V(f, P): P\in \mc{P}[a, b] \}$ is bounded above, $f$ is a function of boun
 \prop{ 5.4.1} Suppose $f, g:[a, b]\ra\R$ is BV. Also, $\exists\, M_f, M_g$ s.t. $\abs{f} \leq M_f, \abs{g}\leq M_g$.\footnote{Now we see that any linear combination of BV functions are BV.}
 \begin{enumerate}
 	\item $f+g$ is BV, $V(f+g) \leq V(f) + V(g)$.
-	\item $fg$ is BV, $V(fg) = M_f \cdot V(g) + M_g\cdot V(f)$.
+	\item $fg$ is BV, $V(fg) \leq M_f \cdot V(g) + M_g\cdot V(f)$.
 	\item $\alpha f$ is BV, $V(\alpha f) = \abs{\alpha}V(f)$.
 \end{enumerate}
 \pf.
@@ -27,7 +27,7 @@ If $\{V(f, P): P\in \mc{P}[a, b] \}$ is bounded above, $f$ is a function of boun
 	and taking $\sup$ over all $P\in\mc{P}[a, b]$ gives $V(f+g)\leq V(f)+V(g)$.
 	\item Sum the following inequality from $i=1$ to $n$.
 	$$\begin{aligned}
-		\abs{f(x_i)g(x_i) - f(x_{i-1})g(x_{i-1})} &= \abs{f(x_i)(g(x_{i-1}-g(x_{i-1})) + g(x_{i-1})(f(x_{i}) - f(x_{i-1}))} \\&\leq M_f \abs{g(x_i) - g(x_{i-1})} + M_g \abs{f(x_i)-f(x_{i-1})}
+		\abs{f(x_i)g(x_i) - f(x_{i-1})g(x_{i-1})} &= \abs{f(x_i)(g(x_{i-1})-g(x_{i-1})) + g(x_{i-1})(f(x_{i}) - f(x_{i-1}))} \\&\leq M_f \abs{g(x_i) - g(x_{i-1})} + M_g \abs{f(x_i)-f(x_{i-1})}
 	\end{aligned}
 	$$
 	Thus $V(fg, P)\leq M_f \cdot V(g, P) + M_g \cdot V(f, P) \leq M_f \cdot V(g) + M_g \cdot V(f)$ and $fg$ is BV. Taking $\sup$ over all $P\in\mc{P}[a, b]$ gives $V(fg)\leq M_f \cdot V(g) + M_g \cdot V(f)$.

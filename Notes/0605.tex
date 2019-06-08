@@ -15,14 +15,15 @@ Also, Prop 5.1.1 holds.\footnote{Setting $\alpha(x) = x$ will give the definitio
 This inequality holds because $\alpha$ is monotonically increasing.\\
 \\
 We can also define
-$$\uint{_a^b}f\,d\alpha = \inf\left\{ U(f, P, \alpha): P\in\mc{P}[a, b] \right\} \quad \lint{_a^b}f\,d\alpha = \sup\left\{ U(f, P, \alpha): P\in\mc{P}[a, b] \right\} $$
+$$\uint{_a^b}f\,d\alpha = \inf\left\{ U(f, P, \alpha): P\in\mc{P}[a, b] \right\} \quad \lint{_a^b}f\,d\alpha = \sup\left\{ L(f, P, \alpha): P\in\mc{P}[a, b] \right\} $$
 and if these two values are the same, $f$ is \textbf{Stieltjes Integrable} w.r.t. $\alpha$. We write $f\in \mc{R}(\alpha)$, and $$\int_a^b f\,d\alpha = \int_a^b f(x)\,d\alpha(x) = \uint{_a^b}f\,d\alpha = \lint{_a^b}f\,d\alpha $$
+\\
 \thm{ 5.5.1} Suppose $f, g:[a, b]\ra\R$ is bounded and given monotonically increasing $\alpha, \beta:[a, b]\ra\R$, $c\in \R$.
 \begin{enumerate}
-	\item If $f, g \in \mc{R}(\alpha)$, $f+g, cf \in \mc{R}(\alpha)$ and $$\int_a^b (f+g) d\alpha = \int_a^b f\,d\alpha + \int_a^b g\,d\alpha \quad \int_a^b cf\,d\alpha = c\int_a^b f\,d\alpha$$	\item $a<p<b$. If $f\in \mc{R}(\alpha)$ on $[a, b]$ $\iff$ $f\in \mc{R}(\alpha)$ on $[a, p]$ and $[p, b]$, and
+	\item If $f, g \in \mc{R}(\alpha)$, $f+g, cf \in \mc{R}(\alpha)$ and $$\int_a^b (f+g)\, d\alpha = \int_a^b f\,d\alpha + \int_a^b g\,d\alpha \quad \int_a^b cf\,d\alpha = c\int_a^b f\,d\alpha$$	\item $a<p<b$. If $f\in \mc{R}(\alpha)$ on $[a, b]$ $\iff$ $f\in \mc{R}(\alpha)$ on $[a, p]$ and $[p, b]$, and
 	$$\int_a^b f\,d\alpha = \int_a^p f\,d\alpha + \int_p^b f\,d\alpha$$
 	\item If $f\in \mc{R}(\alpha), \mc{R}(\beta)$, then $f\in \mc{R}(\alpha + \beta), \mc{R}(c\alpha)$ for $c\geq0$. And
-	$$\int_a^b f\, d(\alpha+\beta) = \int_a^b f\,d\alpha + \int_b^c f\,d\beta\quad \int_a^b f\, d(c\alpha) = c\int_a^b f\,d\alpha$$
+	$$\int_a^b f\, d(\alpha+\beta) = \int_a^b f\,d\alpha + \int_a^b f\,d\beta\quad \int_a^b f\, d(c\alpha) = c\int_a^b f\,d\alpha$$
 \end{enumerate}~\\
 \thm{ 5.5.2 (1/2)} The following are euqivalent for bounded $f$ and monotonically increasing $\alpha$.
 \begin{enumerate}
