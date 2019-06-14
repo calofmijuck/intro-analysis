@@ -44,7 +44,7 @@ Why is Stieltjes integral important?
 	\item Intermediate object between Riemann Integral and Lebesgue Integral.
 	\item Ex. $E(f(X)) = \int_a^b f \, dF$ ($F$: cumulative distribution function)
 \end{enumerate}~\\
-\rmk. 5.5.2 (2/2) $\imp$ $\alpha: C^1$ then $\ds \int_a^b f\,d\alpha = \int_a^b f(x)\,\alpha'(x)\,dx$\\
+\rmk. 5.5.2 (2/2) $\imp$ $\alpha \in C^1$ then $\ds \int_a^b f\,d\alpha = \int_a^b f(x)\,\alpha'(x)\,dx$\\
 \\
 \ex. $\alpha(x) = \begin{cases}
 	0 & (x\leq 0) \\ 1 & (x > 0)
@@ -76,7 +76,7 @@ where $M$ is an upper bound of $\abs{f}$. For $P\in \mc{P}[a, b]$ s.t. $\norm{P}
 $$U(f, P, \alpha) - L(f, P, \alpha) = \sum_{i=1}^n (M_i-m_i)(\alpha(x_i)-\alpha(x_{i-1})) = \sum_{i=1}^n (f(u_i)-f(v_i))(\alpha(x_i)-\alpha(x_{i-1}))$$
 for some $u_i, v_i$, since $f$ is continuous. (EVT)
 But setting $u_i, v_i \in [x_{i-1}, x_i] \imp \abs{u_i-v_i} < \delta$. Thus
-$$\leq \frac{\epsilon}{M(\alpha(b)-\alpha(b))}\sum_{i=1}^n (\alpha(x_i)-\alpha(x_{i-1})) < \frac{\epsilon}{M}$$\\
+$$\leq \frac{\epsilon}{M(\alpha(b)-\alpha(a))}\sum_{i=1}^n (\alpha(x_i)-\alpha(x_{i-1})) < \frac{\epsilon}{M}$$\\
 Now if $\alpha$ is BV, $\alpha = \alpha_1-\alpha_2$ for monotonically increasing $\alpha_1, \alpha_2$.
 Then $f\in \mc{R}(\alpha_1)$, $f\in \mc{R}(\alpha_2)$. Then $f\in \mc{R}(\alpha)$ and $\int_a^b f\, d\alpha = \int_a^b f\,d\alpha_1 - \int_a^b f\,d\alpha_2$ by definition.
 \pagebreak

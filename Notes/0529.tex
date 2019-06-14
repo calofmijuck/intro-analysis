@@ -20,7 +20,7 @@
 	$$\begin{aligned}
 		\abs{\frac{F(x)-F(x_0)}{x-x_0} - f(x_0)} &= \abs{\frac{1}{x-x_0}\int_{x_0}^x f(t)dt - \frac{1}{x-x_0} \int_{x_0}^xf(x_0)dt}\\
 		&=\frac{1}{\abs{x-x_0}} \abs{\int_{x_0}^x \big(f(t)-f(x_0)\big) dt} \\ &\leq \frac{1}{\abs{x-x_0}} \int_{x_0}^x \abs{f(t)-f(x_0)}dt\\
-		&< \frac{1}{\abs{x-x_0}}\int_{x_0}^x \epsilon dt = \epsilon \quad (\because \abs{t-x_0} < \delta \imp \abs{f(t) - f(x_0)} < \epsilon)
+		&< \frac{1}{\abs{x-x_0}}\int_{x_0}^x \epsilon \,dt = \epsilon \quad (\because \abs{t-x_0} < \delta \imp \abs{f(t) - f(x_0)} < \epsilon)
 	\end{aligned}$$
 	Therefore the right derivative of $F$ at $x_0$ is $f(x_0)$. The proof is similar for the left derivative.
 	\item Take any $P = \{a = x_0 < x_1 < \cdots < x_n = b\}\in \mc{P}[a, b]$.
@@ -72,5 +72,5 @@ Then the total variation diverges. $$V(f, P_n) > \frac{2}{(2n+1)\pi} + \frac{2}{
 	\item $f$: continuous does not imply that $f$ is of bounded variation. (Counterexample above)
 \end{enumerate}~\\
 \textbf{Lemma}. If $f:[a, b]\ra\R$ is of bounded variation, $f$ is bounded.\\
-\pf. Let $x\in[a, b]$. $P = \{a, x, b\}$.$$\abs{f(x)} \leq \abs{f(a)} + \abs{f(x)-f(a)} \leq \abs{f(a)} + \abs{f(x) - f(a)} + \abs{f(b)-f(x)} = \abs{f(a) + V(f, P)}$$
+\pf. Let $x\in[a, b]$. $P = \{a, x, b\}$.$$\abs{f(x)} \leq \abs{f(a)} + \abs{f(x)-f(a)} \leq \abs{f(a)} + \overbrace{\abs{f(x) - f(a)} + \abs{f(b)-f(x)}}^{V(f, P)} \leq \abs{f(a)} + \abs{V(f)}$$
 \pagebreak
