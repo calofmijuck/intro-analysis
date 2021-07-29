@@ -63,10 +63,32 @@
 \newcommand{\defn}{\textbf{Definition}}
 \newcommand{\rmk}{\textbf{Remark}}
 \newcommand{\ex}{\textbf{Example}}
-\newcommand{\thm}[1]{\textbf{Theorem #1}}
 \newcommand{\pf}{\textbf{Proof}}
-\newcommand{\prop}[1]{\textbf{Prop #1}}
-\newcommand{\prob}[1]{\textbf{Problem #1}}
+
+\newcommand{\thm}[1]{%
+	\if #1.
+		\textbf{Theorem.}%
+	\else
+		\textbf{Theorem #1}%
+	\fi
+}
+
+
+\newcommand{\prop}[1]{%
+	\if #1.
+		\textbf{Proposition.}%
+	\else
+		\textbf{Proposition #1}%
+	\fi
+}
+
+\newcommand{\prob}[1]{%
+	\if #1.
+		\textbf{Problem.}%
+	\else
+		\textbf{Problem #1}%
+	\fi
+}
 
 \title{\textbf{Introduction to Analysis II} \\ {\Large Study Notes}}
 \author{Sungchan Yi}
