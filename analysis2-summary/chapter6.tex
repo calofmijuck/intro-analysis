@@ -30,7 +30,7 @@ for each \(x \in X\). In other words, given \(\epsilon > 0\) and for all \(x \in
 \prob{6.1.1.} Following are equivalent.
 \begin{enumerate}
 	\item \(\span{f_n}\) is uniformly convergent on \(X\).
-	\item \(\ds \lim_{n\ra \infty} \sup \left\{\norm{f_n-f}: x\in X\right\} = 0\).
+	\item \(\ds \lim_{n\ra\infty} \norm{f_n-f}_{\sup} := \lim_{n\ra \infty} \sup \left\{\norm{f_n-f}: x\in X\right\} = 0\).
 \end{enumerate}
 
 \pf. (1\mimp2) Uniformly convergent on \(X\) \mimp \(\forall \epsilon > 0\), \(\exists N \in \N\) s.t. \(n \geq N, x\in X \implies \norm{f_n(x) - f(x)} < \epsilon/2\). Then \(0 \leq \sup\left\{\norm{f_n(x) - f(x)} : x \in X \right\} < \epsilon/2 < \epsilon\), and we have the desired result.
@@ -40,21 +40,68 @@ for each \(x \in X\). In other words, given \(\epsilon > 0\) and for all \(x \in
 
 \pf. Suppose \(\span{f_n}\) is converges uniformly on \(\R\) to 0. Then for any given \(\epsilon > 0\), there exists \(N\in\N\) such that for \(n\geq N, x\in \R \implies \abs{\frac{1}{n}x} < \epsilon\). But this can't be true, because for any \(\epsilon\), we can take \(x\) to be as large as we want. Take \(x = 2\epsilon n\) for example, then \(\abs{\frac{1}{n}x} = 2\epsilon > \epsilon\). Contradiction.
 
-\thm{6.1.1.} If a sequence \(f_n\) of continuous functions from \(X\) to \(Y\) converges uniformly to \(f: X \ra Y\), then \(f\) is a continuous function.
+\thm{6.1.1.} If a sequence \(\span{f_n}\) of continuous functions from \(X\) to \(Y\) converges uniformly to \(f: X \ra Y\), then \(f\) is a continuous function.
 
 \pf. Given \(\epsilon > 0\) and \(x_0 \in X\), choose large enough \(N\in\N\) such that
 \[
-	x \in X \implies \norm{f(x) - f_N(x)} < \frac{\epsilon}{3}	
+	x \in X \implies \norm{f(x) - f_N(x)} < \frac{\epsilon}{3}
 \]
 Since \(f_N\) is continuous, there exists \(\delta > 0\) such that
 \[
-	x\in X,\; \norm{x - x_0} < \delta \implies \norm{f_N(x) - f_N(x_0)} < \frac{\epsilon}{3}	
+	x\in X,\; \norm{x - x_0} < \delta \implies \norm{f_N(x) - f_N(x_0)} < \frac{\epsilon}{3}
 \]
 If \(x\in X\) and \(\norm{x - x_0} < \delta\), then we have
 \[
 	\begin{aligned}
-	\norm{f(x) - f(x_0)} &\leq \norm{f(x) - f_N(x)} + \norm{f_N(x) - f_N(x_0)} + \norm{f_N(x_0) -f(x_0)} \\
-		&= \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
-\end{aligned}
+		\norm{f(x) - f(x_0)} & \leq \norm{f(x) - f_N(x)} + \norm{f_N(x) - f_N(x_0)} + \norm{f_N(x_0) -f(x_0)} \\
+		                     & = \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
+	\end{aligned}
 \]
 So we can conclude that \(f\) is continuous at \(x_0\). (Also note that uniform convergence implies pointwise convergence.)
+
+\prop{.} If \(\span{f_n}\) converges uniformly to \(f: X\ra Y\) and if \(\ds \lim_{x \ra x_0} f_n(x)\) exists for all \(n\), the following holds.
+\[
+	\lim_{n\ra \infty} \lim_{x \ra x_0} f_n(x) = \lim_{x \ra x_0} \lim_{n \ra \infty} f_n(x), \qquad x_0 \in X'
+\]
+\pf. Let \(\ds \lim_{x \ra x_0} f_n(x) = a_n\) for \(n\in \N\). We want to show that \(\ds \lim_{n\ra\infty} a_n = \lim_{x\ra x_0} f(x)\).
+\newline
+First, we show that \(\{a_n\}\) converges by proving that \(\{a_n\}\) is a Cauchy sequence.
+\newline
+Take any \(\epsilon > 0\). By uniform convergence, there exists \(N\in \N\) such that
+\[
+	n\geq N, \; x \in X \implies \norm{f_n(x) - f(x)} < \epsilon
+\]
+Furthermore, because \(\ds \lim_{x\ra x_0} f_n(x) = a_n\), there exists \(\delta > 0\) such that
+\[
+	\norm{x - x_0} < \delta \implies \norm{f_n(x) - a_n} < \epsilon
+\]
+Take \(m, n \geq N\). Then we have
+\[
+	\begin{aligned}
+		\norm{a_n - a_m} \leq \norm{a_n - f_n(x)} + \norm{f_n(x) - f(x)} + \norm{f(x) - f_m(x)} + \norm{f_m(x)-a_m} < 4\epsilon
+	\end{aligned}
+\]
+, since we can take \(x\) to be as close as we want to \(x_0\). Therefore \(\{a_n\}\) is a Cauchy sequence, let its limit be \(a\).
+\newline
+Now it is enough to show that \(\ds \lim_{x\ra x_0} f(x) = a\). For \(\epsilon > 0\), there exist \(\delta > 0\) such that
+\[
+	\begin{aligned}
+		\norm{x - x_0} < \delta \implies
+		\norm{f(x) - a} & \leq \norm{f(x) - f_n(x)} + \norm{f_n(x) - a_n} + \norm{a_n - a}           \\
+		                & < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+	\end{aligned}
+\]
+The second inequality holds because each of the terms are smaller than \(\epsilon / 3\) due to uniform convergence, \(\ds \lim_{x \ra x_0} f_n(x) = a_n\), \(\ds \lim_{n \ra \infty} a_n = a\), respectively.\footnote{조건 \(x \in X'\) 은 어디서 이용된 것일까?}
+
+\thm{6.1.2.} The following are equivalent for sequence of functions \(\span{f_n}\) from \(X\) to \(Y\).
+\begin{enumerate}
+	\item \(\span{f_n}\) converges uniformly to \(f\).
+	\item For all \(\epsilon > 0\), there exists \(N \in \N\) such that
+	      \begin{equation}\tag{\textasteriskcentered}
+			m, n \geq N, \; x\in X \implies \norm{f_m(x) - f_n(x)} < \epsilon 
+		  \end{equation}
+\end{enumerate}
+
+\pf. (1\mimp2) (Similar to the proof of Proposition 2.3.6).
+\newline
+(2\mimp1) Fix \(x\in X\). Then we directly see that \(\{f_n(x)\}\) is a Cauchy sequence. Suppose its limit is \(f(x)\). For \(\forall \epsilon > 0\), take \(N\) such that (\textasteriskcentered) holds and set \(m\ra \infty\). Then for each \(n \geq N\), \(\norm{f_n-f}_{\sup} \leq \epsilon\), thus \(\span{f_n}\) converges uniformly to \(f\).
