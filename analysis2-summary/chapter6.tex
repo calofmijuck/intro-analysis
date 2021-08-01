@@ -26,7 +26,6 @@ for each \(x \in X\). In other words, given \(\epsilon > 0\) and for all \(x \in
 	n\geq N,\; x\in X \implies \norm{f_n(x) - f(x)} < \epsilon
 \]
 
-\clearpage
 \prob{6.1.1.} Following are equivalent.
 \begin{enumerate}
 	\item \(\span{f_n}\) is uniformly convergent on \(X\).
@@ -105,3 +104,40 @@ The second inequality holds because each of the terms are smaller than \(\epsilo
 \pf. (1\mimp2) (Similar to the proof of Proposition 2.3.6).
 \newline
 (2\mimp1) Fix \(x\in X\). Then we directly see that \(\{f_n(x)\}\) is a Cauchy sequence. Suppose its limit is \(f(x)\). For \(\forall \epsilon > 0\), take \(N\) such that (\textasteriskcentered) holds and set \(m\ra \infty\). Then for each \(n \geq N\), \(\norm{f_n-f}_{\sup} \leq \epsilon\), thus \(\span{f_n}\) converges uniformly to \(f\).
+
+\thm{6.1.3.} (Weierstrass \(M\)-test) Suppose that \(\span{f_n}\) is a sequence of functions from a set \(X\) to \(\R\), and that there is a sequence of non-negative numbers \(\{M_n\}\) such that \(\abs{f_n} \leq M_n\) for all \(n \in \N\). If \(\sum_{n=1}^{\infty} M_n\) converges, then the series
+\[
+	\sum_{n=1}^\infty f_n(x)
+\]
+converges (absolutely) and uniformly on \(X\).\footnote{여기서 중요한 부분은 \(M_n\) 이 \(x\in X\) 에 의존하지 않는 식이어야 한다는 점이다.}
+
+\pf. Since \(\ds \sum_{n=1}^\infty M_n\) converges and \(M_n > 0\), given any \(\epsilon>0\), \(\exists\,N\in \N\) such that 
+\[
+	n > m \geq N \implies M_m + M_{m+1} + \cdots + M_n < \epsilon
+\]
+by Corollary 2.3.9.
+\newline
+Meanwhile for all \(x \in X\),
+\[
+	\begin{aligned}
+		\abs{f_m(x) + f_{m+1}(x) + \cdots + f_n(x)} & \leq \abs{f_m(x)} + \abs{f_{m+1}(x)} + \cdots + \abs{f_n(x)} \\
+													& \leq M_m + M_{m+1} + \cdots + M_n < \epsilon
+	\end{aligned}
+\]
+Therefore by Theorem 6.1.2 (2), the series \(\ds \sum_{n=1}^\infty f_n(x)\) converges uniformly on \(X\).
+\newline
+Absolute uniform convergence of \(\ds \sum_{n=1}^\infty \abs{f_n(x)}\) can be shown analogously.
+
+\prob{6.1.3.}
+\begin{enumerate}
+	\item \(f_n(x) = nx(1-x^2)^n\) \newline
+	Pointwise convergence on \(-\sqrt{2} < x < \sqrt{2}\), because \(f_n(x) \leq \sqrt{2}n\alpha^n\) for some \(\alpha \in [1-x^2, 1)\), and \(f(x) = \ds \lim_{n \ra \infty} f_n(x) = 0\). Now take the derivative.
+	\[
+		f_n'(x) = n(1-x^2)^{n-1}\{1 - (2n+1)x^2\}
+	\]
+	We see that \(f_n\) has a local maximum at \(\ds x_\ast = \frac{1}{\sqrt{2n+1}}\). Thus,
+	\[
+		\lim_{n\ra\infty} \norm{f_n-f}_{\sup} \geq \lim_{n \ra \infty} f_n(x_\ast) = \lim_{n \ra \infty} \frac{1}{\left(1 + \dfrac{1}{2n}\right)^n}\cdot \frac{n}{\sqrt{2n+1}} = \infty
+	\]
+	and the given sequence does not uniformly converge on \([-\sqrt{2}, \sqrt{2}]\).
+\end{enumerate}
