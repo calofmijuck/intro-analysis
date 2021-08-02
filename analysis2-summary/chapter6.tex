@@ -140,4 +140,38 @@ Absolute uniform convergence of \(\ds \sum_{n=1}^\infty \abs{f_n(x)}\) can be sh
 		\lim_{n\ra\infty} \norm{f_n-f}_{\sup} \geq \lim_{n \ra \infty} f_n(x_\ast) = \lim_{n \ra \infty} \frac{1}{\left(1 + \dfrac{1}{2n}\right)^n}\cdot \frac{n}{\sqrt{2n+1}} = \infty
 	\]
 	and the given sequence does not uniformly converge on \([-\sqrt{2}, \sqrt{2}]\).
+	\item \(f_n(x) = \ds \sum_{k=1}^{n} \frac{x^k}{x^k + 1}\) \newline
+	Pointwise convergence on \(x\in [0, 1)\), by comparing with \(x^k\). Let \(f(x) = \ds \sum_{k=1}^\infty \frac{x^k}{x^k+1}\).
+	\[
+		f(x) - f_n(x) = \sum_{k=n+1}^\infty \frac{x^k}{x^k+1}\geq \frac{x^{n+1}}{1+x^{n+1}}
+	\]
+	As \(x \ra 1^-\), \(\ds \frac{x^{n+1}}{1+x^{n+1}}\ra \frac{1}{2}^-\), thus \(\ds \lim_{n\ra\infty} \norm{f_n-f}_{\sup} \geq \frac{1}{2}\) and the given sequence does not uniformly converge on \([0, 1)\).
+	\item \(f_n(x) = \ds \frac{1}{n}e^{-x^2/n}\) \newline
+	Pointwise convergence on \(x\in \R\), converges to \(f(x) = 0\). Also, \(f_n(x)\) has a maximum at \(x = 0\). And we have
+	\[
+		f_n(x) - f(x) = \frac{1}{n}e^{-x^2/n} \leq \frac{1}{n}.
+	\]
+	As \(n\ra \infty\), \(\ds \lim_{n \ra \infty} \norm{f_n-f}_{\sup} \leq \lim_{n \ra \infty}\frac{1}{n} = 0\) and the given sequence converges uniformly on \(\R\).
+	\item \(\ds f_n(x) = \sum_{k=1}^n \frac{1}{x^2+k^2}\) \newline
+	By comparison with \(\sum 1/k^2\), the sequence uniformly converges on \(\R\) by Weierstrass \(M\)-test.
+	\item \(\ds f_n(x) = \frac{nx}{1+nx^2}\) \newline
+	If \(x = 0\), convergence is trivial. Let \(x \neq 0\), then
+	\[
+		\lim_{n \ra \infty} \frac{nx}{1+nx^2} = \lim_{n \ra \infty} \frac{x}{\dfrac{1}{n}+x^2} = \frac{1}{x}
+	\]
+	thus pointwise convergence on \(\R\). Take \(x = 1/n\). Then
+	\[
+		\norm{f_n(x)-f(x)} = \abs{\frac{1}{x(1+nx^2)}} = \frac{n^2}{n+1}.
+	\]
+	As \(n\ra \infty\), \(\norm{f_n(x)-f(x)} \ra \infty\). The given sequence does not uniformly converge on \(\R\).
+	\item \(f_n(x) = \ds \sum_{k=1}^n \frac{1}{1+k^2 x}\) \newline
+	For \(x = 0\), \(f_n(x) \ra \infty\). Now let \(x \neq 0\), then \(\ds f_n(x) = \frac{1}{x}\sum_{k=1}^n\frac{1}{1/x + k^2}\)
+	\begin{enumerate}
+		\item If \(x > 0\), \(\ds \frac{1}{1/x+k^2} < \frac{1}{k^2}\), thus uniformly converges on \(x>0\) by Weierstrass \(M\)-test.
+		\item If \(x < 0\) and \(x\neq \ds -\frac{1}{k^2}\) for \(k\in \N\), take large enough \(K\in \N\) such that for \(k \geq K\), \(k^2x < 1 + k^2x < 0\). Then we have
+		\[
+			\sum_{k=K}^\infty \abs{\frac{1}{1+k^2x}} \leq \sum_{k=K}^\infty \frac{1}{k^2 \abs{x}} <\infty
+		\]
+		and thus uniformly converges on the interval by Weierstrass \(M\)-test.
+	\end{enumerate}
 \end{enumerate}
