@@ -4,17 +4,17 @@
 
 \defn. (Sequence of Functions) Let \(X \subseteq \R^n\), \(Y \subseteq \R^m\). Given
 \[
-	f_n: X\ra Y
+    f_n: X\ra Y
 \]
 for each \(n\in \N\), we call \(\span{f_n}\) a \textbf{sequence of functions from \(X\) to \(Y\)}.
 
 \defn. (Pointwise Convergence) The sequence \(\span{f_n}\) \textbf{converges pointwise} to the function \(f: X \ra Y\) if and only if
 \[
-	\lim_{n\ra \infty} f_n(x) = f(x)
+    \lim_{n\ra \infty} f_n(x) = f(x)
 \]
 for each \(x \in X\). In other words, given \(\epsilon > 0\) and for all \(x \in X\),
 \begin{center}
-	\(\exists N\in \N\)\quad  s.t.\quad \(n \geq N \implies \norm{f_n(x) - f(x)} < \epsilon\).\footnote{여기서 주의해야 할 점은 자연수 \(N\) 이 양수 \(\epsilon > 0\) 뿐 아니라 정의역의 점 \(x\in X\) 에도 의존한다는 점이다.}
+    \(\exists N\in \N\)\quad  s.t.\quad \(n \geq N \implies \norm{f_n(x) - f(x)} < \epsilon\).\footnote{여기서 주의해야 할 점은 자연수 \(N\) 이 양수 \(\epsilon > 0\) 뿐 아니라 정의역의 점 \(x\in X\) 에도 의존한다는 점이다.}
 \end{center}
 
 \defn. (Sequence of Continuous Functions) \(\span{f_n}\) is a sequence of continuous functions if and only if \(f_n\) is continuous for all \(n\in \N\).
@@ -23,13 +23,13 @@ for each \(x \in X\). In other words, given \(\epsilon > 0\) and for all \(x \in
 
 \defn. (Uniform Convergence) Let \(\span{f_n}\) be a sequence of functions defined on \(X \subseteq \R^n\) and let \(f\) be a function defined on \(X\). We say that \(\span{f_n}\) is \textbf{uniformly convergent on \(X\)} if and only if for any given \(\epsilon > 0\), there exists \(N\in \N\) such that
 \[
-	n\geq N,\; x\in X \implies \norm{f_n(x) - f(x)} < \epsilon
+    n\geq N,\; x\in X \implies \norm{f_n(x) - f(x)} < \epsilon
 \]
 
 \prob{6.1.1.} Following are equivalent.
 \begin{enumerate}
-	\item \(\span{f_n}\) is uniformly convergent on \(X\).
-	\item \(\ds \lim_{n\ra\infty} \norm{f_n-f}_{\sup} := \lim_{n\ra \infty} \sup \left\{\norm{f_n-f}: x\in X\right\} = 0\).
+    \item \(\span{f_n}\) is uniformly convergent on \(X\).
+    \item \(\ds \lim_{n\ra\infty} \norm{f_n-f}_{\sup} := \lim_{n\ra \infty} \sup \left\{\norm{f_n-f}: x\in X\right\} = 0\).
 \end{enumerate}
 
 \pf. (1\mimp2) Uniformly convergent on \(X\) \mimp \(\forall \epsilon > 0\), \(\exists N \in \N\) s.t. \(n \geq N, x\in X \implies \norm{f_n(x) - f(x)} < \epsilon/2\). Then \(0 \leq \sup\left\{\norm{f_n(x) - f(x)} : x \in X \right\} < \epsilon/2 < \epsilon\), and we have the desired result.
@@ -43,24 +43,24 @@ for each \(x \in X\). In other words, given \(\epsilon > 0\) and for all \(x \in
 
 \pf. Given \(\epsilon > 0\) and \(x_0 \in X\), choose large enough \(N\in\N\) such that
 \[
-	x \in X \implies \norm{f(x) - f_N(x)} < \frac{\epsilon}{3}
+    x \in X \implies \norm{f(x) - f_N(x)} < \frac{\epsilon}{3}
 \]
 Since \(f_N\) is continuous, there exists \(\delta > 0\) such that
 \[
-	x\in X,\; \norm{x - x_0} < \delta \implies \norm{f_N(x) - f_N(x_0)} < \frac{\epsilon}{3}
+    x\in X,\; \norm{x - x_0} < \delta \implies \norm{f_N(x) - f_N(x_0)} < \frac{\epsilon}{3}
 \]
 If \(x\in X\) and \(\norm{x - x_0} < \delta\), then we have
 \[
-	\begin{aligned}
-		\norm{f(x) - f(x_0)} & \leq \norm{f(x) - f_N(x)} + \norm{f_N(x) - f_N(x_0)} + \norm{f_N(x_0) -f(x_0)} \\
-		                     & = \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
-	\end{aligned}
+    \begin{aligned}
+        \norm{f(x) - f(x_0)} & \leq \norm{f(x) - f_N(x)} + \norm{f_N(x) - f_N(x_0)} + \norm{f_N(x_0) -f(x_0)} \\
+                             & = \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
+    \end{aligned}
 \]
 So we can conclude that \(f\) is continuous at \(x_0\). (Also note that uniform convergence implies pointwise convergence.)
 
 \prop{.} If \(\span{f_n}\) converges uniformly to \(f: X\ra Y\) and if \(\ds \lim_{x \ra x_0} f_n(x)\) exists for all \(n\), the following holds.
 \[
-	\lim_{n\ra \infty} \lim_{x \ra x_0} f_n(x) = \lim_{x \ra x_0} \lim_{n \ra \infty} f_n(x), \qquad x_0 \in X'
+    \lim_{n\ra \infty} \lim_{x \ra x_0} f_n(x) = \lim_{x \ra x_0} \lim_{n \ra \infty} f_n(x), \qquad x_0 \in X'
 \]
 \pf. Let \(\ds \lim_{x \ra x_0} f_n(x) = a_n\) for \(n\in \N\). We want to show that \(\ds \lim_{n\ra\infty} a_n = \lim_{x\ra x_0} f(x)\).
 \newline
@@ -68,37 +68,37 @@ First, we show that \(\{a_n\}\) converges by proving that \(\{a_n\}\) is a Cauch
 \newline
 Take any \(\epsilon > 0\). By uniform convergence, there exists \(N\in \N\) such that
 \[
-	n\geq N, \; x \in X \implies \norm{f_n(x) - f(x)} < \epsilon
+    n\geq N, \; x \in X \implies \norm{f_n(x) - f(x)} < \epsilon
 \]
 Furthermore, because \(\ds \lim_{x\ra x_0} f_n(x) = a_n\), there exists \(\delta > 0\) such that
 \[
-	\norm{x - x_0} < \delta \implies \norm{f_n(x) - a_n} < \epsilon
+    \norm{x - x_0} < \delta \implies \norm{f_n(x) - a_n} < \epsilon
 \]
 Take \(m, n \geq N\). Then we have
 \[
-	\begin{aligned}
-		\norm{a_n - a_m} \leq \norm{a_n - f_n(x)} + \norm{f_n(x) - f(x)} + \norm{f(x) - f_m(x)} + \norm{f_m(x)-a_m} < 4\epsilon
-	\end{aligned}
+    \begin{aligned}
+        \norm{a_n - a_m} \leq \norm{a_n - f_n(x)} + \norm{f_n(x) - f(x)} + \norm{f(x) - f_m(x)} + \norm{f_m(x)-a_m} < 4\epsilon
+    \end{aligned}
 \]
 , since we can take \(x\) to be as close as we want to \(x_0\). Therefore \(\{a_n\}\) is a Cauchy sequence, let its limit be \(a\).
 \newline
 Now it is enough to show that \(\ds \lim_{x\ra x_0} f(x) = a\). For \(\epsilon > 0\), there exists \(\delta > 0\) such that
 \[
-	\begin{aligned}
-		\norm{x - x_0} < \delta \implies
-		\norm{f(x) - a} & \leq \norm{f(x) - f_n(x)} + \norm{f_n(x) - a_n} + \norm{a_n - a}           \\
-		                & < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
-	\end{aligned}
+    \begin{aligned}
+        \norm{x - x_0} < \delta \implies
+        \norm{f(x) - a} & \leq \norm{f(x) - f_n(x)} + \norm{f_n(x) - a_n} + \norm{a_n - a}           \\
+                        & < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+    \end{aligned}
 \]
 The second inequality holds because each of the terms are smaller than \(\epsilon / 3\) due to uniform convergence, \(\ds \lim_{x \ra x_0} f_n(x) = a_n\), \(\ds \lim_{n \ra \infty} a_n = a\), respectively.\footnote{조건 \(x \in X'\) 은 어디서 이용된 것일까?}
 
 \thm{6.1.2.} The following are equivalent for sequence of functions \(\span{f_n}\) from \(X\) to \(Y\).
 \begin{enumerate}
-	\item \(\span{f_n}\) converges uniformly to \(f\).
-	\item For all \(\epsilon > 0\), there exists \(N \in \N\) such that
-	      \begin{equation}\tag{\textasteriskcentered}
-		      m, n \geq N, \; x\in X \implies \norm{f_m(x) - f_n(x)} < \epsilon
-	      \end{equation}
+    \item \(\span{f_n}\) converges uniformly to \(f\).
+    \item For all \(\epsilon > 0\), there exists \(N \in \N\) such that
+          \begin{equation}\tag{\textasteriskcentered}
+              m, n \geq N, \; x\in X \implies \norm{f_m(x) - f_n(x)} < \epsilon
+          \end{equation}
 \end{enumerate}
 
 \pf. (1\mimp2) (Similar to the proof of Proposition 2.3.6).
@@ -107,22 +107,22 @@ The second inequality holds because each of the terms are smaller than \(\epsilo
 
 \thm{6.1.3.} (Weierstrass \(M\)-test) Suppose that \(\span{f_n}\) is a sequence of functions from a set \(X\) to \(\R\), and that there is a sequence of non-negative numbers \(\{M_n\}\) such that \(\abs{f_n} \leq M_n\) for all \(n \in \N\). If \(\sum_{n=1}^{\infty} M_n\) converges, then the series
 \[
-	\sum_{n=1}^\infty f_n(x)
+    \sum_{n=1}^\infty f_n(x)
 \]
 converges (absolutely) and uniformly on \(X\).\footnote{여기서 중요한 부분은 \(M_n\) 이 \(x\in X\) 에 의존하지 않는 식이어야 한다는 점이다.}
 
 \pf. Since \(\ds \sum_{n=1}^\infty M_n\) converges and \(M_n > 0\), given any \(\epsilon>0\), \(\exists\,N\in \N\) such that
 \[
-	n > m \geq N \implies M_m + M_{m+1} + \cdots + M_n < \epsilon
+    n > m \geq N \implies M_m + M_{m+1} + \cdots + M_n < \epsilon
 \]
 by Corollary 2.3.9.
 \newline
 Meanwhile for all \(x \in X\),
 \[
-	\begin{aligned}
-		\abs{f_m(x) + f_{m+1}(x) + \cdots + f_n(x)} & \leq \abs{f_m(x)} + \abs{f_{m+1}(x)} + \cdots + \abs{f_n(x)} \\
-		                                            & \leq M_m + M_{m+1} + \cdots + M_n < \epsilon
-	\end{aligned}
+    \begin{aligned}
+        \abs{f_m(x) + f_{m+1}(x) + \cdots + f_n(x)} & \leq \abs{f_m(x)} + \abs{f_{m+1}(x)} + \cdots + \abs{f_n(x)} \\
+                                                    & \leq M_m + M_{m+1} + \cdots + M_n < \epsilon
+    \end{aligned}
 \]
 Therefore by Theorem 6.1.2 (2), the series \(\ds \sum_{n=1}^\infty f_n(x)\) converges uniformly on \(X\).
 \newline
@@ -130,48 +130,48 @@ Absolute uniform convergence of \(\ds \sum_{n=1}^\infty \abs{f_n(x)}\) can be sh
 
 \prob{6.1.3.}
 \begin{enumerate}
-	\item \(f_n(x) = nx(1-x^2)^n\) \newline
-	      Pointwise convergence on \(-\sqrt{2} < x < \sqrt{2}\), because \(f_n(x) \leq \sqrt{2}n\alpha^n\) for some \(\alpha \in [1-x^2, 1)\), and \(f(x) = \ds \lim_{n \ra \infty} f_n(x) = 0\). Now take the derivative.
-	      \[
-		      f_n'(x) = n(1-x^2)^{n-1}\{1 - (2n+1)x^2\}
-	      \]
-	      We see that \(f_n\) has a local maximum at \(\ds x_\ast = \frac{1}{\sqrt{2n+1}}\). Thus,
-	      \[
-		      \lim_{n\ra\infty} \norm{f_n-f}_{\sup} \geq \lim_{n \ra \infty} f_n(x_\ast) = \lim_{n \ra \infty} \frac{1}{\left(1 + \dfrac{1}{2n}\right)^n}\cdot \frac{n}{\sqrt{2n+1}} = \infty
-	      \]
-	      and the given sequence does not uniformly converge on \([-\sqrt{2}, \sqrt{2}]\).
-	\item \(f_n(x) = \ds \sum_{k=1}^{n} \frac{x^k}{x^k + 1}\) \newline
-	      Pointwise convergence on \(x\in [0, 1)\), by comparing with \(x^k\). Let \(f(x) = \ds \sum_{k=1}^\infty \frac{x^k}{x^k+1}\).
-	      \[
-		      f(x) - f_n(x) = \sum_{k=n+1}^\infty \frac{x^k}{x^k+1}\geq \frac{x^{n+1}}{1+x^{n+1}}
-	      \]
-	      As \(x \ra 1^-\), \(\ds \frac{x^{n+1}}{1+x^{n+1}}\ra \frac{1}{2}^-\), thus \(\ds \lim_{n\ra\infty} \norm{f_n-f}_{\sup} \geq \frac{1}{2}\) and the given sequence does not uniformly converge on \([0, 1)\).
-	\item \(f_n(x) = \ds \frac{1}{n}e^{-x^2/n}\) \newline
-	      Pointwise convergence on \(x\in \R\), converges to \(f(x) = 0\). Also, \(f_n(x)\) has a maximum at \(x = 0\). And we have
-	      \[
-		      f_n(x) - f(x) = \frac{1}{n}e^{-x^2/n} \leq \frac{1}{n}.
-	      \]
-	      As \(n\ra \infty\), \(\ds \lim_{n \ra \infty} \norm{f_n-f}_{\sup} \leq \lim_{n \ra \infty}\frac{1}{n} = 0\) and the given sequence converges uniformly on \(\R\).
-	\item \(\ds f_n(x) = \sum_{k=1}^n \frac{1}{x^2+k^2}\) \newline
-	      By comparison with \(\sum 1/k^2\), the sequence uniformly converges on \(\R\) by Weierstrass \(M\)-test.
-	\item \(\ds f_n(x) = \frac{nx}{1+nx^2}\) \newline
-	      If \(x = 0\), convergence is trivial. Let \(x \neq 0\), then
-	      \[
-		      \lim_{n \ra \infty} \frac{nx}{1+nx^2} = \lim_{n \ra \infty} \frac{x}{\dfrac{1}{n}+x^2} = \frac{1}{x}
-	      \]
-	      thus pointwise convergence on \(\R\). Take \(x = 1/n\). Then
-	      \[
-		      \norm{f_n(x)-f(x)} = \abs{\frac{1}{x(1+nx^2)}} = \frac{n^2}{n+1}.
-	      \]
-	      As \(n\ra \infty\), \(\norm{f_n(x)-f(x)} \ra \infty\). The given sequence does not uniformly converge on \(\R\).
-	\item \(f_n(x) = \ds \sum_{k=1}^n \frac{1}{1+k^2 x}\) \newline
-	      For \(x = 0\), \(f_n(x) \ra \infty\). Now let \(x \neq 0\), then \(\ds f_n(x) = \frac{1}{x}\sum_{k=1}^n\frac{1}{1/x + k^2}\)
-	      \begin{enumerate}
-		      \item If \(x > 0\), \(\ds \frac{1}{1/x+k^2} < \frac{1}{k^2}\), thus uniformly converges on \(x>0\) by Weierstrass \(M\)-test.
-		      \item If \(x < 0\) and \(x\neq \ds -\frac{1}{k^2}\) for \(k\in \N\), take large enough \(K\in \N\) such that for \(k \geq K\), \(k^2x < 1 + k^2x < 0\). Then we have
-		            \[
-			            \sum_{k=K}^\infty \abs{\frac{1}{1+k^2x}} \leq \sum_{k=K}^\infty \frac{1}{k^2 \abs{x}} <\infty
-		            \]
-		            and thus uniformly converges on the interval by Weierstrass \(M\)-test.
-	      \end{enumerate}
+    \item \(f_n(x) = nx(1-x^2)^n\) \newline
+          Pointwise convergence on \(-\sqrt{2} < x < \sqrt{2}\), because \(f_n(x) \leq \sqrt{2}n\alpha^n\) for some \(\alpha \in [1-x^2, 1)\), and \(f(x) = \ds \lim_{n \ra \infty} f_n(x) = 0\). Now take the derivative.
+          \[
+              f_n'(x) = n(1-x^2)^{n-1}\{1 - (2n+1)x^2\}
+          \]
+          We see that \(f_n\) has a local maximum at \(\ds x_\ast = \frac{1}{\sqrt{2n+1}}\). Thus,
+          \[
+              \lim_{n\ra\infty} \norm{f_n-f}_{\sup} \geq \lim_{n \ra \infty} f_n(x_\ast) = \lim_{n \ra \infty} \frac{1}{\left(1 + \dfrac{1}{2n}\right)^n}\cdot \frac{n}{\sqrt{2n+1}} = \infty
+          \]
+          and the given sequence does not uniformly converge on \([-\sqrt{2}, \sqrt{2}]\).
+    \item \(f_n(x) = \ds \sum_{k=1}^{n} \frac{x^k}{x^k + 1}\) \newline
+          Pointwise convergence on \(x\in [0, 1)\), by comparing with \(x^k\). Let \(f(x) = \ds \sum_{k=1}^\infty \frac{x^k}{x^k+1}\).
+          \[
+              f(x) - f_n(x) = \sum_{k=n+1}^\infty \frac{x^k}{x^k+1}\geq \frac{x^{n+1}}{1+x^{n+1}}
+          \]
+          As \(x \ra 1^-\), \(\ds \frac{x^{n+1}}{1+x^{n+1}}\ra \frac{1}{2}^-\), thus \(\ds \lim_{n\ra\infty} \norm{f_n-f}_{\sup} \geq \frac{1}{2}\) and the given sequence does not uniformly converge on \([0, 1)\).
+    \item \(f_n(x) = \ds \frac{1}{n}e^{-x^2/n}\) \newline
+          Pointwise convergence on \(x\in \R\), converges to \(f(x) = 0\). Also, \(f_n(x)\) has a maximum at \(x = 0\). And we have
+          \[
+              f_n(x) - f(x) = \frac{1}{n}e^{-x^2/n} \leq \frac{1}{n}.
+          \]
+          As \(n\ra \infty\), \(\ds \lim_{n \ra \infty} \norm{f_n-f}_{\sup} \leq \lim_{n \ra \infty}\frac{1}{n} = 0\) and the given sequence converges uniformly on \(\R\).
+    \item \(\ds f_n(x) = \sum_{k=1}^n \frac{1}{x^2+k^2}\) \newline
+          By comparison with \(\sum 1/k^2\), the sequence uniformly converges on \(\R\) by Weierstrass \(M\)-test.
+    \item \(\ds f_n(x) = \frac{nx}{1+nx^2}\) \newline
+          If \(x = 0\), convergence is trivial. Let \(x \neq 0\), then
+          \[
+              \lim_{n \ra \infty} \frac{nx}{1+nx^2} = \lim_{n \ra \infty} \frac{x}{\dfrac{1}{n}+x^2} = \frac{1}{x}
+          \]
+          thus pointwise convergence on \(\R\). Take \(x = 1/n\). Then
+          \[
+              \norm{f_n(x)-f(x)} = \abs{\frac{1}{x(1+nx^2)}} = \frac{n^2}{n+1}.
+          \]
+          As \(n\ra \infty\), \(\norm{f_n(x)-f(x)} \ra \infty\). The given sequence does not uniformly converge on \(\R\).
+    \item \(f_n(x) = \ds \sum_{k=1}^n \frac{1}{1+k^2 x}\) \newline
+          For \(x = 0\), \(f_n(x) \ra \infty\). Now let \(x \neq 0\), then \(\ds f_n(x) = \frac{1}{x}\sum_{k=1}^n\frac{1}{1/x + k^2}\)
+          \begin{enumerate}
+              \item If \(x > 0\), \(\ds \frac{1}{1/x+k^2} < \frac{1}{k^2}\), thus uniformly converges on \(x>0\) by Weierstrass \(M\)-test.
+              \item If \(x < 0\) and \(x\neq \ds -\frac{1}{k^2}\) for \(k\in \N\), take large enough \(K\in \N\) such that for \(k \geq K\), \(k^2x < 1 + k^2x < 0\). Then we have
+                    \[
+                        \sum_{k=K}^\infty \abs{\frac{1}{1+k^2x}} \leq \sum_{k=K}^\infty \frac{1}{k^2 \abs{x}} <\infty
+                    \]
+                    and thus uniformly converges on the interval by Weierstrass \(M\)-test.
+          \end{enumerate}
 \end{enumerate}
