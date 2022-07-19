@@ -1,0 +1,88 @@
+\section*{Missing Notes from March, 2019}
+
+\textbf{\large 1. 실수의 성질과 수열의 극한}
+
+\medskip
+
+\noindent \textbf{1.1 실수의 연산과 순서}
+
+\medskip
+
+\noindent 실수체는 \textbf{완비성공리를 만족하는 유일한 순서체}.
+
+\medskip
+
+\noindent \prop{ 1.1.1} The following holds for \(a, b, c \in \R\).
+\begin{enumerate}
+    \item \(-(-a) = a\). \(a \neq 0 \implies (a \inv)\inv = a\).
+    \item \(a + b = a + c \implies b = c\). \(a \neq 0, ab = ac \implies b = c\).
+    \item \(ab = 0\) \miff \(a = 0\) or \(b = 0\).
+    \item \((-a)b = -(ab) = a(-b)\).
+\end{enumerate}
+
+\medskip
+
+\noindent \pf. (3) (\(\impliedby\)) Show that \(a \cdot 0 = 0\).
+
+\noindent (\mimp) If \(ab = 0\),
+\[
+    0 = 0 \cdot (b\inv a\inv) = (ab)(b\inv a\inv) = a(bb\inv)a\inv = 1
+\]
+which contradicts \(1 \neq 0\).
+
+\bigskip
+
+\noindent \textbf{Ordered} field \(\R\): There exists non-empty subset \(P\) such that
+\begin{enumerate}
+    \item \(a, b \in P \implies a + b, ab \in P\).
+    \item \(\R = P \cup \{0\} \cup (-P)\).
+    \item \(P, \{0\}, -P\) are disjoint.
+\end{enumerate}
+
+\bigskip
+
+\noindent \prop{ 1.1.2} The following holds for \(a, b, c \in \R\).
+\begin{enumerate}
+    \item \(a \geq b, a \leq b \implies a = b\).
+    \item \(a \leq b, b \leq c \implies a \leq c\).
+    \item \(a + b < a+ c \iff b < c\).
+    \item \(a > 0, b < c \implies ab < ac\).
+    \item \(a < 0, b < c \implies ab > ac\).
+    \item \(a^2 \geq 0\), especially \(1 > 0\).
+    \item \(0 < a < b \implies 0 < \dfrac{1}{b} < \dfrac{1}{a}\).
+    \item If \(a, b > 0\), then \(a^2 < b^2 \iff a < b\).
+\end{enumerate}
+
+\medskip
+
+\noindent \pf. (6) For \(a^2 \geq 0\), check for each case where \(a \in P\), \(a = 0\), \(a \in -P\). As for \(1 > 0\), we need the following lemma. (This lemma can also be used to prove (7))
+
+\medskip
+
+\noindent \textbf{Lemma}. If \(a > 0\), then \(1/a = a\inv > 0\).
+
+\noindent \textit{Proof of Lemma}. If \(a\inv < 0\), multiply \(a^2\) on both sides to get \(a < 0\), leading to a contradiction.
+
+\medskip
+
+\noindent From the lemma above, if \(a > 0\) then \(a a\inv > 0 \cdot a\inv \implies 1 > 0\).
+
+\bigskip
+
+\noindent \prob{ 1.1.4} Let \(S\) be a finite subset of \(\R\). By definition, there exists \(\varnothing \neq P \subseteq S\) that satisfies the properties above. Let \(P = \{a_1, \dots, a_n\}\). Then for \(a_1 \in P\), consider
+\[
+    A = \{ka_1 \mid k \in \N \}
+\]
+We have \(A \subseteq P\) and because \(P\) is finite, \(A\) is also finite. By the pigeonhole principle, there exists \(k_1, k_2 \in \N\) such that \(k_1 \neq k_2\) and \(k_1a_1 = k_2a_1\). Since \(a_1 > 0\), its inverse exists, and thus we have \(k_1 = k_2\), leading to a contradiction. Thus a finite set cannot be an ordered field.
+
+\bigskip
+
+\noindent \prop{ 1.1.3} The following holds for \(a, b \in \R\).
+\begin{enumerate}
+    \item \(\abs{a} \geq 0\). Additionally, \(\abs{a} = 0 \iff a = 0\).
+    \item \(\abs{ab} = \abs{a}\abs{b}\).
+    \item If \(b \geq 0\), then \(\abs{a} < b \iff -b \leq a \leq b\).
+    \item \(\abs{\abs{a} - \abs{b}} \leq \abs{a \pm b} \leq \abs{a} + \abs{b}\).
+\end{enumerate}
+
+\clearpage
