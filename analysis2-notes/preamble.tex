@@ -34,9 +34,7 @@
 \titleformat{\section}
 {\normalfont\large\bfseries}{\thesection}{0em}{}
 
-% Always indent first paragraph
-\usepackage{indentfirst}
-\setlength{\parindent}{10pt}
+\setlength{\parindent}{0pt}
 
 % Hyperlinks
 \usepackage{hyperref}
@@ -50,66 +48,10 @@
 
 % Define colors
 \usepackage{xcolor}
-\definecolor{colorBackground}{HTML}{F5F5F5} % Grey 500
 
 % Boxes
 \usepackage{tikz}
-\usepackage[framemethod=tikz]{mdframed}
-\mdfdefinestyle{graybox}{
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    linewidth=0pt,
-    backgroundcolor=colorBackground,
-    frametitlefont=\sffamily\bfseries\color{black},
-    nobreak=false,
-    linecolor=black,
-}
-
-\mdfdefinestyle{box}{
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    linewidth=0pt,
-    backgroundcolor=white,
-    frametitlefont=\sffamily\bfseries\color{black},
-    nobreak=false,
-    linecolor=black,
-}
-
-% Styling theorems
-\usepackage{thmtools}
-% Style for Gray Boxes
-\declaretheoremstyle[
-    headfont=\sffamily\bfseries,
-    headpunct={.},
-    notebraces={}{},
-    notefont=\bfseries,
-    mdframed={style=graybox},
-]{defboxstyle}
-\declaretheorem[style=defboxstyle,name=Definition,numbered=no]{defn}
-\declaretheorem[style=defboxstyle,name=Theorem,numbered=no]{theorem}
-
-\declaretheoremstyle[
-    headfont=\sffamily\bfseries,
-    headformat={\NAME},
-    headpunct={.},
-    mdframed={style=box},
-    qed=\qedsymbol
-]{proofstyle}
-\declaretheorem[style=proofstyle,name=Proof,numbered=no]{pf}
-
-\declaretheoremstyle[
-    headfont=\sffamily\bfseries,
-    headpunct={.},
-    mdframed={style=box}
-]{boxstyle}
-\declaretheorem[style=boxstyle,name=Remark,numbered=no]{rmk}
-\declaretheorem[style=boxstyle,name=Recall,numbered=no]{recall}
-\declaretheorem[style=boxstyle,name=Example,numbered=no]{example}
-\declaretheorem[style=boxstyle,name=Problem,numbered=no]{problem}
-\declaretheorem[style=boxstyle,name=Question,numbered=no]{question}
-
 
 % Skips between paragraph
-\usepackage[skip=0pt,indent=\parindent]{parskip}
+\usepackage[parfill]{parskip}
+\setlength{\parskip}{10pt}

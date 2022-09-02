@@ -1,34 +1,82 @@
-\newcommand{\numl}[1]{\item[\large\textbf{\sffamily #1.}]}
-\newcommand{\num}[1]{\item[\textbf{\sffamily #1}]}
-
+\newcommand{\ds}{\displaystyle}
 
 \newcommand{\mf}[1]{\mathfrak{#1}}
 \newcommand{\mc}[1]{\mathcal{#1}}
 \newcommand{\bb}[1]{\mathbb{#1}}
 \newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+
 \newcommand{\inv}{^{-1}}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\adj}{\text{*}}
+\newcommand{\bs}{\setminus}
+
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\paren}[1]{\left( #1 \right)}
 \newcommand{\seq}[1]{\left( #1 \right)}
 \renewcommand{\span}[1]{\left\langle #1 \right\rangle}
-\newcommand{\adj}{\text{*}}
+
 \newcommand{\ra}{\rightarrow}
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\ds}{\displaystyle}
-\newcommand{\inte}{\mathrm{int}}
 \newcommand{\imp}{\implies}
-\newcommand{\bs}{\setminus}
-\newcommand{\diam}{\text{diam}}
-\newcommand{\dist}{\text{dist}}
 \newcommand{\mimp}{$\implies$}
+\newcommand{\mimpd}{$\impliedby$}
 \newcommand{\miff}{$\iff$}
+
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
+
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\dist}{\text{dist}}
 \newcommand{\lint}[1]{\underline{\int#1}}
 \newcommand{\uint}[1]{\overline{\int#1}}
 
 \let\oldexists\exists
 \renewcommand{\exists}{\oldexists\,}
+
+\newcommand{\defn}[1]{%
+    \if #1.
+        \textbf{\sffamily Definition.}%
+    \else
+        \textbf{\sffamily Definition #1}%
+    \fi
+}
+
+\newcommand{\thm}[1]{%
+    \if #1.
+        \textbf{\sffamily Theorem.}%
+    \else
+        \textbf{\sffamily Theorem #1}%
+    \fi
+}
+
+\newcommand{\prop}[1]{%
+    \if #1.
+        \textbf{\sffamily Proposition.}%
+    \else
+        \textbf{\sffamily Proposition #1}%
+    \fi
+}
+
+\newcommand{\ex}[1]{%
+    \if #1.
+        \textbf{\sffamily Example.}%
+    \else
+        \textbf{\sffamily Example #1}%
+    \fi
+}
+
+\newcommand{\prob}[1]{%
+    \if #1.
+        \textbf{\sffamily Problem.}%
+    \else
+        \textbf{\sffamily Problem #1}%
+    \fi
+}
+
+\newcommand{\rmk}{\textbf{\sffamily Remark.}}
+\newcommand{\pf}{\textbf{\sffamily Proof.}}
+
+\newcommand{\note}[1]{({\sffamily #1})}
