@@ -20,67 +20,62 @@ Suppose \(E\) is a set\footnote{사실은 \textit{metric} space 이다.}, and le
 \]
 is a sequence of (complex-valued) function.
 
-\begin{defn}[7.1]
-    \(\seq{f_n}_{n = 1}^\infty\) converges \textbf{pointwise} on \(E\), if for each \(x \in E\) the sequence \(\seq{f_n(x)}_{n=1}^\infty\) converges in \(\C\).
+\defn{7.1} \note{Pointwise Convergence} \(\seq{f_n}_{n = 1}^\infty\) converges \textbf{pointwise} on \(E\), if for each \(x \in E\) the sequence \(\seq{f_n(x)}_{n=1}^\infty\) converges in \(\C\).
 
-    In other words, \(\forall x \in E, \exists a_x \in \C\) and
-    \begin{center}
-        \(\forall \epsilon > 0, \exists N \in \N\) such that \(n \geq N \implies \abs{f_n(x) - a_x} < \epsilon\).
-    \end{center}
-\end{defn}
+In other words, for each \(x \in E\), there exists \(a_x \in \C\) and
+\begin{center}
+    \(\forall \epsilon > 0, \exists N \in \N\) such that \(n \geq N \implies \abs{f_n(x) - a_x} < \epsilon\).
+\end{center}
 
-\begin{defn}
-    If \(\seq{f_n}\) converges pointwise, we can define a function \(f\) by
-    \[
-        f(x) = \lim_{n \ra \infty} f_n(x) \quad (x\in E)
-    \]
+\defn. If \(\seq{f_n}\) converges pointwise, we can define a function \(f\) by
+\[
+    f(x) = \lim_{n \ra \infty} f_n(x) \quad (x\in E)
+\]
 
-    We say that
-    \begin{itemize}
-        \item \(f\) is the \textit{limit} or \textit{limit function} of \(f_n\).
-        \item \(\seq{f_n}\) to \(f\) pointwise on \(E\).
-    \end{itemize}
-\end{defn}
+We say that
+\begin{itemize}
+    \item \(f\) is the \textit{limit} or \textit{limit function} of \(f_n\).
+    \item \(\seq{f_n}\) to \(f\) pointwise on \(E\).
+\end{itemize}
 
-\begin{defn}
-    If \(\sum f_n(x)\) converges (pointwise) for every \(x \in E\), we define
-    \[
-        f(x) = \sum_{n=1}^\infty f_n(x) \quad (x \in E)
-    \]
-    and the function \(f\) is called the \textit{sum} of the series \(\sum f_n\).
-\end{defn}
+\defn. If \(\sum f_n(x)\) converges (pointwise) for every \(x \in E\), we can define
+\[
+    f(x) = \sum_{n=1}^\infty f_n(x) \quad (x \in E)
+\]
+and the function \(f\) is called the \textit{sum} of the series \(\sum f_n\).
 
-\begin{recall}
-    \(f: (E, d) \ra \C\) is continuous on \(E\) \miff \(f\) is continuous at all \(x \in E\).
-\end{recall}
+\recall \(f: (E, d) \ra \C\) is continuous on \(E\) \miff \(f\) is continuous at all \(x \in E\).
 
-\begin{recall}
-    (Theorem 4.6) If \(p \in E\) and \(p\) is a limit point of \(E\),
+\recall \note{Theorem 4.6} If \(p \in E\) and \(p\) is a limit point of \(E\),
 \begin{center}
     \(f\) is continuous at \(p\) \miff \(\ds \lim_{x \ra p} f(x) = f(p)\)
 \end{center}
-\end{recall}
 
-\begin{question}
-    Suppose \(\seq{f_n}\) is a sequence of continous functions that converges pointwise on \(E\). Is \(f\) continuous? \textit{No...}
-\end{question}
+\question Suppose \(\seq{f_n}\) is a sequence of functions. Does the limit function or the sum of the series preserve important properties?
+\begin{enumerate}
+    \item If \(f_n\) is continus, is \(f\) continuous?
+    \item If \(f_n\) is differentiable/integrable, is \(f\) differentiable/integrable?
+\end{enumerate}
 
-If \(p\) is a limit point, does the following hold?
+For (1), the question is equivalent to the following:
+
+\textit{If \(p\) is a limit point, does the following hold?}
 \[
     \lim_{x\ra p} \lim_{n\ra \infty} f_n(x) \overset{?}{=} \lim_{n\ra \infty} \lim_{x\ra p}f_n(x)
 \]
 
-\begin{example}
-    \(a_{m, n} = \frac{m}{m + n}\), \(a_{m, n} \ra 1\) as \(m \ra \infty\) and then \(n \ra \infty\). But, as \(n \ra \infty\) \(a_{m, n} = 0\)
-\end{example}
+And the answer is \textbf{No}.
 
+\ex{7.2} Suppose \(\ds a_{m, n} = \frac{m}{m + n}\) for \(m, n\in \N\). We see that
+\[
+    \lim_{n \ra \infty} \lim_{m \ra \infty} a_{m, n} = 1 \neq 0 = \lim_{m \ra \infty} \lim_{n \ra \infty} a_{m, n}
+\]
 
-Example. Define
-
+\ex. Define
 \[
     f_n(x) = \begin{cases}
-        0 & (1/n \leq x \leq 1) \\
-        -nx + 1 & (0 \leq x < 1/n)
+        0 & \paren{\frac{1}{n} \leq x \leq 1} \\
+        -nx + 1 & \paren{0 \leq x < \frac{1}{n}}
     \end{cases}
 \]
 then we can easily see that
@@ -89,108 +84,109 @@ then we can easily see that
         0 & (0 < x \leq 1) \\
         1 & (x = 0)
     \end{cases}
-\], thus \(f\) is not continuous at \(x = 0\).
-
-Example. Define \(f_n: \R \ra \R\).
-\[
-    f_n(x) = \frac{x^2}{(1+x^2)^n}\qquad (n = 0, 1, \dots)
-\] by direct calculation,
-\[
-    f(x) = \sum_{n = 0}^\infty f_n(x) = \sum_{n = 0}^\infty \frac{x^2}{(1 + x^2)^n} = 1 + x^2 \qquad (x \neq 0)
 \]
-If \(x = 0\), \(f(x) = 0\). Thus \(f\) is not continuous.
+Thus \(f\) is not continuous at \(x = 0\).
 
-Question. Suppose \(\seq{f_n}\) is a sequence of \textbf{Riemann integrable} functions that converges pointwise. Is \(f\) \textbf{Riemann integrable}? Also \textbf{No...}
+% Example. Define \(f_n: \R \ra \R\).
+% \[
+%     f_n(x) = \frac{x^2}{(1+x^2)^n}\qquad (n = 0, 1, \dots)
+% \] by direct calculation,
+% \[
+%     f(x) = \sum_{n = 0}^\infty f_n(x) = \sum_{n = 0}^\infty \frac{x^2}{(1 + x^2)^n} = 1 + x^2 \qquad (x \neq 0)
+% \]
+% If \(x = 0\), \(f(x) = 0\). Thus \(f\) is not continuous.
 
-Example. For \(m = 1, 2, \dots\), define
-\[
-\begin{aligned}
-    f_m(x) &= \lim_{n\ra \infty} \left(\cos m! \pi x\right)^{2n} \\
-    &= \begin{cases}
-        1 & (m!x \in \Z) \\
-        0 & (m!x \notin \Z)
-    \end{cases}
-\end{aligned}
-\]
+% Question. Suppose \(\seq{f_n}\) is a sequence of \textbf{Riemann integrable} functions that converges pointwise. Is \(f\) \textbf{Riemann integrable}? Also \textbf{No...}
 
-Note that \(f_m(x) \in \mc{R}[a, b]\)
+% Example. For \(m = 1, 2, \dots\), define
+% \[
+% \begin{aligned}
+%     f_m(x) &= \lim_{n\ra \infty} \left(\cos m! \pi x\right)^{2n} \\
+%     &= \begin{cases}
+%         1 & (m!x \in \Z) \\
+%         0 & (m!x \notin \Z)
+%     \end{cases}
+% \end{aligned}
+% \]
 
-Claim. \[
-    f(x) = \lim_{m\ra \infty} f_m(x) = \begin{cases}
-        1 & (x\in Q) \\
-        0 & (x \in \R \bs \Q)
-    \end{cases}
-\]
-and \(f(x)\) is nowhere continuous thus not Riemann integrable.
+% Note that \(f_m(x) \in \mc{R}[a, b]\)
 
-\begin{pf}
-    Suppose \(x = p/q \in \Q\). (\(p, q\in \Z\)) If we take \(m \geq q\), we see that \(m! x \in \Z\). Thus \(f_m(x) = 1\).
+% Claim. \[
+%     f(x) = \lim_{m\ra \infty} f_m(x) = \begin{cases}
+%         1 & (x\in Q) \\
+%         0 & (x \in \R \bs \Q)
+%     \end{cases}
+% \]
+% and \(f(x)\) is nowhere continuous thus not Riemann integrable.
 
-    If \(x \notin \Q\), \(m! x\) can never be in \(\Z\) and \(f_m(x) = 0\).
-\end{pf}
+% \begin{pf}
+%     Suppose \(x = p/q \in \Q\). (\(p, q\in \Z\)) If we take \(m \geq q\), we see that \(m! x \in \Z\). Thus \(f_m(x) = 1\).
 
-계속 예제...
+%     If \(x \notin \Q\), \(m! x\) can never be in \(\Z\) and \(f_m(x) = 0\).
+% \end{pf}
 
-Question. Uniform continuity를 할 때 uniform이 어디서 나오죠? 해석학에서 그 점에서 뭐가 성립한다, 그러면 그 점과 그 근방에서만 확인하면 됐었죠. Continuity는 local property죠. 그런데 uniform continuity는 전체가 다 uniform하게 성립한다.
+% 계속 예제...
 
-Recall. \(f: (X, d) \ra (Y, d)\) is uniformly continuous on \(X\)\footnote{Subspace of metric space is also a metric space} if
-\[
-    \forall \epsilon > 0, \exists \delta > 0, d_X(q, p) < \delta \implies d_Y(f(p), f(q)) < \epsilon
-\]
+% Question. Uniform continuity를 할 때 uniform이 어디서 나오죠? 해석학에서 그 점에서 뭐가 성립한다, 그러면 그 점과 그 근방에서만 확인하면 됐었죠. Continuity는 local property죠. 그런데 uniform continuity는 전체가 다 uniform하게 성립한다.
 
-모든 점에서 똑같이 잡을 수 있다!
+% Recall. \(f: (X, d) \ra (Y, d)\) is uniformly continuous on \(X\)\footnote{Subspace of metric space is also a metric space} if
+% \[
+%     \forall \epsilon > 0, \exists \delta > 0, d_X(q, p) < \delta \implies d_Y(f(p), f(q)) < \epsilon
+% \]
 
-Fact. If \(X\) is compact and \(f\) is continuous on \(X\), then \(f\) is uniformly continuous on \(X\). (Theorem 4.19)\footnote{갑자기 왜 uniform continuity 얘기를 하냐, 헷갈리지 말고 기억하시라고!}
+% 모든 점에서 똑같이 잡을 수 있다!
 
-지금 나오는 uniform convergence는 sequence에 관한 것입니다!
+% Fact. If \(X\) is compact and \(f\) is continuous on \(X\), then \(f\) is uniformly continuous on \(X\). (Theorem 4.19)\footnote{갑자기 왜 uniform continuity 얘기를 하냐, 헷갈리지 말고 기억하시라고!}
 
-\begin{defn}[Uniform Convergence]
-    Suppose \(f_n: E \ra \C\) is a sequence of functions.
+% 지금 나오는 uniform convergence는 sequence에 관한 것입니다!
 
-    \(\seq{f_n}_{n=1}^\infty\) converges uniformly on \(E\) to a function \(f\) if
-    \[
-        \forall \epsilon > 0, \exists N : \forall x \in E, n \geq N, \abs(f_{n}(x) - f(x)) \leq \epsilon
-    \]\footnote{등호를 붙이는 것이 극한 잡기 편하다???}
+% \begin{defn}[Uniform Convergence]
+%     Suppose \(f_n: E \ra \C\) is a sequence of functions.
 
-    \[
-        \forall \epsilon > 0, \sup_{x \in E} \abs{f_n(x) - f(x)} \leq \epsilon, \forall n \geq N
-    \]
+%     \(\seq{f_n}_{n=1}^\infty\) converges uniformly on \(E\) to a function \(f\) if
+%     \[
+%         \forall \epsilon > 0, \exists N : \forall x \in E, n \geq N, \abs(f_{n}(x) - f(x)) \leq \epsilon
+%     \]\footnote{등호를 붙이는 것이 극한 잡기 편하다???}
 
-    \[
-        \sum_{n = 1}^\infty f_n
-    \] converges uniformly on \(E\): \(f(x) = \sum_{n=1}^\infty f_n(x)\) converges pointwise and \(\sum_{k=1}^n f_k(x)\) converges uniformly to \(f\).
-\end{defn}
+%     \[
+%         \forall \epsilon > 0, \sup_{x \in E} \abs{f_n(x) - f(x)} \leq \epsilon, \forall n \geq N
+%     \]
 
-[똑같은 \(\epsilon\)-띠를 둘러서 \(y = f(x)\) 의 근방 안에 \(f_n(x)\) (\(n \geq N\)) 가 모두 들어가 있어야 한다]는 의미에서 uniform 이다.
+%     \[
+%         \sum_{n = 1}^\infty f_n
+%     \] converges uniformly on \(E\): \(f(x) = \sum_{n=1}^\infty f_n(x)\) converges pointwise and \(\sum_{k=1}^n f_k(x)\) converges uniformly to \(f\).
+% \end{defn}
 
-Notation. \(f_n \ra f\) uniformly on \(E\) \miff \(f_n \overset{u}{\ra} f\) on \(E\).\footnote{책에서는 나중에 \(\norm{f_n(x) - f(x)}_\infty \ra 0\) 으로 적었던 것 같은데...}
+% [똑같은 \(\epsilon\)-띠를 둘러서 \(y = f(x)\) 의 근방 안에 \(f_n(x)\) (\(n \geq N\)) 가 모두 들어가 있어야 한다]는 의미에서 uniform 이다.
 
-7.8에 나와있는 내용이 Cauchy sequence...
+% Notation. \(f_n \ra f\) uniformly on \(E\) \miff \(f_n \overset{u}{\ra} f\) on \(E\).\footnote{책에서는 나중에 \(\norm{f_n(x) - f(x)}_\infty \ra 0\) 으로 적었던 것 같은데...}
 
-Recall. Cauchy sequence converges!
+% 7.8에 나와있는 내용이 Cauchy sequence...
 
-\begin{theorem}
-    (7.8) \(f_n \overset{u}{\ra} f\) on \(E\) \miff
-    \[
-        \forall \epsilon > 0, \exists N : \sup_{x \in E} \abs{f_n(x) - f_m(x)} \leq \epsilon, \forall n, \forall m \geq N
-    \]\footnote{Uniform Cauchy}
-\end{theorem}
+% Recall. Cauchy sequence converges!
 
-\begin{pf}
-    (\(\implies\)) For given \(\epsilon > 0\)...
+% \begin{theorem}
+%     (7.8) \(f_n \overset{u}{\ra} f\) on \(E\) \miff
+%     \[
+%         \forall \epsilon > 0, \exists N : \sup_{x \in E} \abs{f_n(x) - f_m(x)} \leq \epsilon, \forall n, \forall m \geq N
+%     \]\footnote{Uniform Cauchy}
+% \end{theorem}
 
-    Fix \(x \in E\),
-    \[\abs{f_n(x) - f_m(x)} \leq \abs{f_n(x) - f(x)} + \abs{f(x) - f_m(x)} \leq \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon\]
-    for \(n, m \geq N\).
+% \begin{pf}
+%     (\(\implies\)) For given \(\epsilon > 0\)...
 
-    (\(\impliedby\)) Uniform Cauchy property implies that \(\seq{f_n}\) is a Cauchy sequence in \(\C\). By the completeness of \(C\), the limit function \(f(x)\) exists. Now we show that this convergence is uniform.
+%     Fix \(x \in E\),
+%     \[\abs{f_n(x) - f_m(x)} \leq \abs{f_n(x) - f(x)} + \abs{f(x) - f_m(x)} \leq \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon\]
+%     for \(n, m \geq N\).
 
-    For given \(\epsilon > 0\) choose \(N\) such that
-    \[\sup_{x\in E} \abs{f_n(x) - f_m(x)} \leq \epsilon\], for all \(n, m \geq N\). Then \[\abs{f_n(x) - f(x)} \leq \abs{\abs{f_n(x) - f_m(x)} - \abs{f_n(x) - f(x)}} + \abs{f_n(x) - f_m(x)} \leq \abs{f_m(x) - f(x)} + \epsilon\]
+%     (\(\impliedby\)) Uniform Cauchy property implies that \(\seq{f_n}\) is a Cauchy sequence in \(\C\). By the completeness of \(C\), the limit function \(f(x)\) exists. Now we show that this convergence is uniform.
 
-    Fix \(n \geq N\) and let \(m \ra \infty\). Observe that the first term converges to 0 due to pointwise convergence.
+%     For given \(\epsilon > 0\) choose \(N\) such that
+%     \[\sup_{x\in E} \abs{f_n(x) - f_m(x)} \leq \epsilon\], for all \(n, m \geq N\). Then \[\abs{f_n(x) - f(x)} \leq \abs{\abs{f_n(x) - f_m(x)} - \abs{f_n(x) - f(x)}} + \abs{f_n(x) - f_m(x)} \leq \abs{f_m(x) - f(x)} + \epsilon\]
 
-    \(\therefore \abs{f_n(x) - f(x)} \leq \epsilon, \forall n\geq N, \forall x \in E\)
-\end{pf}
+%     Fix \(n \geq N\) and let \(m \ra \infty\). Observe that the first term converges to 0 due to pointwise convergence.
+
+%     \(\therefore \abs{f_n(x) - f(x)} \leq \epsilon, \forall n\geq N, \forall x \in E\)
+% \end{pf}
 
 \pagebreak
