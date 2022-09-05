@@ -9,7 +9,7 @@ In section 2.4, we will be studying about Convergence Tests.\\정
 	\item $\sum_{n=1}^\infty \abs{a_n}$ is convergent $\imp$ $\sum_{n=1}^\infty a_n$ convergent.
 \end{enumerate}~\\
 \thm{ 2.4.3} (Comparison Test) Suppose $\sum b_n$ converges. If $0\leq a_n\leq b_n$ for all $n\in \bb{N}$, $\sum a_n$ converges.\\
-\pf Let $M = \sum b_n$, $s_n = \sum_{k=1}^n a_k$. $s_n$ is increasing and $s_n$ is bounded by $M$. $s_n$ is convergent by Monotone Convergence Theorem.\\
+\pf. Let $M = \sum b_n$, $s_n = \sum_{k=1}^n a_k$. $s_n$ is increasing and $s_n$ is bounded by $M$. $s_n$ is convergent by Monotone Convergence Theorem.\\
 \\
 \thm{}. Suppose sequences $a_n, b_n$ satisfy $0\leq \abs{a_n}\leq b_n$\footnote{Note that this condition can fail for finitely many $n$.} and $\sum b_n$ converges. Then $\sum a_n$ is convergent.\footnote{$a_n$ may be a very complex expression, but we want $b_n$ to be simple, an expression we know that it is convergent.}\\
 \pf. By comparison test and absolute convergence.\\
@@ -44,7 +44,7 @@ Let $\beta =  \limsup\abs{a_{n+1}/a_n} $, $\forall \epsilon > 0$. $\imp\exists N
 Check that $\limsup \abs{a_n}^{1/n} = 1/2 < 1$, and the series $ \sum a_n $ converges by the root test.\\
 But if we use the ratio test here, $\limsup$ value is 2 and $\liminf$ value is 1/8.\footnote{The ratios are: 2, 1/8, 2, 1/8 ...} The ratio test does not tell us anything about the convergence. Also note that the series converges to 2.\\
 \\
-\prop{ 2.4.1} (Rearrangement) $a_n\geq 0$.\footnote{This is the important condition.} Suppose a bijection $r: \bb{N} \ra \bb{N}$ exists. 
+\prop{ 2.4.1} (Rearrangement) $a_n\geq 0$.\footnote{This is the important condition.} Suppose a bijection $r: \bb{N} \ra \bb{N}$ exists.
 \begin{enumerate}
 	\item $\ds \sum_{n=1}^\infty a_n = s \iff \sum_{n=1}^\infty a_{r(n)} = s$
 	\item $\ds \sum_{n=1}^\infty = \infty \iff \sum_{n=1}^\infty a_{r(n)} = s$
@@ -53,7 +53,7 @@ But if we use the ratio test here, $\limsup$ value is 2 and $\liminf$ value is 1
 \begin{enumerate}
 	\item ($\imp$) Let $t_n=\sum_{k=1}^n a_{r(k)}$. Then $t_n$ is increasing and bounded by $s$. Thus $t_n$ converges by MCT, and $\lim t_n \leq s$.\\
 	$s_n = \sum_{k=1}^n a_k \leq \sum_{n=1}^\infty a_{r(n)} = t = \lim t_n$. ($a_n\geq 0$ was used here.)\\
-	($\impliedby$) Use $r^{-1}(n)$. 
+	($\impliedby$) Use $r^{-1}(n)$.
 	\item Contraposition of (1).
 \end{enumerate}~\\
 \prop{ 2.4.2} (Alternating Series Test) For a given sequence $x_n$, suppose the following holds.
