@@ -1,0 +1,204 @@
+\section*{September 1st, 2022 (Practice)}
+
+해석개론 1 복습
+
+\subsubsection*{1. Real Number System}
+
+Let \(A \subset \R\).
+
+\begin{itemize}
+    \item \(b \in \R\) is an upper bound of \(A\): \(\forall a \in A \implies a \leq b\).
+    \item \(b \in \R\) is a lower bound of \(A\): \(\forall a \in A \implies a \geq b\).
+    \item Least uppoer bound is denoted as \(\sup A\).
+    \item Greatest lower bound is denoted as \(\inf A\).
+    \item Least upper bound property: If \(A \neq \varnothing\), \(\exists \sup A\).
+    \item Extended Real Numbers: \(\overline{\R} = \R \cup \{\infty, -\infty\}\)
+    \item Now, if \(\varnothing = A \subset \overline{\R}\), \(\sup A = -\infty\).
+\end{itemize}
+
+\subsubsection*{2. Metric Spaces}
+
+Metric space: \((X, d_X)\) where \(d_X: X \times X \ra \R\). For all \(x, y, z \in X\) the following must hold.
+\begin{enumerate}
+    \item \(d_X(x, y) = 0 \iff x = y\).
+    \item \(d_X(x, y) = d_X(y, x)\) (Symmetric)
+    \item \(d_X(x, y) + d_X(y, z) \geq d_X(x, z)\)
+\end{enumerate}
+
+\medskip
+
+\notation \note{Neighborhood} Ball of radius \(r\), centered at \(p\) is denoted as
+\[
+    B_r(p) = \{ x \in X \mid d_X(x, p) < r\}
+\]
+
+\begin{itemize}
+    \item \(U \subset X\) is open \miff \(\forall p \in U, \exists r > 0\) such that \(B_r(p) \subset U\).
+    \item \(C \subset X\) is closed \miff \(C\) contains every limit point of \(C\). Or alternatively, \(C^C\) is open.
+    \item Union of open sets is open, \underline{finite} intersection of open sets is open.
+    \item \(p \in B \subset X\) is a limit point of \(B\) \miff \(\forall r \geq 0, \left(B_r(p) \bs \{p\}\right) \cap B \neq \varnothing.\)\footnote{임의의 근방에서 자기자신을 제외하고 \(B\)의 점이 존재한다.}
+    \item \(A'\) is the set of limit points of \(A\).
+    \item \(\overline{A} = A \cup A'\), which is the smallest closed set containing \(A\).
+    \item \(A \subset X\) is dense in \(X\) \miff \(\overline{A} = X\).
+    \item \(A \subset X\) is bounded \miff \(\exists r > 0\) such that \(A \subset B_r(p)\) for some \(p \in X\).
+    \item Sets \(A\) and \(B\) are separated \miff \(\overline{A}\cap B = \varnothing = A \cap \overline{B}\).
+    \item Set \(C\) is disconnected \miff \(\exists\) non-empty separated sets \(A, B\) such that \(C \subset A\cup B\).
+\end{itemize}
+
+\medskip
+
+Suppose \(\{U_\alpha\}\) is a collection of open sets in \(X\).
+
+\begin{itemize}
+    \item \(\{U_\alpha\}\) is an open cover of \(A\) \miff \(A \subset \ds \bigcup_{\alpha} U_\alpha\).
+    \item \(K \subset X\) is compact \miff for every open cover of \(K\), there exists a finite subcover of \(K\).
+          \begin{center}
+              \(\exists \alpha_1, \alpha_2, \dots, \alpha_n\) such that \(K \subset \ds \bigcup_{k=1}^n U_{\alpha_k}\)
+          \end{center}
+    \item \note{Heine-Borel} In \(\R^n\), compact \miff bounded and closed.
+    \item If \(K\) is compact and \(A \subset K\) is closed, then \(A\) is also compact.
+    \item If \(\{K_\alpha\}\) is a collection of compact sets and \(\ds \bigcap_\alpha K_\alpha = \varnothing\), then
+          \begin{center}
+              \(\exists \alpha_1, \alpha_2, \dots, \alpha_n\) such that \(\ds \bigcap_{k=1}^n K_{\alpha_k} = \varnothing\).\footnote{정의로 쉽게 보일 수 있다?}
+          \end{center}
+\end{itemize}
+
+\subsubsection*{3. Sequences}
+
+A sequence \(a: \N \ra A\), is a function. We write \(a(i) = a_i\), and we usually consider sequences in metric spaces.
+
+\begin{itemize}
+    \item \(\{a_n\}\) converges to \(\alpha\) \miff \(\forall \epsilon > 0, \exists N \in \N\) such that \(n \geq N \implies d_X(a_n, \alpha) < \epsilon\).
+    \item \note{Cauchy Sequence} \(\{a_n\}\) is Cauchy\\
+          \miff \(\forall \epsilon > 0, \exists N \in \N\) such that \(n, m \geq N \implies d_X(a_n, a_m) < \epsilon\).
+    \item \((X, d)\) is complete \miff every Cauchy sequence converges.\footnote{수렴하면 코시 수열이지만, 모든 코시 수열이 수렴하지는 않는다. Consider any sequence of rational numbers converging to an irrational real number.}
+    \item \(\ds \limsup_{n\ra \infty} a_n = \lim_{n \ra \infty} \sup \{a_k : k \geq n\}\).
+    \item \(\ds \liminf_{n \ra \infty} a_n = \lim_{n \ra \infty} \inf \{a_k : k \geq n\}\).
+    \item \(\ds \lim a_n = \alpha\) \miff \(\limsup a_n = \liminf a_n = \alpha\) (\(\alpha \in \R\)).
+    \item For power series \(\sum a_n x^n\), the radius of convergence \(R \in \overline{R}\) is calculated as
+          \[
+              \frac{1}{R} = \limsup_{n \ra \infty} \sqrt[n]{\abs{a_n}}.
+          \]
+    \item Absolute convergence implies convergence.
+\end{itemize}
+
+\subsubsection*{4. Limit of Functions}
+
+Given metric spaces \(X, Y\), define a function \(f: E \subset X \ra Y\).
+
+\begin{itemize}
+    \item If \(p \in E'\)\footnote{함수의 극한은 극한점에서 논한다! 다가갈 점들이 있어야 하지 않겠는가?} then we can define \(\ds \lim_{x \ra p} f(x) = \alpha\) as
+          \begin{center}
+              \(\forall \epsilon > 0, \exists \delta > 0\) such that \(0 < d_X(x, p) < \delta \implies d_Y(f(x), \alpha) < \epsilon\).
+          \end{center}
+          Or equivalently, for any sequence \(\{a_n\}\) in \(X\) with \(a_n \neq p\),
+          \begin{center}
+              if \(\ds \lim_{n\ra \infty} a_n = p\) then \(\ds \lim_{n \ra \infty} f(a_n) = \alpha\).
+          \end{center}
+    \item \(f\) is continuous at \(p \in E\)\footnote{Limit point가 아니어도 정의할 수 있으며, 고립점에서는 연속이다.} \miff
+          \begin{center}
+              \(\forall \epsilon > 0, \exists \delta > 0\) such that \(x \in E, d_X(x, p) < \delta \implies d_Y(f(x), f(p)) < \epsilon\).
+          \end{center}
+          Or equivalently, for any sequence \(\{a_n\}\) in \(X\),\footnote{여기서는 \(a_n \neq p\) 조건이 빠진다.}
+          \begin{center}
+              if \(\ds \lim_{n\ra \infty} a_n = p\) then \(\ds \lim_{n \ra \infty} f(a_n) = f(p)\).
+          \end{center}
+    \item \(f\) is continuous \miff for any open set \(V \subset Y\), \(f\inv(V)\) is open in \(X\).
+    \item Suppose that \(f\) is continuous.
+          \begin{itemize}
+              \item If \(K \subset E\) is compact, \(f(K)\) is also compact.
+              \item If \(C \subset E\) is connected, \(f(C)\) is also connected.
+          \end{itemize}
+    \item \note{Extreme Value Theorem} Suppose \(K \subset E\) is compact and \(f: K \ra \R\) is continuous. Because \(f(K)\) is a compact set in \(\R\), it is a closed interval. Hence \(f\) has a maximum/minimum.
+    \item \note{Uniform Continuity} \(f\) is uniformly continuous on \(E\) \miff
+          \begin{center}
+              \(\forall \epsilon > 0, \exists \delta > 0\) such that \(\forall x, \forall y \in E\), \(d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \epsilon\).
+          \end{center}
+    \item If \(f: E \subset X \ra Y\) is continuous and \(E\) is compact, \(f\) is uniformly continuous.
+\end{itemize}
+
+\subsubsection*{5. Differentiation}
+
+Function \(f: [a, b] \ra \R\) is differentiable at \(x \in [a, b]\) \miff
+\begin{center}
+    the limit \(\ds f'(x) = \lim_{t \ra x} \frac{f(t) - f(x)}{t - x}\) exists.
+\end{center}
+
+\begin{itemize}
+    \item If \(f\) is differentiable at \(x = p\), then \(f\) is continuous at \(x = p\).
+    \item If \(f\) is differentiable at \(x = p\) and \(g: f([a, b]) \ra \R\) is differentiable at \(x = f(p)\)\\
+          \mimp \(g \circ f\) is differentiable at \(x = p\) and
+          \[
+              (g \circ f)'(p) = g'\big(f(p)\big)f'(p).
+          \]
+    \item \note{Fermat} If \(f\) is differentiable and has a local extremum at \(x = a\), then \(f'(a) = 0\).
+    \item \note{Mean Value Theorem} If \(f\) is continuous on \([a, b]\) and differentiable on \((a, b)\), there exists \(c \in (a, b)\) such that
+          \[
+              f'(c) = \frac{f(b)-f(a)}{b-a}.
+          \]
+\end{itemize}
+
+\subsubsection*{6. Integration}
+
+Given a \underline{bounded} function \(f: [a, b] \ra \R\), a partition \(P = \{a = x_0 < x_1 < \cdots < x_n = b\}\) and a monotonically increasing function \(\alpha: [a, b] \ra \R\), define
+\[
+    U(P, f, \alpha) = \sum_{i = 0}^{n - 1} \sup_{x \in [x_i, x_{i + 1}]} f(x) \bigl(\alpha(x_{i + 1}) - \alpha(x_{i})\bigr)
+\]
+\[
+    L(P, f, \alpha) = \sum_{i = 0}^{n - 1} \inf_{x \in [x_i, x_{i + 1}]} f(x) \bigl(\alpha(x_{i + 1}) - \alpha(x_{i})\bigr)
+\]
+
+We define upper integral and lower integral as follows:
+\begin{center}
+    \(\ds \uint{a}{b} f\d{\alpha} = \inf_{P \in \mc{P}[a, b]} U(P, f, \alpha)\) \qquad \(\ds \lint{a}{b} f\d{\alpha} = \sup_{P \in \mc{P}[a, b]} L(P, f, \alpha)\).
+\end{center}
+
+\(f\) is Stieltjes integrable with respect to \(\alpha\) \miff
+\begin{center}
+    \(\forall \epsilon > 0, \exists P \in \mc{P}[a, b]\) such that \(U(P, f, \alpha) - L(P, f, \alpha) < \epsilon\).
+\end{center}
+Or equivalently, \(\ds \uint{a}{b} f\d{\alpha} = \lint{a}{b} f\d{\alpha}\). We write \(f \in \mc{R}(\alpha)\).
+
+\subsubsection{Supplementary Material}
+
+\(F\) is a field for this section.
+
+\defn. \note{Vector Space} A set \(V\) with addition \(+: V\times V \ra V\) and scalar multiplication \(\cdot : F \times V \ra V\) is a vector space over \(F\) if the following properties hold.
+\begin{enumerate}
+    \item \note{Associativity of \(+\)} \(u + (v + w) = (u + v) + w\) for all \(v, w, u\in V\).
+    \item \note{Commutativity of \(+\)} \(v + w = w + v\) for all \(v, w \in V\).
+    \item \note{Identity of \(+\)} \(\exists 0_V \in V\) such that \(v + 0 = 0 + v = v\) for all \(v \in V\).
+    \item \note{Inverse of \(+\)} For each \(v \in V\), \(\exists x \in V\) such that \(v + x = x + v = 0_V\).
+    \item \note{Identity of \(\cdot\)} \(1v = v\) for \(v \in V\), where \(1 \in F\) is the multiplicative identity in \(F\).
+    \item \note{Distributive Property of \(\cdot\) w.r.t. Vector \(+\)} For \(a \in F\) and \(v, w \in V\), \(a(v + w) = av + aw\).
+    \item \note{Distributive Property of \(\cdot\) w.r.t. Field \(+\)} For \(a, b \in F\) and \(v \in V\), \((a + b)v = av + bv\).
+    \item \note{Compatibility of \(\cdot\) w.r.t. \(+\)} \(a(bv) = (ab)v\) for \(a, b \in F\), \(v \in V\).
+\end{enumerate}
+We write \(V = (V, +, \cdot)\).
+
+\medskip
+
+\defn. \note{Normed Vector Space} A vector space \(V\) with a norm \(\norm{\cdot}: V \ra \R\) if a normed vector space if the following properties hold.
+\begin{enumerate}
+    \item \(\norm{v} \geq 0\) for all \(v \in V\).
+    \item \(\norm{v} = 0 \iff v = 0\).
+    \item For all \(\alpha \in F\) and \(v \in V\), \(\norm{\alpha v} = \abs{\alpha} \norm{v}\).
+    \item \note{Triangle Inequality} For all \(v, w \in V\), \(\norm{v + w} \leq \norm{v} + \norm{w}\).
+\end{enumerate}
+
+\medskip
+
+For inner product spaces, \(F = \C\) or \(F = \R\).
+
+\defn. \note{Inner Product Space} A vector space \(V\) with an inner product \(\span{\cdot, \cdot}: V \times V \ra F\) is an inner product space if the following properties hold.
+\begin{enumerate}
+    \item \note{Linearity in the first argument} For \(x, y, z \in V\) and \(a, b \in F\), \(\span{ax + by, z} = a\span{x, z} + b\span{y, z}\).
+    \item \note{Conjugate Symmetry} For \(x, y \in V\), \(\span{x, y} = \overline{\span{y, x}}\).
+    \item \note{Positive Definiteness} If \(0 \neq x \in V\), \(\span{x, x} > 0\).
+\end{enumerate}
+
+\rmk An inner product can induce a norm by \(\ds \norm{v} = \sqrt{\span{v, v}}\). With norm as the distance metric, the following holds.
+\begin{center}
+    Inner Product Space \mimp Normed Vector Space \mimp Metric Space
+\end{center}
+If the inner product space is complete with respect to the distance metric, it is said to be a Hibert space.

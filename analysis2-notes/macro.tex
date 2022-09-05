@@ -8,6 +8,7 @@
 \newcommand{\inv}{^{-1}}
 \newcommand{\adj}{\text{*}}
 \newcommand{\bs}{\setminus}
+\renewcommand{\subset}{\subseteq}
 
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\abs}[1]{\left| #1 \right|}
@@ -17,9 +18,9 @@
 
 \newcommand{\ra}{\rightarrow}
 \newcommand{\imp}{\implies}
-\newcommand{\mimp}{$\implies$}
-\newcommand{\mimpd}{$\impliedby$}
-\newcommand{\miff}{$\iff$}
+\newcommand{\mimp}{\(\implies\)}
+\newcommand{\mimpd}{\(\impliedby\)}
+\newcommand{\miff}{\!\!\(\iff\)}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -30,8 +31,9 @@
 \newcommand{\inte}{\mathrm{int}}
 \newcommand{\diam}{\text{diam}}
 \newcommand{\dist}{\text{dist}}
-\newcommand{\lint}[1]{\underline{\int#1}}
-\newcommand{\uint}[1]{\overline{\int#1}}
+\newcommand{\lint}[2]{\underline{\int_{#1}^{#2}}}
+\newcommand{\uint}[2]{\overline{\int_{#1}^{#2}}}
+\renewcommand{\d}[1]{\,d{#1}}
 
 \let\oldexists\exists
 \renewcommand{\exists}{\oldexists\,}
