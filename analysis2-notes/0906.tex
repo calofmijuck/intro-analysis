@@ -1,0 +1,145 @@
+\section*{September 6th, 2022}
+
+More examples.
+
+\ex{7.5} Consider \(f_n(x) = \dfrac{\sin nx}{\sqrt{n}}\) for \(x \in \R\).
+\[
+    f(x) = \lim_{n\ra\infty} f_n(x) \equiv 0
+\]
+but,
+\[
+    f'_n(x) = \sqrt{n}\cos nx \implies f'_n(0) = \sqrt{n}.
+\]
+As \(n \ra \infty\), \(f'_n(0)\) does not converge to \(f'(0)\).
+
+\ex{7.6} Consider \(f_n(x) = nx(1-x^2)^n\) for \(x \leq 0 \leq 1\). Note that
+\begin{center}
+    \(f_n(0) = 0\), \(f_n(1) = 0\).
+\end{center}
+When \(0 < x < 1\), \(f_n \ra f \equiv 0\). \note{Theorem 3.20 (d)} Thus \(\ds \lim_{n\ra \infty} f_n(x) = 0\) for \(0 \leq x \leq 1\).
+
+But
+\[
+    \int_0^1 nx(1-x^2)^n \d{x} = \left[\frac{-n}{2n+2} (1-x^2)^{n+1}\right]_0^1 = \frac{n}{2n+2},
+\]
+and thus
+\[
+    \lim_{n\ra \infty} \int_0^1 f_n(x) \d{x} = \frac{1}{2} \neq 0 = \int_0^1 f(x)\d{x}.
+\]
+
+\defn. \(\ds \sum_{n=1}^\infty f_n\) converges uniformly on \(E\) \miff \(\ds \seq{\sum_{k=1}^n f_k}\) converges uniformly on \(E\).
+
+\thm{7.10} \note{Weierstrass \(M\)-test} Suppose \(f_n: E \ra \C\) and that for every \(n\), \(\exists M_n \in \R\) such that
+\[
+    \abs{f_n(x)} \leq M_n, \quad (x \in E)
+\]
+and \(\sum_{n=1}^\infty M_n < \infty\). Then the series \(\sum_{n=1}^\infty f_n\) converges uniformly on \(E\).
+
+\pf We want to show that the series is Cauchy.\\
+For \(m > n\), we have
+\[
+    \abs{\sum_{k=n}^m f_k(x)} \leq \sum_{k=n}^m \abs{f_k(x)} \leq \sum_{k=n}^m M_k.
+\]
+Given \(\epsilon > 0\), choose \(m, n \in \N\) such that for \(m, n \geq N\), \(\sum_{k = n}^m M_k < \epsilon\). Then we get
+\begin{center}
+    \(\ds \abs{\sum_{k=n}^m f_k(x)} < \epsilon\), for all \(m, n\geq N\).
+\end{center}
+By Theorem 7.8, \(\sum f_n\) converges uniformly.
+
+\thm{7.11} Given metric space \((Y, d)\) and \(E \subset Y\), suppose that \(f_n \uc f\) on \(E\) and \(x \in E'\). If
+\begin{center}
+    \(\ds \lim_{t \ra x} f_n(t) = A_n \in \C\), \quad (limit exists)
+\end{center}
+then the sequence \(\seq{A_n}\) converges, and
+\begin{center}
+    \(\ds \lim_{n \ra \infty} A_n = \lim_{t \ra x} f(t)\).
+\end{center}
+In conclusion,
+\[
+    \lim_{n\ra \infty} \lim_{t \ra x} f_n(t) = \lim_{t\ra x}\lim_{n\ra\infty} f_n(t).
+\]
+
+\pf\\
+\note{\(\seq{A_n}\) converges in \(\C\)} Since \(\C\) is complete, we will show that \(\seq{A_n}\) is a Cauchy sequence. Let \(\epsilon > 0\). Since \(f_n \uc f\) on \(E\),
+\begin{center}
+    \(\exists N \in \N\) such that \(n, m\geq N \implies \abs{f_n(t) - f_m(t)} \leq \epsilon\). (\(\forall t\in E\))
+\end{center}
+From \(\ds \lim_{t \ra x} f_n(t) = A_n\), we can choose \(t\) arbitrarily close to \(x\), such that for \(n, m \geq N\),
+\begin{center}
+    \(\abs{f_n(t) - A_n} < \epsilon\) and \(\abs{f_m(t) - A_m} < \epsilon\).
+\end{center}
+Therefore for all \(n, m \geq N\),
+\[
+    \begin{aligned}
+        \abs{A_n - A_m} &= \abs{A_n - f_n(t) + f_n(t) - A_m + f_m(t) - f_m(t)}\\
+        &\leq \abs{f_n(t) - A_n} + \abs{f_m(t) - A_m} + \abs{f_n(t) - f_m(t)} < 3\epsilon,
+    \end{aligned}
+\]
+and thus \(\seq{A_n}\) is a Cauchy Sequence.
+
+\note{\(\ds \lim_{n \ra \infty} A_n = \lim_{n \ra x} f(t)\)} Let \(A = \ds \lim_{n \ra \infty} A_n\). We want to show that for all \(\epsilon > 0\),
+\begin{center}
+    \(\exists \delta > 0\) such that \(0 < d(t, x) < \delta \implies \abs{f(t) - A} < \epsilon\).
+\end{center}
+Now,
+\begin{center}
+    \(\ds \abs{f(t) - A} \leq \sup_{s \in E} \abs{f(s) - f_n(s)} + \abs{f_n(t) - A_n} + \abs{A_n - A}\).
+\end{center}
+Given \(\epsilon > 0\), choose \(N \in \N\) such that for \(n \geq N\),
+\begin{center}
+    \(\ds \sup_{s\in E} \abs{f(s) - f_n(s)} < \frac{\epsilon}{3}\) and \(\ds \abs{A_n - A} < \frac{\epsilon}{3}\).
+\end{center}
+Fix such \(N\) and choose \(\delta\) such that for \(0 < d(x, t) < \delta\) and \(t \in E\),
+\[
+    \abs{f_N(t) - A_N} \leq\frac{\epsilon}{3}.
+\]
+Thus for \(t\in E\) and \(0 < d(x, t) < \delta\),
+\[
+    \abs{f(t) - A} \leq \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+\]
+
+\thm{7.12} Suppose \(f_: E \ra \C\) is continuous on \(E\) and \(f_n \uc f\) on \(E\). Then \(f\) is continuous on \(E\).
+
+\pf Let \(x \in E\). If \(x \in E'\), \(f\) is continuous at \(x\) by Theorem 7.11. If \(x\) is an isolated point (not a limit point), \(f\) is continuous at \(x\) by definition of continuity.
+
+\textbf{앞으로는 \(E\)를 전부 metric space라고 가정할게요.}
+
+이 정리는 언제 uniformly converge 하는지 알려줍니다.
+
+\thm{7.13} Given a compact metric space \(K\), suppose that
+\begin{enumerate}
+    \item \(f_n\) and \(f: K \ra \C\) are continuous on \(K\).
+    \item \(f_n \ra f\) pointwise.
+    \item \(f_n(x) \geq f_{n+1}(x)\) for \(x \in K\).\footnote{\(f_n\) only needs to be monotone. See Dini's Theorem.}
+\end{enumerate}
+Then \(f_n \uc f\) on \(K\).
+
+\pf Let \(g_n(x) = f_n(x) - f(x)\). Then \(g_n(x)\) is continuous, decreasing and \(g_n \ra 0\) as \(n \ra \infty\) for all \(x \in K\). Let \(\epsilon > 0\) be given.
+
+\quad \claim. There exists \(N \in \N\) such that \(0 \leq g_n(x) < \epsilon\) for all \(x \in K\).
+
+\quad \pf Let \(K_n = \{x \in K : g_n(x)\geq \epsilon\}\). Then \(K_n = K \cap g_n\inv ([\epsilon, \infty))\).\footnote{Closed subset of a compact set is also compact, and the inverse image of closed set is closed if the function is continuous} Since \(g_n\) is decreasing, \(K_{n+1}\subset K_n\), but because \(g_n \ra 0\), \(\bigcap_{n=1}^\infty K_n = \varnothing\). By Theorem 2.36, there exists \(N \in \N\) such that \(K_N = \varnothing\), and then \(K_n = \varnothing\) for \(n \geq N\). Thus, \(0 \leq g_n(x) < \epsilon\) for \(\forall x \in K\), \(\forall n \geq N\).
+
+\rmk Compactness is necessary here. Consider \(f_n(x) = \dfrac{1}{nx + 1}\) on \(x \in E = (0, 1)\). \(f_n\) does not converge to \(0\) uniformly.
+
+\pf Suppose \(f_n \uc 0\), and take \(\epsilon = 1/2\). Then,
+\begin{center}
+    \(\exists N \in \N\) such that \(\ds x \in (0, 1) \implies \frac{1}{Nx + 1} < \frac{1}{2}\).
+\end{center}
+This gives a contradiction because the equation above gives \(Nx > 1\), but we can choose \(x\) arbitrarily close to \(0\).
+
+\defn. Let \((X, d)\) be a metric space. Define
+\[
+    C(X, \C) = \{f: X \ra \C \mid f\text{ is continuous and bounded}\}.
+\]
+If there is no ambiguity, we write \(C(X) = C(X, \C)\).
+
+Let \(\norm{f} = \ds \sup_{x\in X} \abs{f(x)}\). Then \(\norm{\cdot}\) is a norm on \(C(X)\).
+\begin{enumerate}
+    \item \(\norm{f} = 0 \iff f \equiv 0\).
+    \item \(\norm{f} < \infty\).
+    \item \(\norm{f + g} \leq \norm{f} + \norm{g}\).
+\end{enumerate}
+Define \(d(f, g) = \norm{f - g}\), then \((C(X), d)\) is a metric space.
+
+Therefore, \(f_n \uc f \iff f_n \ra f\) in \((C(X), d)\).
