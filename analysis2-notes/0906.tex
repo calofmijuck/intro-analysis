@@ -59,7 +59,7 @@ In conclusion,
     \lim_{n\ra \infty} \lim_{t \ra x} f_n(t) = \lim_{t\ra x}\lim_{n\ra\infty} f_n(t).
 \]
 
-\pf\\
+\pf\footnote{고른수렴이 어디에서 쓰였는지 확인하는 것이 중요하다.}\\
 \note{\(\seq{A_n}\) converges in \(\C\)} Since \(\C\) is complete, we will show that \(\seq{A_n}\) is a Cauchy sequence. Let \(\epsilon > 0\). Since \(f_n \uc f\) on \(E\),
 \begin{center}
     \(\exists N \in \N\) such that \(n, m\geq N \implies \abs{f_n(t) - f_m(t)} \leq \epsilon\). (\(\forall t\in E\))
@@ -77,7 +77,7 @@ Therefore for all \(n, m \geq N\),
 \]
 and thus \(\seq{A_n}\) is a Cauchy Sequence.
 
-\note{\(\ds \lim_{n \ra \infty} A_n = \lim_{n \ra x} f(t)\)} Let \(A = \ds \lim_{n \ra \infty} A_n\). We want to show that for all \(\epsilon > 0\),
+\note{\(\ds \lim_{n \ra \infty} A_n = \lim_{t \ra x} f(t)\)} Let \(A = \ds \lim_{n \ra \infty} A_n\). We want to show that for all \(\epsilon > 0\),
 \begin{center}
     \(\exists \delta > 0\) such that \(0 < d(t, x) < \delta \implies \abs{f(t) - A} < \epsilon\).
 \end{center}
@@ -101,6 +101,8 @@ Thus for \(t\in E\) and \(0 < d(x, t) < \delta\),
 \thm{7.12} Suppose \(f_: E \ra \C\) is continuous on \(E\) and \(f_n \uc f\) on \(E\). Then \(f\) is continuous on \(E\).
 
 \pf Let \(x \in E\). If \(x \in E'\), \(f\) is continuous at \(x\) by Theorem 7.11. If \(x\) is an isolated point (not a limit point), \(f\) is continuous at \(x\) by definition of continuity.
+
+\textbf{고른수렴이 연속함수열의 올바른 수렴}입니다.
 
 \textbf{앞으로는 \(E\)를 전부 metric space라고 가정할게요.}
 
@@ -143,3 +145,5 @@ Let \(\norm{f} = \ds \sup_{x\in X} \abs{f(x)}\). Then \(\norm{\cdot}\) is a norm
 Define \(d(f, g) = \norm{f - g}\), then \((C(X), d)\) is a metric space.
 
 Therefore, \(f_n \uc f \iff f_n \ra f\) in \((C(X), d)\).
+
+\pagebreak
