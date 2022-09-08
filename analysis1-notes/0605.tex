@@ -25,7 +25,7 @@ and if these two values are the same, $f$ is \textbf{Stieltjes Integrable} w.r.t
 	\item If $f\in \mc{R}(\alpha), \mc{R}(\beta)$, then $f\in \mc{R}(\alpha + \beta), \mc{R}(c\alpha)$ for $c\geq0$. And
 	$$\int_a^b f\, d(\alpha+\beta) = \int_a^b f\,d\alpha + \int_a^b f\,d\beta\quad \int_a^b f\, d(c\alpha) = c\int_a^b f\,d\alpha$$
 \end{enumerate}~\\
-\thm{ 5.5.2 (1/2)} The following are euqivalent for bounded $f$ and monotonically increasing $\alpha$.
+\thm{ 5.5.2 (1/2)} The following are equivalent for bounded $f$ and monotonically increasing $\alpha$.
 \begin{enumerate}
 	\item $f\in \mc{R}(\alpha)$
 	\item $\forall\epsilon>0$, $\exists\,P\in \mc{P}[a, b]$ s.t. $U(f, P, \alpha) - L(f, P, \alpha) < \epsilon$
@@ -34,7 +34,7 @@ Note that the above theorem could only be used for testing integrability. So to 
 $$S(f, P, \alpha) = \sum_{i=1}^n f(t_i) (\alpha(x_i) - \alpha(x_{i-1})) \qquad (t_i \in [x_{i-1}, x_i])$$
 Also note that on the proof of 5.2.3 (2) $\alpha(x) = x$ was heavily used.\\
 \\
-\thm{ 5.5.2 (2/2)} 
+\thm{ 5.5.2 (2/2)}
 \begin{enumerate}
 	\item $\ds\int_a^b f\,d\alpha = A$
 	\item $\forall\epsilon > 0$, $\exists \,P_0\in\mc{P}[a, b]$ s.t. $P_0\subset P \imp \abs{S(f, P, \alpha) - A } < \epsilon$

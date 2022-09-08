@@ -1,7 +1,7 @@
 \section*{May 27th, 2019}
 Currently: We are given bounded $f: [a, b]\ra\R$. For $P\in \mc{P}[a, b]$, we defined $U(f, P)$ and $L(f, P)$. Then we defined $\uint{_a^b} f$ and $\lint{_a^b}$, and $f$ was Riemann Integrable when these two values were the same.\\
 \\
-\thm{ 5.1.5} If $f:[a, b]\ra\R$ is Riemann Integrable, then $\abs{f}$ is also Riemann Integrable. Also, the following holds.$$ \int_a^b \abs{f} \leq\abs{\int_a^b f} $$
+\thm{ 5.1.5} If $f:[a, b]\ra\R$ is Riemann Integrable, then $\abs{f}$ is also Riemann Integrable. Also, the following holds.$$ \abs{\int_a^b f} \leq\int_a^b \abs{f} $$
 \pf. From $\abs{\abs{f(x)} - \abs{f(y)}} \leq \abs{f(x)-f(y)}$, and for $\epsilon > 0$, $$U(\abs{f}, P) - L(\abs{f}, P) \leq U(f, P) - L(f, P) < \epsilon$$
 Thus $\abs{f}$ is integrable, and $-\abs{f}\leq f \leq \abs{f}$ gives the inequality.\\
 \\
@@ -13,9 +13,9 @@ Thus $\abs{f}$ is integrable, and $-\abs{f}\leq f \leq \abs{f}$ gives the inequa
 	Thus there exists $\delta >0$ s.t. $$\abs{x-y} < \delta \imp \abs{f(x) - f(y)} < \frac{\epsilon}{b-a}$$
 	\item Now we set a partition as $P = \{a=x_0 < x_1  < \cdots < x_n =b\}$ s.t. $x_i-x_{i-1} < \delta$ for all $i$.
 	\item From EVT, for each closed interval $[x_{i-1}, x_i]$, there exists maximum and minimum $f(u_i), f(v_i)$. Thus $M_i = f(u_i)$, $m_i = f(v_i)$.
-	\item Now we have 
+	\item Now we have
 	$$\begin{aligned}
-		U(f, P) - L(f, P) &= \sum_{i=1}^n (M_i-m_i)(x_i - x_{i-1}) = \sum_{i=1}^n (f(u_i) - f(v_i)) (x_i -x_{i-1}) \\&< \sum_{i=1}^n \frac{\epsilon}{b-a} (x_i - x_{i-1}) = \epsilon	
+		U(f, P) - L(f, P) &= \sum_{i=1}^n (M_i-m_i)(x_i - x_{i-1}) = \sum_{i=1}^n (f(u_i) - f(v_i)) (x_i -x_{i-1}) \\&< \sum_{i=1}^n \frac{\epsilon}{b-a} (x_i - x_{i-1}) = \epsilon
 	\end{aligned}$$
 \end{enumerate}
 ~\\
@@ -23,7 +23,7 @@ Thus $\abs{f}$ is integrable, and $-\abs{f}\leq f \leq \abs{f}$ gives the inequa
 \pf. WLOG, suppose $f$ is increasing.\\
 Given $\epsilon > 0$, we want to find a partition $P$. Take $n\in \N$ s.t. $$n > \frac{(b-a)(f(b)-f(a))}{\epsilon}$$
 Consider a partition as $$x_i = a+ \frac{b-a}{n}i \imp P = \{a =x_0 < x_1 < \cdots < x_n = b \}$$
-Now 
+Now
 $$\begin{aligned}
 	U(f, P) - L(f, P) &= \sum_{i=1}^n (M_i-m_i)(x_i - x_{i-1})  = \sum_{i=1}^n (f(x_i) - f(x_{i-1})) \frac{b-a}{n}\\
 	&=\frac{b-a}{n} (f(x_n)-f(x_0)) = \frac{(b-a)(f(b)-f(a))}{n} < \epsilon
@@ -35,7 +35,7 @@ And we say that $P$ is finer than $Q$ if $\norm{P} \leq \norm{Q}$. Also, if $P\s
 \\
 \defn. \textbf{Riemann Sum} $R(f, P)$ is defined as
 $$R(f, P) = \sum_{i=1}^n f(t_i)(x_i-x_{i-1}) \quad (t_i\in [x_{i-1}, x_i])$$
-\rmk. 
+\rmk.
 \begin{enumerate}
 	\item $R(f, P) = R(f, P, t_1, t_2, \dots, t_n)$
 	\item $$U(f, P) = \sup_{t_1, \dots, t_n} R(f, P)
@@ -54,7 +54,7 @@ The following are equivalent for bounded $f:[a, b]\ra \R$.
 	$$P\supset P_0 \imp \abs{R(f, P) - A}  < \epsilon$$
 \end{enumerate}
 \pf. \textbf{(1\mimp2)}\\
-\textbf{Claim}. 
+\textbf{Claim}.
 \begin{enumerate}
 	\item[(i)] $\exists\,\delta_1 > 0$ s.t. $\norm{P} < \delta_1 \imp U(f, P) < A + \epsilon$
 	\item[(ii)] $\exists\,\delta_2 > 0$ s.t. $\norm{P} < \delta_2 \imp L(f, P) > A - \epsilon$
