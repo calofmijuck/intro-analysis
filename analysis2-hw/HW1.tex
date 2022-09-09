@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{geometry}
 \geometry{
@@ -149,13 +150,127 @@
     because both \(A(x)\) and \(B\) converge.
 
     Let \(a > 0\) and set \(X = [-a, a]\). It is sufficient to show uniform convergence for \(X\), because \(a\) can be chosen arbitrarily large so that it would contain any bounded interval.
-    
+
     \(A(x)\) converges uniformly on \(X\) by using the Weierstrass \(M\)-test with \(M_n = \dfrac{a^2}{n^2}\). However, the series does not converge absolutely by the comparison test since
     \[
         \abs{(-1)^n \frac{x^2 + n}{n^2}} \geq \frac{n}{n^2} = \frac{1}{n}
     \]
     and the harmonic series diverges.
 
-    \numl{5}
+    \numl{5} Since \(f_n(0) = 0\), \(f(0) = 0\). Now consider the case \(x \neq 0\). For \(\epsilon > 0\), choose \(N = \dfrac{1}{4\epsilon^2}\). Then for \(n \geq N\),
+    \[
+        \abs{f_n(x) - 0} = \frac{1}{\abs{nx + \dfrac{1}{x}}} \leq \frac{1}{2\sqrt{n}} \leq \frac{1}{2\sqrt{N}} = \epsilon, \quad (x \in \R\bs\{0\})
+    \]
+    (AM-GM inequality was used in the first inequality) Thus \(f(x) = 0\) also for \(x \neq 0\). \(f_n\) converges uniformly to \(f(x) = 0\) for \(x \in \R\).
+
+    We directly calculate \(f_n'(x)\) and get
+    \[
+        f_n'(x) = \frac{1 - nx^2}{(1 + nx^2)^2}.
+    \]
+    We see that
+    \[
+        \lim_{n\ra\infty} f_n'(x) = \begin{cases}
+            1 & (x = 0) \\ 0 & (x \neq 0)
+        \end{cases},
+    \]
+    whereas \(f'(x) = 0\). The given equation \(f'(x) = \ds \lim_{n \ra \infty} f'_n(x)\) is false only for \(x = 0\).
+
+    \numl{6} We directly see that
+    \[
+        \abs{c_n I(x - x_n)} \leq \abs{c_n}
+    \]
+    and since \(\sum \abs{c_n} < \infty\), the given series converges uniformly on \([a, b]\) by the Weierstrass \(M\)-test.
+
+    Define the partial sum \(s_n(x) = \ds \sum_{k =1}^n c_k I(x - x_k)\). We know that \(s_n(x)\) is already continuous at \(x_0 \neq x_n\), since each term in the sum is continuous at \(x_0\) and the sum is finite. Thus
+    \[
+        \lim_{t \ra x_0} s_n(t) = s_n(x_0).
+    \]
+    Since \(s_n(x)\) converges uniformly to \(f(x)\), \(\seq{s_n(x_0)}\) converges to \(f(x_0)\).
+
+    By {\sffamily Theorem 7.11}, (the conditions for the theorem are indeed satisfied)
+    \[
+        \lim_{t \ra x_0} f(t) = \lim_{n\ra\infty} \lim_{t \ra x_0} s_n(t) = \lim_{n\ra\infty} s_n(x_0) = f(x_0),
+    \]
+    showing that \(f\) is continuous for every \(x_0 \neq x_n\).
+
+    \numl{7} We are given that \(\seq{f_n}\) is a sequence of continuous functions converging uniformly to \(f\). We know that \(f\) is continuous on \(E\). Let \(\epsilon > 0\) be given.
+
+    First, we choose \(N_1 \in \N\) such that for \(n \geq N_1\),
+    \[
+        \abs{f_n(x) - f(x)} < \frac{\epsilon}{2}, \quad (x \in E).
+    \]
+    Next, since \(f_n\) is continuous at \(x \in E\), (the limit of \(x_n\)) there exists \(\delta > 0\) such that
+    \[
+        \abs{y - x} < \delta \implies \abs{f_n(y) - f_n(x)} < \frac{\epsilon}{2}.
+    \]
+    Lastly, since \(x_n \ra x\), we choose choose \(N_2 \in \N\) such that for \(n \geq N_2\),
+    \[
+        \abs{x_n - x} < \delta,
+    \]
+    which implies that
+    \[
+        \abs{f_n(x_n) - f_n(x)} < \frac{\epsilon}{2}.
+    \]
+
+    Therefore, for \(n \geq \max\{N_1, N_2\}\),
+    \[
+        \abs{f_n(x_n) - f(x)} \leq \abs{f_n(x_n) - f_n(x)} + \abs{f_n(x) - f(x)} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon,
+    \]
+    which is equivalent to \(\ds \lim_{n\ra\infty} f_n(x_n) = f(x)\).
+
+    The converse is not true. Consider the function \(f_n\) given in {\sffamily Problem \#3}, with the domain restricted to \(E = [0, 1]\). First of all, \(f_n\) does not converge uniformly to \(f \equiv 0\) on \(E\).
+
+    Now, consider any sequence \(\seq{x_n} \ra x \in E\). For very small \(\epsilon > 0\) such that \(x - \epsilon > 0\), choose \(N \in \N\) such that for \(n \geq N_1\), \(\abs{x_n - x} < \epsilon\). Then, we see that for \(n \geq N_1\), \(0 < x - \epsilon < x_n\).
+
+    Therefore we can choose \(M\) large enough so that \(x - \epsilon > \dfrac{1}{M}\). Then \(f_M(x - \epsilon) = 0\). Setting \(N = \max\{N_1, M\}\) will give \(f_n(x_n) = 0\) for \(n \geq N\).
+
+    Hence, \(\ds \lim_{n\ra\infty} f_n(x_n) = f(x)\) holds, but \(f_n\) does not converge uniformly.
+
+
+    \numl{8} First we prove the following lemma.
+
+    \quad {\sffamily \bfseries Lemma.} \textit{Given two sequences \(\seq{a_n}, \seq{b_n}\) and a partial sum \(A_n = \ds\sum_{k=1}^n a_k\), (define \(A_0 = 0\)) the following holds for \(m < n\).
+        \begin{equation} \tag{\textasteriskcentered}
+            \sum_{k=m+1}^n a_n b_n = A_n b_{n+1} - A_m b_{m+1} - \sum_{k=m+1}^n A_k \bigl(b_{k+1} - b_k\bigr)
+        \end{equation}
+    }
+
+    \quad {\sffamily \bfseries Proof of Lemma.} Observe that
+    \[
+        \begin{aligned}
+            \sum_{k=1}^n a_k b_k & = \sum_{k=1}^n (A_k - A_{k-1})b_k                               \\
+                                 & = \sum_{k=1}^n A_k b_k - \sum_{k=1}^n A_k b_{k+1} + A_n b_{n+1} \\
+                                 & = A_n b_{n+1} - \sum_{k=1}^n A_k (b_{k+1} - b_k).
+        \end{aligned}
+    \]
+    For \(m < n\), we use the result above to get
+    \[
+        \begin{aligned}
+            \sum_{k=m+1}^n a_k b_k = \sum_{k=1}^n a_k b_k - \sum_{k=1}^m a_k b_k = A_n b_{n+1} - A_m b_{m+1} - \sum_{k=m+1}^n A_k (b_{k+1} - b_k),
+        \end{aligned}
+    \]
+    which was what we wanted. \qed
+
+    Suppose that \(f_n, g_n: E \ra \R\). Define a partial sum of \(f_k\) as \(F_n(x) = \ds \sum_{k=1}^n f_k(x)\). From the assumption,
+    \begin{itemize}
+        \item There exists \(M > 0\) such that \(\abs{F_n(x)} < M\) for all \(n \in \N\).
+        \item For large enough \(m \in \N\), we can make \(\abs{g_n(x)}\) arbitrarily small.
+    \end{itemize}
+    Now we show that the partial sums of \(\sum f_ng_n\) is a Cauchy sequence. For \(m < n\),
+    \[
+        \begin{aligned}
+            \abs{\sum_{k=m+1}^n f_n g_n} & \overset{(\ast)}{=} \abs{F_n g_{n+1} - F_m g_{m+1} - \sum_{k=m+1}^n F_k \bigl(g_{k+1} - g_k\bigr)} \\
+                                         & \leq \abs{F_n}\abs{g_{n+1}} + \abs{F_m}\abs{g_{m+1}} + \sum_{k=m+1}^n \abs{F_k} (g_k - g_{k+1})    \\
+                                         & \leq M\bigl(\abs{g_{n+1}} + \abs{g_{m+1}} + \sum_{k=m+1}^n (g_k - g_{k+1})\bigr)                   \\
+                                         & = M\bigl(\abs{g_{n+1}} + \abs{g_{m+1}}  + g_{m+1} - g_{n+1}\bigr) \leq 4M \abs{g_{n+1}}.
+        \end{aligned}
+    \]
+    The variable \(x\) was omitted for the sake of brevity, and the third assumption \(g_k(x) - g_{k+1}(x) \geq 0\) was used in the second line.
+
+    Finally, for any \(\epsilon > 0\), choose \(N \in \N\) large enough so that \(\abs{g_{n+1}(x)} < \epsilon/4M\). Then
+    \[
+        \abs{\sum_{k=m+1}^n f_n(x) g_n(x)} \leq 4M\abs{g_{n+1}(x)} < 4M\cdot\frac{\epsilon}{4M} = \epsilon,
+    \]
+    which shows that \(\sum f_n(x) g_n(x)\) converges uniformly on \(E\).
 \end{enumerate}
 \end{document}
