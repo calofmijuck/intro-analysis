@@ -1,0 +1,143 @@
+\section*{September 8th, 2022}
+
+\thm{7.15} \((C(X), \norm{\cdot})\) is a complete metric space.
+
+\pf \footnote{코시 수열이 수렴하며 수렴값이 \(C(X)\)에 있는지 보이면 된다.} Suppose \(\seq{f_n}\) is a Cauchy sequence in \(C(X)\). By Theorem 7.8, \(\exists f: X\ra \C\) such that \(f_n \uc f\) in \(X\). Also by Theorem 7.12, \(f\) is continuous on \(X\).
+
+Choose \(N\in \N\) such that \(\norm{f_N - f} \leq 1\). Then
+\[
+    \norm{f} \leq \norm{f_N - f} + \norm{f_N} \leq 1 + \norm{f_N} < \infty,
+\]
+and \(f\) is bounded. Therefore \(f \in C(X)\), and \(C(X)\) is complete.
+
+\medskip
+
+다시 돌아와서 고른수렴이 리만적분가능성과 미분가능성을 보존하는지 확인합니다.
+
+\thm{7.16} Let \(\alpha: [a, b] \ra \R\) be a monotonically increasing function. Suppose that
+\begin{enumerate}
+    \item \(f_n \in \mc{R}(\alpha)\),
+    \item \(f_n \uc f\) on \([a, b]\).
+\end{enumerate}
+Then \(f \in \mc{R}(\alpha)\) and \(\ds \int_a^b f \d{\alpha} = \lim_{n \ra \infty} \int_a^b f_n \d{\alpha}\).
+
+\pf WLOG, let \(f_n: [a, b] \ra \R\). We know that \(f_n, f\) are bounded.\footnote{Why?}
+
+Let \(\epsilon_n = \ds \sup_{x \in [a, b]} \abs{f_n(x) - f(x)} < \infty\), and because \(f_n \uc f\), \(\epsilon_n \ra 0\) as \(n \ra \infty\). Therefore
+\[
+    f_n - \epsilon_n \leq f \leq f_n + \epsilon_n
+\]
+since upper/lower integrals preserve monotonicity,
+\[
+    \int_a^b (f_n - \epsilon_n) \d{\alpha} = \lint{a}{b} (f_n - \epsilon_n) \d{\alpha} \leq \lint{a}{b} f \d{\alpha} \leq \uint{a}{b} f \d{\alpha} \leq \uint{a}{b} (f_n + \epsilon_n) \d{\alpha} = \int_a^b (f_n + \epsilon_n) \d{\alpha}.
+\]
+The equality at each end is given by \(f_n \pm \epsilon_n \in \mc{R}(\alpha)\). Thus,
+\[
+    0 \leq \uint{a}{b} f \d{\alpha} - \lint{a}{b} f \d{\alpha} \leq 2 \int_a^b \epsilon_n \d{\alpha} = 2\epsilon_n \big(\alpha(b) - \alpha(a)\big),
+\]
+and \(f \in \mc{\R}(\alpha)\). Moreover,
+\[
+    \abs{\int_a^b f_n \d{\alpha} - \int_a^b f \d{\alpha}} \leq \epsilon_n \big(\alpha(b) - \alpha(a)\big) \ra 0
+\]
+as \(n \ra \infty\) gives the existence of the limit.
+
+\cor Suppose \(f_n \in \mc{R}(\alpha)\) on \([a, b]\) and \(\sum f_n(x)\) converges uniformly. Then
+\[
+    \int_a^b \sum_{n=1}^\infty f_n \d{\alpha} = \sum_{n=1}^\infty \int_a^b f_n \d{\alpha}.
+\]
+
+\thm{7.17} For sequence of functions \(f_n\) defined on \([a, b]\), suppose the following.
+\begin{enumerate}
+    \item \(f_n\) is differentiable on \([a, b]\).
+    \item For some point \(x_0 \in [a, b]\), \(\bigl(f_n(x_0)\bigr)_{n=1}^\infty\) converges.
+    \item \(f'_n\) converges uniformly on \([a, b]\).
+\end{enumerate}
+Then the following holds.
+\begin{enumerate}
+    \item[(R1)] \(f_n \uc f\) on \([a, b]\).
+    \item[(R2)] \(f'(x) = \ds \lim_{n \ra \infty} f'_n(x)\).
+\end{enumerate}
+
+\pf Let \(\epsilon > 0\) be given. We choose \(N \in \N\) such that for \(n, m \geq N\) and \(t \in [a, b]\),
+\begin{center}
+    \(\abs{f_n(x_0) - f_m(x_0)} < \dfrac{\epsilon}{2}\) and \(\abs{f'_n(t) - f'_m(t)} < \dfrac{\epsilon}{2(b-a)}\).
+\end{center}
+Then for \(n, m \geq N\), by using the Mean Value Theorem on \(f_n - f_m\),
+\begin{equation} \tag{\(\ast\)}
+    \begin{aligned}
+        \abs{f_n(x) - f_m(x) - f_n(t) + f_m(t)} \leq \abs{x - t} \cdot \frac{\epsilon}{2(b - a)} \leq \frac{\epsilon}{2}.
+    \end{aligned}
+\end{equation}
+Thus, set \(t = x_0\) to get
+\[
+    \abs{f_n(x) - f_m(x)} \leq \abs{f_n(x) - f_m(x) - f_n(x_0) + f_m(x_0)} + \abs{f_n(x_0) - f_m(x_0)} < \dfrac{\epsilon}{2} + \dfrac{\epsilon}{2} < \epsilon
+\] and (R1) is proven. Let \(f(x) = \ds \lim_{n \ra \infty} f_n(x)\).
+
+For (R2), fix \(x \in [a, b]\). Define
+\[
+    \phi_n(t) = \frac{f_n(t) - f_m(x)}{t - x}, \qquad \phi(t) = \frac{f(t) - f(x)}{t - x},
+\]
+for \(t \in [a, b] \bs \{x\}\). Then for each \(n\),
+\[
+    \lim_{t \ra x} \phi_n(t) = f'_n(x).
+\]
+We want to show that \(\phi_n \uc \phi\) (on \(t \neq x\)), so that
+\[
+    f'(x) = \lim_{t \ra x} \phi(t) = \lim_{t \ra x} \lim_{n \ra\infty}\phi_n (t) = \lim_{n \ra\infty} \lim_{t \ra x} \phi_n(t) = \lim_{n\ra\infty} f'_n(x).
+\]
+By (\(\ast\)), we see that for \(n, m \geq N\),
+\[
+    \abs{\phi_n(t) - \phi_m(t)} \leq \frac{\epsilon}{2(b-a)},
+\]
+which directly shows that \(\phi_n\) converges uniformly on \(t \neq x\).
+
+\rmk \(f'_n\)의 연속성을 가정하면 적분을 이용해서 훨씬 간편하게 증명할 수 있습니다.
+
+\rmk (2)번 조건이 조금 부자연스럽게 느껴질 수 있으나, 최소한의 조건으로 최대의 결과를 얻고 싶었던 것입니다. 사실 (R1) \(f_n \uc f\) 임을 가정에 포함시켜 버린다면, (R2)를 얻을 수 있습니다.
+
+\cor For sequence of functions \(f_n\) defined on \([a, b]\), suppose the following.
+\begin{enumerate}
+    \item \(f_n\) is differentiable on \([a, b]\).
+    \item \(f_n \uc f\) on \([a, b]\).
+    \item \(f'_n\) converges uniformly on \([a, b]\).
+\end{enumerate}
+Then \(f'(x) = \ds \lim_{n \ra \infty} f'_n(x)\).
+
+\medskip
+
+\thm{7.18} There exists \(f \in C(\R, \R)\) such that \(f'\) does not exist for all \(x \in \R\).\footnote{브라운 운동도 또 하나의 예.}
+
+\pf Define \(\varphi(x) = \abs{x}\) for \(x \in [-1, 1]\), and \(\varphi(x + 2) = \varphi(x)\). Then for all \(x, y \in \R\),
+\begin{enumerate}
+    \item \(0 \leq \varphi \leq 1\),
+    \item \(\abs{\varphi(x) - \varphi(y)} \leq \abs{x - y}\).
+\end{enumerate}
+Now define
+\[
+    f(x) = \sum_{n = 0}^\infty \left(\frac{3}{4}\right)^n \varphi(4^n x).
+\]
+By (1), \(0 \leq f(x) \leq \sum (3/4)^n\) and \(f(x)\) converges uniformly by \(M\)-Test, hence continuous on \(\R\). Now we show that \(f\) is nowhere differentiable.
+
+Fix \(x \in \R\), let \(m \in \N\). Choose \(\ds \delta_m = \pm \frac{1}{2}\cdot 4^{-m}\) so that there are no integers between \(4^mx\) and \(4^m(x + \delta_m)\). If \(n > m\), then \(4^n \delta_m = \pm \dfrac{1}{2}\cdot 4^{n - m}\) is even. Then by periodicity,
+\[
+    a_n = \frac{\varphi(4^n(x+\delta_m)) - \varphi(4^n x)}{\delta_m} = 0.
+\]
+If \(0 \leq n \leq m\), by (2),
+\[
+    \abs{a_n} = \abs{\frac{\varphi(4^n(x+\delta_m)) - \varphi(4^n x)}{\delta_m}} \leq \frac{\abs{4^n \delta_m}}{\abs{\delta_m}} = 4^n.
+\]
+If \(n = m\), by (3),
+\[
+    \abs{a_m} = \abs{\frac{4^m(x + \delta_m) - 4^mx}{\delta_m}} = 4^m.
+\]
+Therefore,
+\[
+    \begin{aligned}
+        \abs{\frac{f(x + \delta_m) - f(x)}{\delta_m}} = \abs{\sum_{n = 0}^\infty \left(\frac{3}{4}\right)^n a_n} & \geq \overbrace{0}^{n > m} + \overbrace{\left(\frac{3}{4}\right)^m \abs{a_m}}^{n = m} - \abs{\sum_{n=0}^{m-1}\left(\frac{3}{4}\right)^n a_n} \\
+                                                                                                                 & \geq 3^m - \sum_{n=0}^{m-1} \left(\frac{3}{4}\right)^n \abs{a_n}                                                                             \\
+                                                                                                                 & \geq 3^m - \sum_{n=0}^{m-1} 3^n = \frac{3^m + 1}{2}.
+    \end{aligned}
+\]
+As \(m \ra \infty\), \(\delta_m \ra 0\), but the difference diverges. Thus \(f\) is not differentiable anywhere.
+
+\pagebreak
