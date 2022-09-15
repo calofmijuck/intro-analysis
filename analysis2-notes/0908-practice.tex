@@ -1,0 +1,125 @@
+\section*{September 8th, 2022 (Practice)}
+
+미분가능성이 잘 보존되지 않는다.
+
+\ex. \(f_n(x) = \dfrac{\sin nx}{n}\). Converges to \(f(x) = 0\) uniformly, but not differentiable.
+\[
+    f_n'(x) = \cos nx \neq f'(x) = 0
+\]
+
+반례를 생각하는 방법: target limit function을 먼저 생각하고 걔로 수렴하는 함수열을 잡는다.
+
+\ex. Consider a triangular pulse
+\[
+    f_n(x) = \begin{cases}
+        n^2 x       & \paren{0 \leq x \leq \frac{1}{n}}           \\
+        -n^2 x + 2n & \paren{\frac{1}{n} \leq x \leq \frac{2}{n}}
+    \end{cases}.
+\]
+Converges pointwise, but not the convergence is not uniform.
+
+\ex. \(f_n: X\subset \R \ra \R\). Suppose \(f_n \uc f\). Then if \(f_n\) is increasing, \(f\) is also increasing.
+
+\pf (Contradiction) Suppose \(f\) is not increasing...!
+
+\ex. \(f_n: X \ra \R\). Suppose \(f_n \uc f\). If \(f_n\) has a local maxima at \(x = 0\), \(f\) need not have a local maxima at \(x = 0\). Consider
+\[
+    f_n(x) = \begin{cases}
+        0               & \paren{x < \dfrac{1}{n}}    \\
+        x - \dfrac{1}{n} & \paren{x \geq \dfrac{1}{n}}
+    \end{cases} \ra f(x) = \begin{cases}
+        0 & \paren{x < 0} \\
+        x & \paren{x \geq 0}
+    \end{cases}.
+\]
+Then each \(f_n\) has a local maximum at \(x = 0\), but \(f(x)\) has a local minimum at \(x = 0\).
+
+\prob{7.3} Product of uniformly convergent sequence of functions need not converge uniformly.
+
+\pf Let \(f_n(x) = \dfrac{1}{n}\), \(g(x) = g_n(x) = x\). Then
+\[
+    f_n g_n - fg = \frac{x}{n},
+\]
+which does not converge uniformly.
+
+\thm{7.11} \note{Cases with \(\infty\)} Theorem 7.11 also holds when
+\[
+    \lim_{x \ra a} f_n(x) = \pm \infty, \qquad \lim_{x \ra \pm \infty} f_n(x) = A_n.
+\]
+
+\pf Consider a bijective, increasing, continuous function \(g: (-1, 1) \ra (-\infty, \infty)\), \(g'(x) \geq 1\).
+
+\note{\(a = \infty\) case} Then \(x \ra \infty\) with respect to \(f\) is equivalent to \(x \ra 1^-\) with respect to \(f \circ g\). Observe that
+\[
+    \sup_{x \in (-1, 1)} \abs{f_n(g(x)) - f(g(x))} = \sup_{x \in \R} \abs{f_n(x) - f(x)},
+\]
+thus \(h_n = f_n \circ g\) will converge uniformly to \(h = f \circ g\).
+
+\note{\(\lim f_n(x) = \infty\) case} Similarly, consider \(g\inv\circ f_n\) and \(g\inv\circ f_n\). Then \(\lim_{x \ra a} g\inv\circ f_n = 1\). Now we show uniform convergence.
+\[
+    \lim_{n \ra \infty} \sup_{x \in E}\abs{g\inv(f_n(x)) - g\inv (f(x))} \leq \lim_{n \ra \infty} \sup_{x \in E} \abs{f_n(x) - f(x)} \cdot \sup_{x \in E} \abs{(g\inv)'(x)} \ra 0
+\]
+
+\ex. \(f_n : X \ra Y\), \(A_1, \dots, A_k \subset X\), \(f_n \uc f\) on \(A_i\) \mimp \(f_n \uc f\) on \(\bigcup A_i\).
+
+\prob{7.4} Examine the function
+\[
+    f(x) = \sum_{n=1}^\infty \frac{1}{1 + n^2 x}.
+\]
+
+\pf We do not consider \(x = -1/n^2\) for some \(n \in \N\).
+
+\note{Absolute Convergence} For \(x \neq 0\), take large enough \(N \in \N\) such that
+\[
+    \sum_{n = N}^\infty \abs{\frac{1}{1+n^2 x}} = \sum_{n = N}^\infty \abs{\frac{1}{n^2 x\left(1 + \dfrac{1}{n^2x}\right)}} \leq \sum_{n=N}^\infty \frac{1}{0.9n^2x} < \infty.
+\]
+
+\note{Uniform Convergence} For \([k, \infty)\) (\(k > 0\)),
+\[
+    \sum_{n = m}^\infty \abs{\frac{1}{1+n^2 x}} \leq \sum_{n = m}^\infty \abs{\frac{1}{n^2 x}} \leq \frac{1}{k} \sum_{n = m}^\infty \frac{1}{n^2},
+\]
+thus \(f\) converges uniformly on \([k, \infty)\). Now for \((\infty, k]\) (\(k < 0\)),
+\[
+    \frac{1}{xm^2} > -\frac{1}{2} \iff m > \sqrt{\frac{-2}{x}}
+\]
+and now we can choose \(m\) so that
+\[
+    \sum_{n = m}^\infty \abs{\frac{1}{1+n^2 x}} \leq \sum_{n = m}^\infty \abs{\frac{1}{n^2x \cdot (1/2)}} \leq \frac{2}{\abs{k}} \sum_{n=m}^\infty\frac{1}{n^2}.
+\]
+Thus \(f\) also converges uniformly on \((-\infty, k]\). Now how about \((-
+\infty, 0) \cup (0, \infty)\)? Suppose the series converges uniformly. Then for \(\epsilon = 1\), \(\forall N \in \N\) such that
+\[
+    \abs{\sum_{n = N}^\infty \frac{1}{1 + n^2 x}} < 1.
+\]
+As \(x \ra 0^+\), \(\ds \frac{1}{1+N^2x} + \frac{1}{1 + (N+1)^2x} \ra 2\). Thus does not converge uniformly.
+
+\(\therefore\) Converges uniformly on \((-\infty, -k] \cup [k, \infty)\), \((k > 0)\).
+
+\note{Continuity} Follows directly from uniform convergence. \((-\infty, -k] \cup [k, \infty)\).
+
+\note{Boundedness} No.
+
+\prob{7.12} Since \(\abs{f} \leq g\),
+\[
+    \int_a^b f\d{x} = \int_a^b \frac{\abs{f} + f}{2} \d{x} - \int_a^b \frac{\abs{f} - f}{2} \d{x}.
+\]
+Since \(\int_0^\infty g\d{x} < \infty\), (bounded) we can set \(a \ra 0\), \(b \ra \infty\).
+
+For all \(\epsilon > 0\), choose \([a, b]\) such that
+\begin{center}
+    \(\ds \abs{\int_0^\infty f\d{x} - \int_a^b f\d{x}} < \epsilon\) and \(\ds \abs{\int_0^\infty g\d{x} - \int_a^b g\d{x}} < \epsilon\).
+\end{center}
+by uniform continuity, \(\exists N \in \N\) such that \(n \geq N\) then \(\ds \abs{\int_a^b f_n\d{x} - \int_a^b f\d{x}} < \epsilon\).
+
+Therefore,
+\[
+    \abs{\int_0^\infty f_n \d{x} - \int_0^\infty f \d{x}} < 3\epsilon
+\]
+and the theorem is proven.
+
+
+
+
+
+
+\pagebreak

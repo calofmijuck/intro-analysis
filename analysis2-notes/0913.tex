@@ -1,0 +1,142 @@
+\section*{September 13th, 2022}
+
+Equicontinuous 하기 전에 7.23을 먼저 할게요. 7.23을 하기 위한 motivation 입니다.
+
+\recall \note{Bolzano-Weierstrass} Suppose \(\seq{a_n}\) is a sequence in \(\C\). If \(\seq{a_n}\) is bounded, then there exists a convergent subsequence of \(\seq{a_n}\).
+
+\recall A sequence \(\seq{a_n}\) in a metric space \((E, d)\) is bounded if
+\begin{center}
+    \(\exists x_0 \in E\) and \(\exists r > 0\) such that \(a_n \in B_r(x_0)\) for all \(n \in \N\).
+\end{center}
+
+\defn. Suppose \(f_n: E \ra \C\). We say that \(\seq{f_n}\) is \textbf{pointwise bounded} on \(E\) if the sequence \(\seq{f_n(x)}_{n=1}^\infty\) is bounded for all \(x \in E\). Or equivalently,
+\begin{center}
+    \(\ds \sup_{n \in \N} \abs{f_n(x)} < \infty\) for each \(x \in E\).
+\end{center}
+
+\thm{7.23} Suppose \(E\) is at most countable.\footnote{Countable 이거나 그거보다 작아서 finite 이거나. Countable이 아니면 안돼요.} Suppose \(f_n: E \ra \C\) and \(\seq{f_n}\) is pointwise bounded. Then there exists a subsequence \(\seq{f_{n_k}}\) of \(\seq{f_n}\) such that \(\seq{f_{n_k}(x)}\) converges for all \(x \in E\).
+\begin{center}
+    \(\exists \seq{n_k}\) such that \(f(x) = \ds \lim_{k \ra\infty} f_{n_k}(x)\) for each \(x \in E\). % \(\exists f: E \ra \C\) such that
+\end{center}
+
+\pf \textit{Diagonalization!} Let \(E = \seq{x_i}_{i=1}^\infty\). Since \(\seq{f_n(x_1)}\) is bounded, there exists a subsequence \(\seq{n_k^1}_{k=1}^\infty\) of \(\seq{n}\) such that \(\seq{f_{n_k^1}(x_1)}_{k=1}^\infty\) converges. (Bolzano-Weierstrass)
+
+Now we consider \(\seq{f_{n_k^1}(x_2)}_{k=1}^\infty\), which is bounded. Similarly, there exists a subsequence \(\seq{n_k^2}_{k=1}^\infty\) of \(\seq{n_k^1}\) such that \(\seq{f_{n_k^2}(x_2)}_{k=1}^\infty\) converges.
+
+% 추가 필요
+
+Define \(S = \seq{f_{n_k^k}}_{k=1}^\infty\). Then for each \(x \in E\), there exists \(i\) such that \(x = x_i\). Let \(k \geq i\). Then \(\seq{f_{n_k^k}(x_i)}_{k \geq i}\) is a subsequence of \(\seq{f_{n_k^i}(x_i)}_{k \geq i}\), which converges by construction. (Subsequence of a convergence sequence converges.)
+
+Therefore \(\seq{f_{n_k^k}(x_i)}\) converges, and \(\seq{f_{n_k^k}(x)}\) converges for all \(x \in E\).
+
+\defn{7.19} Suppose \(f_n: E \ra \C\).
+\begin{enumerate}
+    \item \(\seq{f_n}\) is pointwise bounded on \(E\) if there exists a finite valued function \(\varphi: E \ra \R^+\) such that
+          \begin{center}
+              \(\abs{f_n(x)} \leq \varphi(x) < \infty\) for all \(x\in E\).
+          \end{center}
+    \item \(\seq{f_n}\) is \textbf{uniformly bounded} on \(E\) if there exists \(M > 0\) such that
+          \begin{center}
+              \(\abs{f_n(x)} < M\), \(\forall x \in E\) and \(n \geq 1\).
+          \end{center}
+          Or equivalently,
+          \begin{center}
+              \(\ds \sup_{n\in \N} \sup_{x \in E} \abs{f_n(x)} < \infty\)
+          \end{center}
+\end{enumerate}
+
+\rmk
+\begin{enumerate}
+    \item Uniform boundedness implies pointwise boundedness, but the converse is false.
+    \item Every uniformly convergent sequence of bounded functions is uniformly bounded.
+\end{enumerate}
+
+\medskip
+
+\question Let \(E\) be a compact metric space.
+\begin{enumerate}
+    \item \textit{Suppose that \(\seq{f_n}_{n=1}^\infty\) is uniformly bounded or continuous. Is there a pointwise convergent subsequence \(\seq{f_{n_k}}\) of \(\seq{f_n}\)?} \textbf{No}.
+    \item \textit{Suppose that \(\seq{f_n}\) converges pointwise and uniformly bounded. Is there a uniformly convergent subsequence \(\seq{f_{n_k}}\) of \(\seq{f_n}\)?} \textbf{No}.
+\end{enumerate}
+
+아래 2개의 예시는 위 질문에 대한 대답이 `아니오'임을 알려줍니다.
+
+\ex{7.20} Let
+\[
+    f_n(x) = \sin nx, \quad (x \in [0, 2\pi]).
+\]
+\(f_n\) is uniformly bounded (by 1). Suppose there exists a subsequence \(f_{n_k}\) such that \(\seq{f_{n_k}(x)}\) converges for all \(x \in [0, 2\pi]\). Then as \(k\ra\infty\), \(f_{n_k}(x) - f_{n_{k+1}}(x) \ra 0\) for all \(x \in [0, 2\pi]\).
+
+However, as \(k \ra \infty\),
+\[
+    \int_0^{2\pi} (f_{n_k} - f_{n_{k+1}})^2 \d{x} \ra \int_0^{2\pi} 0^2 \d{x} = 0
+\]
+by Theorem 11.32. But simple calculation shows that
+\[
+    \int_0^{2\pi} (f_{n_k} - f_{n_{k+1}})^2 \d{x} = 2\pi,
+\]
+which leads to a contradiction. Thus such subsequence cannot exist.
+
+
+\ex{7.21} Let
+\[
+    f_n(x) = \frac{x^2}{x^2 + (1-nx)^2}, \quad (x\in [0, 1]).
+\]
+\(f_n\) is uniformly bounded (by 1), and \(f_n \ra 0\) pointwise. Also, note that \(f_n(1/n) = 1\).
+
+Suppose there exists a subsequence \(f_{n_k}\) such that \(\seq{f_{n_k}} \uc 0\). Then, \(\exists k_0 \in \N\) such that
+\[ \tag{\(\ast\)}
+    \sup_{x \in [0, 1]} \abs{f_{n_{k_0}}(x)} < \frac{1}{2}.
+\]
+However,
+\[
+    1 = \abs{f_{n_{k_0}}\left(\frac{1}{n_{k_0}}\right)} \leq \sup_{x \in [0, 1]} \abs{f_{n_{k_0}}(x)} < \frac{1}{2},
+\]
+leading to a contradiction. Thus such subsequence cannot exist.
+
+\defn{7.22} Let \((X, d)\) be a metric space, and \(E \subset X\). Let \(\scr{F}\) be a family of complex-valued functions on \(E\). We say that \(\scr{F}\) is \textbf{equicontinuous} on \(E\) if
+\begin{center}
+    \(\forall \epsilon > 0, \exists \delta > 0\) such that \(d(x, y) < \delta \implies \abs{f(x) - f(y)} < \epsilon\) for all \(x, y, \in E, f\in \scr{F}\).
+\end{center}
+That is, all \(f \in \scr{F}\) are uniformly continuous in \(E\) with the same \((\epsilon, \delta)\) in the definition.
+
+\(f\)가 하나라면 그냥 uniform continuity의 정의입니다. 그런데 \(f\)가 family of functions이고, 이러한 \(\epsilon\)을 모든 \(f\)에 대해서 잡을 수 있다는 의미에서 `equi' 입니다.
+
+또한 finite 하다면, 당연히 equicontinuous입니다.
+
+\rmk \note{Example 7.21} Let \(\scr{F} = \seq{f_n}\). Then \(\scr{F}\) is not equicontinuous on \(E\).
+
+\pf Suppose \(\scr{F}\) is equicontinuous on \(E\). For \(\epsilon = 1\), there should exist \(\delta > 0\) such that
+\begin{center}
+    \(\forall x, y \in [0, 1]\) and \(\abs{x - y} < \delta \implies \abs{f_n(x) - f_n(y)} < 1\).
+\end{center}
+In particular, \(\abs{f_n(0) - f_n(1/n)} < 1\) if \(1 / n < \delta\), but \(\abs{f_n(0) - f_n(1/n)} = 1\). Contradiction.
+
+\medskip
+
+\thm{7.25} Let \(K\) be a compact set. Suppose \(f_n \in C(K)\). (Bounded and continuous) Suppose that \(\seq{f_n}_{n=1}^\infty\) is pointwise bounded and equicontinuous on \(K\). Then
+\begin{enumerate}
+    \item \(\seq{f_n}_{n=1}^\infty\) is uniformly bounded on \(K\).
+    \item There exists a subsequence \(\seq{f_{n_k}}_{k=1}^\infty\) which converge uniformly on \(K\).
+\end{enumerate}
+
+\rmk 역과 비슷한 Theorem.
+
+\thm{7.24} Let \(K\) be a compact set. Suppose \(f_n \in C(K)\). If \(f_n\) converges uniformly on \(K\), \(\mathscr{F} = \seq{f_n}\) is equicontinuous on \(K\).
+
+\pf Let \(\epsilon > 0\) be given. Since \(\seq{f_n}\) is uniformly Cauchy,
+\begin{center}
+    \(\exists N\in \N\) such that for \(n\geq N\), \(\norm{f_n  - f_N} < \dfrac{\epsilon}{3}\).
+\end{center}
+Since \(\seq{f_i}_{i=1}^N\) is equicontinuous, \(\exists \delta > 0\) such that
+\begin{center}
+    \(d(x, y) < \delta \implies \abs{f_i(x) - f_i(y)} < \dfrac{\epsilon}{3}\) for \(x, y \in K\).
+\end{center}
+For \(x, y\in K\), if \(n \geq N\),
+\[
+    \abs{f_n(x) - f_n(y)} \leq \abs{f_n(x) - f_N(x)} + \abs{f_N(x) - f_N(y)} + \abs{f_N(y) - f_n(y)} \leq \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+\]
+
+유한개는 equicontinuous 로 누르고, 꼬리는 uniform convergence로 누르고.
+
+\pagebreak
