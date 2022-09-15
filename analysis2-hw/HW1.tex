@@ -93,7 +93,7 @@
     \]
     for all \(x \in E\). Thus \(f_n + g_n\) converges uniformly to \(f + g\) on \(E\).
 
-    If \(f_n\), \(g_n\) are bounded, we know that they are both uniformly bounded by the first problem. Additionally, we know that \(f\) is bounded by {\sffamily Theorem 7.15}. Thus there exists \(F, G \in \R \bs \{0\}\) such that \(\abs{f_n(x)} \leq F\), \(\abs{f(x)} \leq F\) and \(\abs{g_n(x)} \leq G\).
+    If \(f_n\), \(g_n\) are bounded, we know that they are both uniformly bounded by the first problem. Additionally, we know that \(f\) is bounded by {\sffamily Theorem 7.15}. Thus there exists \(F, G \in \R \bs \{0\}\) such that \(\abs{f_n(x)} \leq F\), \(\abs{f(x)} \leq F\) and \(\abs{g_n(x)} \leq G\), for all \(x \in E\).
 
     Let \(\epsilon > 0\) be given. Using the uniform convergence of \(f_n\) and \(g_n\), we can choose \(M_1, M_2 \in \N\) such that
     \begin{center}
@@ -123,7 +123,7 @@
     For \(x \in (0, 1)\),
     \begin{enumerate}
         \item If \(x = \dfrac{1}{N}\) for some \(N \in \N\), \(f_n(x) = 0\) for all \(n \in \N\).
-        \item Otherwise, there exists \(N \in \N\) such that \(\ds \frac{1}{N + 1} < x < \frac{1}{N}\). Then
+        \item Otherwise, \(\exists N \in \N\) such that \(\ds \frac{1}{N + 1} < x < \frac{1}{N}\). Then
               \[
                   f_n(x) = \begin{cases}
                       \sin^2 \dfrac{\pi}{x} & (n = N)    \\
@@ -147,11 +147,11 @@
     \[
         A(x) = x^2 \sum_{n=1}^\infty \frac{(-1)^n}{n^2}, \quad B = \sum_{n=1}^\infty \frac{(-1)^n}{n}
     \]
-    because both \(A(x)\) and \(B\) converge.
+    because both \(A(x)\) and \(B\) converge, by the alternating series test.
 
     Let \(a > 0\) and set \(X = [-a, a]\). It is sufficient to show uniform convergence for \(X\), because \(a\) can be chosen arbitrarily large so that it would contain any bounded interval.
 
-    \(A(x)\) converges uniformly on \(X\) by using the Weierstrass \(M\)-test with \(M_n = \dfrac{a^2}{n^2}\). However, the series does not converge absolutely by the comparison test since
+    \(A(x)\) converges uniformly on \(X\) by using the Weierstrass \(M\)-test with \(M_n = \dfrac{a^2}{n^2}\). However, the given series does not converge absolutely by the comparison test since
     \[
         \abs{(-1)^n \frac{x^2 + n}{n^2}} \geq \frac{n}{n^2} = \frac{1}{n}
     \]
@@ -197,11 +197,11 @@
 
     First, we choose \(N_1 \in \N\) such that for \(n \geq N_1\),
     \[
-        \abs{f_n(x) - f(x)} < \frac{\epsilon}{2}, \quad (x \in E).
+        \abs{f_n(x) - f(x)} < \frac{\epsilon}{2}, \quad \forall x \in E.
     \]
     Next, since \(f_n\) is continuous at \(x \in E\), (the limit of \(x_n\)) there exists \(\delta > 0\) such that
     \[
-        \abs{y - x} < \delta \implies \abs{f_n(y) - f_n(x)} < \frac{\epsilon}{2}.
+        \abs{y - x} < \delta \implies \abs{f_n(y) - f_n(x)} < \frac{\epsilon}{2}, \quad \forall y\in E.
     \]
     Lastly, since \(x_n \ra x\), we choose choose \(N_2 \in \N\) such that for \(n \geq N_2\),
     \[
