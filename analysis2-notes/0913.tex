@@ -19,15 +19,19 @@ Equicontinuous 하기 전에 7.23을 먼저 할게요. 7.23을 하기 위한 mot
     \(\exists \seq{n_k}\) such that \(f(x) = \ds \lim_{k \ra\infty} f_{n_k}(x)\) for each \(x \in E\). % \(\exists f: E \ra \C\) such that
 \end{center}
 
-\pf \textit{Diagonalization!} Let \(E = \seq{x_i}_{i=1}^\infty\). Since \(\seq{f_n(x_1)}\) is bounded, there exists a subsequence \(\seq{n_k^1}_{k=1}^\infty\) of \(\seq{n}\) such that \(\seq{f_{n_k^1}(x_1)}_{k=1}^\infty\) converges. (Bolzano-Weierstrass)
+\pf \textit{Diagonalization!} Let \(E = \seq{x_i}_{i=1}^\infty\). (Countable) Since \(\seq{f_n(x_1)}\) is bounded, there exists a convergent subsequence by Bolzano-Weierstrass Theorem. Let the subsequence be \(\seq{f_{1, k}}_{k=1}^\infty\). Simlarly, since \(\seq{f_{1, k}(x_2)}\) is bouneded, there exists a convergent subsequence \(\seq{f_{2, k}}_{k=1}^\infty\) of \(\seq{f_{1, k}}_{k=1}^\infty\). Since \(\seq{f_{n, k}}\) is pointwise bounded, we can repeat this procedure to get the next subsequence \(\seq{f_{n+1, k}}_{k=1}^\infty\).
 
-Now we consider \(\seq{f_{n_k^1}(x_2)}_{k=1}^\infty\), which is bounded. Similarly, there exists a subsequence \(\seq{n_k^2}_{k=1}^\infty\) of \(\seq{n_k^1}\) such that \(\seq{f_{n_k^2}(x_2)}_{k=1}^\infty\) converges.
-
-% 추가 필요
-
-Define \(S = \seq{f_{n_k^k}}_{k=1}^\infty\). Then for each \(x \in E\), there exists \(i\) such that \(x = x_i\). Let \(k \geq i\). Then \(\seq{f_{n_k^k}(x_i)}_{k \geq i}\) is a subsequence of \(\seq{f_{n_k^i}(x_i)}_{k \geq i}\), which converges by construction. (Subsequence of a convergence sequence converges.)
-
-Therefore \(\seq{f_{n_k^k}(x_i)}\) converges, and \(\seq{f_{n_k^k}(x)}\) converges for all \(x \in E\).
+Now we arrange the sequence,
+\[
+    \begin{matrix}
+        f_{1, 1} & f_{1, 2} & f_{1, 3} & f_{1, 4} & \cdots \\
+        f_{2, 1} & f_{2, 2} & f_{2, 3} & f_{2, 4} & \cdots \\
+        f_{3, 1} & f_{3, 2} & f_{3, 3} & f_{3, 4} & \cdots \\
+        f_{4, 1} & f_{4, 2} & f_{4, 3} & f_{4, 4} & \cdots \\
+        \vdots   & \vdots   & \vdots   & \vdots   & \ddots
+    \end{matrix}
+\]
+and consider the diagonal elements. Then \(\ds \lim_{n \ra \infty} f_{n, n}(x)\) converges for all \(x \in E\). This is because \(\seq{f_{n+1, k}}\) is always a subsequence of \(\seq{f_{n, k}}\), and \(\seq{f_{n, k}}\) was chosen to converge on \(\{x_1, x_2, \dots, x_n\}\).
 
 \defn{7.19} Suppose \(f_n: E \ra \C\).
 \begin{enumerate}
@@ -56,7 +60,7 @@ Therefore \(\seq{f_{n_k^k}(x_i)}\) converges, and \(\seq{f_{n_k^k}(x)}\) converg
 \question Let \(E\) be a compact metric space.
 \begin{enumerate}
     \item \textit{Suppose that \(\seq{f_n}_{n=1}^\infty\) is uniformly bounded or continuous. Is there a pointwise convergent subsequence \(\seq{f_{n_k}}\) of \(\seq{f_n}\)?} \textbf{No}.
-    \item \textit{Suppose that \(\seq{f_n}\) converges pointwise and uniformly bounded. Is there a uniformly convergent subsequence \(\seq{f_{n_k}}\) of \(\seq{f_n}\)?} \textbf{No}.
+    \item \textit{Suppose that \(\seq{f_n}\) converges pointwise and is uniformly bounded. Is there a uniformly convergent subsequence \(\seq{f_{n_k}}\) of \(\seq{f_n}\)?} \textbf{No}.
 \end{enumerate}
 
 아래 2개의 예시는 위 질문에 대한 대답이 `아니오'임을 알려줍니다.
@@ -65,18 +69,17 @@ Therefore \(\seq{f_{n_k^k}(x_i)}\) converges, and \(\seq{f_{n_k^k}(x)}\) converg
 \[
     f_n(x) = \sin nx, \quad (x \in [0, 2\pi]).
 \]
-\(f_n\) is uniformly bounded (by 1). Suppose there exists a subsequence \(f_{n_k}\) such that \(\seq{f_{n_k}(x)}\) converges for all \(x \in [0, 2\pi]\). Then as \(k\ra\infty\), \(f_{n_k}(x) - f_{n_{k+1}}(x) \ra 0\) for all \(x \in [0, 2\pi]\).
+\(f_n\) is uniformly bounded (\(\abs{\sin nx} \leq 1\)). Suppose there exists a subsequence \(f_{n_k}\) such that \(\seq{f_{n_k}(x)}\) converges for all \(x \in [0, 2\pi]\). Then as \(k\ra\infty\), \(f_{n_k}(x) - f_{n_{k+1}}(x) \ra 0\) for all \(x \in [0, 2\pi]\).
 
 However, as \(k \ra \infty\),
 \[
     \int_0^{2\pi} (f_{n_k} - f_{n_{k+1}})^2 \d{x} \ra \int_0^{2\pi} 0^2 \d{x} = 0
 \]
-by Theorem 11.32. But simple calculation shows that
+by Theorem 11.32.\footnote{Legesgue's theorem concerning integration of boundedly convergent sequences.} But simple calculation shows that
 \[
     \int_0^{2\pi} (f_{n_k} - f_{n_{k+1}})^2 \d{x} = 2\pi,
 \]
 which leads to a contradiction. Thus such subsequence cannot exist.
-
 
 \ex{7.21} Let
 \[
@@ -84,8 +87,8 @@ which leads to a contradiction. Thus such subsequence cannot exist.
 \]
 \(f_n\) is uniformly bounded (by 1), and \(f_n \ra 0\) pointwise. Also, note that \(f_n(1/n) = 1\).
 
-Suppose there exists a subsequence \(f_{n_k}\) such that \(\seq{f_{n_k}} \uc 0\). Then, \(\exists k_0 \in \N\) such that
-\[ \tag{\(\ast\)}
+Suppose there exists a subsequence \(\seq{f_{n_k}}\) such that \(f_{n_k} \uc 0\). Then, \(\exists k_0 \in \N\) such that
+\[ \tag{\mast}
     \sup_{x \in [0, 1]} \abs{f_{n_{k_0}}(x)} < \frac{1}{2}.
 \]
 However,
@@ -96,13 +99,11 @@ leading to a contradiction. Thus such subsequence cannot exist.
 
 \defn{7.22} Let \((X, d)\) be a metric space, and \(E \subset X\). Let \(\scr{F}\) be a family of complex-valued functions on \(E\). We say that \(\scr{F}\) is \textbf{equicontinuous} on \(E\) if
 \begin{center}
-    \(\forall \epsilon > 0, \exists \delta > 0\) such that \(d(x, y) < \delta \implies \abs{f(x) - f(y)} < \epsilon\) for all \(x, y, \in E, f\in \scr{F}\).
+    \(\forall \epsilon > 0, \exists \delta > 0\) such that \(d(x, y) < \delta \implies \abs{f(x) - f(y)} < \epsilon\) for all \(x, y \in E, f\in \scr{F}\).
 \end{center}
-That is, all \(f \in \scr{F}\) are uniformly continuous in \(E\) with the same \((\epsilon, \delta)\) in the definition.
+That is, all \(f \in \scr{F}\) are uniformly continuous on \(E\) with the same \((\epsilon, \delta)\) in the definition.
 
 \(f\)가 하나라면 그냥 uniform continuity의 정의입니다. 그런데 \(f\)가 family of functions이고, 이러한 \(\epsilon\)을 모든 \(f\)에 대해서 잡을 수 있다는 의미에서 `equi' 입니다.
-
-또한 finite 하다면, 당연히 equicontinuous입니다.
 
 \rmk \note{Example 7.21} Let \(\scr{F} = \seq{f_n}\). Then \(\scr{F}\) is not equicontinuous on \(E\).
 
@@ -124,19 +125,18 @@ In particular, \(\abs{f_n(0) - f_n(1/n)} < 1\) if \(1 / n < \delta\), but \(\abs
 
 \thm{7.24} Let \(K\) be a compact set. Suppose \(f_n \in C(K)\). If \(f_n\) converges uniformly on \(K\), \(\mathscr{F} = \seq{f_n}\) is equicontinuous on \(K\).
 
-\pf Let \(\epsilon > 0\) be given. Since \(\seq{f_n}\) is uniformly Cauchy,
+\pf Let \(\epsilon > 0\) be given. Since \(\seq{f_n}\) is uniformly Cauchy, \(\exists N\in \N\) such that for all \(x \in E\),
 \begin{center}
-    \(\exists N\in \N\) such that for \(n\geq N\), \(\norm{f_n  - f_N} < \dfrac{\epsilon}{3}\).
+    \(n\geq N \implies \abs{f_n(x)  - f_N(x)} < \dfrac{\epsilon}{3}\).
 \end{center}
-Since \(\seq{f_i}_{i=1}^N\) is equicontinuous, \(\exists \delta > 0\) such that
+Since continuous function defined on a compact set is uniformly continuous,\footnote{Heine-Cantor Theorem.} \(f_n\) is uniformly continuous. Therefore \(\exists \delta > 0\) such that
 \begin{center}
-    \(d(x, y) < \delta \implies \abs{f_i(x) - f_i(y)} < \dfrac{\epsilon}{3}\) for \(x, y \in K\).
+    \(d(x, y) < \delta \implies \abs{f_N(x) - f_N(y)} < \dfrac{\epsilon}{3}\) for \(x, y \in K\).
 \end{center}
-For \(x, y\in K\), if \(n \geq N\),
+For \(x, y\in K\), if \(n \geq N\) and \(d(x, y) < \delta\),
 \[
     \abs{f_n(x) - f_n(y)} \leq \abs{f_n(x) - f_N(x)} + \abs{f_N(x) - f_N(y)} + \abs{f_N(y) - f_n(y)} \leq \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
 \]
-
-유한개는 equicontinuous 로 누르고, 꼬리는 uniform convergence로 누르고.
+Therefore \(\seq{f_n}_{n=N}^\infty\) is equicontinuous. Additionally, \(\seq{f_n}_{n=1}^N\), which is a finite union of uniformly continuous functions, is equicontinuous. Thus \(\seq{f_n}\) is equicontinuous because it is a union of two equicontinuous family of functions.\footnote{유한개는 equicontinuous 로 누르고, 꼬리는 uniform convergence로 누르고.}
 
 \pagebreak
