@@ -1,0 +1,71 @@
+\section*{September 15th, 2022 (Practice)}
+
+Uniform continuity는 하나의 함수에 대해서 하는 이야기이고, equicontinuity는 여러 함수에 대해서 하는 이야기 입니다. 둘 다 continuity의 확장입니다.
+
+\defn. \note{고른연속} \(f: X \ra Y\) 가 \textbf{고른연속}이다. \miff
+\begin{center}
+    \(\forall \epsilon > 0, \exists \delta > 0\) such that \(d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \epsilon\).
+\end{center}
+
+직관적으로는 ``함수의 기울기가 finite하다''라고 이해할 수 있습니다. 물론 미분가능하지 않으면 기울기를 생각한다는게 웃기긴 하지만... 미분은 불가능 하더라도
+\[
+    \sup\left\{\abs{\frac{f(x) - f(y)}{x - y}} : x, y \in X, x\neq y\right\}
+\]
+를 생각해 볼 수는 있겠죠.
+
+\defn. \note{동등연속} Family of functions \(\scr{F} = \{f_\alpha\}_{\alpha \in I}\) 가 \textbf{동등연속}이다. \miff
+\begin{center}
+    \(\forall \epsilon > 0, \exists \delta > 0\) such that \(d_X(x, y) < \delta \implies d_Y(f_\alpha(x), f_\alpha(y)) < \epsilon\) for all \(\alpha \in I\).
+\end{center}
+
+동등연속이 아니다? 그렇다면 \(\abs{\frac{f_\alpha(x) - f_\alpha(y)}{x - y}}\) 를 원하는 만큼 크게 할 수 있다. 단, 기울기가 발산한다고 해서 동등연속인지 아닌지는 확인해봐야 한다.
+
+\ex. \(\seq{f_n}\) where \(f_n(x) = nx\) is not equicontinuous.
+
+\prob{7.10} \(\{x\}\) denotes the fractional part of \(x\).
+\[
+    f(x) = \sum_{n=1}^\infty \frac{\{nx\}}{n^2}
+\]
+\(f(x)\) converges uniformly by the \(M\)-test. 따라서 함수항급수의 부분합이 리만적분 가능한지 확인하면 된다. 닫힌 구간에서는 불연속점이 유한개이므로, 부분합은 당연히 리만적분 가능하고 이에 따라 \(f\)도 리만적분 가능하다.
+
+불연속점을 찾기 위해서는 각 항이 어디서 불연속인지 찾으면 되는데,
+\[
+    A_k = \left\{\frac{b}{a} : a, b \in \Z, 1 \leq a \leq k\right\}
+\]
+로 정의하면, \(f_k\)는 \(\R \bs A_k\) 에서 연속일 것이다. 따라서 \(\R \bs \Q\) 에서도 연속이고, \(f\)가 \(\R \bs \Q\) 에서 연속이다.
+
+기약분수 \(x = \frac{q}{p}\) 를 고정하자. \((p \geq 1)\) 그러면 \(x\)가 기약분수이므로
+\[
+    x \in A_p, A_{2p}, A_{3p}, \dots
+\]
+일 것이다. 이제 연속인지 살펴보면,
+\[ \tag{\mast}
+    \lim_{h \ra 0^+} \left(f_k(x + h) - f_k(x - h)\right) = \sum_{n=1}^k \lim_{h \ra 0^+} \left(\frac{\{n(x + h)\} - \{n(x - h)\}}{n^2}\right)
+\]
+이다. 만약 \(n = pl\) (\(l \in \Z\)) 이라고 하면, (\mast)의 분자는
+\[
+    \sum_{\substack{p \mid n \\ 1\leq n\leq k}} \frac{-1}{n^2}
+\]
+이 된다. 만약 \(f\)가 연속이었다면, \(k \ra\infty\) 일 때 (\mast) \(\ra 0\) 이었어야 한다. 하지만 그렇지 않으므로, 불연속이다. \(\Q\)가 countably dense 임은 이미 알고 있다.
+
+\prob{7.14} \note{Space-Filling Curve} Define \(0\leq f(t) \leq 1\), \(f(t) = f(t + 2)\)
+\[
+    f(t) = \begin{cases}
+        0 & (t \in [0, \frac{1}{3}]) \\
+        1 & (t \in [\frac{2}{3}, 1])
+    \end{cases}.
+\]
+Also define, \(\Phi(t) = (x(t), y(t))\) where
+\[
+    x(t) = \sum_{n=1}^\infty 2^{-n} f(3^{2n-1} t), \quad y(t) = \sum_{n=1}^\infty 2^{-n} f(3^{2n} t).
+\]
+
+우선 \(M\)-test에 의해 \(x(t), y(t)\)가 고르게 수렴함을 안다. \(f\)가 연속이므로, \(\Phi\)도 연속이다.
+
+칸토어 집합 \(K\)은 compact, perfect, 길이가 양수인 구간을 포함하지 않음. 하지만 \(\mu(K) > 0\). 각 원소를 3진수로 썼을 때 모든 자리수가 0 또는 2.
+
+\prob{7.18} \(F_n\)이 pointwise bounded 이고 equicontinuous임을 보이면 끝!
+
+\prob{7.23} 귀납법.
+
+\pagebreak
