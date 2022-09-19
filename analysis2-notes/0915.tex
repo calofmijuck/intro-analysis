@@ -1,0 +1,133 @@
+\section*{September 15th, 2022}
+
+증명을 들여다 보면, 7.24의 조건이 optimal 조건은 아니에요.
+
+\thm{7.25} \note{Arzela-Ascoli} Let \(K\) be a compact set. Suppose \(f_n \in C(K)\). (Bounded and continuous) Suppose that \(\seq{f_n}_{n=1}^\infty\) is pointwise bounded and equicontinuous on \(K\). Then
+\begin{enumerate}
+    \item \(\seq{f_n}_{n=1}^\infty\) is uniformly bounded on \(K\).
+    \item There exists a subsequence \(\seq{f_{n_k}}_{k=1}^\infty\) which converge uniformly on \(K\).
+\end{enumerate}
+
+\pf Since \(\seq{f_n}\) is equicontinuous on \(K\), choose \(\epsilon = 1\). Then \(\exists \delta > 0\) such that for all \(n \in \N\),
+\[ \tag{\mast}
+    \forall x, y \in K, d(x, y) < \delta \implies \abs{f_n(x) - f_n(y)} < 1.
+\]
+Since \(K\) is compact and \(K \subset \ds\bigcup_{x \in K} B_\delta(x)\),
+\begin{center}
+    \(\exists x_1, \dots, x_r \in K\) such that \(\ds K \subset \bigcup_{j = 1}^r B_\delta(x_j)\).
+\end{center}
+By \((\ast)\), for all \(n \in \N\) and \(j = 1, \dots, r\),
+\[
+    \abs{f_n(x)} \leq \abs{f_n(x_j)} + 1, \quad \forall x \in B_\delta(x_j).
+\]
+Then wee see that \(\norm{f_n} \leq \ds \max_{1\leq j\leq r} \abs{f_n(x_j)} + 1\), for all \(n \in \N\). Now since \(\seq{f_n}\) is pointwise bounded,
+\[
+    \sup_{n \in \N} \norm{f_n} \leq \sup_{n \in \N}\max_{1 \leq j \leq r} \abs{f_n(x_j)} + 1 < \infty,
+\]
+showing that \(\seq{f_n}\) is uniformly bounded.
+
+From Problem 2.25, a compact set has a countable dense subset. Let \(E \subset K\) be such subset. (극한점이거나, \(E\)의 원소이거나) By Theorem 7.23, there exists a subsequence \(g_i = f_{n_i}\) such that \(\seq{g_i}\) converges pointwise in \(E\).
+
+Let \(\epsilon > 0\) be given. We know that \(\seq{g_i}\) is equicontinuous, \(\exists \delta > 0\) such that for all \(i \in \N\)
+\[ \tag{\mast\mast}
+    \forall x, y \in K, d(x, y) < \delta \implies \abs{g_i(x) - g_i(y)} < \dfrac{\epsilon}{3}.
+\]
+Because \(E\) is dense, \(\ds K \subset \bigcup_{x \in E} B_\delta(x)\). Compactness of \(K\) gives
+\begin{center}
+    \(\exists x_1, \dots, x_m \in E\) such that \(\ds K \subset \bigcup_{s = 1}^m B_\delta(x_s)\).
+\end{center}
+Then for any \(x \in K\), there exists \(s \leq m\) such that \(x \in B_\delta(x_s)\). By (\mast\mast), for all \(i \in \N\),
+\[
+    \abs{g_i(x) - g_i(x_s)} < \frac{\epsilon}{3}.
+\]
+Since \(g_i\) converges pointwise in \(E\), \(\exists N \in \N\) such that for \(i, j \geq N\),
+\[
+    \abs{g_i(x_s) - g_j(x_s)} < \frac{\epsilon}{3}. \quad (s = 1, \dots, m)
+\]
+
+Therefore, for all \(i, j \geq N\) and \(x \in K\),
+\[
+    \begin{aligned}
+        \abs{g_i(x) - g_j(x)} & \leq \abs{g_i(x) - g_i(x_s)} + \abs{g_i(x_s) - g_j(x_s)} + \abs{g_j(x_s) - g_j(x)} \\
+                              & < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+    \end{aligned}
+\]
+
+언제 uniformly converge 하는 subsequence가 존재하는지에 대한 조건들을 배운 것입니다.
+
+Stone-Weierstrass Theorem. 어떤 관점으로 보면 좋냐면, 실제로 \(\sin, \cos\) 전개도 안하고 쭉 얘기를 하고 있어요. 거리 공간에서 정의된 연속함수들의 공간을 생각하는데, 구체적인 함수 얘기가 없어요. 그렇다고 모든 연속함수를 구체적으로 적을 수는 없죠. (구체적이라는 것의 정의도 애매하지만) 다 정리를 못한다면, 어느 정도 근사하는 방법으로 정리할 수 있는가?
+
+\textbf{모든 연속함수는 다항식으로 근사 가능하다!} Compact 하면 uniformly 근사가 된다.
+
+\thm{7.26} \note{Stone-Weierstrass} Suppose \(f \in C([a, b], \C)\). (\(a, b\in \R\)) Then there exists a sequence of polynomials \(P_n \in C([a, b], \C)\) such that
+\[
+    \lim_{n \ra \infty} P_n(x) = f(x)
+\]
+\textbf{uniformly} on \([a, b]\). If \(f\) is real, \(P_n\) may be taken real.
+
+여러 가지 증명 방법이 있는데, 책의 증명이 굉장히 교육적입니다. 몇 가지 중요한 테크닉, 배울 점이 많은 증명이에요.
+
+\pf WLOG, we prove the theorem on \([0, 1]\) and we extend to \(\R\) by letting \(f \equiv 0\) on \(\R \bs [0, 1]\). We first assume that \(f(0) = f(1) = 0\).
+
+Then \(f\) is uniformly continuous on \(\R\). We will find polynomials \(Q_n\) and let\footnote{Idea. \(P_n\)의 모양은 간단해요. 이런걸 convolution 이라고 부르는데... \(P_n\)이 정말로 근사가 된다는걸 보이기 위해 \(\abs{P_n - f}\) 같은걸 해야하죠. \(Q_n\)은 \(n\)이 커짐에 따라 점점 몰아주고, \(f(x + t) - f(x)\) 를 작게 만들고 싶습니다.}
+\[
+    P_n(x) = \int_{-1}^1 f(x+t) Q_n(t) \d{t}.
+\]
+Let
+\[
+    Q_n(x) = c_n(1-x^2)^n, \quad c_n = \left(\int_{-1}^1 (1-x^2)^n \d{x}\right)\inv,
+\]
+where \(c_n\) is chosen to satisfy \(\ds \int_{-1}^1 Q_n(x) \d{x} = 1\). We need to control the size of \(c_n\), so define
+\[
+    g(x) = (1-x^2)^n - (1-nx^2).
+\]
+Then \(g(0) = 0\), \(g'(x) = 2nx(1 - (1-x^2)^{n-1})\geq 0\) for \(x \in [0, 1]\). (\(g(x) \geq 0\)) Thus,
+\[
+    \int_{-1}^1 (1-x^2)^n \d{x} = 2\int_0^1 (1-x^2)^n \d{x} \geq 2 \int_0^{1/\sqrt{n}} (1 - nx^2) \d{x} = \frac{4}{3\sqrt{n}} > \frac{1}{\sqrt{n}},
+\]
+therefore \(c_n \leq \sqrt{n}\).
+
+By change of variables \(s = x + t\) and because \(f \equiv 0\) on \(\R \bs [0, 1]\),
+\[
+    P_n(x) = \int_0^1 f(s) Q_n(s - x) \d{s} = c_n \int_0^1 f(s)(1-s^2+2sx-x^2)^n \d{x}.
+\]
+The integral above is clearly a polynomial in \(x\). Thus \(\seq{P_n}\) is a sequence of polynomials.
+
+Given \(\epsilon > 0\), choose \(\delta \in (0, 1)\) such that
+\[
+    a, b \in [0, 1], \abs{a - b} < \delta \implies \abs{f(a) - f(b)} < \frac{\epsilon}{2}.
+\]
+Now,
+\[
+    \abs{P_n(x) - f(x)} \leq \int_{-1}^1 \abs{f(x+t) - f(x)} Q_n(t)\d{t}.
+\]
+Split the last integral to \([-1, 1] = [-1, -\delta] \cup [-\delta, \delta] \cup [\delta, 1]\). Then we see that
+\[
+    \int_{-\delta}^\delta \abs{f(x+t) - f(x)} Q_n(t)\d{t} < \frac{\epsilon}{2} \int_{-\delta}^\delta Q_n(t)\d{t},
+\]
+\[
+    \int_{-1}^{-\delta} \abs{f(x+t) - f(x)} Q_n(t)\d{t} + \int_{\delta}^1 \abs{f(x+t) - f(x)} Q_n(t)\d{t} < 4 c_n \norm{f} (1-\delta^2)^n,
+\]
+since \(Q_n(t) \leq c_n(1-\delta^2)^n\).
+
+Let \(N \in \N\) such that for \(n \geq N\),
+\[
+    4 \norm{f} \sqrt{n} (1-\delta^2)^n < \frac{\epsilon}{2}.
+\]
+Then we finally have
+\[
+    \abs{P_n(x) - f(x)} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+\]
+for \(n \geq N\).
+
+In general, let
+\[
+    g(x) = f(x) - f(0) - x\left(f(1) - f(0)\right)
+\]
+so that \(g(1) = g(0) = 0\). By the previous case, there exists \(P_n^\ast \uc g\) on \([0, 1]\). Then
+\[
+    P_n(x) = P_n^\ast(x) + f(0) + x\left(f(1) - f(0)\right) \uc f
+\]
+on \([0, 1]\).
+
+\pagebreak
