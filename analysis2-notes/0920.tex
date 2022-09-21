@@ -1,0 +1,131 @@
+\section*{September 20, 2022}
+
+Weierstrass: 닫힌 구간에서 정의된 연속함수는 다항식으로 uniformly 근사할 수 있다!
+
+\cor For \(a > 0\), \(\exists P_n \in C([-a, a], \R)\) such that
+\begin{center}
+    \(P_n(0) = 0\) and \(P_n(x) \uc \abs{x}\) on \([-a, a]\).
+\end{center}
+
+\pf By Weierstrass Theorem, there exists \(P_n^\ast(x) \in C([-a, a], \R)\) such that \(P_n^\ast(x) \uc \abs{x}\) on \([-a, a]\). Let \(P_n(x) = P_n^\ast(x) - P_n^*(0)\) so that \(P_n(0) = 0\). Then \(P_n(x)\) will have the desired property.
+
+\medskip
+
+\defn{7.28} Given a metric space \((E, d)\), let \(\mc{A}\) be a collection of complex-valued functions on \(E\).
+\begin{enumerate}
+    \item \(\mc{A}\) is called an \textbf{algebra}\footnote{Real-valued functions의 경우 real algebra라고 부르고 \(c \in \R\) 이다.} if
+          \begin{center}
+              \(f+g\), \(f\cdot g\), \(cf \in \mc{A}\) whenever \(f, g \in \mc{A}\), \(c \in \C\).
+          \end{center}
+    \item Algebra \(\mc{A}\) is \textbf{uniformly closed} if
+          \begin{center}
+              \(f_n \in \mc{A}\) and \(f_n \uc f\) then \(f \in \mc{A}\).
+          \end{center}
+    \item For a given algebra \(\mc{A}\),
+          \[
+              \mc{B} = \{f : \exists f_n \in \mc{A} \text{ such that } f_n\uc f\}
+          \]
+          is called the \textbf{uniform closure} of \(\mc{A}\). We write \(\mc{B} = \overline{\mc{A}}^{\norm{\cdot}} = \overline{\mc{A}}^u\).
+\end{enumerate}
+
+\ex. Examples of algebras. (\([a, b]\) can be changed to compact sets.)
+\begin{enumerate}
+    \item \(\mc{A} = \{f : f \in C([a, b])\}\).
+    \item \(\mc{A} = \{f : f \text{ is bounded on } [a, b]\}\).
+    \item \(\mc{A} = \{f : f \text{ is a polynomial on } [a, b]\}\).
+
+          Also note that \(\overline{\mc{A}}^u = C([a, b])\) by Theorem 7.12 + Weierstrass Theorem.
+\end{enumerate}
+
+\medskip
+
+\question We are interested in \(C(E, \R)\) and \(C(E, \C)\) when \(E\) is a compact metric space. \textit{We want to find an algebra whose uniform closure is \(C(E, \R)\) or \(C(E, \C)\).}
+
+\thm{7.29} Let \(\mc{B}\) be the uniform closure of an algebra \(\mc{A}\) of bounded functions. Then \(\mc{B}\) is a uniformly closed algebra.
+
+\pf \(\mc{B}\) is uniformly closed by definition. Suppose that \(f, g \in \mc{B}\) and \(c \in \C\). By definition,
+\begin{center}
+    \(\exists f_n, g_n \in \mc{A}\) such that \(f_n \uc f\), \(g_n \uc g\) on \(E\).
+\end{center}
+Then \(f_n + g_n \uc f+g\), \(f_n g_n \uc fg\), \(cf_n \uc cf\) on \(E\).\footnote{\(f_n g_n \uc fg\) works because the functions are bounded.} Thus \(f+g,\; fg,\; cf \in \mc{B}\), which makes \(\mc{B}\) a uniformly closed algebra.
+
+\defn{7.30} Let \(\mc{A}\) be a family of functions on a set \(E\).
+\begin{enumerate}
+    \item \(\mc{A}\) is said to \textbf{separate points} on \(E\) if
+          \begin{center}
+              for every distinct \(x_1, x_2 \in E\), \(\exists f\in \mc{A}\) such that \(f(x_1) \neq f(x_2)\).
+          \end{center}
+    \item \(\mc{A}\) \textbf{vanishes at no point} of \(E\) if
+          \begin{center}
+              \(\forall x \in E\), \(\exists f \in \mc{A}\) such that \(f(x) \neq 0\).\footnote{모든 함수가 0인 점은 없다!}
+          \end{center}
+\end{enumerate}
+
+\ex.
+\begin{enumerate}
+    \item Set of polynomials on \(\R\) separates points on \(E\) and vanishes at no point of \(E\).
+    \item Even polynomials on \([-1, 1]\) does not separate points on \(E\). (\(f(x) = f(-x)\))
+\end{enumerate}
+
+\medskip
+
+\thm{7.31} Suppose that
+\begin{enumerate}
+    \item \(\mc{A}\) is an algebra of functions on a set \(E\),
+    \item \(\mc{A}\) separates points on \(E\),
+    \item \(\mc{A}\) vanishes at no point of \(E\).
+\end{enumerate}
+Then for any distinct points \(x_1, x_2 \in E\) and for all \(c_1, c_2 \in \C\),
+\begin{center}
+    there exists \(f \in \mc{A}\) such that \(f(x_1) = c_1\) and \(f(x_2) = c_2\).
+\end{center}
+
+\pf We want to find \(f(x) = c_1f_1(x) + c_2f_2(x)\) where
+\[
+    f_1(x_1) = 1,\; f_1(x_2) = 0,\; f_2(x_1) = 0,\; f_2(x_2) = 1.
+\]
+From the given assumptions, we can find \(g, h, k \in \mc{A}\) such that
+\begin{enumerate}
+    \item \(g(x_1) \neq g(x_2)\) (separates points),
+    \item \(h(x_1)\neq 0\), \(k(x_2) \neq 0\) (vanishes at no point).
+\end{enumerate}
+Let
+\[
+    u(x) = g(x)k(x) - g(x_1)k(x), \quad v(x) = g(x)h(x) - g(x_2)h(x).
+\]
+Then \(u(x_1) = v(x_2) = 0\), \(u(x_2) \neq 0\), \(v(x_1) \neq 0\). Therefore setting
+\[
+    f_1(x) = \frac{v(x)}{v(x_1)}, \quad f_2(x) = \frac{u(x)}{u(x_2)} \implies f(x) = \frac{c_1v(x)}{v(x_1)} + \frac{c_2u(x)}{u(x_2)} \in \mc{A}
+\]
+will give the desired result.
+
+\thm{7.32} \note{Stone-Weierstrass} Let \(\mc{A}\) be a real algebra of real continuous functions on a compact set \(K\). (i.e. \(\mc{A} \subset C(K, \R)\)) If
+\begin{enumerate}
+    \item \(\mc{A}\) separates points on \(K\),
+    \item \(\mc{A}\) vanishes at no point of \(K\),
+\end{enumerate}
+the uniform closure of \(\mc{A}\) consists of all real continuous functions on \(K\). (i.e. \(\overline{\mc{A}}^u = C(K, \R)\))
+
+\pf Let \(\mc{B} = \overline{\mc{A}}^u\). We know that \(\mc{B} \subset C(K, \R)\). So we only need to show \(\mc{B} \supseteq C(K, \R)\).
+
+\note{Step 1} \(f \in \mc{B} \implies \abs{f} \in \mc{B}\).
+
+Let \(a = \norm{f} = \ds \sup_{x \in K} \abs{f(x)}\). Given \(\epsilon > 0\), there exists a polynomial approximating \(\abs{x}\).
+\begin{center}
+    \(\exists c_1, \dots, c_n \in \R\) such that \(\ds \sup_{y \in [-a, a]} \abs{\sum_{i=1}^n c_i y^i - \abs{y}} < \epsilon\).
+\end{center}
+Define \(g = \ds\sum_{i=1}^n c_i f^i \in \mc{B}\). Then (plugging \(f(x)\) into \(y\) gives)
+\[
+    \abs{g(x) - \abs{f(x)}} = \abs{\sum_{i=1}^n c_i (f(x))^i - \abs{f(x)}} < \epsilon, \quad (x\in K).
+\]
+Since \(\mc{B}\) is uniformly closed, \(\abs{f} \in \mc{B}\).
+
+\note{Step 2} \(f_1, \dots, f_n \in \mc{B} \implies \max\{f_1, \dots, f_n\}, \min\{f_1, \dots, f_n\} \in \mc{B}\).
+
+For \(f, g \in \mc{B}\), \(f + g, f - g \in \mc{B}\). Also by Step 1, \(\abs{f+g}, \abs{f-g} \in \mc{B}\). Thus
+\[
+    \max\{f, g\} = \frac{f+g}{2} + \frac{\abs{f-g}}{2}, \quad \min\{f, g\} = \frac{f + g}{2} - \frac{\abs{f-g}}{2} \in \mc{B}.
+\]
+By induction, \(\max\{f_1, \dots, f_n\}, \min\{f_1, \dots, f_n\} \in \mc{B}\).
+
+\pagebreak
