@@ -1,0 +1,166 @@
+\section*{September 27th, 2022}
+
+Now we fix \(\epsilon > 0\) and \(f \in C(K, \R)\).
+
+\note{Step 3} \textit{For each \(x \in K\), there exists a function \(g_x \in \mc{B}\) such that
+    \begin{center}
+        \(g_x(x) = f(x)\) and \(g_x(y) > f(y) - \epsilon\) for all \(y \in K\).
+    \end{center}}
+
+Since \(\mc{A} \subset \mc{B}\), we can use Theorem 7.31. For every \(y \in K\), \(\exists h_y \in \mc{B}\) such that
+\begin{center}
+    \(h_y(x) = f(x)\) and \(h_y(y) = f(y)\).
+\end{center}
+By (uniform) continuity of \(f\) and \(h_y\), there exists \(\delta_y > 0\) such that
+\begin{center}
+    \(d(y, t) < \delta_y \implies \abs{h_y(t) - h_y(y)} + \abs{f(t) - f(y)} < \epsilon\).
+\end{center}
+Therefore,
+\[
+    \abs{h_y(t) - f(t)} \leq \abs{h_y(t) - f(y)} + \abs{f(y) - f(t)} < \epsilon
+\]
+for all \(d(y, t) < \delta_y\). Now for all \(t \in J_y = \{t \in K : d(y, t) < \delta_y \}\),
+\[ \tag{\mast}
+    h_y(t) > f(t) - \epsilon.
+\]
+Since \(K\) is compact, there exists a finite subcover.
+\begin{center}
+    \(\exists y_1, \dots, y_n \in K\) such that \(\ds K \subset \bigcup_{j=1}^n J_{y_j}\).
+\end{center}
+We can rewrite (\mast) as
+\[
+    h_{y_j}(t) > f(t) - \epsilon, \quad (t \in J_{y_j}).
+\]
+Now take maximum of these,
+\[
+    g_x(t) = \max\{h_{y_1}(t), \dots, h_{y_n}(t)\} > f(t) - \epsilon
+\]
+for all \(t \in K\). By Step 2, \(g_x(t) \in \mc{B}\).
+
+\note{Step 4} \textit{For all \(f \in C(K, \R)\), given \(\epsilon > 0\), there exists \(g \in \mc{B}\) such that \(\norm{f - g} < \epsilon\). (i.e. \(g_n \uc f\) on \(K\)) Since \(\mc{B}\) is uniformly closed, \(f \in \mc{B}\).}\footnote{임의의 \(f \in C(K, \R)\) 로 수렴하는 \(g_n \in \mc{B}\) 를 잡을 수 있다는 뜻이므로, uniform closure의 정의에 의해 \(f \in \mc{B}\)이다.}
+
+For each \(x \in K\), let \(g_x \in \mc{B}\) be the function defined in Step 3. By continuity of \(g_x\) and \(f\),
+\begin{center}
+    \(\exists \delta_x > 0\) such that \(t \in V_x \implies \abs{g_x(t) - g_x(x)} + \abs{f(t) - f(x)} < \epsilon\)
+\end{center}
+where \(V_x = \{t \in K : d(x, t) < \delta_x\}\).
+Therefore,
+\[
+    \abs{g_x(t) - f(t)} \leq \abs{g_x(t) - g_x(x)} + \abs{g_x(x) - f(t)} < \epsilon, \quad (t \in V_x)
+\]
+Since \(K\) is compact, there exists a finite subcover.
+\begin{center}
+    \(\exists x_1, \dots, x_m \in K\) such that \(\ds K\subset \bigcup_{j=1}^m V_{x_j}\).
+\end{center}
+Now for \(t \in V_{x_j}\), (as we did in Step 3)
+\[
+    g_{x_j}(t) < f(t) + \epsilon,
+\]
+so \(g(t) = \min\{g_{x_1}(t), \dots, g_{x_m}(t)\} < f(t) + \epsilon\). By Step 2, \(g \in \mc{B}\), and by Step 3,
+\[
+    g(t) > f(t) - \epsilon.
+\]
+Thus we have found a function \(g \in \mc{B}\) such that \(\norm{g - f} < \epsilon\).
+
+Dense 하면서 nice(?)한 함수공간을 찾을 수 있을까? 여러분이 자세히 봐야 알 수 있겠지만 real algebra인 것을 가정한 거죠? 이 chapter의 마지막 부분은, real이 아니고 complex라면 같은 내용이 성립하는가 입니다. 단, 한 조건이 더 필요합니다. 그 전에 정의 하나 하고 갑니다.
+
+\defn. We call a complex algebra \(\mc{A}\) \textbf{self-adjoint} if \(f \in \mc{A} \implies \overline{f} \in \mc{A}\).
+
+\thm{7.33} Let \(\mc{A}\) be a self-adjoint algebra of complex continuous functions on a compact set \(K\). (i.e. \(\mc{A} \subset C(K, \C)\)) If
+\begin{enumerate}
+    \item \(\mc{A}\) separates points on \(K\),
+    \item \(\mc{A}\) vanishes at no point of \(K\),
+\end{enumerate}
+the uniform closure of \(\mc{A}\) consists of all complex continuous functions on \(K\). (i.e. \(\overline{\mc{A}}^u = C(K, \C)\))
+
+\pf Let \(\mc{A}_\R = \{f \in \mc{A} : f(K) \subset \R\}\). Then it is easy to see that \(\mc{A}_\R\) is a real algebra, and subset of \(C(K, \R)\).
+
+\quad \claim. \(\mc{A}_\R\) separates points on \(K\).
+
+\quad \pf Let \(x_1 \neq x_2\). There exists \(f \in \mc{A}\) such that \(f(x_1) = 1\), \(f(x_2) = 0\). Write \(f = u + iv\) where \(u, v \in C(K, \R)\). Since \(\overline{f} \in \mc{A}\), we have
+\[
+    u = \frac{f + \overline{f}}{2} \in \mc{A}_\R \subset \mc{A}.
+\]
+Moreover, \(u(x_1) = f(x_1) = 1\), \(u(x_2) = f(x_2) = 0\).
+
+\quad \claim. \(\mc{A}_\R\) vanishes at no point of \(K\).
+
+\quad \pf Fix \(x \in K\). Choose non-zero \(g \in \mc{A}\). Choose \(\lambda \in \C\) such that \(\lambda g(x) > 0\), we define \(f = \lambda g\) which can be written \(f = u + iv\) where \(u, v \in C(K, \R)\). Similarly, \(u \in \mc{A}_\R\) and \(u(x) = \lambda g(x) > 0\).
+
+From the 2 claims above, we know that \(\overline{\mc{A}_\R}^u = C(K, \R) \subset \overline{\mc{A}}^u\), by Theorem 7.32. Suppose \(f \in C(K, \C)\), and write \(f = u + iv\). Fix \(\epsilon > 0\). There exists \(\tilde{u}, \tilde{v} \in \mc{A}_\R\) such that
+\[
+    \norm{u - \tilde{u}} + \norm{v - \tilde{v}} < \epsilon.
+\]
+Define \(\tilde{f} = \tilde{u} + i\tilde{v} \in \mc{A}\). Then \(\norm{f - \tilde{f}} < \epsilon\), proving that \(f \in \overline{\mc{A}}^u\).\footnote{Denseness를 보인 것입니다.}
+
+\pagebreak
+
+\chapter{Some Special Functions}
+
+Special Functions 라는 이론이 따로 있어요. 8장에서는 여러분들이 많이 아는 부분이 있어서 골라가면서 하고, 그래도 봐야할 것들은 조교님께 얘기해서 하라고 할게요.
+
+첫 번째로 다룰 부분은 power series 인데 전에 얘기했던 내용입니다.
+
+\recall \note{Root Test} Given \(\sum a_n\), let
+\[
+    \alpha = \limsup_{n \ra \infty} \sqrt[n]{\abs{a_n}}.
+\]
+\begin{enumerate}
+    \item If \(\alpha < 1\), \(\sum a_n\) converges absolutely.
+    \item If \(\alpha > 1\), \(\sum a_n\) diverges.
+\end{enumerate}
+
+\defn. A \textbf{power series} in \(\R\) about the point \(a\) is a series in the form
+\[ \tag{\mstar}
+    \sum_{n=0}^\infty c_n(x-a)^n, \quad (x \in \R).
+\]
+\(c_n\)'s are called the \textbf{coefficients} of the series.
+
+\defn. \note{Radius of Convergence} \(R = (0, \infty]\) is called the \textbf{radius of convergence} if the series (\mstar) converges absolutely for \(\abs{x - a} < R\), and diverges for \(\abs{x - a} > R\). Here,
+\[
+    \frac{1}{R} = \limsup_{n \ra \infty} \sqrt[n]{\abs{c_n}}.\footnote{Theorem 3.39.}
+\]
+
+\thm{8.1} Suppose the series
+\[
+    f(x) = \sum_{n=0}^\infty c_n (x-a)^n
+\]
+converges for \(\abs{x - a} < R\).
+\begin{enumerate}
+    \item \(f\) converges uniformly on \(\abs{x - a} \leq R - \epsilon\) for all \(\epsilon \in (0, R)\).
+    \item \(f\) is continuous and differentiable on \(\abs{x - a} < R\). Moreover,
+          \[
+              f'(x) = \frac{d}{dx}\left(\sum_{n=0}^\infty c_n(x-a)^n\right) = \sum_{n=1}^\infty n c_n(x-a)^{n-1}
+          \]
+          on \(\abs{x - a} < R\).
+\end{enumerate}
+
+\pf \\
+(1) WLOG, let \(a = 0\), and fix \(\epsilon \in (0, R)\). Observe that
+\[
+    \abs{c_n x^n} \leq \abs{c_n} (R-\epsilon)^n
+\]
+for \(\abs{x} \leq R - \epsilon\). By the root test, \(\sum \abs{c_n} (R-\epsilon)^n < \infty\). Now we know that \(\sum c_nx^n\) converges uniformly on \(\abs{x} \leq R-\epsilon\) by Weierstrass \(M\)-test.
+
+(2) Using \(n^{1/n} \ra 1\), we see that
+\[
+    \limsup_{n\ra\infty} \sqrt[n]{n\abs{c_n}} = \limsup_{n\ra\infty} \sqrt[n]{\abs{c_n}}.
+\]
+Thus the two series have the same radius of convergence. So \(\sum_{n=1}^\infty n c_n x^{n-1}\) converges on \(\abs{x} < R\), and converges uniformly on \(\abs{x} \leq R - \epsilon\) by (1).
+
+Now by Theorem 7.17,\footnote{\(f_n\)이 미분 가능하고, \(f_n, f'_n\)이 모두 고르게 수렴하면 \(f\)가 미분 가능하며 \(f' = \lim f'_n\).} \(f\) is differentiable, and therefore continuous. Also,
+\[
+    f'(x) = \lim_{n \ra\infty} \frac{d}{dx} \left(\sum_{k=1}^n c_k x^k\right) = \sum_{n=1}^\infty n c_nx^{n-1},
+\]
+for any \(\abs{x} < R\). (We can always choose \(\epsilon\) such that \(\abs{x} \leq R - \epsilon\).)
+
+\cor Let \(f : \R \ra \R\). Under the assumptions of Theorem 8.1, \(f\) has derivatives of all orders in \((-R, R)\), and
+\[
+    f^{(k)}(x) = \sum_{n=k}^\infty n(n-1)\cdots(n-k+1)c_n(x-a)^{n-k}.
+\]
+In particular,
+\[
+    f^{(k)}(a) = k! \cdot c_k.
+\]
+
+\pagebreak
