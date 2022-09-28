@@ -1,0 +1,278 @@
+%!TEX encoding = utf-8
+\documentclass[12pt]{report}
+\usepackage{kotex}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{
+    top = 20mm,
+    left = 20mm,
+    right = 20mm,
+    bottom = 20mm
+}
+\geometry{a4paper}
+
+\pagenumbering{gobble}
+\renewcommand{\baselinestretch}{1.4}
+\newcommand{\numl}[1]{\item[\large\textbf{\sffamily #1.}]}
+\newcommand{\num}[1]{\item[\textbf{\sffamily #1}]}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\adj}{\text{*}}
+\newcommand{\bs}{\setminus}
+\renewcommand{\subset}{\subseteq}
+
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
+\renewcommand{\span}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\uc}{\overset{u}{\ra}}
+\newcommand{\imp}{\implies}
+\newcommand{\mimp}{\(\implies\)}
+\newcommand{\mimpd}{\(\impliedby\)}
+\newcommand{\miff}{\!\!\(\iff\)}
+\newcommand{\mast}{\(\ast\)}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\lint}[2]{\underline{\int_{#1}^{#2}}}
+\newcommand{\uint}[2]{\overline{\int_{#1}^{#2}}}
+\renewcommand{\d}[1]{\,d{#1}}
+
+\let\oldexists\exists
+\renewcommand{\exists}{\oldexists\,}
+
+\begin{document}
+\begin{center}
+    \textbf{\Large 해석개론 및 연습 2 과제 \#2}\\
+    \large 2017-18570 컴퓨터공학부 이성찬
+\end{center}
+\begin{enumerate}
+
+    \numl{1} Suppose that \(f\) is not a constant function. Then there exists \(\alpha, \beta \in [0, \infty)\) such that \(f(\alpha) \neq f(\beta)\). Now we show by contradiction that \(\seq{f_n}\) cannot be equicontinuous on \([0, 1]\).
+
+    Set \(\epsilon = \abs{f(\alpha) - f(\beta)}\). There should be a \(\delta > 0\) such that for all \(n \in \N\),
+    \begin{center}
+        \(x, y \in [0, 1], \abs{x - y} < \delta \implies \abs{f_n(x) - f_n(y)} < \epsilon\).
+    \end{center}
+    However, we can always choose \(N \in \N\) large enough (\(N > \alpha, \beta\)) so that \(\abs{\alpha - \beta}/N < \delta\).
+    For \(x = \alpha/N, y = \beta/N\), \(x, y \in [0, 1]\) and \(\abs{x - y} = \abs{\alpha - \beta}/N < \delta\) but
+    \[
+        \abs{f_N(x) - f_N(y)} = \abs{f_N\left(\frac{\alpha}{N}\right) - f_N\left(\frac{\alpha}{N}\right)} = \abs{f(a) - f(b)} = \epsilon.
+    \]
+    Thus such \(\delta > 0\) cannot exist and \(\seq{f_n}\) cannot be equicontinuous, leading to a contradiction. \(f\) has to be a constant function.
+
+    \numl{2} Let \(\epsilon > 0\) be given. Equicontinuity of \(\seq{f_n}\) lets us choose \(\delta > 0\) such that
+    \[ \tag{\mast}
+        x, y \in K, d(x, y) < \delta \implies \abs{f_n(x) - f_n(y)} < \frac{\epsilon}{3}
+    \]
+    for all \(n \in \N\). The set \(\ds \bigcup_{x\in K} B_\delta(x)\) is an open cover of \(K\), and there exists a finite subcover because \(K\) is a compact set.
+    \begin{center}
+        \(\exists x_1, x_2, \dots, x_r \in K\) such that \(\ds K \subset \bigcup_{i=1}^r B_\delta(x_i)\).
+    \end{center}
+
+    For all \(x \in K\), there exists \(s \leq r\) such that \(x \in B_\delta(x_s)\). By (\mast),
+    \[
+        \abs{f_n(x) - f_n(x_s)} < \frac{\epsilon}{3}, \quad (\forall n \in \N)
+    \]
+    Also since \(\seq{f_n}\) converges pointwise, there exists \(N\in \N\) such that for \(n, m \geq N\),
+    \[
+        \abs{f_n(x_s) - f_m(x_s)} < \frac{\epsilon}{3}.
+    \]
+    Therefore, for \(n, m \geq N\),
+    \[
+        \abs{f_n(x) - f_m(x)} \leq \abs{f_n(x) - f_n(x_s)} + \abs{f_n(x_s) - f_m(x_s)} + \abs{f_m(x_s) - f_m(x)} < \frac{\epsilon}{3} \cdot 3 = \epsilon
+    \]
+    for all \(x \in K\). \(f_n\) converges uniformly on \(K\).
+
+    \noindent {\sffamily (Counterexample)} Take \(f_n(x) = x/n\) over \(\R\).
+
+    \pagebreak
+
+    \numl{3} We first prove the following claim.
+
+    \quad {\sffamily \bfseries Claim.} \textit{Suppose \(f \geq 0\), \(f\) is continuous on \([a, b]\), and \(\ds\int_a^b f(x)\d{x} = 0\). Then \(f(x) = 0\) on \([a, b]\).}
+
+    \quad {\sffamily Proof.} Suppose there exists some \(x_0 \in [a, b]\) such that \(f(x_0) > 0\). Since \(f\) is continuous, we can find \(\delta > 0\) such that
+    \begin{center}
+        \(x \in [x_0 - \delta, x_0 + \delta] \implies \abs{f(x) - f(x_0)} < \dfrac{f(x_0)}{2}\).
+    \end{center}
+    We can conclude that \(f(x) > \dfrac{f(x_0)}{2}\) on \([x_0 - \delta, x_0 + \delta]\). Then,
+    \[
+        0 = \int_a^b f(x)\d{x} \geq \int_{x_0-\delta}^{x_0+\delta} f(x)\d{x} \geq \int_{x_0-\delta}^{x_0+\delta} \frac{f(x_0)}{2}\d{x} = \delta f(x_0) > 0,
+    \]
+    which is a contradiction. Therefore \(f(x) = 0\) on \([a, b]\).
+
+    \medskip
+
+    Since \(f\) is continuous on \([0, 1]\) and bounded (Extreme Value Theorem), there exists a sequence of polynomials \(\seq{P_n}\) such that \(P_n \ra f\) uniformly on \([0, 1]\). Let \(P_n(x) = \sum_{k=0}^{\deg P_n} p_{n, k} x^k\). Then
+    \[
+        \int_0^1 f(x)P_n(x) \d{x} = \int_0^1 f(x)\sum_{k=0}^{\deg P_n} p_{n, k} x^k \d{x} = \sum_{k=0}^{\deg P_n} p_{n, k} \int_0^1 f(x) x^k \d{x} = 0.
+    \]
+    Note that \(P_n\) is uniformly bounded by its uniform convergence. Since \(P_n\) and \(f\) are both bounded, \(f(x)P_n(x)\) converges uniformly on \([0, 1]\). Therefore,
+    \[
+        \int_0^1 f(x)^2 \d{x} = \int_0^1 \lim_{n \ra \infty} f(x) P_n(x) \d{x} = \lim_{n\ra\infty} \int_0^1 f(x)P_n(x) \d{x} = 0.
+    \]
+    (Uniform convergence lets us switch the order of integration and limit.) By the claim above, \(f(x)^2 = 0\) on \([0, 1]\), which implies \(f(x) = 0\) on \([0, 1]\).
+
+    \numl{4} {\sffamily (a)} \(\seq{f_n}\) is uniformly bounded and \(\Q\) is countable. By {\sffamily Theorem 7.23}, there exists a subsequence \(\seq{f_{m_i}}\) of \(\seq{f_n}\) such that \(\seq{f_{m_i}(r)}\) converges for \(\forall r \in \Q\). Now let \(f(x) = \ds \sup_{r \leq x} f(r)\).
+
+    Suppose that \(f\) is continuous at \(x_0 \in \R\). Given \(\epsilon > 0\), there exists \(\delta > 0\) such that
+    \[
+        \abs{x - x_0} < \delta \implies \abs{f(x) - f(x_0)} < \frac{\epsilon}{2}.
+    \]
+    Take \(r, s \in \Q\) from the interval \((x_0 - \delta, x_0 + \delta)\) such that \(r \leq x_0 \leq s\). Since \(f_n\) is increasing for all \(n \in \N\), \(f\) should also be increasing. Then
+    \[ \tag{\mast}
+        f(x_0) -\frac{\epsilon}{2} < f(r) \leq f(x_0) \leq f(s) < f(x_0) + \frac{\epsilon}{2}.
+    \]
+    Since \(f_{m_i}(r) \ra f(r)\) and \(f_{m_i}(s) \ra f(s)\), set \(i\) large enough so that
+    \[
+        \abs{f_{m_i}(r) - f(r)} < \frac{\epsilon}{2}, \quad \abs{f_{m_i}(s) - f(s)} < \frac{\epsilon}{2}.
+    \]
+    Combining these inequalities with (\mast) gives
+    \[
+        f(x_0) - \epsilon < f(r) - \frac{\epsilon}{2} < f_{m_i}(r), \quad f_{m_i}(s) < f(s) + \frac{\epsilon}{2} < f(x_0) + \epsilon.
+    \]
+    Since \(f_{m_i}(r) \leq f_{m_i}(x_0) \leq f_{m_i}(s)\), we have that for large \(i\),
+    \[
+        f(x_0) - \epsilon < f_{m_i}(x_0) < f(x_0) + \epsilon \implies \abs{f_{m_i}(x_0) - f(x_0)} < \epsilon.
+    \]
+    Thus \(\seq{f_{m_i}}\) converges at points of continuity.
+
+    For a monotone function on \(\R\), the set of discontinuities \(D\) is at most countable. We can apply {\sffamily Theorem 7.23} once again on \(\seq{f_{n_i}}\) to get a subsequence \(\seq{f_{m_k}}\) that converges for all \(x \in D\).
+
+    Now we modify the definition of \(f(x)\) so that for \(x \in D\),
+    \[
+        f(x) = \lim_{k \ra\infty} f_{n_k}(x).
+    \]
+    Since \(\seq{f_{n_k}}\) is a subsequence of \(\seq{f_{m_i}}\), \(\seq{f_{n_k}}\) also converges for all \(x \in \R \bs D\), so we can write
+    \[
+        f(x) = \lim_{k \ra \infty} f_{n_k}(x), \quad x \in \R.
+    \]
+
+    {\sffamily (b)} Let \(f\) be a continuous function on a compact set \(K\). Then \(f\) is uniformly continuous.\footnote{Heine-Cantor Theorem.} Let \(\epsilon > 0\) be given.
+
+    Take any \(t \in K\). Since \(f\) is uniformly continuous, we can find \(\delta > 0\) such that
+    \[ \tag{\(\star\)}
+        x \in (t - \delta, t + \delta) \implies f(t) - \frac{\epsilon}{2} < f(x) < f(t) + \frac{\epsilon}{2}.
+    \]
+    Let \(g_k = f_{n_k}\). Since \(g_k\) is increasing,
+    \[ \tag{\(\spadesuit\)}
+        g_k\left(t - \frac{\delta}{2}\right) \leq g_k(t) \leq g_k\left(t + \frac{\delta}{2}\right).
+    \]
+    Also because \(g_k \ra f\) pointwise, there exists large enough \(N \in \N\) such that
+    \[
+        k \geq N \implies \abs{g_k\left(t - \frac{\delta}{2}\right) - f\left(t - \frac{\delta}{2}\right)} < \frac{\epsilon}{2} \text{ and } \abs{g_k\left(t + \frac{\delta}{2}\right) - f\left(t + \frac{\delta}{2}\right)} < \frac{\epsilon}{2}.
+    \]
+    For \(k \geq N\),
+    \[
+        f\left(t - \frac{\delta}{2}\right) - \frac{\epsilon}{2} < g_k\left(t - \frac{\delta}{2}\right) \text{ and } g_k\left(t + \frac{\delta}{2}\right) < f\left(t + \frac{\delta}{2}\right) + \frac{\epsilon}{2}.
+    \]
+    From (\(\spadesuit\)),
+    \[
+        f\left(t - \frac{\delta}{2}\right) - \frac{\epsilon}{2} < g_k(t) < f\left(t +\frac{\delta}{2}\right) + \frac{\epsilon}{2}.
+    \]
+    Since \(t - \delta / 2, t + \delta/2 \in (t-\delta, t+\delta)\), by \((\star)\),
+    \[
+        f(t) - \epsilon < f\left(t - \frac{\delta}{2}\right) - \frac{\epsilon}{2} < g_k(t) < f\left(t + \frac{\delta}{2}\right) + \frac{\epsilon}{2} < f(t) + \epsilon.
+    \]
+    Thus for \(k \geq N\), \(\abs{g_k(t) - f(t)} < \epsilon\) (\(\forall t \in K\)). \(f_{n_k} \ra f\) uniformly on \(K\).
+
+    \pagebreak
+
+    \numl{5} Knowing that \(\norm{f}_2 \geq 0\) for any \(f \in \mc{R}(\alpha)\), we shall prove that for \(f, g \in \mc{R}(\alpha)\),
+    \[ \tag{\(\star\)}
+        \left(\norm{f}_2 + \norm{g}_2\right)^2 \geq \norm{f+g}_2^2.
+    \]
+    Let \(I = [a, b]\).
+    \[
+        \begin{aligned}
+            \left(\norm{f}_2 + \norm{g}_2\right)^2 - \norm{f+g}_2^2 & = \norm{f}_2^2 + \norm{g}_2^2 + 2\norm{f}_2\norm{g}_2 + \norm{f+g}_2^2                                                                                                                                      \\
+                                                                    & =                                                          \int_I \abs{f}^2 \d{\alpha} + \int_I \abs{g}^2 \d{\alpha} + 2 \left\{\int_I \abs{f}^2 \d{\alpha} \cdot \int_I \abs{g}^2 \d{\alpha}\right\}^{1/2} \\
+                                                                    & \qquad - \int_I \abs{f}^2 \d{\alpha} - \int_I \abs{g}^2 \d{\alpha} - 2 \int_I \abs{fg} \d{\alpha}                                                                                                           \\
+                                                                    & =                                                         2\left[\left\{\int_I \abs{f}^2 \d{\alpha} \cdot \int_I \abs{g}^2 \d{\alpha}\right\}^{1/2} - \int_I \abs{fg} \d{\alpha}\right]. \quad (\ast)
+        \end{aligned}
+    \]
+    Similarly, the integrals are all positive, so we instead prove the following.
+
+    \medskip
+
+    \quad {\sffamily \bfseries Claim.} \(\ds \int_I \abs{f}^2 \d{\alpha} \cdot \int_I \abs{g}^2 \d{\alpha} - \left(\int_I \abs{fg} \d{\alpha}\right)^2 \geq 0\).
+
+    \quad {\sffamily Proof.} Consider the function \((t\abs{f} - \abs{g})^2\), where \(t\) is some real constant. Integrating this function with respect to \(\alpha\) should be non-negative. Therefore,
+    \[
+        \int_I \bigl(t\abs{f} - \abs{g}\bigr)^2 \d{\alpha} = t^2 \int_I \abs{f}^2 \d{\alpha} - 2t \int_I \abs{fg}\d{\alpha} + \int_I \abs{g}^2\d{\alpha} \geq 0.
+    \]
+    Treating the above expression as a quadratic of \(t\), the discriminant should be non-positive.
+    \[
+        D/4 = \left(\int_I \abs{fg} \d{\alpha}\right)^2 - \int_I \abs{f}^2 \d{\alpha} \cdot \int_I \abs{g}^2 \d{\alpha} \leq 0,
+    \]
+    giving the desired result. Equality holds when \(f, g\) are linearly dependent.
+
+    \medskip
+
+    Hence (\mast) \(\geq 0\), proving \((\star)\). For \(f, g, h \in \mc{R}(\alpha)\), replacing \(f\) by \(f - g\), \(g\) by \(g - h\) gives
+    \[
+        \norm{f - h}_2 \leq \norm{f-g}_2 + \norm{g-h}_2,
+    \]
+    proving the original inequality.
+
+    \pagebreak
+
+    \numl{6} For any given partition \(P = \{a = x_0, x_1, \dots, x_n = b\}\) of \([a, b]\), define
+    \[
+        g(t) = \frac{x_i - t}{x_i - x_{i-1}} f(x_{i-1}) + \frac{t - x_{i-1}}{x_i - x_{i-1}} f(x_i)
+    \]
+    for \(t \in [x_{i-1}, x_i]\). \(g(t)\) is piecewise continuous (linear) and for points in the partition except for the both ends, the left/right limit of \(g(t)\) at \(t = x_i\) are the same. Thus \(g(t)\) is continuous on \([a, b]\).
+
+    Since \(f \in \mc{R}(\alpha)\), \(f\) is bounded on \([a, b]\). Let \(\abs{f} < M\) for some positive real \(M\).
+
+    For any interval \(I_i = [x_{i-1}, x_i] \subset [a, b]\), \(\ds \inf_{x \in I_i} f(x) \leq f(x) \leq \sup_{x \in I_i} f(x)\) by definition. Also, since \(g(x)\) is linear,
+    \[
+        \inf_{x \in I_i} f(x) \leq \min\{f(x_{i-1}), f(x_i)\} \leq g(x) \leq \max\{f(x_{i-1}), f(x_i)\} \leq \sup_{x \in I_i} f(x).
+    \] Therefore,
+    \[
+        0 \leq \abs{f(x) - g(x)} \leq \sup_{x\in I_i} f(x) - \inf_{x\in I_i}f(x) \implies \abs{f(x) - g(x)}^2 \leq \bigl(\sup_{x\in I_i} f(x) - \inf_{x\in I_i}f(x)\bigr)^2.
+    \]
+    Additionally,
+    \[
+        \sup_{x\in I_i} f(x) - \inf_{x\in I_i}f(x) < 2M.
+    \]
+
+    Now let \(\epsilon > 0\) be given. Since \(f\) is integrable, we can choose a partition \(P\) of \([a, b]\) such that
+    \[
+        U(P, f, \alpha) - L(P, f, \alpha) < \frac{\epsilon^2}{2M}.
+    \]
+    Then we can define a continuous function \(g(x)\) as above, and
+    \[
+        \begin{aligned}
+            \norm{f-g}_2^2 & \leq U(P, \abs{f-g}^2, \alpha)                                                                                                                   \\
+                           & = \sum_{i=1}^n \sup_{x \in [x_{i-1}, x_i]} \abs{f(x) - g(x)}^2 \bigl(\alpha(x_i) - \alpha(x_{i-1})\bigr)                                         \\
+                           & \leq \sum_{i=1}^n \left(\sup_{x \in [x_{i-1}, x_i]} f(x) - \inf_{x \in [x_{i-1}, x_i]} f(x) \right)^2 \bigl(\alpha(x_i) - \alpha(x_{i-1})\bigr)  \\
+                           & \leq 2M \sum_{i=1}^n \left(\sup_{x \in [x_{i-1}, x_i]} f(x) - \inf_{x \in [x_{i-1}, x_i]} f(x) \right) \bigl(\alpha(x_i) - \alpha(x_{i-1})\bigr) \\
+                           & = 2M\big(U(P, f, \alpha) - L(P, f, \alpha)\big) < 2M \cdot \frac{\epsilon^2}{2M} = \epsilon^2.
+        \end{aligned}
+    \]
+    Therefore \(\norm{f-g}_2 < \epsilon\), as desired.
+\end{enumerate}
+\end{document}
