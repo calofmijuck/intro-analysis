@@ -1,0 +1,203 @@
+\section*{September 29th, 2022}
+
+\defn. \note{Real Analytic} A real valued function \(f\) is called \textbf{real-analytic}\footnote{복소함수의 경우 analytic의 의미가 미분가능성이기 때문에 real이라고 구분 해주는 것이 좋다.} on \(\abs{x - a} < R\) if there exists \(c_n \in \R\) such that
+\[
+    f(x) = \sum_{n=0}^\infty c_n (x-a)^n
+\]
+for \(\abs{x - a} < R\).
+
+\rmk \(f \in C^\infty\) does not imply that \(f\) is real-analytic.
+
+\lemma Suppose \(\sum c_n y^n\) converges for \(y \neq 0\). Then \(\sum c_n x^n\) converges absolutely on \(\abs{x} < \abs{y}\).
+
+\pf Since \(\abs{c_ny^n} \ra 0\), choose \(N \in \N\) such that
+\begin{center}
+    \(\abs{c_ny^n} < 1\) for all \(n \geq N\).
+\end{center}
+Now for all \(n \geq N\),
+\[
+    \abs{c_n x^n} \leq \abs{c_n}\abs{y}^n \abs{\frac{x}{y}}^n < \abs{\frac{x}{y}}^n.
+\]
+Thus \(\sum \abs{c_n x^n}\) converges for \(\abs{x} < \abs{y}\). (Comparison)
+
+\thm{6.2} \note{Abel} Suppose \(\sum c_n\) converges. Let \(f(x) = \sum c_n x^n\) for \(x \in (-1, 1)\). Then
+\[
+    \lim_{x \ra 1^-} f(x) = \sum_{n=0}^\infty c_n.
+\]
+
+\pf Let \(s_{-1} = 0\), \(s_n = \sum_{k=0}^n c_k\) for \(n \geq 0\) and \(s = \lim_{n\ra\infty} s_n = \sum_{n=0}^\infty c_n\). We know that \(\abs{s_n} + \abs{s} < M <\infty\). We have \(c_n = s_n - s_{n-1}\) for \(n \geq 0\),
+\[
+    \begin{aligned}
+        \sum_{n=0}^m c_nx^n & = \sum_{n=0}^m s_n x^n - x \sum_{n=1}^m s_{n-1}x^{n-1}            \\
+                            & = s_m x^m + \sum_{n=0}^{m-1} s_n x^n - x \sum_{n=0}^{m-1} s_n x^n \\
+                            & = s_m x^m + (1-x) \sum_{n=0}^{m-1}s_n x^n.
+    \end{aligned}
+\]
+Since \(\abs{x} < 1\), \(\abs{s_m x^m} \ra 0\) as \(m \ra \infty\). We only consider the second term, so
+\[
+    f(x) = (1-x) \sum_{n=0}^\infty s_n x^n.
+\]
+Let \(\epsilon > 0\), we can choose \(N\in \N\) such that \(\abs{s_n - s} < \epsilon / 2\) for \(n \geq N\).
+Therefore,
+\[
+    \begin{aligned}
+        \abs{f(x) - s} & = \abs{(1-x) \sum_{n=0}^\infty s_n x^n - s(1-x) \sum_{n=0}^\infty x^n}                                        \\
+                       & = \abs{(1-x) \sum_{n=0}^\infty (s_n - s) x^n}                                                                 \\
+                       & \leq (1-x) \sum_{n=0}^N \abs{s_n - s} \abs{x}^n + (1-x) \sum_{n=N+1}^\infty \abs{s_n-s} \abs{x}^n             \\
+                       & \leq (1-x) \sum_{n=0}^N (\abs{s_n} +\abs{s}) \abs{x}^n + \frac{\epsilon}{2}(1-x)\sum_{n=N+1}^\infty \abs{x}^n \\
+                       & \leq M(1-x) \sum_{n=0}^N  \abs{x}^n + \frac{\epsilon}{2}                                                      \\
+                       & \leq MN(1-x) + \frac{\epsilon}{2} \leq \epsilon,
+    \end{aligned}
+\]
+if we choose small enough \(\delta > 0\) so that for \(1 - \delta < x < 1\), \(MN(1-x) \leq \epsilon / 2\). Thus \(\abs{f(x) - s} < \epsilon\), proving the result.
+
+\thm{3.51} \note{Cauchy Product} Suppose \(\sum a_n\), \(\sum b_n\), \(\sum c_n\) converges, where
+\[
+    c_n = a_0 b_n + a_1 b_{n-1} + \cdots + a_n b_0.
+\]
+Then
+\[
+    \sum c_n = \left(\sum a_n\right) \left(\sum b_n\right)
+\]
+
+\pf On \(0 \leq x \leq 1\), let
+\[
+    f(x) = \sum a_n x^n, \quad g(x) = \sum b_n x^n.
+\]
+For \(0 \leq x < 1\), these series converge absolutely, so we can multiply them.\footnote{곱한 뒤 재배열해야 하는데, 절대수렴하기 때문에 재배열할 수 있다.} Therefore
+\[
+    f(x)g(x) = \sum_{n=0}^\infty c_n x^n, \quad (0 \leq x < 1).
+\]
+Now by Abel's Theorem, setting \(x \ra 1^-\) gives the desired result.
+
+\pagebreak
+
+아래 정리는 언제 무한급수의 더하는 순서를 바꿀 수 있는지 말해줍니다.
+
+\thm{8.3} \note{Fubini for Infinite Series} Given a double sequence \(\seq{a_{ij}}\), suppose that
+\begin{center}
+    Either \(\ds \sum_{i} \sum_{j} \abs{a_{ij}} < \infty\) or \(\ds \sum_{j} \sum_{i} \abs{a_{ij}} < \infty\).
+\end{center}
+Then
+\[
+    \sum_{i=1}^\infty \sum_{j=1}^\infty a_{ij} = \sum_{j=1}^\infty \sum_{i=1}^\infty a_{ij}.
+\]
+
+\pf Let \(x_\infty = 0, x_n = 1/n\) for \(n \geq 1\). Suppose
+\[
+    E = \{x_\infty, x_1, \dots, x_n, \dots\} \subset \R
+\]
+and \(x_n \ra x_\infty\) as \(n \ra \infty\). For each \(i\), define a function \(f_i\) on \(E\) such that
+\begin{center}
+    \(f_i(x) = \ds \sum_{j=1}^n a_{ij} \) for \(x = x_n\) \quad and \quad \(f_i(x_\infty) = \ds \sum_{j=1}^\infty a_{ij}\).
+\end{center}
+We have \(f_i(x_n) \ra f_i(x_\infty)\) as \(x_n \ra x_\infty\). Therefore \(f_i\) is continuous at \(x_\infty\) on \(E\).
+Let
+\[
+    g(x) = \ds \sum_{i=1}^\infty f_i(x), \quad (x\in E).
+\]
+For all \(x \in E\),
+\[
+    \sum_{i=1}^\infty \abs{f_i(x)} \leq \sum_{i=1}^\infty \sum_{j=1}^\infty \abs{a_{ij}} < \infty.
+\]
+By Weierstrass \(M\)-test, \(g(x)\) converges uniformly on \(E\). So \(g(x)\) is continuous at \(x_\infty\).
+\[
+    \begin{aligned}
+        \sum_{i=1}^\infty \sum_{j=1}^\infty a_{ij} & = g(x_\infty) = \lim_{n\ra\infty} g(x_n) = \lim_{n \ra\infty} \sum_{i=1}^\infty f_i(x_n)                                                                          \\
+                                                   & = \lim_{n\ra\infty} \sum_{i=1}^\infty \sum_{j=1}^n a_{ij} = \lim_{n\ra\infty} \sum_{j=1}^n \sum_{i=1}^\infty a_{ij} = \sum_{j=1}^\infty \sum_{i=1}^\infty a_{ij}.
+    \end{aligned}
+\]
+by continuity of \(g\).
+
+여기서 극한의 순서를 굉장히 조심해야 합니다.
+\[
+    \sum^M \sum^N a_{mn} \overset{N \ra \infty}{\longrightarrow} \sum^M \sum^\infty a_{mn} \overset{M \ra \infty}{\longrightarrow} \sum^\infty \sum^\infty a_{mn}
+\]
+은 가능하지만,
+\[
+    \sum^M \sum^N a_{mn} \overset{M \ra \infty}{\longrightarrow} \sum^\infty \sum^N a_{mn} \overset{N \ra \infty}{\longrightarrow} \sum^\infty \sum^\infty a_{mn} (?)
+\]
+는 전혀 다른 문제입니다.
+
+\pagebreak
+
+\thm{8.4} Suppose
+\[
+    f(x) = \sum_{n=0}^\infty c_n x^n,
+\]
+which converges on \(\abs{x} < R\). If \(a \in (-R, R)\), \(f\) can be expanded in a power series about the point \(x = a\) which converges on \(\abs{x-a} < R - \abs{a}\), as
+\[
+    f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!}(x-a)^n, \quad (\abs{x-a} < R - \abs{a}).
+\]
+
+\pf Fix \(a \in (-R, R)\).
+% We only consider \(x\) such that \(\abs{x - a} < R - \abs{a}\).
+% Let
+% \[
+%     a_{nk} = \begin{cases}
+%         \ds c_n {n\choose k} (x-a)^k a^{n-k} & (0 \leq k \leq n)  \\
+%         0                                    & (\text{otherwise})
+%     \end{cases}.
+% \]
+% Then,
+We have
+\[
+    \begin{aligned}
+        f(x) = \sum_{n=0}^\infty c_n x^n & = \sum_{n=0}^\infty c_n \bigl((x-a) + a \bigr)^n                                                                                                                        \\
+                                         & = \sum_{n=0}^\infty \sum_{k=0}^n c_n {n \choose k}(x-a)^k a^{n-k} \overset{(\ast)}{=} \sum_{k=0}^\infty \left[\sum_{n=k}^\infty {n\choose k} c_n a^{n-k}\right](x-a)^k.
+    \end{aligned}
+\]
+This is the desired expansion about the point \(x = a\). We only need to prove (\mast), where the summation was switched. Meanwhile,
+\[
+    \begin{aligned}
+        \sum_{n=0}^\infty \sum_{k=0}^n \abs{c_n {n \choose k}(x-a)^k a^{n-k}} & = \sum_{n=0}^\infty \sum_{k=0}^n \abs{c_n} {n \choose k} \abs{x-a}^k \abs{a}^{n-k} \\
+                                                                              & = \sum_{n=0}^\infty \abs{c_n} \bigl(\abs{x-a}+\abs{a}\bigr)^n < \infty
+    \end{aligned}
+\]
+by the root test.
+\[
+    \limsup_{n\ra\infty} \sqrt[n]{\abs{c_n}}\bigl(\abs{x-a} + \abs{a}\bigr) < \frac{1}{R}\cdot R = 1
+\]
+because \(f\) converges on \(\abs{x} < R\) and \(\abs{x-a}+\abs{a} < R\). Now we calculate the coefficients,
+\[
+    \begin{aligned}
+        f(x) & = \sum_{k=0}^\infty \left[\sum_{n=k}^\infty {n\choose k} c_n a^{n-k}\right](x-a)^k                    \\
+             & = \sum_{k=0}^\infty \left[\sum_{n=k}^\infty c_n n(n-1)\dots (n-k+1) a^{n-k}\right] \frac{(x-a)^k}{k!} \\
+             & = \sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!}(x-a)^k,
+    \end{aligned}
+\]
+because differentiating \(f\) \(k\)-times and plugging in \(a\) gives the exact from in the brackets.
+
+\thm{8.5} Suppose
+\begin{center}
+    \(h_1(x) = \ds \sum a_n x^n\) and \(\ds h_2(x) = \sum b_n x^n\)
+\end{center}
+converge on \((-R, R)\). Let
+\[
+    E = \{x \in (-R, R) : h_1(x) = h_2(x)\}.
+\]
+If \(E\) has a limit point in \((-R, R)\), then \(a_n = b_n\) for all \(n\), so \(h_1 = h_2\) on \((-R, R)\).
+
+\pf We treat \((-R, R)\) as a metric space. We know that \(E'\) is closed in \((-R, R)\) and \(E' \neq \varnothing\) by assumption. Since \(h_1\), \(h_2\) are continuous, \(E' \subset E\). Now define \(B = (-R, R) \bs E'\). Since \(E'\) is closed, \(B\) is open in \((-R, R)\). Now we show that \(E'\) is open, to show that \(E' = (-R, R)\).\footnote{Open 이면서 동시에 closed 면 \(\varnothing\) 이거나 전체집합 이거나.}
+
+\quad \claim. \(E'\) is open.
+
+\quad \pf Let \(x_0 \in E'\). Let \(f(x) = h_1(x) - h_2(x)\). \(f\) is 0 on \(E\), and \(f(x_0) = 0\) due to the continuity of \(f\). For \(x\) in \(\abs{x - x_0} < R - \abs{x_0}\), we can use Theorem 8.4 to expand the series at \(x_0\),
+\[
+    f(x) = \sum_{n=0}^\infty d_n(x-x_0)^n,
+\]
+which is continuous on \(\abs{x - x_0} < R - \abs{x_0}\). Suppose \(d_n \neq 0\) for some \(n \geq 1\), choose smallest \(k\) such that \(d_k \neq 0\). Then
+\[
+    f(x) = \sum_{n=k}^\infty d_n(x-x_0)^n = (x-x_0) \sum_{n=k}^\infty d_n (x-x_0)^{n-k}.
+\]
+Let \(g(x) = \ds\sum_{n=k}^\infty d_n(x-x_0)^{n-k}\), then \(g(x_0) = d_k \neq 0\). Since \(g\) is continuous near \(x_0\), there exists \(\delta > 0\) such that
+\begin{center}
+    \(\abs{x - x_0} < \delta \implies g(x) \neq 0\).
+\end{center}
+Thus \(f(x) \neq 0\) on \(\abs{x - x_0} < \delta\). But this is a contradiction, because \(x_0 \in E'\). There exists a sequence \(\seq{x_n}\) in \(E\) such that \(x_n \ra x_0\) and \(f(x_n) = f(x_0) = 0\). Therefore \(d_n = 0\) and \(f(x) = 0\) for \(x\) in \(\abs{x-x_0} < R - \abs{x_0}\). Thus
+\[
+    B_{R - \abs{x_0}}(x_0) \subset E',
+\]
+which proves that \(E'\) is open.
+
+\pagebreak
