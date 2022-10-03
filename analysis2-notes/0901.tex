@@ -61,7 +61,7 @@ and the function \(f\) is called the \textit{sum} of the series \(\sum f_n\).
 
 \question Suppose \(\seq{f_n}\) is a sequence of functions. Does the limit function or the sum of the series preserve important properties?
 \begin{enumerate}
-    \item If \(f_n\) is continus, is \(f\) continuous?
+    \item If \(f_n\) is continuous, is \(f\) continuous?
     \item If \(f_n\) is differentiable/integrable, is \(f\) differentiable/integrable?
 \end{enumerate}
 
@@ -74,7 +74,7 @@ For (1), the question is equivalent to the following:
 
 And the answer is \textbf{No}.
 
-실수열이 주어졌을 때, 극한을 계산하여 극한값이 실수라는 것은 굉장히 중요한 것입니다. 우리가 \textbf{연속}함수열의 수렴을 정의할 때, 극한이 되는 함수 또한 \textbf{연속}이 되기를 기대하는 것은 굉장히 자연스러운 일입니다. 하지만 점별수렴하는 연속함수열의 극한은 연속이 아닐 수 있습니다. 즉, 점별수렴은 연속함수공간에서의 '수렴'으로 정의하기에는 부족합니다.
+실수열이 주어졌을 때, 극한을 계산하여 극한값이 실수라는 것은 굉장히 중요한 것입니다. 우리가 \textbf{연속}함수열의 수렴을 정의할 때, 극한이 되는 함수 또한 \textbf{연속}이 되기를 기대하는 것은 굉장히 자연스러운 일입니다. 하지만 점별수렴하는 연속함수열의 극한은 연속이 아닐 수 있습니다. 즉, 점별수렴은 연속함수공간에서의 `수렴'으로 정의하기에는 부족합니다.
 
 \ex{7.2} Suppose \(\ds a_{m, n} = \frac{m}{m + n}\) for \(m, n\in \N\). We see that
 \[
@@ -107,39 +107,39 @@ by direct calculation,
 \]
 since this is a geometric series when \(x \neq 0\). If \(x = 0\), \(f(x) = 0\) and \(f\) is not continuous.
 
-Does the limit function preserve Riemann integrability?
+\question Does the limit function preserve Riemann integrability?
 
 \ex. For \(m = 1, 2, \dots\), define
 \[
     f_m(x) = \lim_{n\ra \infty} \left(\cos m! \pi x\right)^{2n} = \begin{cases}
-        1 & (m!x \in \Z) \\
+        1 & (m!x \in \Z)    \\
         0 & (m!x \notin \Z)
     \end{cases}
 \]
 We see that \(f_m(x)\) is Riemann integrable. However,
 
-\claim.
+\quad \claim.
 \[
     f(x) = \lim_{m\ra \infty} f_m(x) = \begin{cases}
-        1 & (x\in \Q) \\
+        1 & (x\in \Q)         \\
         0 & (x \in \R \bs \Q)
     \end{cases}
 \]
-and \(f(x)\) is nowhere continuous thus not Riemann integrable.
+and \(f(x)\) is nowhere continuous, also not Riemann integrable.
 
-\pf Suppose \(x = p/q \in \Q\). (\(p, q\in \Z\)) If we take \(m \geq q\), we see that \(m! x \in \Z\). Thus \(f_m(x) = 1\). If \(x \notin \Q\), \(m! x\) can never be in \(\Z\) and \(f_m(x) = 0\).
+\quad \pf Suppose \(x = p/q \in \Q\). (\(p, q\in \Z\)) If we take \(m \geq q\), we see that \(m! x \in \Z\). Thus \(f_m(x) = 1\). If \(x \notin \Q\), \(m! x\) can never be in \(\Z\) and \(f_m(x) = 0\).
 
 \medskip
 
-\question Uniform continuity를 할 때 uniform이 어디서 나오죠? 해석학에서 그 점에서 뭐가 성립한다, 그러면 그 점과 그 근방에서만 확인하면 됐었죠. Continuity는 local property죠. 그런데 uniform continuity는 전체가 다 uniform하게 성립한다는 의미입니다.
+Uniform continuity를 할 때 uniform이 어디서 나오죠? 해석학에서 그 점에서 뭐가 성립한다, 그러면 그 점과 그 근방에서만 확인하면 됐었죠. Continuity는 local property죠. 그런데 uniform continuity는 전체가 다 uniform하게 성립한다는 의미입니다.
 
-\recall \(f: (X, d) \ra (Y, d)\) is uniformly continuous on \(X\)\footnote{Subspace of metric space is also a metric space.} if
+\recall \(f: (X, d) \ra (Y, d)\) is \textbf{uniformly continuous} on \(X\)\footnote{Subspace of metric space is also a metric space.} if
 \begin{center}
     \(\forall \epsilon > 0, \exists \delta > 0\) such that \(d_X(p, q) < \delta \implies d_Y(f(p), f(q)) < \epsilon\)
 \end{center}
 즉, 모든 점에서 똑같이 잡을 수 있다!
 
-\recall \note{Theorem 4.19} If \(X\) is compact and \(f\) is continuous on \(X\), then \(f\) is uniformly continuous on \(X\).\footnote{갑자기 왜 uniform continuity 얘기를 하냐, 헷갈리지 말고 기억하시라고!}
+\recall \note{Theorem 4.19, Heine-Cantor} If \(X\) is compact and \(f\) is continuous on \(X\), then \(f\) is uniformly continuous on \(X\).\footnote{갑자기 왜 uniform continuity 얘기를 하냐, 헷갈리지 말고 기억하시라고!}
 
 이제부터 나오는 uniform convergence는 sequence에 관한 것입니다!
 
@@ -187,8 +187,8 @@ For given \(\epsilon > 0\) choose \(N \in \N\) such that for all \(n, m \geq N\)
 Then
 \[
     \begin{aligned}
-        \abs{f_n(x) - f(x)} &= \abs{f_n(x) - f_m(x) + f_m(x) - f(x)} \leq \abs{f_n(x) - f_m(x)} + \abs{f_m(x) - f(x)}\\
-        &\leq \abs{f_m(x) - f(x)} + \epsilon
+        \abs{f_n(x) - f(x)} & = \abs{f_n(x) - f_m(x) + f_m(x) - f(x)} \leq \abs{f_n(x) - f_m(x)} + \abs{f_m(x) - f(x)} \\
+                            & \leq \abs{f_m(x) - f(x)} + \epsilon
     \end{aligned}
 \]
 Fix \(n \geq N\) and let \(m \ra \infty\). Observe that \(\abs{f_m(x) - f(x)} \ra 0\) due to pointwise convergence. Therefore for every \(x \in E\),

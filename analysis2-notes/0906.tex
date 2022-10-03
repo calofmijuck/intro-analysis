@@ -12,7 +12,7 @@ but,
 \]
 As \(n \ra \infty\), \(f'_n(0)\) does not converge to \(f'(0)\).
 
-\ex{7.6} Consider \(f_n(x) = nx(1-x^2)^n\) for \(x \leq 0 \leq 1\). Note that
+\ex{7.6} Consider \(f_n(x) = nx(1-x^2)^n\) for \(x \in [0, 1]\). Note that
 \begin{center}
     \(f_n(0) = 0\), \(f_n(1) = 0\).
 \end{center}
@@ -71,8 +71,8 @@ From \(\ds \lim_{t \ra x} f_n(t) = A_n\), we can choose \(t\) arbitrarily close 
 Therefore for all \(n, m \geq N\),
 \[
     \begin{aligned}
-        \abs{A_n - A_m} &= \abs{A_n - f_n(t) + f_n(t) - A_m + f_m(t) - f_m(t)}\\
-        &\leq \abs{f_n(t) - A_n} + \abs{f_m(t) - A_m} + \abs{f_n(t) - f_m(t)} < 3\epsilon,
+        \abs{A_n - A_m} & = \abs{A_n - f_n(t) + f_n(t) - A_m + f_m(t) - f_m(t)}                             \\
+                        & \leq \abs{f_n(t) - A_n} + \abs{f_m(t) - A_m} + \abs{f_n(t) - f_m(t)} < 3\epsilon,
     \end{aligned}
 \]
 and thus \(\seq{A_n}\) is a Cauchy Sequence.
@@ -83,11 +83,11 @@ and thus \(\seq{A_n}\) is a Cauchy Sequence.
 \end{center}
 Now,
 \begin{center}
-    \(\ds \abs{f(t) - A} \leq \sup_{s \in E} \abs{f(s) - f_n(s)} + \abs{f_n(t) - A_n} + \abs{A_n - A}\).
+    \(\ds \abs{f(t) - A} \leq \abs{f(t) - f_n(t)} + \abs{f_n(t) - A_n} + \abs{A_n - A}\).
 \end{center}
 Given \(\epsilon > 0\), choose \(N \in \N\) such that for \(n \geq N\),
 \begin{center}
-    \(\ds \sup_{s\in E} \abs{f(s) - f_n(s)} < \frac{\epsilon}{3}\) and \(\ds \abs{A_n - A} < \frac{\epsilon}{3}\).
+    \(\ds\abs{f(t) - f_n(t)} < \frac{\epsilon}{3}\) for all \(t \in E\) and \(\ds \abs{A_n - A} < \frac{\epsilon}{3}\).
 \end{center}
 Fix such \(N\) and choose \(\delta\) such that for \(0 < d(x, t) < \delta\) and \(t \in E\),
 \[
@@ -95,10 +95,10 @@ Fix such \(N\) and choose \(\delta\) such that for \(0 < d(x, t) < \delta\) and 
 \]
 Thus for \(t\in E\) and \(0 < d(x, t) < \delta\),
 \[
-    \abs{f(t) - A} \leq \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+    \abs{f(t) - A} < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
 \]
 
-\thm{7.12} Suppose \(f_: E \ra \C\) is continuous on \(E\) and \(f_n \uc f\) on \(E\). Then \(f\) is continuous on \(E\).
+\thm{7.12} Suppose \(f: E \ra \C\) is continuous on \(E\) and \(f_n \uc f\) on \(E\). Then \(f\) is continuous on \(E\).
 
 \pf Let \(x \in E\). If \(x \in E'\), \(f\) is continuous at \(x\) by Theorem 7.11. If \(x\) is an isolated point (not a limit point), \(f\) is continuous at \(x\) by definition of continuity.
 
@@ -120,7 +120,7 @@ Then \(f_n \uc f\) on \(K\).
 
 \quad \claim. There exists \(N \in \N\) such that \(0 \leq g_n(x) < \epsilon\) for all \(x \in K\).
 
-\quad \pf Let \(K_n = \{x \in K : g_n(x)\geq \epsilon\}\). Then \(K_n = K \cap g_n\inv ([\epsilon, \infty))\).\footnote{Closed subset of a compact set is also compact, and the inverse image of closed set is closed if the function is continuous} Since \(g_n\) is decreasing, \(K_{n+1}\subset K_n\), but because \(g_n \ra 0\), \(\bigcap_{n=1}^\infty K_n = \varnothing\). By Theorem 2.36, there exists \(N \in \N\) such that \(K_N = \varnothing\), and then \(K_n = \varnothing\) for \(n \geq N\). Thus, \(0 \leq g_n(x) < \epsilon\) for \(\forall x \in K\), \(\forall n \geq N\).
+\quad \pf Let \(K_n = \{x \in K : g_n(x)\geq \epsilon\}\). Then \(K_n = K \cap g_n\inv ([\epsilon, \infty))\).\footnote{Closed subset of a compact set is also compact, and the inverse image of closed set is closed if the function is continuous.} Since \(g_n\) is decreasing, \(K_{n+1}\subset K_n\), but because \(g_n \ra 0\), \(\bigcap_{n=1}^\infty K_n = \varnothing\). By Theorem 2.36, there exists \(N \in \N\) such that \(K_N = \varnothing\), and then \(K_n = \varnothing\) for \(n \geq N\). Thus, \(0 \leq g_n(x) < \epsilon\) for \(\forall x \in K\), \(\forall n \geq N\).
 
 \rmk Compactness is necessary here. Consider \(f_n(x) = \dfrac{1}{nx + 1}\) on \(x \in E = (0, 1)\). \(f_n\) does not converge to \(0\) uniformly.
 
