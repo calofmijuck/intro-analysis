@@ -1,0 +1,241 @@
+\section*{October 4th, 2022}
+
+
+
+\thm{8.8} \note{Algebraic Completeness of \(\C\)} Let \(a_0, \dots, a_n \in \C\), \(n \geq 1\), \(a_n \neq 0\). Define
+\[
+    p(z) = a_0 + a_1 z + \cdots + a_n z^n
+\]
+Then there exists \(z_0 \in \C\) such that \(p(z_0) = 0\).
+
+\pf WLOG, let \(a_n = 1\). We consider \(\abs{p(z)}\), and we are interested in its minimum. Let
+\[
+    \mu = \inf_{z \in \C} \abs{p(z)}.
+\]
+We want to show that (1) \(\exists z_0 \in \C\) such that \(\mu = \abs{p(z_0)}\), and (2) \(\mu = 0\).
+
+(1) For \(\abs{z} = R\),
+\begin{center}
+    \(\abs{p(z)} \geq \abs{z}^n - \abs{a_{n-1}}\abs{z}^{n-1} - \cdots - \abs{a_0} = R^n(1-\abs{a_{n-1}} R^{-1} - \cdots - \abs{a_0}R^{-n})\)
+\end{center}
+The above expression approaches \(\infty\) as \(R \ra \infty\). Therefore \(\mu = \ds \inf_{\abs{z} \leq R} \abs{p(z)}\) for some \(R_0 > 0\).\footnote{어차피 이 범위 밖에서는 무한대로 발산할 것이다!} Since \(p(z)\) is continuous on \(\abs{z} \leq R_0\) (compact), there exists \(z_
+0 \in \C\) such that \(\mu = \abs{p(z_0)}\).
+
+(2) Now suppose \(\mu \neq 0\). (\(p(z_0) \neq 0\)) Define
+\[
+    Q(z) = \frac{p(z + z_0)}{p(z_0)}.
+\]
+Then \(Q(0) = 1\) and \(\abs{Q(z)} \geq 1\) for all \(z \in \C\), since \(p(z_0)\) was minimum.
+
+There exists \(k \leq n\) such that \(b_k \neq 0\) and
+\[
+    Q(z) = 1 + b_k z^k + \cdots + b_n z^n,
+\]
+because \(\deg Q = n\), and \(Q(0) = 1\).\footnote{0에서는 1이고, \(n\)차 다항식이니 0이 아닌 항이 존재할 것이다.} We will take \(z = re^{i\theta}\).\footnote{Idea: 적당히 돌리고 줄이는 작업을 하면 \(Q(z)\)를 1보다 작아지게 할 수 있다!} There exists \(\theta \in \R\) such that
+\[
+    e^{-ik\theta} b_k = -\abs{b_k}.
+\]
+Take \(r\) small enough so that \(0 < r^k \abs{b_k} < 1\). Then,
+\[
+    \abs{1 + b_k r^ke^{ik\theta}} = 1 - \abs{b_k}r^k > 0.
+\]
+Now
+\[
+    \begin{aligned}
+        \abs{Q(z)} = \abs{Q(re^{i\theta})} & \leq \abs{1 + b_kr^ke^{ik\theta}} + \abs{b_{k+1} r^{k+1} e^{i(k+1)\theta}} + \cdots + \abs{b_n r^n e^{in\theta}} \\
+                                           & = 1 - \abs{b_k}r^k + \abs{b_{k+1}}r^{k+1} + \cdots + \abs{b_n}r^n                                                \\
+                                           & = 1 - r^k \left(\abs{b_k} - r\abs{b_{k+1}} - \cdots - \abs{b_n}r^{n-k}\right).
+    \end{aligned}
+\]
+Choose \(r\) smaller so that the expression in the parentheses is positive. Then \(\abs{Q(z)} < 1\), which contradicts \(\abs{Q(z)} \geq 1\).
+
+\bigskip
+
+이제 푸리에 급수를 공부할 차례입니다. 지금부터 다룰 함수들은 closed interval에서 정의된 함수인데, 항상 \textbf{주기함수}로 놓고 진행하도록 하겠습니다.
+
+\defn. \note{Periodic Function} \(f: \R \ra \C\) is \textbf{periodic} if there exists \(p > 0\) such that
+\[
+    f(x + p) = f(x), \quad (\forall x \in \R),
+\]
+and \(p\) is called the \textbf{period} of \(f\).\footnote{여기서는 가장 작은 \(p\)일 필요는 없다고 할게요.}
+
+\defn. \note{Trigonometric Polynomial}
+\[
+    f(x) = a_0 + \sum_{n=1}^N (a_n \cos nx + b_n \sin nx)
+\]
+where \(a_0, \dots, a_N, b_0, \dots, b_N \in \C\).\footnote{\(a_0\) 가 아니라 \(a_0/2\)를 쓰기도 합니다.}
+This is also written as
+\[
+    f(x) = \sum_{n = -N}^N c_n e^{inx} = \sum_{-N}^N c_n e^{inx},
+\]
+where
+\[
+    c_0 = \frac{1}{2}a_0, \quad c_n = \frac{a_n - ib_n}{2}, \quad c_{-n} = \frac{a_n + ib_n}{2}, \quad a_n = c_n + c_{-n}.
+\]
+
+\rmk We know that
+\[
+    \frac{1}{2\pi} \int_{-\pi}^\pi e^{inx} \d{x} = \begin{cases}
+        1 & (n = 0) \\ 0  & (n \neq 0)
+    \end{cases}.
+\]
+Then
+\[
+   \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-imx} \d{x} = \sum_{n=-N}^N \frac{c_n}{2 \pi} \int_{-\pi}^\pi e^{i(n-m)x} \d{x} = \begin{cases}
+        c_m & (\abs{m} \leq N) \\ 0 & (\abs{m} > N)
+    \end{cases}.
+\]
+Therefore,
+\[
+    c_m = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-imx}\d{x}, \quad (\abs{m} \leq N).
+\]
+
+\rmk It can be checked that \(c_{-n} = \overline{c_n}\) for \(\abs{n} \leq N\) \miff \(f\) is real-valued.
+
+\defn. \note{Trigonometric Series}
+\[
+    \sum_{n \in \Z} c_n e^{inx} = \sum_{-\infty}^\infty c_n e^{inx}, \quad (x \in \R, c_n \in \C).
+\]
+
+\(f\)가 trigonometric polynomial일 때는 \(c_n\)이 어떤 형태로 나오는지 알았는데, \(f\)가 일반적인 주기함수라면 \(c_n\)이 어떻게 표현될까?
+
+\defn. \note{Fourier Series} Given \(f \in \mc{R}\) on \([-\pi, \pi]\). Let
+\[
+    c_m = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-imx} \d{x}, \quad (m\in \Z).
+\]
+Then we call\
+\[
+    \sum_{-\infty}^\infty c_n e^{inx}
+\]
+a \textbf{Fourier series} of \(f\), and \(c_n\) is called the \textbf{Fourier coefficients} of \(f\).\footnote{사실은 relative to \(\seq{e^{inx}}_{n \in \Z}\).} We write
+\[
+    f \sim \sum_{-\infty}^\infty c_n e^{inx}.\footnote{푸리에 급수가 이렇게 주어진다는 것이다. 같다는 의미는 절대 아니다.}
+\]
+
+\defn{8.10} \note{Orthogonal System} Let \(\seq{\phi_n}_{n=1}^\infty\) be a sequence of complex-valued functions on \([a, b]\). If
+\begin{center}
+    \(\ds \int_a^b \phi_n(x) \overline{\phi_m(x)} \d{x} = 0\) for all \(n \neq m\),
+\end{center}
+we call \(\seq{\phi_n}_{n=1}^\infty\) an \textbf{orthogonal system of functions} on \([a, b]\). Moreover, if
+\[
+    \int_a^b \abs{\phi_n(x)}^2 \d{x} = 1
+\]
+holds additionally, we call \(\seq{\phi_n}_{n=1}^\infty\) an \textbf{orthonormal system of functions} on \([a, b]\).
+
+\ex.
+\begin{enumerate}
+    \item \(\seq{\ds \frac{1}{\sqrt{2\pi}} e^{inx}}\) is an orthonormal system of functions on \([-\pi, \pi]\).
+    \item The following functions form an orthonormal system on \([-\pi, \pi]\).
+    \[
+        \left\{\frac{1}{\sqrt{2\pi}}, \frac{\cos x}{\sqrt{\pi}}, \frac{\sin x}{\sqrt{\pi}}, \frac{\cos 2x}{\sqrt{\pi}}, \frac{\sin 2x}{\sqrt{\pi}}, \dots\right\}
+    \]
+\end{enumerate}
+
+\medskip
+
+\defn. \note{Fourier Series (Generalized)} Given an orthonormal system of functions \(\seq{\phi_n}_{n=1}^\infty\) and \(f: [a, b] \ra \C\) where \(f \in \mc{R}\) on \([a, b]\). Then
+\[
+    c_n = \int_a^b f(t) \overline{\phi_n(t)} \d{t}, \quad n = 1, 2, \dots
+\]
+is the \textbf{Fourier coefficient} of \(f\) relative to \(\seq{\phi_n}_{n=1}^\infty\). Also,
+\[
+    \sum_{n=1}^\infty c_n \phi_n
+\]
+is called the \textbf{Fourier series} of \(f\) relative to \(\seq{\phi_n}_{n=1}^\infty\), and we write
+\[
+    f \sim \sum_{n=1}^\infty c_n \phi_n.
+\]
+
+\thm{8.11} Let \(\seq{\phi_n}_{n=1}^\infty\) be an orthonormal system of functions on \([a, b]\), and \(f \in \mc{R}\) on \([a, b]\). Let
+\begin{center}
+    \(c_m = \ds \int_a^b f(x)\overline{\phi_m(x)} \d{x}\) \quad and \quad \(s_n(x) = \ds\sum_{m=1}^n c_m \phi_m(x)\).
+\end{center}
+Suppose \(t_n(x) = \ds\sum_{m=1}^n \gamma_m \phi_m(x)\) where \(\gamma_m \in \C\). Then
+\begin{enumerate}
+    \item \(\ds \int_a^b \abs{f - s_n}^2 \d{x} \leq \int_a^b \abs{f-t_n}^2 \d{x}\). (\(\mc{R}^2[a, b]\)-norm)
+    \item Equality holds if and only if \(c_m = \gamma_m\) for \(m = 1, 2, \dots, n\).
+\end{enumerate}
+
+\rmk \(s_n\) is the best approximation of \(f\) with respect to the norm of \(\mc{R}^2[a, b]\).
+
+\pf Remember these identities!
+\[
+    \int_a^b f \overline{t_n} \d{x} = \sum_{m=1}^n \overline{\gamma_m} \int_a^b f \overline{\phi_m}\d{x} = \sum_{m=1}^n \overline{\gamma_m}c_m,
+\]
+and
+\[
+    \int_a^b f \overline{s_n} \d{x} = \sum_{m=1}^n \overline{c_m} \int_a^b f\overline{\phi_m} \d{x} = \sum_{m=1}^n \abs{c_m}^2.
+\]
+Note that
+\[
+    \begin{aligned}
+        \int_a^b \abs{t_n}^2 \d{x} &= \int_a^b t_n \overline{t_n} \d{x} = \int_a^b \left(\sum_{m=1}^n \gamma_m \phi_m\right)\left(\sum_{k=1}^n \overline{\gamma_k}\overline{\phi_k}\right) \d{x} \\
+        &= \sum_{m=1}^n \sum_{k=1}^n \gamma_m \overline{\gamma_k} \int_a^b \phi_m\overline{\phi_k} \d{x} \overset{(\ast)}{=} \sum_{m=1}^n \abs{\gamma_m}^2.
+    \end{aligned}
+\]
+(\mast): The integral is 1 if \(m = k\) and 0 otherwise.
+
+Similarly, we get \(\ds \int_a^b \abs{s_n}^2 \d{x} = \sum_{m=1}^n \abs{c_m}^2\).
+
+Therefore,
+\[
+    \begin{aligned}
+        \int_a^b \abs{f-t_n}^2 &= \int_a^b (f-t_n)(\overline{f} - \overline{t_n}) = \int_a^b \abs{f}^2 - \int_a^b f \overline{t_n} - \int_a^b \overline{f} t_n + \int_a^b \abs{t_n}^2 \\
+        &= \int_a^b \abs{f}^2 - \sum_{m=1}^n c_m \overline{\gamma_m} - \sum_{m=1}^n \overline{c_m} \gamma_m + \sum_{m=1}^n \abs{\gamma_m}^2 \\
+        &= \int_a^b \abs{f}^2 - \sum_{m=1}^n \abs{c_m}^2 + \sum_{m=1}^n \abs{\gamma_m - c_m}^2. \qquad (\ast\ast)
+    \end{aligned}
+\]
+Meanwhile,
+\[
+    \begin{aligned}
+        \int_a^b \abs{f - s_n}^2 &= \int_a^b \abs{f}^2 - \int_a^b f \overline{s_n} - \int_a^b \overline{f} s_n + \int_a^b \abs{s_n}^2 \\
+        &= \int_a^b \abs{f}^2 - 2\sum_{m=1}^n \abs{c_m}^2 + \sum_{m=1}^n \abs{c_m}^2 \\
+        &= \int_a^b \abs{f}^2 - \sum_{m=1}^n \abs{c_m}^2. \qquad (\star)
+    \end{aligned}
+\]
+Upon comparing this with (\mast\mast), we see that
+\[
+    \int_a^b \abs{f-t_n}^2 = \int_a^b \abs{f-s_n}^2 + \sum_{m=1}^n \abs{\gamma_m - c_m}^2 \geq \int_a^b \abs{f-s_n}^2.
+\]
+Thus (1) holds, and equality holds when \(\gamma_m = c_m\).
+
+\thm{8.12} \note{Bessel's Inequality} With the hypotheses of {\sffamily Theorem 8.11},
+\[
+    \sum_{n=1}^\infty \abs{c_n}^2 \leq \int_a^b \abs{f}^2 \d{x} < \infty.
+\]
+In particular,
+\[
+    \lim_{n\ra\infty} c_n = 0.
+\]
+
+\pf From (\mstar),
+\[
+    \int_a^b \abs{f}^2 - \sum_{m=1}^n \abs{c_m}^2 \geq 0.
+\]
+Let \(n\ra\infty\) to get the desired inequality.
+
+여기서부터 trigonometric series는 Fourier series relative to
+\[
+    \phi_n(x) = \frac{1}{\sqrt{2\pi}} e^{inx}, \quad (n \in \Z)
+\]
+를 의미합니다.
+
+We assume that \(f : \R \ra \C\) is a periodic function with period \(2\pi\), \(f\) is Riemman integrable on \([-\pi, \pi]\), and
+\[
+    c_n = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-inx} \d{x}.
+\]
+
+\defn. Define
+\[
+    s_N = s_N(f; x) = \sum_{-N}^N c_n e^{inx} = \sum_{-N}^N (\sqrt{2\pi} c_n) \left(\frac{1}{\sqrt{2 \pi}}e^{inx}\right).\footnote{마지막 표현은 orthonormal임을 강조하기 위한 것이다.}
+\]
+We call \(s_N\) the \(N\)-th partial sum of the Fourier series of \(f\).
+
+We can calculate that
+\[
+    \frac{1}{2\pi} \int_{-\pi}^\pi \abs{s_N(x)}^2\d{x} = \sum_{-N}^N \abs{c_n}^2 \leq \frac{1}{2\pi} \int_{-\pi}^\pi \abs{f(x)}^2 \d{x}.\footnote{Check \(\frac{1}{2\pi}\int_{-\pi}^\pi \abs{f - s_N} \d{x} \geq 0.\)}
+\]
+
+So, when does this series converge? To be continued.
+
+\pagebreak
