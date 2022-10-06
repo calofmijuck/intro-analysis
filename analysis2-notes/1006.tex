@@ -1,0 +1,164 @@
+\section*{October 6th, 2022}
+
+When does the Fourier series converge? Can continuous functions be expressed as a trigonometric series?
+
+\defn. \note{Dirichlet Kernel} Let \(x \in [-\frac{\pi}{2}, \frac{\pi}{2}]\).\footnote{이 조건은 왜 필요하지?}
+\[
+    D_N(x) = \sum_{n = -N}^N e^{inx} = \begin{cases}
+        \dfrac{\sin\left(N + \frac{1}{2}\right)x}{\sin\frac{x}{2}} & (x\neq 0) \\
+        2N + 1                                                     & (x = 0)
+    \end{cases}.
+\]
+
+The last expression comes from the fact that
+\[
+    (e^{ix} - 1) D_N(x) = e^{i(N+1)x} - e^{-iNx},
+\]
+when \(D_N(x)\) is viewed as a geometric series.
+
+Therefore,
+\[
+    \begin{aligned}
+        s_N(f; x) = \sum_{n=-N}^N c_n e^{inx} & = \sum_{n = -N}^N \frac{1}{2\pi}\int_{-\pi}^\pi f(t)e^{-int} \d{t} \cdot e^{inx} \\
+                                              & = \sum_{n = -N}^N \frac{1}{2\pi}\int_{-\pi}^\pi f(t)e^{in(x - t)} \d{t}          \\
+                                              & = \sum_{n = -N}^N \int_{-\pi}^\pi f(t) D_N(x-t) \d{t}                            \\
+                                              & = \sum_{n = -N}^N \int_{-\pi}^\pi f(x - u) D_N(u) \d{u}, \quad (u = x - t)
+    \end{aligned}
+\]
+where the integration bounds does not change since \(f\) is periodic with period \(2\pi\).
+
+\thm{8.14} \footnote{Note that we have the assumption: \(f\) is periodic and \(f \in \mc{R}\).} For some \(x \in \R\), if there exists \(M > 0\) and \(\delta > 0\) such that
+\[
+    \abs{f(x + t) - f(x)} \leq M\abs{t}
+\]
+for all \(\abs{t} < \delta\), then
+\[
+    \lim_{N \ra\infty} s_N(f; x) = f(x).
+\]
+
+\pf Let \(x\) be fixed. Note that
+\[
+    \frac{1}{2\pi} \int_{-\pi}^\pi D_N(t)\d{t} = 1.
+\]
+We want \(s_N(f;x) - f(x)\) to be small enough. So,
+\[
+    \begin{aligned}
+        s_N(f; x) - f(x) & = \frac{1}{2\pi} \int_{-\pi}^\pi \big(f(x-t) - f(x)\big)D_N(t)\d{t}                                                               \\
+                         & \overset{(?)}{=} \frac{1}{2\pi} \int_{-\pi}^\pi \frac{f(x-t) - f(x)}{\sin \frac{t}{2}} \sin \left(N + \frac{1}{2}\right) t \d{t}.
+    \end{aligned}
+\]
+But \(\sin\frac{t}{2}\) is undefined for \(t = 0\), so we define
+\[
+    g(t) = \begin{cases}
+        \dfrac{f(x-t) - f(x)}{\sin \frac{t}{2}} & (0 < \abs{t} \leq \pi) \\
+        0                                       & (t = 0)
+    \end{cases},
+\]
+and write
+\[
+    \begin{aligned}
+        s_N(f; x) - f(x) & = \frac{1}{2\pi} \int_{-\pi}^\pi g(t) \sin \left(N + \frac{1}{2}\right) t \d{t}                                                                     \\
+                         & = \frac{1}{2\pi} \int_{-\pi}^\pi g(t)\cos\frac{t}{2} \sin Nt \d{t} + \frac{1}{2\pi} \int_{-\pi}^\pi g(t)\sin\frac{t}{2} \cos Nt \d{t}. \quad (\ast)
+    \end{aligned}
+\]
+
+Recall that \(\{\phi_0, \phi_{2n}, \phi_{2n-1}\}\) where
+\[
+    \phi_0 = \frac{1}{\sqrt{2\pi}}, \quad \phi_{2n} = \frac{\sin nt}{\sqrt{\pi}}, \quad \phi_{2n-1} = \frac{\cos nt}{\sqrt{\pi}}
+\]
+is an orthonormal system. Since \(g(t)\cos\frac{t}{2}\) and \(g(t) \sin \frac{t}{2}\) are Riemann integrable (bounded and continuous except for \(t = 0\)), \((\ast) = \widehat{c_{2N}}(h_1) + \widehat{c_{2N-1}}(h_2)\) where \(\widehat{c_{2N}}, \widehat{c_{2N-1}}\) are Fourier coefficients of
+\[
+    h_1(t) = \frac{\sqrt{\pi}}{2\pi} g(t)\cos \frac{t}{2}, \quad h_2(t) = \frac{\sqrt{\pi}}{2\pi} g(t)\sin \frac{t}{2},
+\]
+relative to \(\{\phi_n\}\). By {\sffamily Theorem 8.12},
+\[
+    s_N(f; x) - f(x) = \widehat{c_{2N}}(h_1) + \widehat{c_{2N-1}}(h_2) \ra 0
+\]
+as \(N \ra \infty\).
+
+\thm. Suppose \(f\) is continuous. Then for all \(\epsilon > 0\), there exists a trigonometric polynomial \(P\) such that,
+\[
+    \abs{P(x) - f(x)} < \epsilon, \quad (x \in \R).
+\]
+
+\rmk The statement is equivalent to:
+\begin{center}
+    \(\exists\) a sequence of trigonometric polynomials \(P_n\) such that \(\ds \sup_{x\in \R} \abs{P_n(x) - f(x)} \ra 0\) as \(n \ra \infty\).
+\end{center}
+
+\pf We consider the domain of \(f\) as \([0, 2\pi)\), and define
+\[
+    T = \{(a, b) \in \R^2 : a^2 + b^2 = 1\} \approx \{e^{ix} : x \in [0, 2\pi)\}.
+\]
+Then \(h(x) = e^{ix}\) is a bijection from \([0, 2\pi)\) to \(T\), so \(h\inv\) exists. Now let
+\[
+    g = f\circ h\inv
+\]
+so that \(f(x) = g(e^{ix})\). Then \(g : T \ra \C\), and \(T\) is compact in \(\R^2\). Let
+\[
+    \mc{A} = \left\{ \sum_{n=-N}^N c_n z^n : z\in T, c_n\in \C \right\}.
+\]
+Then \(\mc{A}\) is a self-adjoint algebra.\footnote{Check! The `magic bars' will do the work.} Using the identity function of \(T\), we see that \(\mc{A}\) separates points of \(T\) and \(\mc{A}\) vanishes at no point of \(T\). By {\sffamily Theorem 7.33}, \(\mc{A}\) is dense in \(C(T, \C)\). Therefore, for all \(\epsilon > 0\), there exists
+\begin{center}
+    \(\widehat{p} \in \mc{A}\) such that \(\ds \sup_{z \in T} \abs{\widehat{p}(z) - g(z)} < \epsilon\).
+\end{center}
+Using \(p(x) = \widehat{p}(e^{ix})\), we recover \(f(x)\) and get
+\[
+    \sup_{x \in [0, 2\pi)} \abs{p(x) - g(h(x))} = \sup_{x \in [0, 2\pi)} \abs{p(x) - f(x)} < \epsilon.
+\]
+
+\medskip
+
+Our last question is, what if \(f\) is not continuous?
+
+\thm{8.16} \note{Parseval} Suppose that \(f, g \in \mc{R}^{2}[-\pi, \pi]\) and periodic with period \(2\pi\). If
+\[
+    f \sim \sum_{n=-\infty}^\infty c_n e^{inx}, \quad g \sim \sum_{n=-\infty}^\infty \gamma_n e^{inx},
+\]
+the following holds.
+\begin{enumerate}
+    \item \(\ds \lim_{N \ra \infty} \frac{1}{2\pi} \int_{-\pi}^\pi \abs{f(x) - s_N(f; x)}^2 \d{x} = 0\).
+    \item \note{Parseval's Identity} \(\ds \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \overline{g(x)} \d{x} = \sum_{n = -\infty}^\infty c_n \overline{\gamma_n}\).
+    \item \(\ds \frac{1}{2\pi} \int_{-\pi}^\pi \abs{f(x)}^2 \d{x} = \sum_{n = -\infty}^\infty \abs{c_n}^2\). (Directly follows from (2))
+\end{enumerate}
+
+\pf We will use the notation
+\[
+    \norm{h}_2 = \left\{\frac{1}{2\pi} \int_{-\pi}^\pi \abs{h(x)}^2 \d{x}\right\}^{1/2}.
+\]
+(1) Let \(\epsilon > 0\) be fixed. From {\sffamily Problem 6.12},\footnote{\(f \in \mc{R}\) 이면 \(f\)를 근사하는 연속함수 \(h\)를 잡을 수 있다. (과제 \#2)} there exists a continuous function \(h\) with period \(2\pi\) such that
+\[
+    \norm{f - h}_2 < \frac{\epsilon}{3}.
+\]
+By {\sffamily Theorem 8.15}, there exists a trigonometric polynomial \(p\) such that
+\[
+    \norm{h - p}_2 < \frac{\epsilon}{3}.
+\]
+We observe the degree of \(p\), and let \(N_0 = \deg p\). Then by {\sffamily Theorem 8.11},\footnote{Degree를 높이면 근사가 더 정확해진다.}
+\[
+    \norm{h - s_N(h)}_2 \leq \norm{h - p}_2 < \frac{\epsilon}{3}
+\]
+holds for \(N \geq N_0\). Finally the following holds, \(\norm{s_N(h-f)}_2 \leq \norm{h - f}_2 < \epsilon\).\footnote{\(s_N(f;x)\)의 정의 참고. \[\int_{-\pi}^\pi \abs{s_N(f;x)}^2 \d{x} \leq \int_{-\pi}^\pi \abs{f(x)}^2 \d{x}\]}
+
+Now we use {\sffamily Problem 6.11}. (Triangle Inequality for Norms)
+\[
+    \begin{aligned}
+        \norm{f - s_N(f)}_2 & \leq \norm{f - h}_2 + \norm{h - s_N(h)}_2 + \norm{s_N(h) - s_N(f)}_2                                                                    \\
+                            & = \norm{f - h}_2 + \norm{h - s_N(h)}_2 + \norm{s_N(h - f)}_2 < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+    \end{aligned}
+\]
+
+(2) By {\sffamily Problem 6.10}, (Schwarz Inequality for Integrals)
+\[
+    \abs{\int_{-\pi}^\pi f \overline{g} - \int_{-\pi}^\pi s_N(f) \overline{g}} \leq \int_{-\pi}^\pi \abs{f - s_N(f)}\abs{g} \leq \left(\int_{-\pi}^\pi \abs{f - s_N(f)}^2\right)^{1/2} \left(\int_{-\pi}^\pi \abs{g}^2\right)^{1/2} \ra 0
+\]
+as \(N \ra \infty\), by (1). Now we have
+\[
+    \begin{aligned}
+        \frac{1}{2\pi} \int_{-\pi}^\pi s_N(f) \overline{g(x)}\d{x} & = \sum_{n = -N}^N c_n \frac{1}{2\pi} \int_{-\pi}^\pi e^{inx} \overline{g(x)}\d{x}                                            \\
+                                                                   & =\sum_{n = -N}^N c_n \frac{1}{2\pi} \overline{\int_{-\pi}^\pi e^{-inx} g(x)\d{x}} = \sum_{n = -N}^N c_n \overline{\gamma_n},
+    \end{aligned}
+\]
+which converges to \(\ds \sum_{n=-\infty}^\infty c_n \overline{\gamma_n}\).
+
+\pagebreak
