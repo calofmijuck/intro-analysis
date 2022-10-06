@@ -1,0 +1,294 @@
+%!TEX encoding = utf-8
+\documentclass[12pt]{report}
+\usepackage{kotex}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{
+    top = 20mm,
+    left = 20mm,
+    right = 20mm,
+    bottom = 20mm
+}
+\geometry{a4paper}
+
+\pagenumbering{gobble}
+\renewcommand{\baselinestretch}{1.4}
+\newcommand{\numl}[1]{\item[\large\textbf{\sffamily #1.}]}
+\newcommand{\num}[1]{\item[\textbf{\sffamily #1}]}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\adj}{\text{*}}
+\newcommand{\bs}{\setminus}
+\renewcommand{\subset}{\subseteq}
+
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
+\renewcommand{\span}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\uc}{\overset{u}{\ra}}
+\newcommand{\imp}{\implies}
+\newcommand{\mimp}{\(\implies\)}
+\newcommand{\mimpd}{\(\impliedby\)}
+\newcommand{\miff}{\!\!\(\iff\)}
+\newcommand{\mast}{\(\ast\)}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\lint}[2]{\underline{\int_{#1}^{#2}}}
+\newcommand{\uint}[2]{\overline{\int_{#1}^{#2}}}
+\renewcommand{\d}[1]{\,d{#1}}
+
+\let\oldexists\exists
+\renewcommand{\exists}{\oldexists\,}
+
+\begin{document}
+\begin{center}
+    \textbf{\Large 해석개론 및 연습 2 과제 \#3}\\
+    \large 2017-18570 컴퓨터공학부 이성찬
+\end{center}
+\begin{enumerate}
+
+    \numl{1}
+    \begin{enumerate}
+        \num{(a)} Yes. Suppose the series \(\sum c_n x^n\) converges for \(\abs{x} < R\), where
+        \[
+            \frac{1}{R} = \limsup_{n\ra\infty} \sqrt[n]{\abs{c_n}}, \quad (R \in (0, \infty]).
+        \]
+        Then for any \(\abs{y} < \abs{x}\),
+        \[
+            \limsup_{n \ra \infty} \sqrt[n]{\abs{c_n y^n}} = \abs{y} \limsup_{n\ra\infty} \sqrt[n]{\abs{c_n}} = \frac{\abs{y}}{R} < \frac{\abs{x}}{R} < 1.
+        \]
+        Thus \(\sum c_n y^n\) converges.
+
+        \num{(b)} To apply Theorem 7.17, we take
+        \[
+            f_n(x) = \sum_{k=1}^n c_k x^k.
+        \]
+        For \(x_0\), we can take any \(x_0 \in [-R + \epsilon, R - \epsilon]\) (\(\epsilon > 0\)).
+    \end{enumerate}
+
+    \numl{2} If either \(\ds \sum_{i=1}^\infty \sum_{j=1}^\infty a_{ij}\) or \(\ds \sum_{j=1}^\infty \sum_{i=1}^\infty a_{ij}\) is convergent, we can conclude that the given equality holds because we can use Theorem 8.3. So it is sufficient to check for the case where the sum diverges to infinity. For \(N \in \N\),
+    \[
+        \sum_{i=1}^N \sum_{j=1}^N a_{ij} = \sum_{j=1}^N \sum_{i=1}^N a_{ij}.
+    \]
+    Let \(N \ra \infty\). If either sum diverges to infinity, the other sum should diverge to infinity.
+
+    \numl{3} For \(\abs{x} < 1\), we can expand as the following.
+    \[
+        \begin{aligned}
+            \log (1 + x) & = \int_0^x \frac{1}{1 + t}\d{t} = \int_0^x \sum_{n=0}^\infty (-t)^n \d{t} = \int_0^x \lim_{k \ra \infty} \sum_{n=0}^k (-t)^n \d{t}                                                \\
+                         & \overset{(\ast)}{=} \lim_{k \ra \infty} \int_0^x \sum_{n=0}^k (-t)^n \d{t} = \lim_{k \ra\infty} \sum_{n=0}^k \int_0^x (-t)^n \d{t} = \sum_{n=0}^\infty \frac{(-1)^n x^{n+1}}{n+1} \\
+                         & = \sum_{n=1}^\infty (-1)^{n-1}\frac{x^n}{n}.
+        \end{aligned}
+    \]
+    The equality in (\mast) holds because \(\sum_{n=0}^\infty (-t)^n\) converges uniformly on \(t \in (-1, 1)\).
+
+    Let \(\epsilon \in (0, a)\) be given and set \(x = a + y\). Consider \(\log x = \log (a + y)\), for small \(\abs{y} < \epsilon\).
+    \[
+        \begin{aligned}
+            \log x & = \log a \left(1 + \frac{y}{a}\right) = \log a + \log\left(1 + \frac{y}{a}\right)                                 \\
+                   & = \log a + \sum_{n=1}^\infty (-1)^{n-1} \frac{(y/a)^n}{n} = \log a + \sum_{n=1}^\infty \frac{(-1)^{n-1}}{na^n}y^n \\
+                   & = \log a + \sum_{n=1}^\infty \frac{(-1)^{n-1}}{na^n} (x - a)^n. \qquad (x \in (a - \epsilon, a + \epsilon))
+        \end{aligned}
+    \]
+    This works because \(\abs{y/a} < 1\). \(\log x\) is real-analytic on \((0, \infty)\).
+
+    \numl{4} Let \(I = [-a, a] \bs \{0\} \subset \R\) for \(0 < a \ll 1\).
+    \begin{enumerate}
+        \num{(a)} The denominator and the numerator both converge to \(0\) as \(x \ra 0\), and both are differentiable on \(I\). Let
+        \begin{center}
+            \(f(x) = \ds e - (1+x)^{1/x}\) \quad and \quad \(g(x) = x\).
+        \end{center}
+        Since \(g'(x) \neq 0\) on \(I\), we can use L'H\^opital's Rule. The given limit is equal to \(\ds \lim_{x \ra 0} f'(x)\), if this limit exists. Note that
+        \[
+            f'(x) = \frac{(1+x)\log(1+x) - x}{x^2(x+1)}\cdot (1+x)^{1/x}.
+        \]
+        Therefore, we restrict \(x\) so that \(\abs{x} < 1\) and
+        \[
+            \begin{aligned}
+                \lim_{x \ra 0} f'(x) & = \lim_{x \ra 0} \frac{(1+x)\log(1+x) - x}{x^2(x+1)}\cdot (1+x)^{1/x}                                                                                  \\
+                                     & = e\lim_{x \ra 0} \frac{(1+x) \sum_{n=1}^\infty \frac{(-1)^{n-1} x^n}{n} - x}{x^2(x+1)}                                                                \\
+                                     & = e\lim_{x \ra 0} \frac{(1+x) \sum_{n=2}^\infty \frac{(-1)^{n-1} x^n}{n} + x^2}{x^2(x+1)}                                                              \\
+                                     & = e\lim_{x \ra 0} \left(\sum_{n=2}^\infty \frac{(-1)^{n-1}}{n}x^{n-2} + \frac{1}{x+1}\right)                                                           \\
+                                     & = e + e \lim_{x \ra 0} \sum_{n=2}^\infty \frac{(-1)^{n-1}}{n}x^{n-2} = e + \lim_{x \ra 0} \lim_{k \ra \infty} \sum_{n=2}^k \frac{(-1)^{n-1}}{n}x^{n-2} \\
+                                     & \overset{(\ast)}{=} e + \lim_{k \ra \infty} \lim_{x \ra 0}\sum_{n=2}^k \frac{(-1)^{n-1}}{n}x^{n-2} = e - \frac{e}{2} = \frac{e}{2}.
+            \end{aligned}
+        \]
+        The equality in (\mast) holds because \(\sum_{n=2}^\infty \frac{(-1)^{n-1}}{n}x^{n-2}\) converges uniformly on \(\abs{x} < 1\). The limit exists, so \(\frac{e}{2}\) is the desired value.
+        \num{(b)} Let \(x = \frac{\log n}{n}\) then \(n \ra \infty\) as \(x \ra 0^+\).
+        \[
+            \lim_{n \ra \infty} \frac{n}{\log n}(n^{1/n} - 1) = \lim_{n \ra \infty} \frac{e^{\log n/n} - 1}{\log n / n} = \lim_{x \ra 0^+} \frac{e^x - 1}{x} = \frac{d}{dx} e^x \bigg|_{x = 0} = 1.
+        \]
+        \num{(c)} We first calculate the following limit.
+        \[
+            \lim_{x \ra 0} \frac{\tan x - x}{x^3} = \lim_{x \ra 0} \frac{\sec^2 x - 1}{3x^2} = \lim_{x \ra 0} \frac{2\sec^2 x \tan x}{6x} = \frac{1}{3}.
+        \]
+        L'H\^opital's Rule was used sequentially, since all the terms in the denominator and the numerator approach \(0\) as \(x \ra 0\). Also they are differentiable and derivative of the numerator is not zero on \(I\).
+
+        Now we compute the following limit.
+        \[
+            \lim_{x \ra 0} \frac{1 - \cos x}{x^2} = \lim_{x \ra 0} \frac{\sin^2 x}{x^2 (1 + \cos x)} = \frac{1}{2}.
+        \]
+
+        Therefore,
+        \[
+            \lim_{x \ra 0} \frac{\tan x - x}{x(1-\cos x)} = \frac{\ds \lim_{x \ra 0} \frac{\tan x - x}{x^3}}{\ds \lim_{x \ra 0} \frac{1-\cos x}{x^2}} = \frac{1/3}{1/2} = \frac{2}{3}.
+        \]
+
+        \num{(d)} We first calculate the following limit.
+        \[
+            \lim_{x \ra 0} \frac{x - \sin x}{x^3} = \lim_{x \ra 0} \frac{1 - \cos x}{3x^2} = \frac{1}{3}\cdot \frac{1}{2} = \frac{1}{6}.
+        \]
+        L'H\^opital's Rule was used, since both of the terms in the denominator and the numerator approach \(0\) as \(x \ra 0\). Also they are differentiable and derivative of the numerator is not zero on \(I\). The last limit was computed using the result from {\sffamily (c)}.
+
+        Therefore, using the results from {\sffamily (c)}, we get
+        \[
+            \lim_{x \ra 0} \frac{x - \sin x}{\tan x - x} = \frac{\ds \lim_{x\ra 0} \frac{x - \sin x}{x^3}}{\ds \lim_{x \ra 0} \frac{\tan x -x}{x^3}} = \frac{1/6}{1/3} = \frac{1}{2}.
+        \]
+    \end{enumerate}
+
+    \numl{5} Let \(I = (0, \frac{\pi}{2})\).
+    \begin{enumerate}
+        \num{(i)} Let \(f(x) = x - \sin x\). \(f'(x) = 1-\cos x > 0\) in \(I\). Thus \(f\) is increasing. Therefore \(f(x) > f(0) = 0\), which proves that \(\sin x < x\).
+
+        \num{(ii)} Let \(g(x) = \sin x - \frac{2}{\pi}x\). \(g(x)\) is continuous on \([0, \frac{\pi}{2}]\) and differentiable on \(I\). By Rolle's Theorem,
+        \begin{center}
+            \(\exists \alpha \in I\) such that \(g'(\alpha) = \cos \alpha - \dfrac{2}{\pi} = 0\).
+        \end{center}
+        Since \(g''(x) = -\sin x < 0\) on \(I\), \(g'(x)\) is decreasing, which makes the above \(\alpha\) a unique solution to \(g'(x) = 0\). For \((0, \alpha)\), we see that \(g'(x) > 0\), and \(g'(x) < 0\) for \((\alpha, \frac{\pi}{2})\). Thus, \(g(x)\) increases then decreases on \(I\). Therefore, \(g(x) > \min\{g(0), g\left(\frac{\pi}{2}\right)\} = 0\), which proves that \(\frac{2}{\pi} x < \sin x\).
+    \end{enumerate}
+    Overall, we have \(\frac{2}{\pi} x < \sin x < x\) for \(x \in I\). We divide by \(x\) \((> 0)\) to get
+    \[
+        \frac{2}{\pi} < \frac{\sin x}{x} < 1, \quad (x \in I).
+    \]
+
+    \numl{6} For \(n = 0, 1\), the given inequality is trivial. For \(n = 2\),
+    \[
+        \abs{\sin 2x} = 2\abs{\sin x \cos x} \leq 2\abs{\sin x}. \quad (\because \abs{\cos x} \leq 1)
+    \]
+    Now we prove the inequality by induction. Suppose that
+    \[
+        \abs{\sin nx} \leq n\abs{\sin x}
+    \]
+    for \(n \geq 2\). Then,
+    \[
+        \begin{aligned}
+            \abs{\sin (n+1)x} & = \abs{\sin nx \cos x + \cos nx \sin x}                      \\
+                              & \leq \abs{\sin nx} \abs{\cos x} + \abs{\cos nx} \abs{\sin x} \\
+                              & \leq n \abs{\sin x}\abs{\cos x} + \abs{\sin x}               \\
+                              & \leq n \abs{\sin x} + \abs{\sin x} = (n+1)\abs{\sin x}.
+        \end{aligned}
+    \]
+    Thus the given inequality holds for all \(n = 0, 1, 2, \dots\) and equality holds when \(x = k \pi\) for \(k \in \Z\).
+
+    \numl{7}
+    \begin{enumerate}
+        \num{(a)} Let \(\gamma_n = s_n - \log n\). We first show that \(\gamma_n\) is decreasing. For \(n \leq x \leq n+1\), (\(n \in \N\))
+        \[
+            \frac{1}{n+1} \leq \frac{1}{x}.
+        \]
+        Using this fact,
+        \[
+            0 \leq \int_n^{n+1} \left(\frac{1}{x} - \frac{1}{n+1}\right) \d{x} = \log\left(\frac{n+1}{n}\right) - \frac{1}{n+1} = \gamma_n - \gamma_{n+1}.
+        \]
+        Therefore \(\gamma_n \geq \gamma_{n+1}\).
+
+        Next, we show that \(\gamma_n > 0\). For \(k \leq x \leq k + 1\), (\(k \in \N\))
+        \[
+            \frac{1}{x} \leq \frac{1}{k}.
+        \]
+        Therefore,
+        \[
+            \begin{aligned}
+                \gamma_n = s_n - \log n & = \frac{1}{n} + \sum_{k=1}^{n-1} \frac{1}{k} - \int_1^n \frac{1}{x}\d{x}                        \\
+                                        & = \frac{1}{n} + \sum_{k=1}^{n-1} \frac{1}{k} - \sum_{k=1}^{n-1} \int_k^{k+1} \frac{1}{x}\d{x}   \\
+                                        & = \frac{1}{n} + \sum_{k=1}^{n-1} \int_k^{k+1} \left(\frac{1}{k} - \frac{1}{x}\right) \d{x} > 0.
+            \end{aligned}
+        \]
+        \(\gamma_n > 0\). Thus \(\gamma_n\) is decreasing and bounded below. \(\gamma_n\) converges by the monotone convergence theorem.
+
+        \num{(b)} From {\sffamily (a)}, we know that \(\gamma_n > 0\), so
+        \[
+            \log n < s_n.
+        \]
+        Let \(N = 10^m\) for \(m \in \N\). Then
+        \[
+            m \log 10 = \log N < s_N.
+        \]
+        Therefore setting \(m \log 10 \geq 100\) will work, which implies
+        \[
+            m \geq \frac{100}{\log 10} \approx 43.42,
+        \]
+        so \(m\) should be at least 44.
+    \end{enumerate}
+
+    \pagebreak
+
+    \numl{8} Let \(\epsilon > 0\) be given. Since \(f(x) \ra 1\) as \(x \ra \infty\), we can choose some \(K > 0\) such that
+    \[
+        x \geq K \implies 1 - \frac{\epsilon}{2} < f(x) < 1 + \frac{\epsilon}{2}.
+    \]
+    For \(x \geq 0\), \(\abs{e^{-tx}} \leq 1\). Also \(f\) is bounded on \([0, A]\) for all \(A < \infty\) because \(f\) is Riemann integrable. Let \(\abs{f} \leq M\) for \(M > 0\).
+    \[
+        \begin{aligned}
+            t\int_0^\infty e^{-tx}f(x)\d{x} & = t\int_0^K e^{-tx}f(x)\d{x} + \lim_{b \ra \infty} t\int_K^b e^{-tx} f(x) \d{x} \qquad (\ast)          \\
+                                            & \leq t \int_0^K M\d{x} + \lim_{b \ra\infty} \int_K^b \left(1 + \frac{\epsilon}{2}\right)te^{-tx} \d{x} \\
+                                            & = KMt + \left(1 + \frac{\epsilon}{2}\right)e^{-tK}.
+        \end{aligned}
+    \]
+    The last expression approaches \(1 + \epsilon/2\) as \(t \ra 0\). So we can choose \(\delta_1 > 0\) such that
+    \[
+        0 < t < \delta_1 \implies \abs{KMt + \left(1 + \frac{\epsilon}{2}\right)(e^{-tK} - 1)} < \frac{\epsilon}{2}.
+    \]
+    Therefore, if \(t \in (0, \delta_1)\),
+    \[
+        t\int_0^\infty e^{-tx}f(x)\d{x} < KMt + \left(1 + \frac{\epsilon}{2}\right)e^{-tK} < 1 + \epsilon.
+    \]
+
+    In a similar manner, we can start from (\mast) and get a lower bound.
+    \[
+        \begin{aligned}
+            (\ast) & \geq t \int_0^K (-M) \d{x} + \lim_{b \ra \infty} \int_K^b \left(1 - \frac{\epsilon}{2}\right) te^{-tx} \d{x} \\
+                   & = -KMt + \left(1 - \frac{\epsilon}{2}\right)e^{-tK}
+        \end{aligned}
+    \]
+    The last expression approaches \(1 - \epsilon/2\) as \(t \ra 0\). So we can choose \(\delta_2 > 0\) such that
+    \[
+        0 < t < \delta_2 \implies \abs{-KMt + \left(1 - \frac{\epsilon}{2}\right)(e^{-tK} - 1)} < \frac{\epsilon}{2}.
+    \]
+    Therefore, if \(t \in (0, \delta_2)\),
+    \[
+        t\int_0^\infty e^{-tx}f(x)\d{x} > -KMt + \left(1 - \frac{\epsilon}{2}\right)e^{-tK} > 1 - \epsilon.
+    \]
+
+    So we have proved that for any given \(\epsilon > 0\), we can choose \(\delta = \min\{\delta_1, \delta_2\}\) such that
+    \[
+        0 < t < \delta \implies \abs{t\int_0^\infty e^{-tx}f(x)\d{x} - 1} < \epsilon.
+    \]
+    Thus
+    \[
+        \lim_{t \ra 0^+} t\int_0^\infty e^{-tx} f(x) \d{x} = 1.
+    \]
+\end{enumerate}
+\end{document}
