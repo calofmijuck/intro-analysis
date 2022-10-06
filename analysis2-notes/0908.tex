@@ -2,7 +2,7 @@
 
 \thm{7.15} \((C(X), \norm{\cdot})\) is a complete metric space.
 
-\pf \footnote{코시 수열이 수렴하며 수렴값이 \(C(X)\)에 있는지 보이면 된다.} Suppose \(\seq{f_n}\) is a Cauchy sequence in \(C(X)\). By Theorem 7.8, \(\exists f: X\ra \C\) such that \(f_n \uc f\) in \(X\). Also by Theorem 7.12, \(f\) is continuous on \(X\).
+\pf \footnote{코시 수열이 수렴하며 수렴값이 \(C(X)\)에 있는지 보이면 된다.} Suppose \(\seq{f_n}\) is a Cauchy sequence in \(C(X)\). By Theorem 7.8, \(\exists f: X\ra \C\) such that \(f_n \uc f\) on \(X\). Also by Theorem 7.12, \(f\) is continuous on \(X\).
 
 Choose \(N\in \N\) such that \(\norm{f_N - f} \leq 1\). Then
 \[
@@ -21,7 +21,7 @@ and \(f\) is bounded. Therefore \(f \in C(X)\), and \(C(X)\) is complete.
 \end{enumerate}
 Then \(f \in \mc{R}(\alpha)\) and \(\ds \int_a^b f \d{\alpha} = \lim_{n \ra \infty} \int_a^b f_n \d{\alpha}\).
 
-\pf WLOG, let \(f_n: [a, b] \ra \R\). We know that \(f_n, f\) are bounded.\footnote{Why?}
+\pf WLOG, let \(f_n: [a, b] \ra \R\). We know that \(f_n, f\) are bounded.\footnote{리만적분가능하면 유계이다.}
 
 Let \(\epsilon_n = \ds \sup_{x \in [a, b]} \abs{f_n(x) - f(x)} < \infty\), and because \(f_n \uc f\), \(\epsilon_n \ra 0\) as \(n \ra \infty\). Therefore
 \[
@@ -75,7 +75,7 @@ Thus, set \(t = x_0\) to get
 
 For (R2), fix \(x \in [a, b]\). Define
 \[
-    \phi_n(t) = \frac{f_n(t) - f_m(x)}{t - x}, \qquad \phi(t) = \frac{f(t) - f(x)}{t - x},
+    \phi_n(t) = \frac{f_n(t) - f_n(x)}{t - x}, \qquad \phi(t) = \frac{f(t) - f(x)}{t - x},
 \]
 for \(t \in [a, b] \bs \{x\}\). Then for each \(n\),
 \[
@@ -118,7 +118,7 @@ Now define
 \]
 By (1), \(0 \leq f(x) \leq \sum (3/4)^n\) and \(f(x)\) converges uniformly by \(M\)-Test, hence continuous on \(\R\). Now we show that \(f\) is nowhere differentiable.
 
-Fix \(x \in \R\), let \(m \in \N\). Choose \(\ds \delta_m = \pm \frac{1}{2}\cdot 4^{-m}\) so that there are no integers between \(4^mx\) and \(4^m(x + \delta_m)\). If \(n > m\), then \(4^n \delta_m = \pm \dfrac{1}{2}\cdot 4^{n - m}\) is even. Then by periodicity,
+Fix \(x \in \R\), let \(m \in \N\). Choose \(\ds \delta_m = \pm \frac{1}{2}\cdot 4^{-m}\) so that (3) there are no integers between \(4^mx\) and \(4^m(x + \delta_m)\). If \(n > m\), then \(4^n \delta_m = \pm \dfrac{1}{2}\cdot 4^{n - m}\) is even. Then by periodicity,
 \[
     a_n = \frac{\varphi(4^n(x+\delta_m)) - \varphi(4^n x)}{\delta_m} = 0.
 \]

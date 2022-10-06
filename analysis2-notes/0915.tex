@@ -20,7 +20,7 @@ By \((\ast)\), for all \(n \in \N\) and \(j = 1, \dots, r\),
 \[
     \abs{f_n(x)} \leq \abs{f_n(x_j)} + 1, \quad \forall x \in B_\delta(x_j).
 \]
-Then wee see that \(\norm{f_n} \leq \ds \max_{1\leq j\leq r} \abs{f_n(x_j)} + 1\), for all \(n \in \N\). Now since \(\seq{f_n}\) is pointwise bounded,
+Then we see that \(\norm{f_n} \leq \ds \max_{1\leq j\leq r} \abs{f_n(x_j)} + 1\), for all \(n \in \N\). Now since \(\seq{f_n}\) is pointwise bounded,
 \[
     \sup_{n \in \N} \norm{f_n} \leq \sup_{n \in \N}\max_{1 \leq j \leq r} \abs{f_n(x_j)} + 1 < \infty,
 \]
@@ -85,7 +85,7 @@ Then \(g(0) = 0\), \(g'(x) = 2nx(1 - (1-x^2)^{n-1})\geq 0\) for \(x \in [0, 1]\)
 \[
     \int_{-1}^1 (1-x^2)^n \d{x} = 2\int_0^1 (1-x^2)^n \d{x} \geq 2 \int_0^{1/\sqrt{n}} (1 - nx^2) \d{x} = \frac{4}{3\sqrt{n}} > \frac{1}{\sqrt{n}},
 \]
-therefore \(c_n \leq \sqrt{n}\).
+therefore \(c_n < \sqrt{n}\).
 
 By change of variables \(s = x + t\) and because \(f \equiv 0\) on \(\R \bs [0, 1]\),
 \[
@@ -103,12 +103,12 @@ Now,
 \]
 Split the last integral to \([-1, 1] = [-1, -\delta] \cup [-\delta, \delta] \cup [\delta, 1]\). Then we see that
 \[
-    \int_{-\delta}^\delta \abs{f(x+t) - f(x)} Q_n(t)\d{t} < \frac{\epsilon}{2} \int_{-\delta}^\delta Q_n(t)\d{t},
+    \int_{-\delta}^\delta \abs{f(x+t) - f(x)} Q_n(t)\d{t} < \frac{\epsilon}{2} \int_{-\delta}^\delta Q_n(t)\d{t} < \frac{\epsilon}{2},
 \]
 \[
     \int_{-1}^{-\delta} \abs{f(x+t) - f(x)} Q_n(t)\d{t} + \int_{\delta}^1 \abs{f(x+t) - f(x)} Q_n(t)\d{t} < 4 c_n \norm{f} (1-\delta^2)^n,
 \]
-since \(Q_n(t) \leq c_n(1-\delta^2)^n\).
+since \(Q_n(t) \leq c_n(1-\delta^2)^n\) on \(\delta \leq \abs{t} \leq 1\).
 
 Let \(N \in \N\) such that for \(n \geq N\),
 \[

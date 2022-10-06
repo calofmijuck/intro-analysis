@@ -108,11 +108,11 @@ Thus for \(t\in E\) and \(0 < d(x, t) < \delta\),
 
 이 정리는 언제 uniformly converge 하는지 알려줍니다.
 
-\thm{7.13} Given a compact metric space \(K\), suppose that
+\thm{7.13} \note{Dini} Given a compact metric space \(K\), suppose that
 \begin{enumerate}
     \item \(f_n\) and \(f: K \ra \C\) are continuous on \(K\).
     \item \(f_n \ra f\) pointwise.
-    \item \(f_n(x) \geq f_{n+1}(x)\) for \(x \in K\).\footnote{\(f_n\) only needs to be monotone. See Dini's Theorem.}
+    \item \(f_n(x) \geq f_{n+1}(x)\) for \(x \in K\).\footnote{\(f_n\) only needs to be monotone.}
 \end{enumerate}
 Then \(f_n \uc f\) on \(K\).
 
@@ -122,7 +122,7 @@ Then \(f_n \uc f\) on \(K\).
 
 \quad \pf Let \(K_n = \{x \in K : g_n(x)\geq \epsilon\}\). Then \(K_n = K \cap g_n\inv ([\epsilon, \infty))\).\footnote{Closed subset of a compact set is also compact, and the inverse image of closed set is closed if the function is continuous.} Since \(g_n\) is decreasing, \(K_{n+1}\subset K_n\), but because \(g_n \ra 0\), \(\bigcap_{n=1}^\infty K_n = \varnothing\). By Theorem 2.36, there exists \(N \in \N\) such that \(K_N = \varnothing\), and then \(K_n = \varnothing\) for \(n \geq N\). Thus, \(0 \leq g_n(x) < \epsilon\) for \(\forall x \in K\), \(\forall n \geq N\).
 
-\rmk Compactness is necessary here. Consider \(f_n(x) = \dfrac{1}{nx + 1}\) on \(x \in E = (0, 1)\). \(f_n\) does not converge to \(0\) uniformly.
+\rmk Compactness is necessary here. Consider \(f_n(x) = \dfrac{1}{nx + 1}\) on \(x \in E = (0, 1)\). \(f_n\) does not converge to \(0\) uniformly.\footnote{정의역을 \([0, 1]\)로 바꾼다면 \(f\)의 연속성이 필요한 이유를 알게 된다.}
 
 \pf Suppose \(f_n \uc 0\), and take \(\epsilon = 1/2\). Then,
 \begin{center}

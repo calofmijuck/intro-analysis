@@ -1,6 +1,6 @@
 \section*{September 13th, 2022}
 
-Equicontinuous 하기 전에 7.23을 먼저 할게요. 7.23을 하기 위한 motivation 입니다.
+Equicontinuous 하기 전에 7.23을 먼저 할게요. 7.23을 하기 위한 motivation이 필요합니다.
 
 \recall \note{Bolzano-Weierstrass} Suppose \(\seq{a_n}\) is a sequence in \(\C\). If \(\seq{a_n}\) is bounded, then there exists a convergent subsequence of \(\seq{a_n}\).
 
@@ -9,7 +9,7 @@ Equicontinuous 하기 전에 7.23을 먼저 할게요. 7.23을 하기 위한 mot
     \(\exists x_0 \in E\) and \(\exists r > 0\) such that \(a_n \in B_r(x_0)\) for all \(n \in \N\).
 \end{center}
 
-\defn. Suppose \(f_n: E \ra \C\). We say that \(\seq{f_n}\) is \textbf{pointwise bounded} on \(E\) if the sequence \(\seq{f_n(x)}_{n=1}^\infty\) is bounded for all \(x \in E\). Or equivalently,
+\defn. \note{Pointwise Bounded} Suppose \(f_n: E \ra \C\). We say that \(\seq{f_n}\) is \textbf{pointwise bounded} on \(E\) if the sequence \(\seq{f_n(x)}_{n=1}^\infty\) is bounded for all \(x \in E\). Or equivalently,
 \begin{center}
     \(\ds \sup_{n \in \N} \abs{f_n(x)} < \infty\) for each \(x \in E\).
 \end{center}
@@ -19,7 +19,7 @@ Equicontinuous 하기 전에 7.23을 먼저 할게요. 7.23을 하기 위한 mot
     \(\exists \seq{n_k}\) such that \(f(x) = \ds \lim_{k \ra\infty} f_{n_k}(x)\) for each \(x \in E\). % \(\exists f: E \ra \C\) such that
 \end{center}
 
-\pf \textit{Diagonalization!} Let \(E = \seq{x_i}_{i=1}^\infty\). (Countable) Since \(\seq{f_n(x_1)}\) is bounded, there exists a convergent subsequence by Bolzano-Weierstrass Theorem. Let the subsequence be \(\seq{f_{1, k}}_{k=1}^\infty\). Simlarly, since \(\seq{f_{1, k}(x_2)}\) is bouneded, there exists a convergent subsequence \(\seq{f_{2, k}}_{k=1}^\infty\) of \(\seq{f_{1, k}}_{k=1}^\infty\). Since \(\seq{f_{n, k}}\) is pointwise bounded, we can repeat this procedure to get the next subsequence \(\seq{f_{n+1, k}}_{k=1}^\infty\).
+\pf \textit{Diagonalization!} Let \(E = \seq{x_i}_{i=1}^\infty\). (countable) Since \(\seq{f_n(x_1)}\) is bounded, there exists a convergent subsequence by Bolzano-Weierstrass Theorem. Let the subsequence be \(\seq{f_{1, k}}_{k=1}^\infty\). Similarly, since \(\seq{f_{1, k}(x_2)}\) is bounded, there exists a convergent subsequence \(\seq{f_{2, k}}_{k=1}^\infty\) of \(\seq{f_{1, k}}_{k=1}^\infty\). Since \(\seq{f_{n, k}}\) is pointwise bounded, we can repeat this procedure to get the next subsequence \(\seq{f_{n+1, k}}_{k=1}^\infty\).
 
 Now we arrange the sequence,
 \[
@@ -35,11 +35,11 @@ and consider the diagonal elements. Then \(\ds \lim_{n \ra \infty} f_{n, n}(x)\)
 
 \defn{7.19} Suppose \(f_n: E \ra \C\).
 \begin{enumerate}
-    \item \(\seq{f_n}\) is pointwise bounded on \(E\) if there exists a finite valued function \(\varphi: E \ra \R^+\) such that
+    \item \note{Pointwise Bounded} \(\seq{f_n}\) is \textbf{pointwise bounded} on \(E\) if there exists a finite valued function \(\varphi: E \ra \R^+\) such that
           \begin{center}
               \(\abs{f_n(x)} \leq \varphi(x) < \infty\) for all \(x\in E\).
           \end{center}
-    \item \(\seq{f_n}\) is \textbf{uniformly bounded} on \(E\) if there exists \(M > 0\) such that
+    \item \note{Uniformly Bounded} \(\seq{f_n}\) is \textbf{uniformly bounded} on \(E\) if there exists \(M > 0\) such that
           \begin{center}
               \(\abs{f_n(x)} < M\), \(\forall x \in E\) and \(n \geq 1\).
           \end{center}
@@ -75,7 +75,7 @@ However, as \(k \ra \infty\),
 \[
     \int_0^{2\pi} (f_{n_k} - f_{n_{k+1}})^2 \d{x} \ra \int_0^{2\pi} 0^2 \d{x} = 0
 \]
-by Theorem 11.32.\footnote{Legesgue's theorem concerning integration of boundedly convergent sequences.} But simple calculation shows that
+by Theorem 11.32.\footnote{Lebesgue's theorem concerning integration of boundedly convergent sequences.} But simple calculation shows that
 \[
     \int_0^{2\pi} (f_{n_k} - f_{n_{k+1}})^2 \d{x} = 2\pi,
 \]
@@ -97,7 +97,7 @@ However,
 \]
 leading to a contradiction. Thus such subsequence cannot exist.
 
-\defn{7.22} Let \((X, d)\) be a metric space, and \(E \subset X\). Let \(\scr{F}\) be a family of complex-valued functions on \(E\). We say that \(\scr{F}\) is \textbf{equicontinuous} on \(E\) if
+\defn{7.22} \note{Equicontinuity} Let \((X, d)\) be a metric space, and \(E \subset X\). Let \(\scr{F}\) be a family of complex-valued functions on \(E\). We say that \(\scr{F}\) is \textbf{equicontinuous} on \(E\) if
 \begin{center}
     \(\forall \epsilon > 0, \exists \delta > 0\) such that \(d(x, y) < \delta \implies \abs{f(x) - f(y)} < \epsilon\) for all \(x, y \in E, f\in \scr{F}\).
 \end{center}
