@@ -25,7 +25,7 @@ Thus \(\sum \abs{c_n x^n}\) converges for \(\abs{x} < \abs{y}\). (Comparison)
     \lim_{x \ra 1^-} f(x) = \sum_{n=0}^\infty c_n.
 \]
 
-\pf Let \(s_{-1} = 0\), \(s_n = \sum_{k=0}^n c_k\) for \(n \geq 0\) and \(s = \lim_{n\ra\infty} s_n = \sum_{n=0}^\infty c_n\). We know that \(\abs{s_n} + \abs{s} < M <\infty\). We have \(c_n = s_n - s_{n-1}\) for \(n \geq 0\),
+\pf Let \(s_{-1} = 0\), \(\ds s_n = \sum_{k=0}^n c_k\) for \(n \geq 0\) and \(\ds s = \lim_{n\ra\infty} s_n = \sum_{n=0}^\infty c_n\). We know that \(\abs{s_n} + \abs{s} < M <\infty\). We have \(c_n = s_n - s_{n-1}\) for \(n \geq 0\),
 \[
     \begin{aligned}
         \sum_{n=0}^m c_nx^n & = \sum_{n=0}^m s_n x^n - x \sum_{n=1}^m s_{n-1}x^{n-1}            \\
@@ -178,7 +178,7 @@ converge on \((-R, R)\). Let
 \]
 If \(E\) has a limit point in \((-R, R)\), then \(a_n = b_n\) for all \(n\), so \(h_1 = h_2\) on \((-R, R)\).
 
-\pf We treat \((-R, R)\) as a metric space. We know that \(E'\) is closed in \((-R, R)\) and \(E' \neq \varnothing\) by assumption. Since \(h_1\), \(h_2\) are continuous, \(E' \subset E\). Now define \(B = (-R, R) \bs E'\). Since \(E'\) is closed, \(B\) is open in \((-R, R)\). Now we show that \(E'\) is open, to show that \(E' = (-R, R)\).\footnote{Open 이면서 동시에 closed 면 \(\varnothing\) 이거나 전체집합 이거나.}
+\pf We treat \((-R, R)\) as a metric space. We know that \(E'\) is closed in \((-R, R)\) and \(E' \neq \varnothing\) by assumption. Since \(h_1\), \(h_2\) are continuous, \(E' \subset E\).\footnote{연속성으로 인해 극한점 에서도 \(h_1 = h_2\) 가 되기 때문이다.} Now define \(B = (-R, R) \bs E'\). Since \(E'\) is closed, \(B\) is open in \((-R, R)\). Now we show that \(E'\) is open, to show that \(E' = (-R, R)\).\footnote{Open 이면서 동시에 closed 면 \(\varnothing\) 이거나 전체집합 이거나.}
 
 \quad \claim. \(E'\) is open.
 
@@ -188,7 +188,7 @@ If \(E\) has a limit point in \((-R, R)\), then \(a_n = b_n\) for all \(n\), so 
 \]
 which is continuous on \(\abs{x - x_0} < R - \abs{x_0}\). Suppose \(d_n \neq 0\) for some \(n \geq 1\), choose smallest \(k\) such that \(d_k \neq 0\). Then
 \[
-    f(x) = \sum_{n=k}^\infty d_n(x-x_0)^n = (x-x_0) \sum_{n=k}^\infty d_n (x-x_0)^{n-k}.
+    f(x) = \sum_{n=k}^\infty d_n(x-x_0)^n = (x-x_0)^k \sum_{n=k}^\infty d_n (x-x_0)^{n-k}.
 \]
 Let \(g(x) = \ds\sum_{n=k}^\infty d_n(x-x_0)^{n-k}\), then \(g(x_0) = d_k \neq 0\). Since \(g\) is continuous near \(x_0\), there exists \(\delta > 0\) such that
 \begin{center}
