@@ -127,7 +127,7 @@ Since continuous function defined on a compact set is uniformly continuous,\foot
 \end{center}
 For \(x, y\in K\), if \(n \geq N\) and \(d(x, y) < \delta\),
 \[
-    \abs{f_n(x) - f_n(y)} \leq \abs{f_n(x) - f_N(x)} + \abs{f_N(x) - f_N(y)} + \abs{f_N(y) - f_n(y)} \leq \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+    \abs{f_n(x) - f_n(y)} \leq \abs{f_n(x) - f_N(x)} + \abs{f_N(x) - f_N(y)} + \abs{f_N(y) - f_n(y)} < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
 \]
 Therefore \(\seq{f_n}_{n=N}^\infty\) is equicontinuous. Additionally, \(\seq{f_n}_{n=1}^N\), which is a finite union of uniformly continuous functions, is equicontinuous. Thus \(\seq{f_n}\) is equicontinuous because it is a union of two equicontinuous family of functions.\footnote{유한개는 equicontinuous 로 누르고, 꼬리는 uniform convergence로 누르고.}
 
