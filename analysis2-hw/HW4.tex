@@ -1,0 +1,445 @@
+%!TEX encoding = utf-8
+\documentclass[12pt]{report}
+\usepackage{kotex}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{
+    top = 20mm,
+    left = 20mm,
+    right = 20mm,
+    bottom = 20mm
+}
+\geometry{a4paper}
+
+\pagenumbering{gobble}
+\renewcommand{\baselinestretch}{1.4}
+\newcommand{\numl}[1]{\item[\large\textbf{\sffamily #1.}]}
+\newcommand{\num}[1]{\item[\textbf{\sffamily #1}]}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\adj}{\text{*}}
+\newcommand{\bs}{\setminus}
+\renewcommand{\subset}{\subseteq}
+
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
+\renewcommand{\span}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\uc}{\overset{u}{\ra}}
+\newcommand{\imp}{\implies}
+\newcommand{\mimp}{\(\implies\)}
+\newcommand{\mimpd}{\(\impliedby\)}
+\newcommand{\miff}{\!\!\(\iff\)}
+\newcommand{\mast}{\(\ast\)}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\lint}[2]{\underline{\int_{#1}^{#2}}}
+\newcommand{\uint}[2]{\overline{\int_{#1}^{#2}}}
+\renewcommand{\d}[1]{\,d{#1}}
+
+\let\oldexists\exists
+\renewcommand{\exists}{\oldexists\,}
+
+\begin{document}
+\begin{center}
+    \textbf{\Large 해석개론 및 연습 2 과제 \#4}\\
+    \large 2017-18570 컴퓨터공학부 이성찬
+\end{center}
+\begin{enumerate}
+
+    \numl{1}
+    \begin{enumerate}
+        \num{(a)} First of all,
+        \[
+            c_n = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-inx} \d{x} = \frac{1}{2\pi} \int_{-\delta}^{\delta} e^{-inx} \d{x}.
+        \]
+        If \(n = 0\), \(c_0 = \delta / \pi\). Now for \(n \neq 0\),
+        \[
+            c_n = \frac{1}{2\pi} \left[-\frac{1}{in}e^{-inx}\right]_{-\delta}^\delta = \frac{1}{2\pi} \frac{e^{in\delta} - e^{-in\delta}}{in} = \frac{\sin n\delta}{n\pi}.
+        \]
+
+        \num{(b)} \(f\) satisfies the Lipschitz condition at \(x = 0\), since for \(\abs{t} < \delta\),
+        \[
+            \abs{f(x + t) - f(x)} = \abs{f(t) - 1} = 0.
+        \]
+        By Theorem 8.14, the Fourier series of \(f\) converges at \(x = 0\). Therefore
+        \[
+            f(0) = \lim_{N \ra \infty} s_N(f; 0) = \lim_{N\ra\infty} \sum_{n=-N}^N c_n = c_0 + 2\lim_{N\ra\infty} \sum_{n=1}^N c_n = \frac{\delta}{\pi} + 2\sum_{n=1}^\infty \frac{\sin n\delta}{n\pi}.
+        \]
+        Reordering terms give
+        \[
+            \sum_{n=1}^\infty \frac{\sin n\delta}{n\pi} = \frac{f(0) - \frac{\delta}{\pi}}{2} \implies \sum_{n=1}^\infty \frac{\sin n\delta}{n} = \frac{\pi - \delta}{2}.
+        \]
+
+        \num{(c)} We plan to use Parseval's identity.
+        \[
+            \frac{1}{2\pi} \int_{-\pi}^\pi \abs{f(x)}^2 \d{x} = \frac{1}{2\pi}\int_{-\delta}^\delta \d{x} = \frac{\delta}{\pi}.
+        \]
+        \[
+            \lim_{N\ra\infty}\sum_{n=-N}^N \abs{c_n}^2 = \frac{\delta^2}{\pi^2} + 2\sum_{n=1}^\infty \frac{\sin^2 n\delta}{n^2\pi^2}.
+        \]
+        Therefore,
+        \[
+            \frac{\delta}{\pi} = \frac{\delta^2}{\pi^2} + 2\sum_{n=1}^\infty \frac{\sin^2 n\delta}{n^2\pi^2} \implies \sum_{n=1}^\infty \frac{\sin^2 n\delta}{n^2} = \frac{\delta \pi - \delta^2}{2},
+        \]
+        and we get the desired result,
+        \[
+            \sum_{n=1}^\infty \frac{\sin^2 n\delta}{n^2 \delta} = \frac{\pi - \delta}{2}. \qquad (\delta > 0)
+        \]
+
+        \num{(d)} We first show that this integral converges. Since \(\frac{\sin x}{x} \ra 1\) as \(x \ra 0\), the integral is well-defined. For some \(K > 0\),
+        \[
+            \abs{\int_K^\infty \paren{\frac{\sin x}{x}}^2 \d{x}}  \leq \int_K^\infty \abs{\frac{\sin^2 x}{x^2}} \d{x} \leq \int_K^\infty \frac{1}{x^2} \d{x} < \infty.
+        \]
+        Therefore,
+        \[
+            \int_0^K \paren{\frac{\sin x}{x}}^2 \d{x} + \int_K^\infty \paren{\frac{\sin x}{x}}^2 \d{x} = \int_0^\infty \paren{\frac{\sin x}{x}}^2 \d{x}
+        \]
+        also converges.
+
+        Let \(\epsilon > 0\) be given. We will prove the equality by 4 steps. First, choose large enough \(M_0 > 0\) such that for all \(M \geq M_0\),
+        \[
+            \abs{\int_0^\infty \paren{\frac{\sin x}{x}}^2 \d{x} - \int_0^M \paren{\frac{\sin x}{x}}^2 \d{x}} < \frac{\epsilon}{4}.
+        \]
+        Since \(\paren{\frac{\sin x}{x}}^2\) is continuous, we can write the integral as a Riemann sum as follows,
+        \[
+            \int_0^M \paren{\frac{\sin x}{x}}^2 \d{x} = \lim_{N \ra \infty} \sum_{k=1}^N \paren{\frac{\sin \frac{M}{N}k}{\frac{M}{N}k}}^2 \cdot \frac{M}{N} = \lim_{N \ra \infty} \sum_{k=1}^N \frac{\sin^2 k\delta_N}{k^2\delta_N}.
+        \]
+        Here, \(\delta_N = \frac{M}{N}\). Now choose \(N_M \in \N\) such that for all \(N \geq N_M\),
+        \[
+            \abs{\int_0^M \paren{\frac{\sin x}{x}}^2 \d{x} - \sum_{k=1}^N \frac{\sin^2 k\delta_N}{k^2\delta_N}} < \frac{\epsilon}{4}.
+        \]
+        Next, there exists large enough \(N_1 \in \N, N_1 \geq N_M\), such that for all \(N \geq N_1\),
+        \[
+            \abs{\sum_{k=1}^N \frac{\sin^2 k\delta_N}{k^2\delta_N} - \frac{\pi - \delta_N}{2}} < \frac{\epsilon}{4}.
+        \]
+        Finally, take even larger \(N_2 \in \N, N_2 \geq N_1\), such that for all \(N \geq N_2\),
+        \[
+            \abs{\frac{\pi - \delta_N}{2} - \frac{\pi}{2}} < \frac{\epsilon}{4}.
+        \]
+        Using the results from above, for large enough \(M \geq M_0\) and \(N \geq N_2\),
+        \[
+            \abs{\int_0^\infty \paren{\frac{\sin x}{x}}^2 \d{x} - \frac{\pi}{2}} < \epsilon.
+        \]
+
+        \num{(e)} Set \(\delta = \pi / 2\). For \(n \in \N\),
+        \[
+            \sin^2 \frac{n\pi}{2} = \begin{cases}
+                0 & (n \text{ is even}) \\
+                1 & (n \text{ is odd})
+            \end{cases}.
+        \]
+        Therefore,
+        \[
+            \sum_{n=1}^\infty \frac{\sin^2 \frac{n\pi}{2}}{n^2\cdot \frac{\pi}{2}} = \sum_{n=1}^\infty \frac{1}{(2n-1)^2 \frac{\pi}{2}} = \frac{\pi}{4} \implies \sum_{n=1}^\infty \frac{1}{(2n-1)^2} = \frac{\pi^2}{8}.
+        \]
+    \end{enumerate}
+
+    \numl{2} Let \(f(x) = (\pi - \abs{x})^2\).
+    \[
+        \begin{aligned}
+            c_n & = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-inx}\d{x} = \frac{1}{2\pi} \int_{-\pi}^\pi (\pi - \abs{x})^2 (\cos nx - i\sin nx)\d{x} \\
+                & = \frac{1}{\pi} \int_0^\pi (\pi - x)^2 \cos nx \d{x}.
+        \end{aligned}
+    \]
+    The last equality comes from the fact that \(\sin nx\) is odd and \(\cos nx\) is even. Now using integration by parts, we get
+    \[
+        c_n = \frac{1}{\pi} \int_0^\pi (\pi - x)^2 \cos nx \d{x} = \begin{cases}
+            \dfrac{\pi^2}{3} & (n = 0) \vspace{5px} \\
+            \dfrac{2}{n^2}   & (n \neq 0)
+        \end{cases}.
+    \]
+    We can directly see that \(c_{n} = c_{-n}\). For \(n \neq 0\),
+    \[
+        c_n e^{inx} + c_{-n}e^{-inx} = 2c_n (e^{inx} + e^{-inx}) = \frac{4}{n^2} \cos nx,
+    \]
+    so
+    \[
+        s_N(f; x) = \frac{\pi^2}{3} + \sum_{n=1}^N \frac{4}{n^2}\cos nx.
+    \]
+    We want to show that the partial sum converges for \(x \in [-\pi, \pi]\). To use Theorem 8.14, we try to prove the Lipschitz condition. Take some small \(\delta > 0\). For \(\abs{t} < \delta\),
+    \[
+        \begin{aligned}
+            \abs{f(x+t) - f(x)} & = \abs{(\pi - \abs{x+t})^2 - (\pi - \abs{x})^2} = \abs{2xt + t^2 - 2\pi\abs{x + t} + 2\pi\abs{x}}            \\
+                                & =\abs{t(2x + t) - 2\pi (\abs{x + t} - \abs{x})} \leq \abs{t} \abs{2x + t} + 2\pi \abs{\abs{x + t} - \abs{x}} \\
+                                & \leq \abs{t} M + 2\pi \abs{t} = (M + 2\pi) \abs{t},
+        \end{aligned}
+    \]
+    since \(\abs{2x + t}\) can be bounded by some \(M > 0\). Therefore by Theorem 8.14,
+    \[
+        (\pi - \abs{x})^2 = f(x) = \lim_{N\ra\infty} s_N(f;x) = \frac{\pi^2}{3} + \sum_{n=1}^\infty \frac{4}{n^2} \cos nx, \quad (-\pi \leq x \leq \pi).
+    \]
+    Take \(x = 0\) to get
+    \[
+        \pi^2 = \frac{\pi^2}{3} + \sum_{n=1}^\infty \frac{4}{n^2} \implies \sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}.
+    \]
+    The last equation will come from Parseval's identity.
+    \[
+        \lim_{N\ra\infty} \sum_{n=-N}^N \abs{c_n}^2 = c_0^2 + 2\sum_{n=1}^\infty \abs{c_n}^2 = \frac{\pi^4}{9} + 2\sum_{n=1}^\infty \frac{4}{n^4}.
+    \]
+    Also,
+    \[
+        \begin{aligned}
+            \frac{1}{2\pi} \int_{-\pi}^\pi (\pi - \abs{x})^4 \d{x} & = \frac{1}{\pi} \int_0^\pi (\pi - x)^4 \d{x}                                 \\
+                                                                   & = \frac{1}{\pi}\left[-\frac{1}{5}(\pi - x)^5\right]_0^\pi = \frac{\pi^4}{5}.
+        \end{aligned}
+    \]
+    By Parseval's identity,
+    \[
+        \frac{\pi^4}{9} + 2 \sum_{n=1}^\infty \frac{4}{n^4} = \frac{\pi^4}{5} \implies \sum_{n=1}^\infty \frac{1}{n^4} = \frac{\pi^4}{90}.
+    \]
+
+    \pagebreak
+
+    \numl{3} We restrict the domain to \([-\pi, \pi]\), since \(e^{inx}\) is periodic with period \(2\pi\). Note that
+    \[ \tag{\(\star\)}
+        D_n(x) = \sum_{k=-n}^n e^{ikx} = \begin{cases}
+            \dfrac{\sin (n + 1/2)x}{\sin (x/2)} & (x \in [-\pi, \pi]) \\
+            2n+1                                & (x = 0)
+        \end{cases}.
+    \]
+    For \(x = 0\),
+    \[
+        K_N(0) = \frac{1}{N+1}\sum_{n=0}^N D_n(0) =\frac{1}{N+1}\sum_{n=0}^N (2n+1) = \frac{(N+1)^2}{N+1} = N+1.
+    \]
+    For \(x \neq 0\),
+    \[
+        K_N(x) = \sum_{n=0}^N \frac{\sin (n+1/2)x}{\sin (x/2)} = \frac{1}{N+1}\cdot \frac{1}{\sin (x/2)} \sum_{n=0}^N \sin \paren{n+\frac{1}{2}}x.
+    \]
+    We try to simplify the last sum. (\(\Im\) denotes the imaginary part)
+    \[
+        \begin{aligned}
+            \sum_{n=0}^N \sin \paren{n+\frac{1}{2}}x & =\sum_{n=0}^N \Im\paren{e^{i(n+1/2)x}} = \Im\paren{\sum_{n=0}^N e^{i(n+1/2)x}}                                                    \\
+                                                     & = \Im \paren{\frac{e^{ix/2} \left(e^{i(N+1)x} - 1\right)}{e^{ix} - 1}} = \Im \paren{\frac{e^{i(N+1)x} - 1}{e^{ix/2} - e^{-ix/2}}} \\
+                                                     & = \Im\paren{\frac{\cos(N+1)x + i\sin(N+1)x - 1}{2i\sin(x/2)}}                                                                     \\
+                                                     & = \Im\paren{\frac{\sin(N+1)x + i(1-\cos(N+1)x)}{2\sin(x/2)}} = \frac{1 - \cos(N+1)x}{2\sin(x/2)}.
+        \end{aligned}
+    \]
+    Therefore,
+    \[
+        K_N(x) = \frac{1}{N+1} \cdot \frac{1}{\sin(x/2)} \frac{1 - \cos(N+1)x}{2\sin(x/2)} = \frac{1}{N+1} \cdot \frac{1-\cos(N+1)x}{1 - \cos x}.
+    \]
+    by the half-angle formula.
+
+    \begin{enumerate}
+        \num{(a)} For \(x = 0\), \(K_N(x) > 0\), and if \(x \neq 0\),
+        \[
+            1 - \cos(N+1)x \geq 0, \quad 1 - \cos x \geq 0.
+        \]
+        Therefore \(K_N(x) \geq 0\).
+
+        \num{(b)} We see this by direct calculation. Using \(\ds \frac{1}{2\pi} \int_{-\pi}^\pi D_n(x)\d{x} = 1\),
+        \[
+            \begin{aligned}
+                \frac{1}{2\pi} \int_{-\pi}^\pi K_N(x) \d{x} & = \frac{1}{2\pi} \int_{-\pi}^\pi \frac{1}{N+1}\sum_{n=0}^N D_n(x) \d{x}                                    \\
+                                                            & = \frac{1}{N+1} \sum_{n=0}^N \frac{1}{2\pi}\int_{-\pi}^\pi D_n(x)\d{x} = \frac{1}{N+1} \sum_{n=0}^N 1 = 1.
+            \end{aligned}
+        \]
+
+        \num{(c)} Since \(1 - \cos x\) is increasing on \(\delta \leq \abs{x} \leq \pi\),
+        \[
+            0 < 1- \cos \delta \leq 1 - \cos x.
+        \]
+        Thus,
+        \[
+            K_N(x) = \frac{1}{N+1} \cdot \frac{1 - \cos (N+1)x}{1 - \cos x} \leq \frac{1}{N+1} \cdot \frac{2}{1 - \cos x} \leq \frac{1}{N+1}\cdot \frac{2}{1 - \cos\delta}.
+        \]
+    \end{enumerate}
+
+    For the last part, we use the fact that
+    \[
+        s_n(f; x) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x-t) D_n(t)\d{t}.
+    \]
+    Now manipulate the expression.
+    \[
+        \begin{aligned}
+            \sigma_N(f; x) & = \frac{1}{N+1}\sum_{n=0}^N s_n (f;x) = \frac{1}{N+1}\sum_{n=0}^N \frac{1}{2\pi} \int_{-\pi}^\pi f(x-t) D_n(t)\d{t}                         \\
+                           & =\frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \cdot \frac{1}{N+1} \sum_{n=0}^N D_n(t)\d{t}  =\frac{1}{2\pi} \int_{-\pi}^\pi f(x- t) K_N(t)\d{t}.
+        \end{aligned}
+    \]
+
+    To prove Fejer's Theorem, suppose that \(f\) is continuous with period \(2\pi\) on \([-\pi, \pi]\). Now we show that \(\sigma_N(f;x)\) converges uniformly on \([-\pi, \pi]\).
+    \[
+        \begin{aligned}
+            \abs{\sigma_N(f; x) - f(x)} & = \frac{1}{2\pi}\abs{\int_{-\pi}^\pi f(x-t) K_N(t)\d{t} - \int_{-\pi}^\pi f(x) K_N(t)\d{t}} \quad & (\text{from {\sffamily (b)}}) \\
+                                        & =\frac{1}{2\pi}\abs{\int_{-\pi}^\pi \bigl( f(x-t) - f(x) \bigr) K_N(t) \d{t}}                                                     \\
+                                        & \leq \frac{1}{2\pi} \int_{-\pi}^\pi \abs{f(x-t) - f(x)} K_N(t) \d{t}. \quad                       & (K_N(t) \geq 0)
+        \end{aligned}
+    \]
+    Now, split the integral into three parts, as \([-\pi, \pi] = [-\pi, -\delta] \cup [-\delta, \delta] \cup [\delta, \pi]\).
+    \[
+        \begin{aligned}
+            \frac{1}{2\pi} \int_{-\pi}^\pi \abs{f(x-t) - f(x)} K_N(t) \d{t} & = \frac{1}{2\pi} \int_{-\pi}^{-\delta} \abs{f(x-t) - f(x)} K_N(t) \d{t}       & (\clubsuit)  \\
+                                                                            & \quad + \frac{1}{2\pi} \int_{-\delta}^\delta \abs{f(x-t) - f(x)} K_N(t) \d{t} & (\spadesuit) \\
+                                                                            & \quad + \frac{1}{2\pi} \int_{\delta}^\pi \abs{f(x-t) - f(x)} K_N(t) \d{t}     & (\heartsuit)
+        \end{aligned}
+    \]
+    Since the domain is compact, we know that \(f\) is uniformly continuous and bounded. Let \(\epsilon > 0\) be given. There exists \(\delta > 0\) such that
+    \[ \tag{\mast}
+        \abs{t} = \abs{(x - t) - x} < \delta \implies \abs{f(x-t) - f(x)} < \pi\epsilon.
+    \]
+    Also, \(\abs{f} < M\) for some \(M > 0\). We bound each integral like the following.
+    \[
+        (\spadesuit) \leq \frac{1}{2\pi} \int_{-\delta}^\delta \pi\epsilon K_N(t) \d{t} < \frac{\epsilon}{2}. \qquad (\text{by {\sffamily (b)}, (\mast)})
+    \]
+    \[
+        \begin{aligned}
+            (\clubsuit) + (\heartsuit) & \leq \frac{1}{2\pi} \int_{-\pi}^{-\delta} 2M K_N(t) \d{t} + \frac{1}{2\pi} \int_{\delta}^\pi 2M K_N(t) \d{t}                                                                                                      \\
+                                       & \leq \frac{M}{\pi} \int_{-\pi}^{-\delta} \frac{1}{N+1}\cdot \frac{2}{1 - \cos\delta} \d{t} + \frac{M}{\pi} \int_{\delta}^\pi \frac{1}{N+1}\cdot \frac{2}{1 - \cos\delta} \d{t}  \quad (\text{by {\sffamily (c)}}) \\
+                                       & = \frac{4M}{\pi} \cdot \frac{1}{N+1} \cdot \frac{\pi - \delta}{1 - \cos \delta}. \quad (\diamondsuit)
+        \end{aligned}
+    \]
+    We can set \(N\) large enough that \((\diamondsuit) < \dfrac{\epsilon}{2}\). Therefore,
+    \[
+        \begin{aligned}
+            \abs{\sigma_N(f; x) - f(x)} & \leq \frac{1}{2\pi} \int_{-\pi}^\pi \abs{f(x-t) - f(x)} K_N(t) \d{t}                                                                    \\
+                                        & = (\spadesuit) + (\clubsuit) + (\heartsuit) < \frac{\epsilon}{2} + (\diamondsuit) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon,
+        \end{aligned}
+    \]
+    and \(\sigma_N(f; x)\) converges uniformly to \(f(x)\) on \([-\pi, \pi]\).
+
+    \numl{4}
+    \begin{enumerate}
+        \num{(a)} Since \(D_N(t) = D_N(-t)\) almost directly from definition,
+        \[
+            \begin{aligned}
+                \frac{1}{2\pi} \int_{-\pi}^0 f(x-t) D_N(t)\d{t} & = \frac{1}{2\pi} \int_\pi^0 f(x + u) D_N(-u)(-du) \quad (u = -t) \\
+                                                                & = \frac{1}{2\pi} \int_0^\pi f(x + u) D_N(u) \d{u}.
+            \end{aligned}
+        \]
+        Now we rewrite \(s_N(f; x)\) as the following,
+        \[
+            \begin{aligned}
+                s_N(f; x) & = \frac{1}{2\pi} \int_{-\pi}^\pi f(x- t) D_N(t)\d{t}                                              \\
+                          & = \frac{1}{2\pi} \int_{-\pi}^0 f(x- t) D_N(t)\d{t} +\frac{1}{2\pi} \int_0^\pi f(x- t) D_N(t)\d{t} \\
+                          & = \frac{1}{2\pi} \int_0^\pi f(x + t) D_N(t)\d{t} +\frac{1}{2\pi} \int_0^\pi f(x- t) D_N(t)\d{t}   \\
+                          & = \frac{1}{2\pi} \int_0^\pi \bigl(f(x + t) + f(x- t)\bigr) D_N(t)\d{t}                            \\
+                          & = \frac{1}{2\pi} \int_0^\pi \bigl(f(x + t) + f(x- t)\bigr) \dfrac{\sin(N+1/2)t}{\sin (t/2)}\d{t},
+            \end{aligned}
+        \]
+        by (\(\star\)) from {\sffamily Problem 3}. (A difference at a single point \(x = 0\) does not change the value of the integral.)
+
+        \num{(b)} First we prove a lemma.
+        \medskip
+
+        {\sffamily \bfseries Lemma.}\footnote{구간 \(I\) 위에서의 특이적분이 수렴하면 된다. 일반적인 형태는 Riemann-Lebesgue Lemma이지만...} Let \(f\) be Riemann integrable on an interval \(I\). Then,
+        \[
+            \lim_{N \ra \infty} \int_I f(t) \sin Nt \d{t} = 0.
+        \]
+
+        \medskip
+
+        {\sffamily Proof.} We prove for the case \(I = [-\pi, \pi]\). We use the fact that for
+        \[
+            \phi_0(t) = \frac{1}{\sqrt{2\pi}}, \quad \phi_{2n-1}(t) = \frac{\cos nt}{\sqrt{\pi}}, \quad \phi_{2n}(t) = \frac{\sin nt}{\sqrt{\pi}},
+        \]
+        \(\{\phi_n\}_{n=1}^N\) form an orthonormal system of functions. Therefore,
+        \[
+            \int_I f(t) \sin Nt \d{t} = \int_I \sqrt{\pi} f(t) \frac{\sin Nt}{\sqrt{\pi}} \d{t}
+        \]
+        can be viewed as the \(2N\)-th Fourier coefficient of \(\sqrt{\pi} f\) relative to \(\{\phi_n\}\). By Theorem 8.12, Fourier coefficients approach \(0\) as \(N \ra \infty\), so we have the desired result. (There is another proof that uses the denseness of step functions in \(\mc{R}^1(I)\)...)
+
+        \medskip
+
+        Also we calculate the following limit by applying L'H\^opital's rule, since all the terms in the denominator and the numerator approach \(0\) as \(t \ra 0\). Also they are differentiable and derivative of the denominator is not zero in the neighborhood of \(0\), except for at 0 itself.
+        \[
+            \begin{aligned}
+                \lim_{t \ra 0} \paren{\frac{1}{\sin (t/2)} - \frac{2}{t}} & = \lim_{t \ra 0} \frac{t - 2\sin(t/2)}{t\sin(t/2)} = \lim_{t\ra 0}\frac{1 - \cos(t/2)}{\sin(t/2) + (t/2)\cos(t/2)} \\
+                                                                          & = \lim_{t \ra 0} \frac{(1/2)\sin(t/2)}{(1/2)\cos(t/2) + (1/2)\cos(t/2) - (t/4)\sin(t/2)}                           \\
+                                                                          & = \lim_{t \ra 0} \frac{2\sin(t/2)}{4\cos(t/2) - t\sin(t/2)} = 0
+            \end{aligned}
+        \]
+
+        Therefore \(\ds \frac{1}{\sin(t/2)} - \frac{2}{t}\) is bounded on \([-\pi, \pi]\), thus
+        \[
+            \paren{f(x+t) + f(x-t)}\paren{\frac{1}{\sin (t/2)} - \frac{2}{t}}
+        \]
+        is integrable, and by the lemma,
+        \[
+            \lim_{N \ra \infty} \frac{1}{2\pi} \int_0^\pi \paren{f(x+t) + f(x-t)}\paren{\frac{1}{\sin (t/2)} - \frac{2}{t}} \sin \paren{N+\frac{1}{2}}t\d{t} = 0.
+        \]
+        (The lemma was proven for \([-\pi, \pi]\), but the integrand here is an even function, so we can only consider \([0, \pi]\).)
+
+        \num{(c)} From {\sffamily (b)},
+        \[
+            \lim_{N \ra \infty} s_N(f; x) = \lim_{N\ra\infty} \frac{1}{\pi} \int_0^\pi \frac{f(x+t) + f(x-t)}{t} \sin\paren{N + \frac{1}{2}}t \d{t}.
+        \]
+        We want to show
+        \[
+            \begin{aligned}
+                0 & = \lim_{N \ra \infty} \paren{s_N(f; a) - \frac{f(a+) + f(a-)}{2}}                                                                                 \\
+                  & = \lim_{N \ra \infty} \frac{1}{\pi} \int_0^\pi \frac{f(a+t) + f(a-t)}{t} \sin\paren{N + \frac{1}{2}}t \d{t}                                       \\ & \qquad \qquad- \frac{f(a+) + f(a-)}{2} \lim_{N\ra\infty} \frac{2}{\pi} \int_0^\pi \frac{\sin\paren{N + 1/2}t}{t}\d{t} \\
+                  & = \lim_{N \ra\infty} \frac{1}{\pi} \int_0^\pi \left(\frac{f(a+t) + f(a-t)}{t} - \frac{f(a+) + f(a-)}{t}\right)\sin\paren{N + \frac{1}{2}}t \d{t}.
+            \end{aligned}
+        \]
+        Using the workaround, we show that \(f_n\) converges uniformly. For any \(\epsilon > 0\), we show that there exists \(N \in \N\) such that for all \(m \in \N\),
+        \[
+            n \geq N \implies \abs{g\paren{\frac{1}{m}} - f_n \paren{\frac{1}{m}}} < \epsilon,
+        \]
+        where
+        \[
+            g\paren{\frac{1}{m}} = \frac{1}{\pi} \int_0^\pi \left(\frac{f(a+t) + f(a-t)}{t} - \frac{f(a+) + f(a-)}{t}\right)\sin\paren{m + \frac{1}{2}}t \d{t}
+        \]
+        for \(m \in \N\). From the assumption, we can choose positive \(p, \delta, M\) such that
+        \[
+            \begin{aligned}
+                0 < \abs{t} < \delta & \implies \abs{\frac{f(a + t) + f(a - t)}{2} - \frac{f(a+) + f(a-)}{2}} \leq M\abs{t}^p       \\
+                                     & \implies \abs{\frac{f(a + t) + f(a - t)}{t} - \frac{f(a+) + f(a-)}{t}} \leq 2M\abs{t}^{p-1}.
+            \end{aligned}
+        \]
+        Therefore, for large enough \(N\) such that \(N > \delta\inv\), \(1/n \leq 1/N < \delta\).
+        \[
+            \begin{aligned}
+                 & \abs{g\paren{\frac{1}{m}} - f_n \paren{\frac{1}{m}}}                                                                                         \\
+                 & \qquad = \frac{1}{\pi} \abs{\int_0^{1/n} \left(\frac{f(a+t) + f(a-t)}{t} - \frac{f(a+) + f(a-)}{t}\right)\sin\paren{m + \frac{1}{2}}t \d{t}} \\
+                 & \qquad \leq \frac{1}{\pi} \int_0^{1/n} \abs{\frac{f(a+t) + f(a-t)}{t} - \frac{f(a+) + f(a-)}{t}} \abs{\sin\paren{m + \frac{1}{2}}t} \d{t}    \\
+                 & \qquad \leq \frac{1}{\pi} \int_0^{1/n} 2M \abs{t}^{p-1} \d{t} = \frac{2M}{\pi p} \cdot \frac{1}{n^p} < \epsilon,
+            \end{aligned}
+        \]
+        since the last term can be made arbitrarily small. Thus \(f_n\) converges uniformly on \(\ds \left\{\frac{1}{m} : m \in \N\right\}\).
+
+        \num{(d)} Using the definition of \(f_n\) in {\sffamily (c)}, we can rephrase our objective as
+        \[
+            \lim_{m \ra \infty} \lim_{n \ra \infty} \frac{1}{\pi} \int_{1/n}^\pi \left(\frac{f(a+t) + f(a-t)}{t} - \frac{f(a+) + f(a-)}{t}\right)\sin\paren{m + \frac{1}{2}}t \d{t} = 0.
+        \]
+        But since we have uniform convergence, we can change the order of limits. So we can instead show that
+        \[
+            \lim_{n \ra \infty} \lim_{m \ra \infty} \frac{1}{\pi} \int_{1/n}^\pi \left(\frac{f(a+t) + f(a-t)}{t} - \frac{f(a+) + f(a-)}{t}\right)\sin\paren{m + \frac{1}{2}}t \d{t} = 0.
+        \]
+        Now we directly see that the integrand is well-defined and bounded in \([1/n, \pi]\). Thus by the lemma in {\sffamily (b)},
+        \[
+            \lim_{m \ra \infty} \frac{1}{\pi} \int_{1/n}^\pi \left(\frac{f(a+t) + f(a-t)}{t} - \frac{f(a+) + f(a-)}{t}\right)\sin\paren{m + \frac{1}{2}}t \d{t} = 0.
+        \]
+        And thus the result is proven.
+        \[
+            \lim_{N \ra\infty} s_N(f; a) = \frac{f(a+) + f(a-)}{2}.
+        \]
+
+    \end{enumerate}
+
+
+
+\end{enumerate}
+\end{document}
