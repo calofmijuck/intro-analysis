@@ -43,43 +43,33 @@
 \renewcommand{\exists}{\oldexists\,}
 
 \newcommand{\defn}[1]{%
-    \if #1.
-        \textbf{\sffamily Definition.}%
-    \else
-        \textbf{\sffamily Definition #1}%
-    \fi
+    \ifthenelse{\equal{#1}{.}}
+        {\textbf{\sffamily Definition.}}%
+        {\textbf{\sffamily Definition #1}}%
 }
 
 \newcommand{\thm}[1]{%
-    \if #1.
-        \textbf{\sffamily Theorem.}%
-    \else
-        \textbf{\sffamily Theorem #1}%
-    \fi
+    \ifthenelse{\equal{#1}{.}}
+        {\textbf{\sffamily Theorem.}}%
+        {\textbf{\sffamily Theorem #1}}%
 }
 
 \newcommand{\prop}[1]{%
-    \if #1.
-        \textbf{\sffamily Proposition.}%
-    \else
-        \textbf{\sffamily Proposition #1}%
-    \fi
+    \ifthenelse{\equal{#1}{.}}
+        {\textbf{\sffamily Proposition.}}%
+        {\textbf{\sffamily Proposition #1}}%
 }
 
 \newcommand{\ex}[1]{%
-    \if #1.
-        \textbf{\sffamily Example.}%
-    \else
-        \textbf{\sffamily Example #1}%
-    \fi
+    \ifthenelse{\equal{#1}{.}}
+        {\textbf{\sffamily Example.}}%
+        {\textbf{\sffamily Example #1}}%
 }
 
 \newcommand{\prob}[1]{%
-    \if #1.
-        \textbf{\sffamily Problem.}%
-    \else
-        \textbf{\sffamily Problem #1}%
-    \fi
+    \ifthenelse{\equal{#1}{.}}
+        {\textbf{\sffamily Problem.}}%
+        {\textbf{\sffamily Problem #1}}%
 }
 
 \newcommand{\recall}{\textbf{\sffamily Recall.\;}}
