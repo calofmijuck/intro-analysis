@@ -1,0 +1,45 @@
+\section*{October 20th, 2022 (Practice)}
+
+\prob{8.22} Newton's Binomial Theorem, 감마함수를 사용하면 복잡한 formula를 쉽게 표현할 수 있다.
+
+\prob. \((X, \scr{F})\), \(\mu: \scr{F} \ra \overline{\R}\). Show that
+\begin{center}
+    \(\mu\): finite and subadditivity \(\iff\) countable additivity.
+\end{center}
+
+\pf (\mimpd) Trivial by definition.
+
+(\mimp) Let \(\{E_i\}\) be a collection of disjoint sets in \(\scr{F}\). It suffices to show that
+\[
+    \sum_{i=1}^\infty \mu(E_i) \leq \mu \paren{\bigcup_{i=1}^\infty E_i}.
+\]
+Let \(E = \ds\bigcup_{i=1}^\infty E_i\). For any \(k \in \N\), we observe that
+\[
+    \sum_{i=1}^k \mu(E_i) = \mu\paren{\bigcup_{i=1}^k E_i} \leq \mu(E).
+\]
+Let \(k \ra \infty\) to get the result.
+
+\prob. Let \(S\) be a set containing \(x\). Show that the following set functions \(\mu: \mc{P}(S) \ra \overline{\R}\) are countably additive.
+\begin{center}
+    (1) \quad \(\mu(A) = \begin{cases}
+        0 & (x \notin A) \\ 1 & (x \in A)
+    \end{cases}\) \qquad \qquad
+    (2) \quad \(\mu(A) = \begin{cases}
+        \abs{A} & (\abs{A} < \infty) \\ \infty & \text{otherwise}
+    \end{cases}\)
+\end{center}
+
+\pf Suppose \(\{A_i\}\) is a collection of disjoint sets.\\
+(1) If no set contains \(x\), the problem is trivial. If there exists a set \(A_i\) that contains \(x\),
+\[
+    \mu\paren{\bigcup_{i=1}^\infty A_i} = 1 = \sum_{i=1}^\infty \mu(A_i).
+\]
+
+(2) If there exists a set with \(\abs{A_i} = \infty\), the equality holds. Now, for the case where all sets are finite but \(\sum \mu(A_i) = \infty\), for all \(K > 0\), there exists \(i_k \in \N\) such that \(\sum_{i=1}^{i_k} \mu(A_i) > K\). Therefore,
+\[
+    \mu\paren{\bigcup_{i=1}^\infty A_i} \geq \mu\paren{\bigcup_{i=1}^{i_k} A_i} = \sum_{i=1}^{i_k} \mu(A_i) > K
+\]
+for all \(K > 0\). Therefore \(\ds \mu\paren{\bigcup_{i=1}^\infty A_i} = \infty\).
+
+
+\pagebreak

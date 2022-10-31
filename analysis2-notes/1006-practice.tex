@@ -1,0 +1,72 @@
+\section*{October 6th, 2022 (Practice)}
+
+\prob{8.1}
+\[
+    f(x) = \begin{cases}
+        e^{-1/x^2} & (x \neq 0) \\ 0 & (x = 0)
+    \end{cases}
+\]
+
+First show that \(\ds \lim_{x \ra 0} \frac{f(x)}{x^m} = 0\), from \(\ds \lim_{x \ra \infty} \frac{x^k}{e^x} = 0\) for \(k \geq 0\).
+
+Next, prove by induction that
+\[
+    f^{(n)}(x) = P_n\left(\frac{1}{x}\right)e^{-1/x^2},
+\]
+where \(P_n(x)\) is a polynomial in \(x\).
+
+Now show that \(f^{(n)}(0) = 0\) by induction.
+
+\rmk 함수의 분류
+\begin{center}
+    함수 \(\supseteq\) 잴 수 있는 함수 \(\supseteq\) 르벡 적분 가능 함수 \(\supseteq\) 리만 적분 가능 함수 \(\supseteq\) 연속 함수
+\end{center}
+
+\begin{center}
+    연속 함수 \(\supseteq\) 미분 가능 함수 \(\supseteq\) \(C^k\) \(\supseteq\) \(\cdots\) \(\supseteq\) \(C^\infty\) \(\supseteq\) 해석 함수
+\end{center}
+
+\prob{8.6} \(f\) is continuous, \(f(x + y) = f(x)f(y)\).
+\begin{enumerate}
+    \item Show that \(f(x)f(-x) = 1\) and that \(f(x) > 0\) for all \(x \in \R\).
+    \item Let \(g(x) = \log f(x)\), show that \(g(x) = cx\) for some \(c \in \R\). (Use continuity!)
+\end{enumerate}
+
+\prob. Consider \(z_1, \dots, z_n \in \C\). We want to maximize
+\[
+    \abs{z_{a_1} + z_{a_2} + \cdots + z_{a_k}}
+\]
+compared to \(\sum_{i=1}^n \abs{z_i}\).
+
+\pf Let \(z_i = r_i e^{i\theta_i}\) and consider \(\theta\)-direction, by using scalar projections. Define
+\begin{center}
+    (\(\theta\)-direction sum) \(= g(\theta) = \ds \sum_{i=1}^n r_i \max\{\cos (\theta - \theta_i), 0\}\)
+\end{center}
+The desired value must be at least the `mean' of \(g\) on \([0, 2\pi)\).
+\[
+    \frac{1}{2\pi}\int_0^{2\pi} g(\theta) \d{\theta} = \frac{1}{2\pi}\sum_{i=1}^n r_i \int_0^{2\pi} \max\{\cos(\theta - \theta_i), 0\} \d{\theta} = \frac{1}{\pi} \sum_{i=1}^n \abs{z_i}
+\]
+
+\prob{8.19} \(f\) is continuous with period \(2\pi\), \(\alpha/\pi\) is irrational.
+\[
+    \lim_{N\ra\infty} \frac{1}{N}\sum_{n=1}^N f(x + n\alpha) = \frac{1}{2\pi} \int_{-\pi}^\pi f(t) \d{t}, \quad (x \in \R).
+\]
+
+\rmk 만약 \(\alpha / \pi \in \Q\) 이면 어느 순간부터 같은 점만 찍힐 것이다. 이 값이 무리수이기 때문에 \([-\pi, \pi]\) 를 거의 랜덤으로 채우는 것이다.
+\begin{enumerate}
+    \item First show for \(f(x) = e^{inx}\).
+    \item We can approximate \(f\) by a trigonometric polynomial \(P\). Show that
+          \[
+              \begin{aligned}
+                  \abs{\frac{1}{N} \sum f - \frac{1}{2\pi} \int f} \leq & \abs{\frac{1}{N} \sum f - \frac{1}{N} \sum P} + \abs{\frac{1}{N} \sum P - \frac{1}{2\pi} \int P} \\
+                                                                        & + \abs{\frac{1}{2\pi} \int P - \frac{1}{2\pi} \int f} < \epsilon.
+              \end{aligned}
+          \]
+\end{enumerate}
+
+\prob{8.17} \(f\) bounded and monotonic on \([-\pi, \pi)\). (Integrable)
+\begin{enumerate}
+    \item[(b)] 푸리에 급수가 점별로 수렴한다!
+\end{enumerate}
+
+\pagebreak
