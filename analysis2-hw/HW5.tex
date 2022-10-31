@@ -69,7 +69,108 @@
 \end{center}
 \begin{enumerate}
 
-    \numl{1}
+    \numl{1} {\sffamily Show that \(\Sigma \subset \mc{P}(S)\) is an algebra on \(S\) if and only if \(\Sigma \subset \mc{P}(S)\) is a ring on \(S\) with \(S \in \Sigma\).}
 
+    (\mimp) \(S\in \Sigma\) is trivial. If \(A, B\in \Sigma\), then \(A \cup B\in \Sigma\). (algebra) Also, it follows that
+    \[
+        A \bs B = S \bs \big((S \bs A) \cup B \big) \in \Sigma,
+    \]
+    since \(S \bs A \in \Sigma\) and \((S \bs A) \cup B \in \Sigma\). Therefore \(\Sigma\) is a ring on \(S\) with \(S \in \Sigma\).
+
+    (\mimpd) \(S\in \Sigma\) is trivial. If \(A, B\in \Sigma\), then \(A \cup B\in \Sigma\). (ring) Since \(S, A\in \Sigma\), \(S \bs A \in \Sigma\). (ring) Therefore \(\Sigma\) is an algebra on \(S\).
+
+    \vspace*{10px}
+
+    {\sffamily Show that \(\Sigma \hspace*{-0.6px} \subset \hspace*{-0.6px} \mc{P}(S)\) is a \(\sigma\)-algebra on \(S\) if and only if \(\Sigma \hspace*{-0.5px} \subset \hspace*{-0.5px} \mc{P}(S)\) is a \(\sigma\)-ring on \(S\) with \(S \in \Sigma\).}
+
+    By the proof above, we only need to show that any countable union of elements of \(\Sigma\) is also an element of \(\Sigma\). Let \(A_n \in \Sigma\) (\(n = 1, 2, \dots\)). Then \(\ds \bigcup_{n=1}^\infty A_n \in \Sigma\) holds for both cases where \(\Sigma\) is a \(\sigma\)-algebra or a \(\sigma\)-ring. Therefore the statement is proven.
+
+    \numl{2}
+    \begin{enumerate}
+        \item[(i)] \(E = f\inv(S) \in f\inv(\Sigma)\), since \(S \in \Sigma\). (algebra)
+        \item[(ii)] Take two elements \(f\inv(A), f\inv(B) \in f\inv(\Sigma)\), where \(A, B \in \Sigma\). Then
+            \[
+                f\inv(A) \cup f\inv(B) = f\inv(A \cup B) \in f\inv(\Sigma)
+            \]
+            since \(A \cup B \in \Sigma\). (algebra)
+        \item[(iii)] Take an element \(f\inv(A) \in f\inv(\Sigma)\), where \(A \in \Sigma\). Then
+            \[
+                f\inv(S) \bs f\inv(A) \overset{(\ast)}{=} f\inv\paren{S \bs A} \in f\inv(\Sigma)
+            \]
+            since \(S \bs A \in \Sigma\). (algebra)
+        \item[(iv)] For \(f\inv(A_n) \in f\inv(\Sigma)\) where \(A_n \in \Sigma\), (\(n = 1, 2, \dots\)) the following holds.
+            \[
+                \bigcup_{n=1}^\infty f\inv(A_n) = f\inv\paren{\bigcup_{n=1}^\infty A_n} \in f\inv(\Sigma)
+            \]
+            since \(\bigcup_{n=1}^\infty A_n \in \Sigma\). (\(\sigma\)-algebra)
+    \end{enumerate}
+
+    Therefore, \(f\inv(\Sigma)\) is a \(\sigma\)-algebra on \(E\).
+
+        {\sffamily \bfseries Proof of (\mast)}
+    \[
+        \begin{aligned}
+            x \in f\inv(S) \bs f\inv(A) \iff & x \in f\inv(S) \land x \notin f\inv(A)           \\
+            \iff                             & f(x) \in S \land f(x) \notin A                   \\
+            \iff                             & f(x) \in S\bs A \iff x \in f\inv\paren{S \bs A}.
+        \end{aligned}
+    \]
+
+    \numl{3} Let \(\Sigma_n\) (\(n = 1, 2, \dots\)) be \(\sigma\)-algebras on \(S\), and define \(\Sigma = \bigcap_{n} \Sigma_n\). It is trivial that \(S \in \Sigma\).
+
+    If \(A, B \in \Sigma\), then \(A, B \in \Sigma_i\) for all \(i \in \N\). Then \(S \bs A \in \Sigma_i\) and \(A \cup B \in \Sigma_i\) for all \(i \in \N\). Therefore \(S\bs A \in \Sigma\) and \(A \cup B \in \Sigma\).
+
+    Finally, if \(A_j \in \Sigma\) for \(j = 1, 2, \dots\), then \(A_j \in \Sigma_i\) for all \(i, j \in \N\). So \(\bigcup_{j=1}^\infty A_j \in \Sigma_i\) for all \(i \in \N\), since \(\Sigma_i\) are \(\sigma\)-algebras. Therefore \(\bigcup_{j=1}^\infty A_j \in \Sigma\).
+
+    Thus an arbitrary intersection of \(\sigma\)-algebras on \(S\) is a \(\sigma\)-algebra on \(S\). For the case of unions, consider
+    \[
+        \Sigma_1 = \{\varnothing, \{1\}, \{2, 3\}, \{1, 2, 3\}\}, \quad \Sigma_2 = \{\varnothing, \{2\}, \{1, 3\}, \{1, 2, 3\}\}.
+    \]
+    Then \(\{1\}, \{2\} \in \Sigma_1 \cup \Sigma_2\), but \(\{1, 2\}\notin \Sigma_1\cup \Sigma_2\).
+
+    \numl{4} We first check that \(\Sigma\) is a \(\sigma\)-ring. For \(A, B \in \Sigma\), it is easy to see that \(A\cup B, A\bs B\) are both in \(\Sigma\). Also if \(A_i \in \Sigma\) (\(i = 1, 2, \dots\)), then \(\bigcup_{i=1}^\infty A_i \subset S \in \mc{P(S)} = \Sigma\).
+
+    Now let \(A_i \in \Sigma\) be pairwise disjoint sets, and let \(A = \bigcup_{i=1}^\infty A_i\).
+    \begin{enumerate}
+        \item[(1)] Suppose \(x \in A\). Then because \(A_i\) are disjoint, \(\exists N \in \N\) such that \(x \in A_N\). So we can see that \(\mu_1(A_i) = 1\) if \(i = N\) and 0 otherwise. If \(x \notin A\), \(\mu_1(A_i) = 0\) for all \(i\in \N\). Therefore, for both cases,
+            \[
+                \mu_1\paren{\bigcup_{i=1}^\infty A_i} = \begin{cases}
+                    1 = \sum_{i=1}^\infty \mu_1(A_i) & (x \in A)    \\
+                    0 = \sum_{i=1}^\infty \mu_1(A_i) & (x \notin A)
+                \end{cases}
+            \]
+            and \(\mu_1\) is a measure on \(\Sigma\).
+        \item[(2)] If \(\abs{A_N} = \infty\) for some \(N \in \N\), then \(\mu_2\paren{\bigcup_{i=1}^\infty A_i} = \sum_{i=1}^\infty \mu_2(A_i) = \infty\). Now suppose that \(\abs{A_i} < \infty\) for all \(i \in \N\). If \(\sum_{i=1}^\infty \mu_2(A_i) = \sum_{i=1}^\infty \abs{A_i} < \infty\), then
+            \[
+                \mu_2\paren{\bigcup_{i=1}^\infty A_i} = \abs{\bigcup_{i=1}^\infty A_i} = \sum_{i=1}^\infty \abs{A_i} < \infty.
+            \]
+            If \(\sum_{i=1}^\infty \mu_2(A_i) = \infty\), we can take any \(K > 0\) and find \(M \in \N\) such that \(\sum_{i=1}^M \mu_2(A_i) > K\). Then
+            \[
+                \mu_2\paren{\bigcup_{i=1}^\infty A_i} \geq \mu_2\paren{\bigcup_{i=1}^M A_i} = \sum_{i=1}^M \mu_2(A_i) > K
+            \]
+            for all \(K > 0\). Thus \(\mu_2(\bigcup_{i=1}^\infty A_i) = \sum_{i=1}^\infty \mu_2(A_i) = \infty\). Overall, \(\mu_2\) is a measure on \(\Sigma\).
+    \end{enumerate}
+
+    \numl{5} Define \(B_n = A_n \bs A_{n+1}\) for \(n = 1, 2, \dots\). Then we directly see that \(B_n\) are pairwise disjoint. Note that
+    \[ \tag{\mast}
+        \sum_{i=1}^n \mu(B_i) = \sum_{i=1}^n \left[\mu(A_i) - \mu(A_{i+1})\right] = \mu(A_1) - \mu(A_{n+1}).
+    \]
+    Therefore,
+    \[
+        \begin{aligned}
+            \mu\paren{\bigcap_{i=1}^\infty A_i} & = \mu\paren{A_1 \bs \bigcup_{i=1}^\infty B_i} = \mu(A_1) - \mu\paren{\bigcup_{i=1}^\infty B_i} = \mu(A_1) - \sum_{i=1}^\infty \mu(B_i) \\
+                                                & =\lim_{n\ra\infty} \left[\mu(A_1) - \sum_{i=1}^n \mu(B_i)\right] = \lim_{n\ra \infty} \mu(A_{n+1}) = \lim_{n\ra \infty} \mu(A_{n})
+        \end{aligned}
+    \]
+    by (\mast).
+
+    \numl{6} Define \(B_1 = A_1\), \(B_n = A_n \bs \bigcup_{i=1}^{n-1} A_i\) for \(n \geq 2\). Then \(B_n\) are pairwise disjoint. Since \(B_n \subset A_n\) for all \(n \in \N\), we have that \(\mu(B_n) \leq \mu(A_n)\). Also note that
+    \[
+        \bigcup_{i=1}^\infty B_i = \bigcup_{i=1}^\infty A_i \in \mc{F}
+    \]
+    since \(\mc{F}\) is a \(\sigma\)-algebra. Then
+    \[
+        \mu\paren{\bigcup_{i=1}^\infty A_i} = \mu\paren{\bigcup_{i=1}^\infty B_i} = \sum_{i=1}^\infty \mu(B_i) \leq \sum_{i=1}^\infty \mu(A_i).
+    \]
 \end{enumerate}
 \end{document}
