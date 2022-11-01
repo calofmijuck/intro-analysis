@@ -1,0 +1,186 @@
+\setcounter{chapter}{10}
+
+\chapter{The Lebesgue Theory}
+
+\section*{October 18th, 2022}
+
+
+
+르벡 적분 공부한다고 해서, 실수의 모든 집합에 대해서 하면 좋겠지만 그게 불가능해요. \(\R\)의 power set 위에서 measure를 정의하고 싶은데, 이게 불가능해요! 그러니 이보다 좀 작은 set들에 대해서 할건데, 좋은 구조를 가졌으면 좋겠어요. 그러면 집합들 간에 연산이 잘 정의되어 있고 닫혀 있었으면 좋겠어요. 여기서 연산은 교집합, 합집합, 차집합을 얘기합니다.
+
+\subsection*{Algebra of Sets}
+
+Let \(\mc{R}_0\) be a family of sets. We assume that \(\mc{R}_0 \neq \varnothing\).
+
+\defn. \note{Ring} \(\mc{R}_0\) is a \textbf{ring} if for \(A, B \in \mc{R}_0\),
+\begin{center}
+    \(A \cup B \in \mc{R}_0\) and \(A \bs B \in \mc{R}_0\).
+\end{center}
+
+\rmk Suppose \(\mc{R}_0\) is a ring.
+\begin{itemize}
+    \item Since \(\mc{R}_0\neq \varnothing\), \(\exists A \in \mc{R}_0\). So \(A \bs A = \varnothing \in \mc{R}_0\).
+    \item If \(A, B \in \mc{R}_0\), then \(A \cap B = A \bs (A \bs B) \in \mc{R}_0\).
+\end{itemize}
+
+\medskip
+
+\defn. \note{Power Set} Let \(X\) be a set. We define the \textbf{power set} of \(X\) as
+\[
+    \mc{P}(X) = \{A : A \subset X\}.
+\]
+
+\pagebreak
+
+\defn. \note{Algebra} \(\scr{F}_0 \subset \mc{P}(X)\) is called an \textbf{algebra} on \(X\) if
+\begin{enumerate}
+    \item \(X \in \scr{F}_0\).
+    \item \(X \bs A \in \scr{F}_0\) if \(A \in \scr{F}_0\).
+    \item \(A\cup B \in \scr{F}_0\) if \(A, B \in \scr{F}_0\).
+\end{enumerate}
+
+\rmk \(\scr{F}_0\) is an algebra on \(X\) \miff \(\scr{F}_0\) is not empty + (2) + (3).\footnote{교재에서는 공집합이 아닐 것을 가정하고 있기 때문에 (2), (3)이면 충분한 것입니다.}
+
+\pf (\mimpd) \(\exists A \in \scr{F}_0\). Then \(X \bs A \in \scr{F}_0\), so \(X = (X \bs A)\cup A \in \scr{F}_0\).
+
+\medskip
+
+\rmk We write \(A^C = X \bs A\). We know that
+\begin{center}
+    \(A \cap B = (A^C \cup B^C)^C\),\quad \(A\bs B = A \cap B^C\).
+\end{center}
+So if \(A, B \in \scr{F}_0\), then \(A \cap B, A \bs B \in \scr{F}_0\).
+
+\medskip
+
+\prop.
+\begin{enumerate}
+    \item If \(\mc{R}\) is an algebra on \(X\) then \(\mc{R}\) is a ring.
+    \item If \(\mc{R} \subset \mc{P}(X)\) is a ring and \(X \in \mc{R}\) then \(\mc{R}\) is an algebra on \(X\).\footnote{요즘 책들은 대부분 algebra 위에서 하고, ring 위에서 하면 진짜 조금 일반화 하는 거예요.}
+\end{enumerate}
+
+\bigskip
+
+\defn. \note{\(\sigma\)-ring} A ring \(\mc{R}\) is called \textbf{\(\sigma\)-ring} if \(\ds \bigcup_{n=1}^\infty A_n \in \mc{R}\) whenever \(A_n \in \mc{R}\).\footnote{Countable 한 집합의 union을 해도 안에 들어간다.}
+
+그럼 마찬가지로 intersection도 성립하겠죠.
+
+\rmk Check that
+\[
+    \bigcap_{n=1}^\infty A_n = A_1 \bs \bigcup_{n=1}^\infty (A_1 \bs A_n).
+\]
+Therefore if \(\mc{R}\) is a \(\sigma\)-ring and \(A_n \in \mc{R}\), then \(\ds \bigcap_{n=1}^\infty A_n \in \mc{R}\).
+
+\medskip
+
+\defn. \note{\(\sigma\)-algebra} An algebra \(\scr{F}\) on \(X\) is called a \textbf{\(\sigma\)-algebra} if \(\ds \bigcup_{n=1}^\infty A_n \in \scr{F}\) whenever \(A_n \in \scr{F}\).
+
+\rmk Since an algebra is also a ring, \(\ds \bigcap_{n=1}^\infty A_n \in \scr{F}\) by the above remark.
+
+Algebra와 \(\sigma\)-algebra를 소개했어요. Example로 생각하고 있을 것이 \(\mc{P}(\R)\)...
+
+\pagebreak
+
+\defn{11.2} \note{Set Function} Let \(\mc{R}_0\) be a (non-empty) ring.
+\begin{center}
+    \(\phi : \mc{R}_0 \ra \overline{\R}\)
+\end{center}
+is called a \textbf{set function} on \(\mc{R}_0\).
+
+We assume that \(\{-\infty, \infty\} \nsubseteq \range{\phi}\), and \(\range{\phi}\) is not \(\{\infty\}\) or \(\{-\infty\}\). Therefore,
+\begin{center}
+    \(\exists A \in \mc{R}_0\) such that \(\phi(A) \in \R\).
+\end{center}
+\begin{enumerate}
+    \item \(\phi\) is \textbf{additive} if
+          \[
+              \phi(A\cup B) = \phi(A) + \phi(B)
+          \]
+          for disjoint \(A, B \in \mc{R}_0\).
+
+    \item \(\phi\) is \textbf{countably additive} (\(\sigma\)-additive) if
+          \[
+              \phi\paren{\bigcup_{i=1}^\infty A_i} = \sum_{i=1}^\infty \phi(A_i).
+          \]
+          for pairwise disjoint \(A_i \in \mc{R}_0\) and \(\ds \bigcup_{i=1}^\infty A_i \in \mc{R}_0\).\footnote{\(\sigma\)-ring 이면 불필요한 조건이지만, 일반적인 ring에 대해서는 필요한 조건이다.}
+
+    \item \note{Measure} Given a \(\sigma\)-ring \(\mc{R}_0\), we call \(\mu\) a \textbf{measure} on \(\mc{R}_0\) if \(\mu\) is a set function on \(\mc{R}_0\) which is countably additive and \(\range{\mu} = [0, \infty]\).
+\end{enumerate}
+
+\medskip
+
+\rmk
+\begin{enumerate}
+    \item If \(\phi\) is additive,
+          \[ \tag{\mast}
+              \phi\paren{\bigcup_{i=1}^n A_i} = \sum_{i=1}^n \phi(A_i)
+          \]
+          for pairwise disjoint \(A_i \in \mc{R}_0\). We call the property (\mast) \textit{finite additivity} or we say that \(\phi\) is \textit{finitely additive}.
+
+    \item \(\phi(\varnothing) = 0\). Write \(\phi(A) = \phi(A \cup \varnothing)\), and cancel \(\phi(A) \in \R\). \footnote{지금부터는 extended real number가 나오기 때문에 뺄셈에 조심하세요!}
+\end{enumerate}
+
+\medskip
+
+\defn. Let \(\mu\) be a measure on \(\sigma\)-algebra \(\scr{F} \subset \mc{P}(X)\).
+\begin{enumerate}
+    \item \(\mu\) is \textbf{finite} \miff \(\mu(X) < \infty\).
+    \item \(\mu\) is \textbf{\(\sigma\)-finite} \miff \(\exists F_1 \subset F_2 \subset \cdots\), \(\mu(F_i) < \infty \) and \(\ds \bigcup_{i=1}^\infty F_i = X\).
+\end{enumerate}
+
+\subsection*{Some Basic Properties of Set Functions}
+
+Let \(\phi\) be a set function.
+
+\begin{itemize}
+    \item If \(\phi\) is countably additive on a ring \(\mc{R}_0\), then \(\phi\) is additive.
+
+    \item If \(\phi\) is additive on \(\mc{R}_0\), then for \(A, B \in \mc{R}_0\),
+    \[
+        \phi(A\cup B) + \phi(A\cap B) = \phi(A) + \phi(B).\footnote{고등학교 때 봤던 확률의 덧셈정리와 유사하죠?}
+    \]
+
+    \item If \(\phi\) is additive on \(\mc{R}_0\), then for \(A_1, A_2 \in \mc{R}_0\) such that \(A_1 \subset A_2\),
+    \[
+        \phi(A_2) = \phi(A_2 \bs A_1) + \phi(A_1).
+    \]
+    \begin{enumerate}
+        \item If \(\phi \geq 0\), then \(\phi(A_1) \leq \phi(A_2)\). (Monotonicity)
+        \item If \(\abs{\phi(A_1)} < \infty\), then \(\phi(A_2 \bs A_1) = \phi(A_2) - \phi(A_1)\).
+    \end{enumerate}
+
+    \item If \(\phi\) is additive and \(\phi \geq 0\), then for \(A, B \in \mc{R}_0\),
+    \[
+        \phi(A\cup B) \leq \phi(A) + \phi(B).
+    \]
+    By induction,
+    \[ \tag{\mast}
+        \phi\paren{\bigcup_{n=1}^m A_n} \leq \sum_{n=1}^m \phi(A_n)
+    \]
+    for all \(A_i \in \mc{R}_0\).\footnote{Disjoint일 필요는 없어요!} The property (\mast) is called \textit{finite subadditivity}.
+\end{itemize}
+
+\bigskip
+
+\thm{11.3} Let \(\phi\) be countably additive on \(\mc{R}_0\). Suppose \(A_n \in \mc{R}_0\), \(A = \ds \bigcup_{n=1}^\infty A_n \in \mc{R}_0\), and \(A_1 \subset A_2 \subset \cdots\). Then
+\[
+    \lim_{n\ra\infty} \phi(A_n) = \phi(A) = \phi\paren{\bigcup_{n=1}^\infty A_n}.\footnote{반대로 decreasing인 경우에는 안됩니다. 반례는 \([n, \infty)\)를 생각해보면 됩니다.}
+\]
+
+\pf Let \(B_1 = A_1\), \(B_n = A_n \bs A_{n-1}\) for \(n \geq 2\). We see that \(B_n\) are pairwise disjoint. Then
+\[
+    \phi(A_n) = \phi\paren{\bigcup_{k=1}^n B_k} = \sum_{k=1}^n \phi(B_k).
+\]
+Since \(\ds A = \bigcup_{n=1}^\infty A_n = \bigcup_{n=1}^\infty B_n\),
+\[
+    \phi(A) = \sum_{n=1}^\infty \phi(B_n) = \lim_{n\ra\infty} \sum_{k=1}^n \phi(B_k) = \lim_{n\ra\infty} \phi(A_n).
+\]
+
+\cor Let \(\mu\) be a measure on a \(\sigma\)-algebra \(\scr{F}\). Suppose \(A_n \in \scr{F}\) and \(A_1 \subset A_2 \subset \cdots\). Then
+\[
+    \lim_{n\ra\infty} \mu(A_n) = \mu\paren{\bigcup_{n=1}^\infty A_n}.
+\]
+
+이제 우리의 목표는 \(\R^p\)에서 measure를 construct하는 것인데, 일단 잴 수 있는 것부터 시작할 것입니다. 예를 들면 box 같은 것들. (경계는 고려하지 않고)
+
+\pagebreak
