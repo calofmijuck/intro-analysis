@@ -37,7 +37,7 @@
 \large 2017-18570 컴퓨터공학부 이성찬
 \end{center}
 \begin{enumerate}
-\numl{1} 
+\numl{1}
 \begin{enumerate}
 	\item[(1)] Given $\forall M > 0$, set $N = \dfrac{M + 3}{2}$. Then for all $n>N$, $2n - 3 > M$. Thus $-2n+3 < -M$. ($-2n+3$ can be made an arbitrarily small negative number)\\ $\ds \therefore \lim_{n\rightarrow \infty} (-2n+3) = -\infty$
 	\item[(2)] Given $\forall M > 0$, set $\ds N = \frac{\tan^{-1}M}{\pi - 2\tan^{-1}M} > 0$.\footnote{$0 < \tan^{-1}x < \pi/2$ for $x > 0$.} Then for all $n>N$, $n > \dfrac{\tan^{-1}M}{\pi - 2\tan^{-1}M}$. Simplify with respect to $M$ which leads to $n\pi>(2n+1)\tan^{-1}M$. $$\frac{\pi}{2} > \frac{n\pi}{2n+1} > \tan^{-1}M$$Since $\tan x$ is an increasing function on $(0, \pi/2)$, $$M < \tan{\frac{n\pi}{2n+1}} \quad \text{for all } M > 0$$
@@ -46,11 +46,11 @@
 
 \numl{2} Since every convergent sequence is bounded, there exists $A\in \bb{R}$ such that $\abs{a_n} < A$ for all $n\in \bb{N}$.  $\therefore -A < a_n < A$.
 \begin{enumerate}
-	\item[(1)] $\ds \lim_{n\rightarrow \infty} b_n = \infty$ $\implies \forall M>0, \exists N\in \bb{N}$ such that ($n \geq N \Rightarrow b_n > M$).\\ 
+	\item[(1)] $\ds \lim_{n\rightarrow \infty} b_n = \infty$ $\implies \forall M>0, \exists N\in \bb{N}$ such that ($n \geq N \Rightarrow b_n > M$).\\
 	$\implies$ $\forall M > A$, $\exists N\in \bb{N}$ such that ($n\geq N$ $\Rightarrow$ $b_n>M$).\\
 	$\implies$ $\forall M' = M - A > 0$, $\exists N \in \bb{N}$ such that ($n \geq N$ $\Rightarrow$ $a_n+b_n > M - A = M' > 0$).\\
 	$\implies$ $\ds \lim_{n\rightarrow \infty} (a_n+b_n) =\infty$.
-	\item[(2)] 
+	\item[(2)]
 	\begin{enumerate}
 		\item[(i)] Suppose $a > 0$. \\For any $0 < \epsilon < a$, there exists $N_1 \in \bb{N}$ such that ($n > N_1 \Rightarrow \abs{a_n-a} < \epsilon$).\\
 		$\therefore$ $0 < a - \epsilon < a_n < a + \epsilon$.\\
@@ -79,15 +79,15 @@
 	\item[(3)] $a_n = (-1)^nn$. $a_n$ is neither bounded above nor bounded below. Suppose such bound $M_1, M_2$ existed so that $M_1 < a_n < M_2$. To violate the first inequality, choose an odd number from $n \geq \max\{M_1, M_2 \}$, and choose an even number to violate the second inequality. Thus by definition, $\ds \limsup_{n\rightarrow \infty}a_n = \infty$ and $\ds \liminf_{n\rightarrow \infty}a_n = -\infty$.
 \end{enumerate}
 
-\numl{4} 
+\numl{4}
 \begin{enumerate}
 	\item[(1)] (0.1) If either the limit superior of $\span{a_n}, \span{b_n}$ is $\infty$, there is nothing to prove. And for the case where either one of them is $-\infty$, suppose $\ds\limsup_{n\rightarrow \infty}a_n=-\infty$, without loss of generality. Then the sequence $y_n=\sup_{k\geq n}a_k$ is not bounded below. Thus $\sup_{k\geq n}(a_k+b_k)$ is also not bounded below.\footnote{Except for the case where $\sup_{k\geq n}b_k$ diverges to $\infty$.}, which gives us $\ds \limsup_{n\rightarrow \infty}(a_n+b_n) = -\infty$, satisfying the inequality.\\
 	Now suppose $\ds\limsup_{n\rightarrow \infty}a_n = \alpha$, $\ds \limsup_{n\rightarrow \infty} b_n = \beta$. ($\alpha, \beta \in \bb{R}$) $\forall \epsilon > 0$, there exists $N\in \bb{N}$ such that for all $n\geq N$, $a_n < \alpha + \epsilon/2$ and $b_n < \beta + \epsilon /2$. \\Then we have $a_n+b_n < \alpha + \beta + \epsilon$ for $n\geq N$, thus $\ds\limsup_{n\rightarrow \infty}(a_n+b_n)$ is at most $\alpha+\beta$.\\
-	
+
 	(0.2) If either the limit inferior of $\span{a_n}, \span{b_n}$ is $-\infty$, there is nothing to prove. And for the case where either one of them is $\infty$, suppose $\ds\liminf_{n\rightarrow \infty}a_n=\infty$, without loss of generality. Then the sequence $z_n=\inf_{k\geq n}a_k$ is not bounded above. Thus $\inf_{k\geq n}(a_k+b_k)$ is also not bounded above.\footnote{Except for the case where $\inf_{k\geq n}b_k$ diverges to $-\infty$.}, which gives us $\ds \liminf_{n\rightarrow \infty}(a_n+b_n) = \infty$, satisfying the inequality.\\
 	Now suppose $\ds\liminf_{n\rightarrow \infty}a_n = \alpha$, $\ds \liminf_{n\rightarrow \infty} b_n = \beta$. ($\alpha, \beta \in \bb{R}$) $\forall \epsilon > 0$, there exists $N\in \bb{N}$ such that for all $n\geq N$, $a_n > \alpha - \epsilon/2$ and $b_n > \beta - \epsilon /2$. \\Then we have $a_n+b_n > \alpha + \beta - \epsilon$ for $n\geq N$, thus $\ds\liminf_{n\rightarrow \infty}(a_n+b_n)$ is at least $\alpha+\beta$.
 	\item[(2)] Take $a_n = (-1)^n, b_n = -(-1)^n$ for both inequalities. We have $\ds\limsup_{n\rightarrow \infty}(a_n+b_n) = \liminf_{n\rightarrow \infty}(a_n+b_n)= 0$, $\ds \limsup_{n\rightarrow \infty}a_n = \limsup_{n\rightarrow \infty}b_n = 1$, $\ds \liminf_{n\rightarrow \infty}a_n = \liminf_{n\rightarrow \infty}b_n=-1$. The equality parts do not hold for this case.
-	\item[(3)] Yes. It is enough to show (0.1), (0.2) with each of their inequality signs reversed. Since $\span{b_n}$ is convergent, $\limsup_{n\rightarrow \infty} b_n = \liminf_{n\rightarrow \infty} b_n = \beta \in \bb{R}$. For all $ \epsilon > 0 $, $\exists N\in\bb{N}$ such that for all $n\geq N$, $\abs{b_n-\beta} < \epsilon$. Then we have $$a_n+\beta-\epsilon < a_n+b_n < a_n+\beta+\epsilon$$From the first inequality, $\sup_{k\geq n}(a_k+b_k) \geq \sup_{k\geq n}(a_k) + \beta-\epsilon$. $$\therefore \limsup_{n\rightarrow \infty}(a_n+b_n)\geq \limsup_{n\rightarrow \infty}a_n + \limsup_{n\rightarrow \infty}b_n$$ 
+	\item[(3)] Yes. It is enough to show (0.1), (0.2) with each of their inequality signs reversed. Since $\span{b_n}$ is convergent, $\limsup_{n\rightarrow \infty} b_n = \liminf_{n\rightarrow \infty} b_n = \beta \in \bb{R}$. For all $ \epsilon > 0 $, $\exists N\in\bb{N}$ such that for all $n\geq N$, $\abs{b_n-\beta} < \epsilon$. Then we have $$a_n+\beta-\epsilon < a_n+b_n < a_n+\beta+\epsilon$$From the first inequality, $\sup_{k\geq n}(a_k+b_k) \geq \sup_{k\geq n}(a_k) + \beta-\epsilon$. $$\therefore \limsup_{n\rightarrow \infty}(a_n+b_n)\geq \limsup_{n\rightarrow \infty}a_n + \limsup_{n\rightarrow \infty}b_n$$
 	From the second inequality, $\inf_{k\geq n}(a_k+b_k) < \liminf_{n\rightarrow \infty}(a_k) + \beta+\epsilon$.
 	$$\therefore \liminf_{n\rightarrow \infty}(a_n+b_n)\leq \liminf_{n\rightarrow \infty}a_n + \liminf_{n\rightarrow \infty}b_n$$
 	Hence the equality holds.
@@ -97,13 +97,13 @@
 \numl{5} $\forall\epsilon > 0$, $\exists N\in\bb{N}$ such that for all $n\geq N$, $\abs{a_n-a} < \epsilon$. Since $\abs{\abs{a_n} - \abs{a}} < \abs{a_n-a}$, we have $$-\epsilon < \abs{a_n}-\abs{a} < \epsilon$$and obviously, $-\abs{a_n}\leq b_n\leq \abs{a_n}$. So the following holds.
 $$-\abs{a}-\epsilon < -\abs{a_n} \leq b_n\leq \abs{a_n}<\abs{a}+\epsilon \qquad \cdots (*)$$ We can also see that $b_n$ is a bounded sequence, since $a_n$ is bounded.
 \begin{enumerate}
-	\item $\ds\limsup_{n\rightarrow \infty} b_n = \abs{a}$.\\Given $\forall \epsilon>0$, $b_n<\abs{a}+\epsilon$ for large enough $n$ (from $(*)$)\\Now we must show that there are infinitely many $n$ that satisfy $\abs{a}-\epsilon < b_n$. 
+	\item $\ds\limsup_{n\rightarrow \infty} b_n = \abs{a}$.\\Given $\forall \epsilon>0$, $b_n<\abs{a}+\epsilon$ for large enough $n$ (from $(*)$)\\Now we must show that there are infinitely many $n$ that satisfy $\abs{a}-\epsilon < b_n$.
 	\begin{enumerate}
 		\item $a\geq 0$: Since $a-\epsilon < a_n$ and $a_n=b_n$ whenever $n$ is even, there are infinitely many $n$.
 		\item $a < 0$: Since $a_n < a +\epsilon$ and $a_n = -b_n$ whenever $n$ is odd, we have $-b_n < a+\epsilon$, $b_n > -a-\epsilon$. There are infinitely many $n$.
 	\end{enumerate}
 	By \textsf{Prop 1.4.3}, $\ds \limsup_{n\rightarrow \infty} b_n = \abs{a}$.
-	\item $\ds\liminf_{n\rightarrow \infty} b_n = -\abs{a}$.\\Given $\forall \epsilon>0$, $-\abs{a}-\epsilon <b_n$ for large enough $n$ (from $(*)$)\\Now we must show that there are infinitely many $n$ that satisfy $b_n < -\abs{a}+\epsilon $. 
+	\item $\ds\liminf_{n\rightarrow \infty} b_n = -\abs{a}$.\\Given $\forall \epsilon>0$, $-\abs{a}-\epsilon <b_n$ for large enough $n$ (from $(*)$)\\Now we must show that there are infinitely many $n$ that satisfy $b_n < -\abs{a}+\epsilon $.
 	\begin{enumerate}
 		\item $a\geq 0$: Since $a-\epsilon < a_n$ and $a_n=-b_n$ whenever $n$ is odd, we have $a-\epsilon<-b_n$, $b_n < -a+\epsilon$. There are infinitely many $n$.
 		\item $a < 0$: Since $a_n < a +\epsilon$ and $a_n = b_n$ whenever $n$ is even. There are infinitely many $n$.
@@ -133,9 +133,9 @@ $$-\abs{a}-\epsilon < -\abs{a_n} \leq b_n\leq \abs{a_n}<\abs{a}+\epsilon \qquad 
 		\textbf{Claim}. There exists $l\in\bb{N}$ such that $lf(n_2-n_1) \in \left[- \delta, \delta \right]$.\\
 		\textbf{Proof}. (by contradiction) Suppose that such $l$ does not exist. Then there exists $l_1\in \bb{N}$ such that $$\overset{(1)}{\overbrace{l_1f(n_2-n_1) < -\delta}}<\overset{(2)}{\overbrace{\delta < (l_1+1)f(n_2-n_1)}}$$
 		Add (1), (2) to get $2\delta < f(n_2-n_1)$, contradicting $(*)$.\\
-		Thus we have $f(l(n_2-n_1)) = lf(n_2-n_1) \in \left[-\delta, \delta\right]$, and there exists infinitely many $n$ that satisfy $a_n\geq 1-\epsilon$.\footnote{$\cos$ is a continuous function ...} 
+		Thus we have $f(l(n_2-n_1)) = lf(n_2-n_1) \in \left[-\delta, \delta\right]$, and there exists infinitely many $n$ that satisfy $a_n\geq 1-\epsilon$.\footnote{$\cos$ is a continuous function ...}
 		\\By \textsf{Prop 1.4.3}, $\limsup a_n = 1$.
-		
+
 		\item $\liminf a_n = -\limsup (-a_n) = -\limsup a_n = -1$. ($\cos$ is an even function.)
 	\end{enumerate}
 \end{enumerate}
@@ -147,7 +147,7 @@ $$-\abs{a}-\epsilon < -\abs{a_n} \leq b_n\leq \abs{a_n}<\abs{a}+\epsilon \qquad 
 	By the choice of $\epsilon$, the following holds. $$\frac{1}{2}(x+y-a-b)^2\leq \left(\frac{a+b-1}{\sqrt{2}}\right)^2 \qquad \frac{1}{2}(x+y-a-b)^2\leq \left(\frac{2-a-b}{\sqrt{2}}\right)^2$$
 	Solving for $x+y$ gives $1<x+y<2$. Therefore $A$ is open in $\bb{R}^2$.
 	\item[(2)] For any $\alpha = (a, b, c)\in B$, set $\epsilon = \min\{r-2, 3-r \}$ where $r^2 = a^2+b^2+c^2$. Then for any $\beta = (x, y, z) \in N(\alpha, \epsilon)$, $\norm{\beta - \alpha} < \epsilon$. And we have $2 < \norm{\alpha} = r <3 $. $$\norm{\beta} = \norm{\beta - \alpha + \alpha}\leq \norm{\beta - \alpha} +\norm{\alpha} < \epsilon + r \leq 3-r + r = 3$$
-	$$2 = r + 2-r \leq \norm{\alpha} - \epsilon < \norm{\alpha} -\norm{\beta-\alpha} \leq \norm{\alpha + \beta - \alpha} = \norm{\beta}$$ 
+	$$2 = r + 2-r \leq \norm{\alpha} - \epsilon < \norm{\alpha} -\norm{\beta-\alpha} \leq \norm{\alpha + \beta - \alpha} = \norm{\beta}$$
 	Thus $\beta \in B$, $N(\alpha, \epsilon) \subset B$. Therefore $B$ is open in $\bb{R}^3$.
 	\item[(3)] For $\alpha \in \bb{R}^n, r>0$, define $$N_4\left(\alpha, r\right) = \{ \rmbf{x} = (x_1, \dots, x_n)\in \bb{R}^n : \norm{\rmbf{x} - \alpha}_4 < r  \}$$.  The given set $C$ is equal to $N_4(\rmbf{0}, 1)$. For any $\alpha = (x_1, \dots, x_n) \in C$, consider $X = N_4\left(\alpha,  {1-\norm{\alpha}_4}\right)$.
 	\begin{enumerate}
@@ -167,10 +167,10 @@ $$-\abs{a}-\epsilon < -\abs{a_n} \leq b_n\leq \abs{a_n}<\abs{a}+\epsilon \qquad 
 		\text{LHS} &= xy - 1  - \abs{r(x\cos\theta + y\sin\theta) + r^2\cos\theta\sin\theta}\\ &\overset{(*)}{\geq} xy-1-r(\abs{x}+\abs{y} + 1) > 0\qquad  (\text{by the choice of } r_0)
 	\end{aligned}$$
 	\textbf{Proof of $(*)$}. $\abs{r(x\cos\theta + y\sin\theta) + r^2\cos\theta\sin\theta} \leq r(\abs{x}+\abs{y} +r) < r(\abs{x}+\abs{y}+1)$. The last inequality is from $r < 1$.\\
-	$\therefore N(z, \epsilon) \subset D$. $D$ is open in $\bb{R}^2$. 
+	$\therefore N(z, \epsilon) \subset D$. $D$ is open in $\bb{R}^2$.
 \end{enumerate}
 
-\numl{8} 
+\numl{8}
 \begin{enumerate}
 	\item[(1)] $A = \bb{N}$. Check if $\bb{N}^C$ is open. We will show that for all $x\in \bb{N}^C$, $N(x, \epsilon)\subset \bb{N}^C$ where $\epsilon = \min\{x - \lfloor x \rfloor, \lceil x\rceil - x  \}$. Because $N(x, \epsilon) = (x - \epsilon, x +\epsilon)$,
 	$$x + \epsilon < x + \lceil x\rceil - x < \lceil x\rceil \qquad x - \epsilon > x-x + \lfloor x \rfloor>  \lfloor x \rfloor $$
@@ -186,7 +186,7 @@ $$-\abs{a}-\epsilon < -\abs{a_n} \leq b_n\leq \abs{a_n}<\abs{a}+\epsilon \qquad 
 		$\implies 3x_0+2y_0>1$
 		\item $3x+2y - 1<0$\\
 		$\implies 0 \leq 3x+2y-6x_0-4y_0+1 < 2 - 6x_0-4y_0$\\
-		$\implies 3x_0+2y_0 <1$	
+		$\implies 3x_0+2y_0 <1$
 	\end{enumerate}
 	Therefore $z'\in C^C$. $N(z, \epsilon) \subset C^C$, $C$ is closed.
 	\item[(4)] Take $\alpha = (x_0, y_0, z_0) \in D^C$. Then $x_0^2+y_0^2>1$. Consider $\beta = (x, y, z) \in N(\alpha, \epsilon)$ where $\epsilon = \sqrt{x_0^2+y_0^2} - 1$. Now take $\gamma = (0, 0, z_0), \gamma' = (0, 0, z) \in D$. Then we have $\norm{\beta-\alpha} <\epsilon$, $\norm{\alpha-\gamma} = 1 + \epsilon$. Using the triangle inequality twice gives $$\norm{\alpha-\beta} + \norm{\beta-\gamma'}\geq \norm{\alpha-\gamma'}\geq \norm{\gamma - \gamma'} + \norm{\gamma-\alpha} \geq \norm{\gamma-\alpha} = 1+\epsilon$$

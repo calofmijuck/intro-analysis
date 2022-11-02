@@ -60,7 +60,7 @@ and since $f'(c) > 0$, $f(y) -f(x) > 0$. Thus $f$ is increasing.
 \begin{itemize}
 	\item $\big(f(x)g(x)\big)' = f'(x)g(x) + f(x)g'(x)$\\
 	$$\begin{aligned}
-		\lim_{h\ra0} \frac{f(x+h)g(x+h)-f(x)g(x)}{h}&= 
+		\lim_{h\ra0} \frac{f(x+h)g(x+h)-f(x)g(x)}{h}&=
 		\lim_{h\ra0} \left\{g(x+h)\frac{f(x+h)-f(x)}{h} + f(x)\frac{g(x+h)-g(x)}{h}\right\}\\
 		&=f'(x)g(x)+f(x)g'(x)
 	\end{aligned}$$
@@ -73,13 +73,13 @@ and since $f'(c) > 0$, $f(y) -f(x) > 0$. Thus $f$ is increasing.
 \end{itemize}
 Now combining these two result gives $$\left(\frac{f(x)}{g(x)}\right)' = \left(f(x) \cdot \frac{1}{g(x)}\right)' = f'(x) \cdot \frac{1}{g(x)} + f(x) \cdot \frac{-g'(x)}{g(x)^2} = \frac{f'(x)g(x) - f(x)g'(x)}{g(x)^2}$$
 
-\item 
+\item
 \begin{enumerate}
 	\item The following can be proved easily by induction. $$f^{(i)}(x) = \sum_{k=i}^{n} \frac{k!}{(k-i)!} c_k x^{k-i}\quad (i=0, \dots, n)$$
 	($f^{(i+1)}(x) = \sum_{k=i+1}^{n} \frac{k!}{(k-i)!}c_k(k-i)x^{k-i-1} = \sum_{k=i+1}^n \frac{k!}{(k-i-1)!}c_kx^{k-i-1}$)\\
 	And for $i > n$, $f^{(i)}(x) = 0$. Since $f^{(i)}(0) = i! \cdot c_i$ $(i =0, \dots, n)$ we have
 	$$f(x) = \sum_{k=0}^{\infty}\frac{f^{(k)}(0)}{k!}x^k=\sum_{k=0}^n \frac{k!c_k}{k!}x^k + 0 = \sum_{k=0}^n c_kx^k $$
-	
+
 	\item By induction, $$f^{(n)}(x) = 2^n e^{2x+1}$$
 	($(2^n e^{2x+1})' = 2^{n+1}e^{2x+1} = f^{(n+1)}(x)$)\\
 	Thus $f^{(n)}(0) = e \cdot 2^n$, and
@@ -92,13 +92,13 @@ Now combining these two result gives $$\left(\frac{f(x)}{g(x)}\right)' = \left(f
 	$$\cos(x^2) = \sum_{k=0}^\infty (-1)^k \frac{x^{4k}}{(2k)!}$$
 \end{enumerate}
 
-\item Use the Mean Value Theorem on $(a, c)$ and $(c, b)$. Then there exists $c_1\in (a, c)$ and $c_2\in (c, b)$ such that 
+\item Use the Mean Value Theorem on $(a, c)$ and $(c, b)$. Then there exists $c_1\in (a, c)$ and $c_2\in (c, b)$ such that
 $$\frac{f(c)-f(a)}{c-a}=f'(c_1)\qquad \frac{f(b)-f(c)}{b-c} = f'(c_2)$$
 Since $(a, f(a)), (b, f(b)), (c, f(c))$ are on the same line, the slope is equal and $f'(c_1)=f'(c_2)$. By Rolle's Theorem, there exists $d\in (c_1, c_2)\subset [a, b]$ s.t. $f''(d) =0$.
 
-\item 
+\item
 \begin{enumerate}
-	\item $$e^x = \sum_{n=0}^\infty \frac{x^n}{n!} \geq \frac{x^n}{n!} \quad (x \geq 0)$$ 
+	\item $$e^x = \sum_{n=0}^\infty \frac{x^n}{n!} \geq \frac{x^n}{n!} \quad (x \geq 0)$$
 	\item It is enough to check for $x= 0$. Check the left/right derivative.
 	$$f_+'(0) = \lim_{h\ra0^+} \frac{f(h) - f(0)}{h} = \lim_{h\ra0^+} \frac{e^{-1/h^2}}{h} \overset{(*)}{=} 0$$
 	$$f'_-(0) = \lim_{h\ra0^-}\frac{f(h)-f(0)}{h} = 0$$
@@ -123,13 +123,13 @@ Since $(a, f(a)), (b, f(b)), (c, f(c))$ are on the same line, the slope is equal
 	\item Define $g(x) = f(1+x)f(1-x)$. Then we immediately have $g(x) = 0$ for $\abs{x}\geq 1$. Since $f(x) > 0$, we also have $f(1+x)f(1-x) > 0$ for $\abs{x} < 1$. Finally, since $f(x)\in C^\infty$, its product $g(x)$ is also in $C^\infty$.
 \end{enumerate}
 
-\item 
+\item
 \begin{enumerate}
 	\item As $h\ra 0$, denominator/numerator both approach 0. And we have
 	$$\begin{aligned}
-		\lim_{h\ra0} \frac{\big(f(x+h)+f(x-h)-2f(x)\big)'}{(h^2)'} &= \lim_{h\ra0} \frac{f'(x+h)+f'(x-h)}{2h} 
+		\lim_{h\ra0} \frac{\big(f(x+h)+f(x-h)-2f(x)\big)'}{(h^2)'} &= \lim_{h\ra0} \frac{f'(x+h)+f'(x-h)}{2h}
 		\\&= \lim_{h\ra0} \frac{f'(x+h)-f'(x) + f'(x)+f'(x-h)}{2h} \\
-		&= \frac{1}{2}f''(x) + \frac{1}{2}f''(x) = f''(x) 
+		&= \frac{1}{2}f''(x) + \frac{1}{2}f''(x) = f''(x)
 	\end{aligned}$$
 	By L'Hospital's Rule, the original limit is equal to $f''(x)$.
 
@@ -140,7 +140,7 @@ Since $(a, f(a)), (b, f(b)), (c, f(c))$ are on the same line, the slope is equal
 	, hoping to use L'Hospital's Rule. The actual value is
 	$$\begin{aligned}
 	&=\lim_{h\ra0} 4\cdot \frac{f''(x+2h)-f''(x)}{6h} - \lim_{h\ra0} 3\cdot \frac{f''(x+h)-f''(x)}{6h}  + \lim_{h\ra0} \frac{f''(x)-f''(x-h)}{6h} \\
-	&= \frac{4}{3}f'''(x) - \frac{1}{2}f'''(x) + \frac{1}{6}f'''(x) = f'''(x) 
+	&= \frac{4}{3}f'''(x) - \frac{1}{2}f'''(x) + \frac{1}{6}f'''(x) = f'''(x)
 	\end{aligned}$$
 	The original limit is equal to $f^{(3)}(x)$ by L'Hospital's Theorem.
 \end{enumerate}

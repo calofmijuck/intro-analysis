@@ -38,7 +38,7 @@
 \end{center}
 \begin{enumerate}
 \numl{1} 먼저 $ m\in S $ 이므로 $ \inf{S}\geq m $ 임은 당연하다. 이제 $ m $이 $S$의 최대 하계임을 보이자. $\forall \epsilon >0$ 에 대해, $m+\epsilon$ 이 $S$의 하계라고 가정하면 $\forall x\in S$ 에 대하여 $m+\epsilon \leq x$ 이다. 그런데 $m\in S$ 이므로 $m+\epsilon \leq m$ 이고 이는 $\epsilon > 0$ 에 모순이다. 따라서 $\inf S = m$.
-	
+
 \numl{2} \textbf{Claim 1}. \textit{Suppose that a subset $S$ of $\bb{R}$ contains a maximum $m\in \bb{R}$. Then $\sup S = m$.}\\
 \textbf{Proof}. $m\in S$ 이므로 $\sup S \leq m$ 임은 당연하다. 이제 $m$이 $S$의 최소 상계임을 보이자. $\forall \epsilon >0$ 에 대해, $m - \epsilon$ 이 $S$의 상계라고 가정하면 $\forall x\in S$ 에 대하여 $m-\epsilon \geq x$ 이다. 그런데 $m\in S$ 이므로 $m-\epsilon \geq m$ 이고 이는 $\epsilon >0$ 에 모순이다. 따라서 $\sup S = m$.
 \begin{enumerate}
@@ -48,7 +48,7 @@
 	먼저 $f(n) = \frac{1}{1+n^2}$ 이 감소함을 보이자. $1 + n^2 < 1+ (n+1)^2$ 이므로 $f(n) > f(n+1)$.\\
 	따라서 $B$의 최댓값은 $n=1$ 일 때인 1/2 이다. 이제 Claim 1 에 의하여 $\sup B = 1/2$.\\
 	우선 $B$의 모든 원소들은 양수이므로 $\inf B\geq 0$. 만약 $\epsilon > 0$ 이 $B$의 하계라고 하면, $n > \sqrt{1/\epsilon} $ 인 모든 $n\in \bb{N}$ 에 대하여 $$n^2 > \frac{1}{\epsilon} > \frac{1}{\epsilon} - 1,\quad n^2+1>\frac{1}{\epsilon}$$ 이므로 $\epsilon > \frac{1}{1 + n^2}$ 가 되어 $\epsilon$ 이 하계라는 가정에 모순이다. 따라서 $\inf B = 0$.
-	\num{(3)} Let $C = \{(-1)^n + (-1/2)^m\,:\,n, m\in \bb{N}\}$. $C$의 최댓값과 최솟값을 찾자. $$-1\leq (-1)^n\leq 1, \quad -\frac{1}{2}\leq \left(-\frac{1}{2}\right)^m \leq \frac{1}{4}$$ 이므로 $$\forall x \in C, \quad -\frac{3}{2} \leq x \leq \frac{5}{4}$$ 이다. 최댓값은 $(n, m) = (2, 2)$ 일 때 $5/4$, 최솟값은 $(n, m) = (1, 1)$ 일 때 $-3/2$ 이다. $C\subset \bb{R}$ 이므로 Claim 1 과 1번 문제의 결과에 의해 $\sup C = 5/4$, $\inf C = -3/2$. 
+	\num{(3)} Let $C = \{(-1)^n + (-1/2)^m\,:\,n, m\in \bb{N}\}$. $C$의 최댓값과 최솟값을 찾자. $$-1\leq (-1)^n\leq 1, \quad -\frac{1}{2}\leq \left(-\frac{1}{2}\right)^m \leq \frac{1}{4}$$ 이므로 $$\forall x \in C, \quad -\frac{3}{2} \leq x \leq \frac{5}{4}$$ 이다. 최댓값은 $(n, m) = (2, 2)$ 일 때 $5/4$, 최솟값은 $(n, m) = (1, 1)$ 일 때 $-3/2$ 이다. $C\subset \bb{R}$ 이므로 Claim 1 과 1번 문제의 결과에 의해 $\sup C = 5/4$, $\inf C = -3/2$.
 \end{enumerate}
 
 \numl{3}
@@ -64,7 +64,7 @@
 	\num{(1)} Given $\forall \epsilon > 0$, take $N = \ds \frac{49}{16\epsilon^2}$. 그러면 $n>N$ 인 모든 $n\in\bb{N}$ 에 대하여\\
 	$$\abs{\frac{\sqrt{n}}{2\sqrt{n}+7} - \frac{1}{2}} = \abs{\frac{7}{4\sqrt{n}+14}} < \frac{7}{4\sqrt{n}} < \epsilon \qquad \left(\because \sqrt{n} > \frac{7}{4\epsilon}\right)$$
 	이므로 $\ds \lim_{n \ra \infty} \frac{\sqrt{n}}{2\sqrt{n}+7} = \frac{1}{2}$.
-	
+
 	\num{(2)} Given $\forall \epsilon > 0$, take $N = \ds \sqrt[5]{\frac{3}{\epsilon}}$. 그러면 $n>N$ 인 모든 $n\in\bb{N}$ 에 대하여\\
 	$$\begin{aligned}
 		\abs{\frac{2n^5 +\cos(n^8 +1)}{n^5+1} - 2} &= \abs{\frac{\cos(n^8+1) - 2}{n^5+1}} \leq \frac{\abs{\cos(n^8+1)} + 2}{n^5+1} \\&< \frac{3}{n^5+1} < \frac{3}{n^5} < \epsilon \qquad \left(\because n^5 > \frac{3}{\epsilon}\right)

@@ -55,7 +55,7 @@
 \item It is trivial that $ x $ is continuous on $\R$, thus finite dimensional polynomials are also continuous on $\R$, since polynomials are composed of sums and products of $x$.
 \begin{enumerate}
 	\item $(x+1)^3$ is continuous on $(-1, 1)$, and never 0 in this interval. Thus $f(x) = 1/(x+1)^3$ is continuous on $(-1, 1)$.\\
-	Consider $x_n = 1/n - 1$. We immediately observe that $-1 < 1/n - 1 \leq 0$, and $\lim_{n\ra\infty}x_n = -1$. Thus $\span{x_n}$ is a Cauchy sequence in $(-1, 1)$. But $f(x_n) = n^3$, and the sequence diverges. Therefore $f(x)$ is not uniformly continuous on $X$. 
+	Consider $x_n = 1/n - 1$. We immediately observe that $-1 < 1/n - 1 \leq 0$, and $\lim_{n\ra\infty}x_n = -1$. Thus $\span{x_n}$ is a Cauchy sequence in $(-1, 1)$. But $f(x_n) = n^3$, and the sequence diverges. Therefore $f(x)$ is not uniformly continuous on $X$.
 	\item $x+3$ is continuous on $(0, \infty)$ and never 0 in this interval. Thus $f(x) = 1/(x+3)$ is continuous on $ (0, \infty) $.\\
 	For given $\epsilon > 0$, Set $\delta = 9\epsilon$. For $x, y\in (0, \infty)$, we observe that $$9 < xy + 3x + 3y + 9 = (x+3)(y+3)$$ then if $\abs{x - y} < \delta$, $$\abs{f(x) -f(y)} = \abs{\frac{1}{x+3} - \frac{1}{y+3}} = \frac{\abs{x - y}}{(x+3)(y+3)} < \frac{9\epsilon}{9} = \epsilon$$Thus $f(x)$ is uniformly continuous on $X$.
 	\item $x^2+1$ is continuous on $\R$, and never 0. Thus $f(x) = 1/(x^2+1)$ is continuous on $\R$.\\
@@ -68,7 +68,7 @@
 	Therefore $f(x)$ is uniformly continuous on on $X$.
 \end{enumerate}
 
-\item 
+\item
 \begin{enumerate}
 	\item (\mimp) Suppose $x_0 \in X'\bs X$. Then there exists a sequence $x_n$ in $X$ that converges to $x_0$. Because $f$ is uniformly continuous and $x_n$ is a Cauchy sequence, $f(x_n)$ is also a Cauchy sequence. Thus $\lim_{n\ra\infty} f(x_n) = \alpha \in \R$ exists.  Define the continuous extension $g$ of $f$ by setting $g(x_0) = \alpha$.\\
 	Now we must check if $g(x_0)$ is well-defined. For any two sequence $\span{x_n}, \span{y_n}$ that converge to $x_0$, consider $\span{z_n} = x_1, y_1, x_2, y_2, \dots$. It is trivial that $z_n\ra x_0$. Since $\span{z_n}$ is a Cauchy sequence, $\span{f(z_n)}$ is also a Cauchy sequence by uniform continuity of $f$. Let its limit be $\gamma$. Then $\span{f(x_n)}, \span{f(y_n)}$ is a subsequence of $\span{f(z_n)}$, thus they both must converge to $\gamma$.\\
@@ -95,10 +95,10 @@
 	\item Given $\epsilon >0$, set $\delta = \sqrt{\epsilon}$. $(0, \delta) \subset X$, and if $0<x<\delta$, $0 < x^2 < \delta^2 = \epsilon$, then $0 < x^3/\abs{x} < \epsilon$. Since $x >0$, $\abs{x^3/\abs{x} - 0} < \epsilon$. $\therefore\ds \lim_{x\ra0^+}$$\frac{x^3}{\abs{x}} = 0$.
 \end{enumerate}
 
-\item 
+\item
 \begin{enumerate}
 	\item \textbf{True}. Since $f, g$ are uniformly continuous on $X$, $\forall \epsilon > 0$, $\exists\,\delta$ s.t. if $\norm{x - y} <\delta$ for all $x, y\in X$ $\imp \norm{f(x)-f(y)} < \epsilon/2$ and $\norm{g(x) - g(y)} < \epsilon/2$. We immediately have
-	$$\norm{f(x) + g(x) - f(y) - g(y)} \leq \norm{f(x) - f(y)} + \norm{g(x) - g(y)} < \frac{\epsilon}{2}+ \frac{\epsilon}{2} < \epsilon$$ Thus $f+g$ is uniformly continuous on $X$. 
+	$$\norm{f(x) + g(x) - f(y) - g(y)} \leq \norm{f(x) - f(y)} + \norm{g(x) - g(y)} < \frac{\epsilon}{2}+ \frac{\epsilon}{2} < \epsilon$$ Thus $f+g$ is uniformly continuous on $X$.
 	\item \textbf{False}. (Counterexample) $f(x) = g(x) = x$ defined on $\R$. $f, g$ are uniformly continuous, but $x^2$ is not uniformly continuous (proof in textbook).
 	\item \textbf{True}. We use the fact $\max\{f, g\} = \frac{f+g}{2} + \frac{\abs{f-g}}{2}$. For a constant $c$, since $cf$ is uniformly continuous if $f$ is uniformly continuous, it is sufficient to show that $\abs{f-g}$ is uniformly continuous, then the result directly follows by (1). Furthermore, because $f-g$ and $\norm{x}$ are uniformly continuous, ($\forall \epsilon > 0$, set $\delta = \epsilon$. Then $\norm{x - y} < \delta \imp \norm{\norm{x} - \norm{y}} \leq \norm{x - y} <\epsilon$) we show that their composition is uniformly continuous.\\
 	\\
@@ -108,7 +108,7 @@
 
 \item Define $g(x) = x^{2016} - f(x)$ on $[0, 1]$. Then since $x^{2016}, f(x)$ are continuous, its difference $g(x)$ is also continuous. Thus we have $$g(0) = 0 - f(0) \leq 0 \leq 1-f(1) = g(1)$$and by IVT, there exists $x_0\in [0, 1]$ s.t. $g(x_0) = 0$. For this $x_0$, $f(x_0) = x_0^{2016}$.
 
-\item 
+\item
 \begin{enumerate}
 	\item Suppose $f$ is Hölder continuous. Given $\forall \epsilon > 0$, set $\delta = \left(\frac{\epsilon}{M}\right)^{1/\alpha}$. Since $y = x^\alpha$ $(\alpha > 0)$ is increasing, for all $x, y\in X$, if $\norm{x - y} < \delta$, $M\norm{x - y}^\alpha < \epsilon$. By the Hölder continuity condition, $\norm{f(x) - f(y)} < M\norm{x - y}^\alpha <\epsilon$, and $f$ is uniformly continuous on $X$.
 	\item For fixed $x, y\in X$, suppose $x < y$. Given $N\in \N$, define $x_0, \dots, x_N$ as follows. $$x_0 = x,\; x_1 = x_0 +1\cdot \frac{y-x}{N},\; \dots, \;x_i = x_0 + i\cdot \frac{y-x}{N},\; \dots,\; x_N = y$$
@@ -117,7 +117,7 @@
 	As $N\ra \infty$, $0 \leq \norm{f(x)- f(y)} \ds\leq \lim_{N\ra\infty}  M  \frac{\norm{x- y}^\alpha}{N^{\alpha-1}} = 0$. Thus $\norm{f(x) - f(y)} = 0$ for all $x, y\in X$. Thus $f(x) = f(0)$, merely a constant function.
 \end{enumerate}
 
-\item 
+\item
 \begin{enumerate}
 	\item Let $y\in f(\overline{A})$. Then there exists $x_0\in \overline{A}$ s.t. $f(x_0) = y$. Given $\epsilon > 0$, since $x_0\in \overline{A}$, there exists $\delta > 0$ s.t. $N_{\R^m}(x_0, \delta)\cap A \neq \emptyset$. Take an element $x$ from $N_{\R^m}(x_0, \delta) \cap A$. Since $x\in A $, $f(x) \in f(A)$, and since $x\in N_{\R^m}(x_0, \delta) $, $ f(x) \in N_{\R^n}(f(x_0), \epsilon)$ by continuity of $f$. Therefore we have $f(x) \in N_{\R^n}(f(x_0), \epsilon) \cap f(A) \neq \emptyset$, and $f(x_0) = y\in \overline{f(A)}$. $f(\overline{A}) \subset \overline{f(A)}$.
 	\item False. Consider $f(x) = \frac{1}{x^2+1}$. $f$ is continuous. Set $A = (0, \infty)$. Then $\overline{A} = [0, \infty)$, $f(\overline{A}) = (0, 1)$, while $\overline{f(A)} = [0, 1]$.
@@ -157,7 +157,7 @@ For $x\in X$, consider a sequence $\span{x_n}$ in $X$ converging to $x$. ($X$ is
 Rearranging the terms gives $$(z-y)(f(y)-f(x))\leq (y-x)(f(z)-f(y))$$
 , which directly gives the inequality.\\
 \\
-Suppose $x\in (a, b)$. Since $(a, b)$ is open, select real numbers s.t. $x_0 < x_1 < x, y < x_2 < x_3$, and define $C = \max\{\frac{\abs{f(x_1) - f(x_0)}}{x_1-x_0}, \frac{\abs{f(x_3) - f(x_2)}}{x_3-x_2} \}$. Given $\epsilon > 0$, choose $\delta = \min\{\epsilon/C, x_2 - x_1\}$. 
+Suppose $x\in (a, b)$. Since $(a, b)$ is open, select real numbers s.t. $x_0 < x_1 < x, y < x_2 < x_3$, and define $C = \max\{\frac{\abs{f(x_1) - f(x_0)}}{x_1-x_0}, \frac{\abs{f(x_3) - f(x_2)}}{x_3-x_2} \}$. Given $\epsilon > 0$, choose $\delta = \min\{\epsilon/C, x_2 - x_1\}$.
 If $x > y$, by \textbf{Claim}, $$\frac{f(x) - f(y)}{x-y} \leq \frac{f(x_2) - f(x)}{x_2-x} \leq \frac{f(x_3) - f(x_2)}{x_3-x_2}$$
 and
 $$\frac{f(x) - f(y)}{x -y} \geq \frac{f(y) - f(x_1)}{y - x_1} \geq \frac{f(x_1) - f(x_0)}{x_1-x_0} $$, therefore $$\abs{\frac{f(x)-f(y)}{x - y}} \leq C = \max\left\{\frac{\abs{f(x_1) - f(x_0)}}{x_1-x_0}, \frac{\abs{f(x_3) - f(x_2)}}{x_3-x_2} \right\}$$
@@ -171,7 +171,7 @@ For continuity, let $x_0\in X = [a, b]$, and let $f^*(x_0) = M (=\sup\{f(y): y\i
 	\item[Case 1.]  $f(x_0) < M$\\
 	Since $f$ is continuous, for $\epsilon = M - f(x_0)$, there exists $\delta_1 > 0$ s.t. $\abs{x - x_0} < \delta_1, x\in X \imp \abs{f(x) - f(x_0)} < \epsilon$. Then $f(x) - f(x_0) < \epsilon \imp f(x) < M$, in this interval. Thus $\abs{x - x_0} < \delta_1, x\in X \imp f^*(x) = M$.
 	\item[Case 2.] $f(x_0) = M$\\
-	For all $\epsilon > 0$, $\exists\,\delta_2 > 0$ s.t. $\abs{x - x_0} < \delta_2, x\in X \imp \abs{f(x) - f(x_0)} < \epsilon \imp M - \epsilon < f(x) < M + \epsilon$. Therefore we have $M - \epsilon < f^*(x) < M + \epsilon$, by the continuity of $f$. Now we have $\abs{f^*(x) - f^*(x_0)} < \epsilon$. 
+	For all $\epsilon > 0$, $\exists\,\delta_2 > 0$ s.t. $\abs{x - x_0} < \delta_2, x\in X \imp \abs{f(x) - f(x_0)} < \epsilon \imp M - \epsilon < f(x) < M + \epsilon$. Therefore we have $M - \epsilon < f^*(x) < M + \epsilon$, by the continuity of $f$. Now we have $\abs{f^*(x) - f^*(x_0)} < \epsilon$.
 \end{enumerate}
 For both cases, setting $\delta = \min\{\delta_1, \delta_2\}$ will give us $\abs{f^*(x) - f^*(x_0)} < \epsilon$. Thus $f^*$ is continuous.
 
