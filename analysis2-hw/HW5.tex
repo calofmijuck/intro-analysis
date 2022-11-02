@@ -130,7 +130,7 @@
 
     \numl{4} We first check that \(\Sigma\) is a \(\sigma\)-ring. For \(A, B \in \Sigma\), it is easy to see that \(A\cup B, A\bs B\) are both in \(\Sigma\). Also if \(A_i \in \Sigma\) (\(i = 1, 2, \dots\)), then \(\bigcup_{i=1}^\infty A_i \subset S \in \mc{P(S)} = \Sigma\).
 
-    Now let \(A_i \in \Sigma\) be pairwise disjoint sets, and let \(A = \bigcup_{i=1}^\infty A_i\).
+    It is easily seen that \(\mu_1, \mu_2\) are non-negative. Now let \(A_i \in \Sigma\) (\(i = 1, 2, \dots\)) be pairwise disjoint sets, and let \(A = \bigcup_{i=1}^\infty A_i\).
     \begin{enumerate}
         \item[(1)] Suppose \(x \in A\). Then because \(A_i\) are disjoint, \(\exists N \in \N\) such that \(x \in A_N\). So we can see that \(\mu_1(A_i) = 1\) if \(i = N\) and 0 otherwise. If \(x \notin A\), \(\mu_1(A_i) = 0\) for all \(i\in \N\). Therefore, for both cases,
             \[
@@ -151,7 +151,7 @@
             for all \(K > 0\). Thus \(\mu_2(\bigcup_{i=1}^\infty A_i) = \sum_{i=1}^\infty \mu_2(A_i) = \infty\). Overall, \(\mu_2\) is a measure on \(\Sigma\).
     \end{enumerate}
 
-    \numl{5} Define \(B_n = A_n \bs A_{n+1}\) for \(n = 1, 2, \dots\). Then we directly see that \(B_n\) are pairwise disjoint. Note that
+    \numl{5} From the assumptions, \(\mu(A_i) \leq \mu(A_1) < \infty\) for all \(i \in \N\). Define \(B_n = A_n \bs A_{n+1}\) for \(n = 1, 2, \dots\). Then we directly see that \(B_n\) are pairwise disjoint. Note that
     \[ \tag{\mast}
         \sum_{i=1}^n \mu(B_i) = \sum_{i=1}^n \left[\mu(A_i) - \mu(A_{i+1})\right] = \mu(A_1) - \mu(A_{n+1}).
     \]
