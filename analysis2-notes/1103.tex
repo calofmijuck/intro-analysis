@@ -1,0 +1,157 @@
+\section*{November 3rd, 2022}
+
+\(f_n \geq 0\) 일 때 성립하는 것부터 살펴봅시다.
+
+\thm{11.31} \note{Fatou} If \(f_n \geq 0\) and measurable and \(E\) is measurable. Then
+\[
+    \int_E \liminf_{n\ra\infty} f_n \d{\mu} \leq \liminf_{n\ra\infty} \int f_n \d{\mu}.\footnote{ILLLI: integral of limit less than limit of integral.}
+\]
+
+\pf Let \(E = X\). Let \(g_n = \ds \inf_{k \geq n} f_k\). Then \(\ds \liminf_{n\ra\infty} f_n = \sup_{n\geq 1} g_n\), and we know that \(g_n\) is increasing and nonnegative. By MCT,
+\[
+    \int \liminf_{n\ra\infty} f_n \d{\mu} = \lim_{n \ra \infty} \int g_n \d{\mu}.
+\]
+By definition, \(g_n \leq f_k\) for all \(k \geq n\). Take integral on both sides and take infimum.
+\[
+    \int g_n \d{\mu} \leq \inf_{k\geq n} \int f_k \d{\mu}.
+\]
+Therefore,
+\[
+    \int \liminf_{n\ra\infty} f_n \d{\mu} \leq \lim_{n \ra \infty} \inf_{k \geq n}\int f_k \d{\mu}.
+\]
+
+\rmk The above theorem doesn't work for \(\limsup\). Consider \(\chi_{[n, \infty)}\).
+
+\note{Step 4} If \(f\) is measurable, then \(f^+, f^- \geq 0\) are measurable. So for \(E \in \scr{F}\), define
+\[
+    \int_E f \d{\mu} = \int_E f^+ \d{\mu} - \int_E f^- \d{\mu},
+\]
+except for the case of \(\infty - \infty\).\footnote{둘 중 하나는 유한해야 한다.}
+
+\defn. \note{Lebesgue Integrable} \(f\) is \textbf{Lebesgue integrable on \(E\) with respect to \(\mu\)} if \(f\) is measurable and
+\[
+    \int_E \abs{f} \d{\mu} = \int_E f^+ \d{\mu} + \int_E f^- \d{\mu} < \infty.
+\]
+
+다음 주에 함수들의 class를 볼텐데, 르벡 적분 가능한 함수를 다음과 같이 표기합니다.
+
+\notation \(f\) is Lebesgue integrable \(\iff f \in \mc{L}^1(E, \mu)\). If \(\mu = m\), \(f \in \mc{L}^1(E)\).
+
+Note that \(f \in \mc{L}^{1}(E, \mu) \iff f^+, f^- \in \mc{L}^{1}(E, \mu)\iff \abs{f} \in \mc{L}^{1}(E, \mu)\).
+
+\pagebreak
+
+\rmk
+\begin{enumerate}
+    \item \note{11.23} If \(f\) is measurable and bounded on \(E\) and \(\mu(E) < \infty\),
+          \begin{center}
+              \(\ds \int_E \abs{f} \d{\mu} \leq \int_E M \d{\mu} = M\mu(E) < \infty\) and \(f \in \mc{L}^{1}(E, \mu)\).
+          \end{center}
+    \item If \(f, g \in \mc{L}^{1}(E, \mu)\) and \(f \leq g\) on \(E\), then
+          \begin{center}
+              \(\chi_E (x) f^+(x) \leq \chi_E(x) g^+(x)\) and \(\chi_E(x) g^-(x) \leq \chi_E (x) f^-(x)\),
+          \end{center}
+          which implies
+          \begin{center}
+              \(\ds \int_E f^+ \d{\mu} \leq \int_E g^+ \d{\mu} < \infty\) and \(\ds \int_E g^- \d{\mu} \leq \int_E f^- \d{\mu} < \infty\).
+          \end{center}
+          Therefore monotonicity holds without the nonnegative condition, i.e.
+          \[
+              \int_E f\d{\mu} \leq \int_E g \d{\mu}.
+          \]
+    \item If \(f \in \mc{L}^{1}(E, \mu)\) and \(c \in \R\), then \(cf \in \mc{L}^{1}(E, \mu)\) since
+          \[
+              \int_E \abs{c}\abs{f} \d{\mu} = \abs{c} \int_E \abs{f}\d{\mu} < \infty.
+          \]
+          If \(c < 0\), \((cf)^+ = -cf^-\), \((cf)^- = -cf^+\). Thus,
+          \[
+              \int_E cf \d{\mu} = \int_E (cf)^+ - \int_E (cf)^- \d{\mu} = -c \int_E f^- \d{\mu} - (-c) \int_E f^+ \d{\mu} = c\int_E f\d{\mu}.
+          \]
+    \item For measurable \(f\), if \(a\leq f(x) \leq b\) on \(E\) and \(\mu(E) < \infty\), (integrable since bounded)
+          \[
+              \int_E a \chi_E \d{\mu} \leq \int_E f\chi_E \d{\mu} \leq \int_E b \chi_E \d{\mu} \implies a \mu(E) \leq \int_E f \d{\mu} \leq b \mu(E).
+          \]
+    \item If \(f \in \mc{L}^{1}(E, \mu)\) and \(A \subset E \in \scr{F}\) then \(f \in \mc{L}^{1}(A, \mu)\) since
+          \[
+              \int_A \abs{f} \d{\mu} \leq \int_E \abs{f}\d{\mu} < \infty.
+          \]
+    \item Suppose that \(E\) is measurable and \(\mu(E) = 0\). If \(f\) is measurable, \(\min\{\abs{f}, n\}\chi_E\) is measurable and \(\min\{\abs{f}, n\}\chi_E \nearrow \abs{f}\chi_E\) as \(n \ra \infty\). By MCT,
+          \[
+              \int_E \abs{f} \d{\mu} = \lim_{n \ra \infty} \int_E \min\{\abs{f}, n\} \d{\mu} = 0
+          \]
+          since \(\ds \int_E \min\{\abs{f}, n\} \d{\mu} \leq \int_E n \d{\mu} = n \mu(E) = 0\).
+          Thus \(f \in \mc{L}^{1}(E, \mu)\) and \(\ds \int_E f \d{\mu} = 0\).\footnote{Even if \(f \equiv \infty\). We defined \(0\cdot\infty = 0\).}
+\end{enumerate}
+
+\pagebreak
+
+적분 입장에서 보면, measure가 0인 곳에서 적분을 하면, 의미가 없다고 생각할 수 있겠죠? 그러면 앞으로 그런걸 무시해도 된다고 해버리죠.
+
+\defn. \note{Almost Everywhere} Let \(P = P(x)\) be a property.\footnote{Ex. \(f(x)\) is continuous.} We say that \(P\) holds \textbf{almost everywhere on \(E\) with respect to \(\mu\)} if
+\begin{center}
+    \(\exists N \in \scr{F}\) such that \(\mu(N) = 0\) and \(P\) holds for all \(x \in E \bs N\).
+\end{center}
+
+\notation We write \(p\) holds \(\mu\)-\ae on \(E\), and if \(E = X\), we omit `on \(E\)'.
+
+\thm. \note{Markov Inequality} Let \(u \in \mc{L}^{1}(E, \mu)\). For all \(c > 0\),
+\[
+    \mu\paren{\{\abs{u} \geq c\} \cap E} \leq \frac{1}{c} \int_E \abs{u} \d{\mu}.
+\]
+
+\pf \(\ds \int_E \abs{u} \d{\mu} \geq \int_{E\cap \{\abs{u}\geq c\}} \abs{u} \d{\mu} \geq \int_{E\cap \{\abs{u}\geq c\}} c \d{\mu} = c \mu\paren{\{\abs{u} \geq c\} \cap E}\).
+
+\thm. Let \(u\in \mc{L}^{1}(E, \mu)\). The following are equivalent.
+\begin{enumerate}
+    \item \(\ds \int_E \abs{u} \d{\mu} = 0\).
+    \item \(u = 0\) \(\mu\)-\ae on \(E\).
+    \item \(\mu\paren{\{x \in E : u(x) \neq 0\}} = 0\).
+\end{enumerate}
+
+\pf \\
+\note{2\(\iff\)3} Clear since \(E\cap\{u\neq 0\} \in \scr{F}\).
+
+\note{2\mimp1} \(\ds \int_E \abs{u} \d{\mu} = \int_{E \cap \{\abs{u} > 0\}} \abs{u} \d{\mu} + \int_{E \cap \{\abs{u} = 0\}} \abs{u} \d{\mu} = 0 + 0 = 0\).
+
+\note{1\mimp3} By Markov inequality,
+\[
+    \mu\paren{\left\{\abs{u} \geq \frac{1}{n}\right\} \cap E} \leq n\int_E \abs{u} \d{\mu} = 0.
+\]
+Let \(n\ra \infty\), by continuity of measure, \(\mu\paren{\{\abs{u} > 0\} \cap E} = 0\).
+
+\rmk If \(B \subset A \in \scr{F}\) and \(\mu\paren{A \bs B} = 0\) then \(\ds \int_A f \d{\mu} = \int_B f \d{\mu}\) for all \(f \in \mc{L}^{1}(A, \mu)\).
+
+\thm. If \(u \in \mc{L}^{1}(E, \mu)\) then \(u(x) \in \R\) \(\mu\)-\ae on \(E\).\footnote{\(u(x) = \infty\) 인 집합의 measure가 0이다.}
+
+\pf \(\mu\paren{\{\abs{u} \geq 1\}\cap E} \leq \ds \int_E \abs{u} \d{\mu} < \infty\).\footnote{여기서 Markov Inequality가 반드시 필요한가?} So,
+\[
+    \begin{aligned}
+        \mu\paren{\{\abs{u} = \infty\} \cap E} & = \mu\paren{\bigcap_{n=1}^\infty \{x \in E : \abs{u(x)} \geq n\}}                                                            \\
+                                               & = \lim_{n \ra \infty} \mu\paren{\{\abs{u} \geq n\} \cap E} \leq \limsup_{n\ra\infty} \frac{1}{n} \int_E \abs{u} \d{\mu} = 0.
+    \end{aligned}
+\]
+
+\cor If \(u \in \mc{L}^{1}(E, \mu)\), then \(\ds \int_E u \d{\mu} = \int_{E \cap \{\abs{u} < \infty\}} u \d{\mu}\).
+
+\thm. If \(f_1, f_2 \in \mc{L}^{1}(E, \mu)\), then \(f_1 + f_2 \in \mc{L}^{1}(E, \mu)\) and
+\[
+    \int_E \paren{f_1 + f_2} \d{\mu} = \int_E f_1 \d{\mu} + \int_E f_2 \d{\mu}.
+\]
+
+\pf Since \(\abs{f_1 + f_2} \leq \abs{f_1} + \abs{f_2}\), \(f_1+f_2 \in \mc{L}^{1}(E, \mu)\). Define \(f = f_1 + f_2\) and
+\[
+    N = \left\{x : \max\left\{f_1^+, f_1^-, f_2^+, f_2^-, f^+, f^-\right\} = \infty \right\}.
+\]
+Then by the above theorem, \(\mu(N) = 0\). So on \(E \bs N\),
+\[
+    f^+ - f^- = f_1^+ - f_1^- + f_2^+ - f_2^- \implies f^+ + f_1^- + f_2^- = f^- + f_1^+ + f_2^+.
+\]
+Then
+\[
+    \int_{E\bs N} f^+ \d{\mu} + \int_{E\bs N} f_1^- \d{\mu} + \int_{E\bs N} f_2^- \d{\mu} = \int_{E\bs N} f^-\d{\mu} + \int_{E\bs N} f_1^+\d{\mu} + \int_{E\bs N} f_2^+ \d{\mu}.
+\]
+Now using the fact that \(\mu(N) = 0\),
+\[
+    \int_{E \bs N} f \d{\mu} = \int_{E \bs N} f_1 \d{\mu} + \int_{E \bs N} f_2 \d{\mu} \implies \int_{E} f \d{\mu} = \int_{E} f_1 \d{\mu} + \int_{E} f_2 \d{\mu}.
+\]
+\pagebreak
