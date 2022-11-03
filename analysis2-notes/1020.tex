@@ -1,0 +1,228 @@
+\section*{October 20th, 2022}
+
+오늘 할 부분의 목표는 르벡 적분을 정의하는 것입니다. 우리가 잴 수 있는 집합들부터 시작합니다. \(\R^p\)에서 논의할 건데, 이제 여기서부터는 \(\R\)의 interval이 open/closed에 관계 없습니다.
+
+\defn. \note{Intervals in \(\R^p\)} \(a_i, b_i \in \R\), \(a_i \leq b_i\). An interval in \(\R^p\) is defined as
+\[
+    \prod_{i=1}^p I_i = I_1 \times \cdots \times I_p,
+\]
+where \(I_i\) is an interval in \(\R\).
+
+\defn. \note{Elementary Sets} A set is called an \textbf{elementary set} if it is a finite union of intervals. Let \(\Sigma\) denote the family of all elementary sets of \(\R^p\).
+
+\rmk It is trivial that elementary sets are bounded.
+
+\prop. \(\Sigma\) is a ring. But it is not \(\sigma\)-ring.\footnote{전체 공간인 \(\R^p\)를 포함하고 있지 않아요.}
+
+\bigskip
+
+Elementary set에서는 재는 방법을 아주 잘 알고 있죠?
+
+\defn. Let \(I = \ds \prod_{i=1}^p I_i\) be an interval on \(\R^p\), where \(a_i, b_i\) are endpoints of \(I_i\). We define
+\[
+    m(I) = \prod_{i=1}^p (b_i - a_i).
+\]
+Additionally, if \(A = \ds\bigcup_{i=1}^n I_i \in \Sigma\) and \(I_i\) are pairwise disjoint intervals on \(\R^p\), then
+\[
+    m(A) = \sum_{i=1}^n m(I_i).
+\]
+
+이 정의가 well-defined 인지 확인해야 합니다.
+
+\rmk \(m\) is additive on \(\Sigma\). So \(m : \Sigma \ra [0, \infty)\) is a set function on a ring and additive.
+
+근데 여기서 regularity를 추가로 만족했으면 좋겠어요.\footnote{이게 왜 필요한가요?}
+
+\defn. \note{Regularity} Suppose \(\mu: \Sigma \ra [0, \infty]\) is additive. We say that \(\mu\) is \textbf{regular} if for every \(A \in \Sigma\) and \(\epsilon > 0\),
+\begin{center}
+    \(\exists F_{\rm{closed}}, G_{\rm{open}} \in \Sigma\) such that \(F \subset A \subset G\) and \(\mu(G) - \epsilon \leq \mu(A) \leq \mu(F) + \epsilon\).
+\end{center}
+
+\rmk Check that \(m\) is regular!
+
+Assume a finite set function \(\mu: \Sigma \ra [0, \infty)\) is regular and additive. (also finite!)
+
+\defn. \note{Outer Measure} We define the \textbf{outer measure} \(\mu^\ast: \mc{P}(\R^p) \ra [0, \infty]\) of \(E \in \mc{P}(\R^p)\) corresponding to \(\mu\) as
+\[
+    \mu^\ast(E) = \inf \left\{\sum_{n=1}^\infty \mu(A_n) : \text{open set } A_n \in \Sigma \text{ such that } E \subset \bigcup_{n=1}^\infty A_n\right\}.
+\]
+
+밖에서 길이를 재서 근사하는 거예요. 모든 power set에 대해서 정의할 수 있으니, 이런 것들로 다 잴 수 있으면 좋겠어요. 근데 이게 measure가 되려면 countably additive 해야하는데, 이게 제일 만족시키기 어려운 조건입니다. 그래서 이게 안되거든요? 그럼 되는 애들만 모아서 할거예요.
+
+\rmk
+\begin{itemize}
+    \item \(\mu^\ast \geq 0\).
+    \item \(\mu^\ast(E_1) \leq \mu^\ast(E_2)\) if \(E_1 \subset E_2\). (Monotonicity)
+\end{itemize}
+
+\thm{11.8}
+\begin{enumerate}
+    \item \(\mu^\ast(A) = \mu(A)\) if \(A \in \Sigma\).\footnote{\(A\)가 open이 아니면 자명하지 않은 명제입니다.}
+    \item Countable subadditivity holds.
+          \[
+              \mu^\ast\paren{\bigcup_{n=1}^\infty E_n} \leq \sum_{n=1}^\infty \mu^\ast(E_n), \quad (\forall E_n \in \mc{P}(\R^p))
+          \]
+\end{enumerate}
+
+\pf \\
+(1) Let \(A \in \Sigma\) and \(\epsilon > 0\). By regularity of \(\mu\) on \(\Sigma\), \(\exists G_{\rm{open}} \in \Sigma\) such that \(A \subset G\) and
+\[ \tag{\mast}
+    \mu^\ast(A) \leq \mu(G) \leq \mu(A) + \epsilon.
+\]
+By definition of \(\mu^\ast\), there exists open sets \(A_n \in \Sigma\) such that \(A \subset \ds \bigcup_{n=1}^\infty A_n\) and
+\[
+    \sum_{n=1}^\infty \mu(A_n) \leq \mu^\ast(A) + \epsilon.
+\]
+By regularity of \(\mu\) on \(\Sigma\), there exists a closed set \(F \in \Sigma\) such that \(F\subset A\) and \(\mu(A) \leq \mu(F) + \epsilon\). Since \(F \subset \R^p\) is closed and bounded, it is compact. So we can take a finite open cover,
+\begin{center}
+    \(\exists N \in \N\) such that \(F \subset \ds\bigcup_{i=1}^N A_{i}\).
+\end{center}
+Therefore,
+\[ \tag{\mast\mast}
+    \mu(A) \leq \mu(F) + \epsilon \leq \sum_{i=1}^N \mu(A_i) \leq \sum_{i=1}^n \mu(A_i) + \epsilon \leq \mu^\ast(A) + 2\epsilon
+\]
+Now set \(\epsilon \ra 0\) for (\mast), (\mast\mast) to see that \(\mu(A) = \mu^\ast(A)\).
+
+(2) Assume both sides are finite, that \(\mu^\ast(E_n) < \infty\) for all \(n\in \N\). Let \(\epsilon > 0\) be given. For each \(n \in \N\), there exists open sets \(A_{n, k} \in \Sigma\) such that
+\begin{center}
+    \(E_n \subset \ds \bigcup_{k=1}^\infty A_{n, k}\) \quad and \quad \(\ds \sum_{k=1}^\infty \mu(A_{n,k}) \leq \mu^\ast(E_n) + 2^{-n}\epsilon\).
+\end{center}
+So,
+\[
+    \mu^\ast\paren{\bigcup_{n=1}^\infty E_n} \leq \sum_{n=1}^\infty \sum_{k=1}^\infty \mu(A_{n,k}) \leq \sum_{n=1}^\infty \mu^\ast(E_n) + \epsilon
+\]
+since \(\mu^\ast\) is taken as the infimum. Now take \(\epsilon \ra 0\) and the inequality holds.
+
+\bigskip
+
+\notation \note{Symmetric Difference} \(A \symd B = (A\bs B) \cup (B \bs A)\).
+
+\defn. \(d(A, B) = \mu^\ast(A \symd B)\), \(A_n \ra A\) is defined as \(d(A_n, A) \ra 0\).\footnote{\(\mu\)라는 set function에 의해 \(\mu^\ast (A \symd B) \ra 0\) 이 되는 sequence of elementary sets \(A_n\)이 존재한다.}
+
+\rmk
+\begin{itemize}
+    \item \(d(A, B) \leq d(A, C) + d(C, B)\) for \(A, B, C \in \R^p\).
+    \item For \(A_1, B_2, B_1, B_2 \in \R^p\),
+          \[
+              \begin{rcases}
+                  d(A_1 \cup A_2, B_1 \cup B_2) \\d(A_1 \cap A_2, B_1 \cap B_2) \\d(A_1 \bs A_2, B_1 \bs B_2)
+              \end{rcases} \subset d(A_1, A_2) + d(B_1, B_2).
+          \]
+\end{itemize}
+
+
+\defn. \note{Finitely \(\mu\)-measurable} \(A\) is \textbf{finitely \(\mu\)-measurable} if \(\exists A_n \in \Sigma\) such that \(A_n \ra A\). We write
+\[
+    \mf{M}_F(\mu) = \{A : A \text{ is finitely } \mu \text{-measurable}\}.
+\]
+
+\defn. \note{\(\mu\)-measurable} \(A\) is \textbf{\(\mu\)-measurable} if \(A = \ds \bigcup_{n=1}^\infty A_n\) where \(A_n \in \mf{M}_F(\mu)\).\\
+We write
+\[
+    \mf{M}(\mu) = \{A : A \text{ is } \mu \text{-measurable}\}.
+\]
+
+\rmk \(\mu^\ast(A) = d(A, \varnothing) \leq d(A, B) + \mu^\ast(B)\).
+
+\prop. If \(\mu^\ast(A)\) or \(\mu^\ast(B)\) is finite,
+\[
+    \abs{\mu^\ast(A) - \mu^\ast(B)} \leq d(A, B).
+\]
+
+\cor If \(A \in \mf{M}_F(\mu)\) then \(\mu^\ast(A) < \infty\).
+
+\pf There exists \(A_n \in \Sigma\) such that \(A_n \ra A\), and \(\exists N \in \N\) such that
+\[
+    \mu^\ast(A) \leq d(A_N, A) + \mu^\ast(A_N) \leq 1 + \mu^\ast(A_N) < \infty.
+\]
+
+\cor If \(A_n \ra A\) and \(A_n, A \in \mf{M}_F(\mu)\), then \(\mu^\ast(A_n)\ra \mu^\ast(A) < \infty\).
+
+\pf \(\mu^\ast(A), \mu^\ast(A_n)\) are finite, so \(\abs{\mu^\ast(A_n) - \mu^\ast(A)} \leq d(A_n, A) \ra 0\) as \(n \ra \infty\).
+
+\bigskip
+
+\thm{11.10} \(\mf{M}(\mu)\) is a \(\sigma\)-algebra and \(\mu^\ast\) is a measure on \(\mf{M}(\mu)\).\footnote{정의역을 좀 좁히면 measure가 된다!}
+
+\pf \(\mf{M}(\mu)\)가 \(\sigma\)-algebra이고 \(\mu^\ast\)가 \(\mf{M}(\mu)\)에서 countably additive임을 보이면 된다.
+
+\note{Step 0} \textit{\(\mf{M}_F(\mu)\) is a ring.}
+
+Let \(A, B \in \mf{M}_F(\mu)\). Then \(\exists A_n, B_n \in \Sigma\) such that \(A_n \ra A\), \(B_n \ra B\). Then,
+\[
+    \begin{rcases}
+        d(A_n \cup B_n, A \cup B) \\ d(A_n \cap B_n, A \cap B) \\ d(A_n \bs B_n, A \bs B)
+    \end{rcases} \leq d(A_n, A) + d(B_n, B) \ra 0.
+\]
+Therefore \(A_n \cup B_n \ra A \cup B, A_n \bs B_n \ra A\bs B\) and thus \(\mf{M}_F(\mu)\) is a ring.
+
+\note{Step 1} \textit{\(\mu^\ast\) is additive on \(\mf{M}_F(\mu)\)}.
+
+By the corollary, we know that\footnote{\(\Sigma\) 위에서는 \(\mu = \mu^\ast\) 였다!}
+\[
+    \begin{matrix}
+        \mu(A_n) \ra \mu^\ast(A), & \mu(A_n\cup B_n) \ra \mu^\ast(A\cup B), \\
+        \mu(B_n) \ra \mu^\ast(B), & \mu(A_n\cap B_n) \ra \mu^\ast(A\cap B).
+    \end{matrix}
+\]
+Since \(\mu(A_n) + \mu(B_n) = \mu(A_n \cup B_n) + \mu(A_n \cap B_n)\), let \(n \ra \infty\). Then
+\[
+    \mu^\ast(A) + \mu^\ast(B) = \mu^\ast(A\cup B) + \mu^\ast(A \cap B).
+\]
+Setting \(A \cap B = \varnothing\) shows that \(\mu^\ast\) is additive.
+
+\note{Step 2} \textit{\(\mf{M}_F(\mu) = \{A \in \mf{M}(\mu) : \mu^\ast(A) < \infty\}\).}\footnote{\(A\)가 \(\mu\)-measurable인데 \(\mu^\ast(A) < \infty\)이면 \(A\)는 finitely \(\mu\)-measurable이다.}
+
+\quad \claim. \(A \in \mf{M}(\mu)\) can be written as a disjoint union of elements in \(\mf{M}_F(\mu)\).
+
+\quad \pf Let \(A = \bigcup A_n'\) with \(A_n' \in \mf{M}_F(\mu)\). Set
+\begin{center}
+    \(A_1 = A_1'\) and \(A_n = A_n' \bs (A_1'\cup \cdots \cup A_{n-1}')\) for \(n \geq 2\).
+\end{center}
+Then we see that \(A_n\) are disjoint and \(A_n \in \mf{M}_F(\mu)\).
+
+Write \(A = \ds \bigcup_{n=1}^\infty A_n\) where \(A_n \in \mf{M}_F(\mu)\).
+\begin{enumerate}
+    \item By {\sffamily Theorem 11.8} (2), \(\ds \mu^\ast(A) \leq \sum_{n=1}^{\infty} \mu^\ast (A_n)\).
+    \item \(\ds \bigcup_{n=1}^k A_n \subset A\), \(\ds \sum_{n=1}^{k} \mu^\ast(A_n) \leq \mu^\ast(A)\) by {\sffamily Step 1}. Set \(k \ra \infty\) to get \(\ds \mu^\ast(A) \geq \sum_{n=1}^\infty \mu^\ast(A_n)\).
+\end{enumerate}
+
+By (1), (2), \(\ds \mu^\ast(A) = \sum_{n=1}^\infty \mu^\ast(A_n)\).\footnote{\(A\)가 countable union of sets in \(\mf{M}_F(\mu)\)이므로 \(\mu^\ast\)도 각 set의 \(\mu^\ast\)의 합이 된다.}\footnote{아직 증명이 끝나지 않았습니다. \(A_n\)은 \(\mf{M}(\mu)\)의 원소가 아니라 \(\mf{M}_F(\mu)\)의 원소입니다.}
+
+Let \(B_n =\ds \bigcup_{k=1}^n A_k\). If we suppose that \(\mu^\ast(A) < \infty\), by convergence we know that
+\begin{center}
+    \(\ds d(A, B_n) = \mu^\ast\paren{\bigcup_{k=n+1}^\infty A_k} = \sum_{k=n+1}^{\infty} \mu^\ast(A_i) \ra 0\) as \(n \ra \infty\).
+\end{center}
+
+Since \(B_n \in \mf{M}_F(\mu)\), we can take \(C_n \in \Sigma\) such that \(d(B_n, C_n)\) is arbitrarily small for each \(n \in \N\). Then \(d(A, C_n) \leq d(A, B_n) + d(B_n, C_n)\) can be made arbitrarily small for large enough \(n\), so we can conclude that \(C_n \ra A\) and hence \(A \in \mf{M}_F(\mu)\).
+
+\note{Step 3} \textit{\(\mu^\ast\) is countably additive on \(\mf{M}(\mu)\).}
+
+Suppose that \(A_n \in \mf{M}(\mu)\) is a partition of \(A \in \mf{M}(\mu)\). If \(\mu^\ast(A_m) = \infty\) for some \(m \in \N\), then countable additivity holds since
+\[
+    \mu^\ast\paren{\bigcup_{n=1}^\infty A_n} \geq \mu^\ast(A_m) = \infty = \sum_{n=1}^\infty \mu^\ast(A_n).
+\]
+If \(\mu^\ast(A_n) < \infty\) for all \(n\in \N\), then \(A_n \in \mf{M}_F(\mu)\) by {\sffamily Step 2}, so
+\[
+    \mu^\ast(A) = \mu^\ast\paren{\bigcup_{n=1}^\infty A_n} = \sum_{n=1}^\infty \mu^\ast(A_n).
+\]
+
+\note{Step 4} \textit{\(\mf{M}(\mu)\) is a \(\sigma\)-ring.}
+
+If \(A_n \in \mf{M}(\mu)\) then there exists \(B_{n, k} \in \mf{M}_F(\mu)\) such that \(\ds A_n = \bigcup_k B_{n,k}\). Then
+\[
+    \bigcup_n A_n = \bigcup_{n, k} B_{n, k} \in \mf{M}(\mu).
+\]
+For \(A, B \in \mf{M}(\mu)\), \(\ds A = \bigcup A_n\), \(\ds B = \bigcup B_n\) where \(A_n, B_n \in \mf{M}_F(\mu)\). We see that
+\[
+    A \bs B = \bigcup_{n=1}^\infty \paren{A_n \bs B} = \bigcup_{n=1}^\infty (A_n\bs(A_n\cap B)),
+\]
+so it is enough to show that \(A_n \cap B \in \mf{M}_F(\mu)\). We have
+\[
+    A_n \cap B = \bigcup_{k=1}^\infty (A_n \cap B_k) \in \mf{M}(\mu)
+\]
+by definition, and since \(\mu^\ast(A_n \cap B) \leq \mu^\ast(A_n) < \infty\), \(A_n\cap B \in \mf{M}_F(\mu)\). Therefore \(A \bs B\) is a countable union of elements of \(\mf{M}_F(\mu)\), so \(A\bs B \in \mf{M}(\mu)\).
+
+Thus \(\mf{M}(\mu)\) is a \(\sigma\)-ring and also \(\sigma\)-algebra.
+
+\pagebreak
