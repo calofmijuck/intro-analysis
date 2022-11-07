@@ -1,0 +1,161 @@
+\section*{October 27th, 2022}
+
+We will discuss measurable functions on a general measurable space \((X, \scr{F})\) and integration on general measure space \((X, \scr{F}, \mu)\) where \(\mu\) is a measure on \(\scr{F}\).
+
+\defn{11.13} \note{Measurable Function} Let \((X, \scr{F})\) be a measurable space where \(\scr{F}\) is a \(\sigma\)-algebra on \(X\). \(f : X \ra \overline{\R}\) is an \textbf{\(\scr{F}\)-measurable function} if the set
+\[
+    \{x \mid f(x) > a\}
+\]
+is measurable for all \(a \in \R\).
+
+We directly observe the following corollary.
+
+\cor Every continuous function \(f\) on \(\R^p\) is Lebesuge measurable.
+
+\pf The set \(\{x \mid f(x) > a\}\) is open in \(\R^p\), so it is an element of \(\mf{M}(m)\).
+
+\thm{11.15} Let \(f\) be a function defined on a measurable space \(X\). The following are equivalent.
+\begin{enumerate}
+    \item \(\{x \mid f(x) > a\}\) is measurable for all \(a \in \R\).
+    \item \(\{x \mid f(x) \geq a\}\) is measurable for all \(a \in \R\).
+    \item \(\{x \mid f(x) < a\}\) is measurable for all \(a \in \R\).
+    \item \(\{x \mid f(x) \leq a\}\) is measurable for all \(a \in \R\).
+\end{enumerate}
+
+\pf The following relations can be used to prove the result.\\
+\note{1\mimp2} \vspace*{-10px}
+\begin{equation*}
+    \{x \mid f(x) \geq a\} = f\inv\paren{[a, \infty)} = f\inv\paren{\bigcup_{n=1}^{\infty} \paren{a + \frac{1}{n}, \infty}} = \bigcup_{n=1}^{\infty} f\inv\paren{\paren{a + \frac{1}{n}, \infty}}.
+\end{equation*}
+\note{2\mimp3} \(\{x \mid f(x) < a\} = X \bs \{x \mid f(x) \geq a\}\).
+
+\note{3\mimp4} \vspace*{-10px}
+\[
+    \{x \mid f(x) \leq a\} = f\inv \paren{(-\infty, a]} = f\inv\paren{\bigcup_{n=1}^{\infty} \paren{-\infty, a - \frac{1}{n}}} = \bigcup_{n=1}^{\infty} f\inv\paren{\paren{-\infty, a - \frac{1}{n}}}.
+\]
+\note{4\mimp1} \(\{x \mid f(x) > a\} = X \bs \{x \mid f(x) \leq a\}\).
+
+\thm{11.16} If \(f\) is measurable, then \(\abs{f}\) is also measurable.
+
+\pf \(\{x \mid \abs{f(x)} > a\} = \{x \mid f(x) > a\} \cap \{x \mid f(x) < -a\}\).
+
+\rmk 역은 성립하지 않는다. Suppose that \(S \subset (0, \infty)\) is not measurable. Define
+\[
+    g(x) = \begin{cases}
+        x & (x \in S) \\ -x & (x \notin S)
+    \end{cases}
+\]
+then \(\abs{g(x)} = x\) for all \(x \in \R\). Thus \(\abs{g(x)}\) is a measurable function, but \(g(x)\) is not measurable since \(\{x \mid g(x) > 0\} = \R \bs (-\infty, 0] = S\) is not measurable.
+
+\medskip
+
+\thm{11.17} Let \(\{f_n\}\) be a sequence of measurable functions. Then
+\[
+    \sup_{n\in \N} f_n(x), \quad \inf_{n\in \N} f_n(x), \quad \limsup_{n \ra \infty} f_n(x), \quad \liminf_{n \ra \infty} f_n(x) \quad (x\in X)
+\]
+are measurable.
+
+\pf It suffices to prove the statement for \(\sup f_n\), since
+\[
+    \inf f_n = -\sup\paren{-f_n}, \quad \limsup f_n = \inf_n \sup_{k\geq n} f_k, \quad \liminf f_n = -\limsup\paren{-f_n}.
+\]
+\quad \claim. \(\ds \{x \mid \sup_{n\in\N} f_n(x) > a\} =  \bigcup_{n=1}^{\infty} \{x \mid f_n(x) > a\} \in \scr{F}\).
+
+\quad \pf \\
+\note{\(\subset\)} If \(\sup f_n(x) > a\), \(\exists N \in \N\) such that \(f_N(x) > a\), so \(x \in \bigcup_{n=1}^{\infty} \{x \mid f_n(x) > a\}\).
+
+\note{\(\supseteq\)} If \(x \in \bigcup_{n=1}^{\infty} \{x \mid f_n(x) > a\}\), \(\exists N \in \N\) such that \(f_N(x) > a\). Then \(\sup f_n(a) > a\).
+
+\medskip
+
+\cor If \(f, g\) are measurable functions,
+\begin{enumerate}
+    \item \(\max\{f, g\}\), \(\min\{f, g\}\) are measurable.
+    \item \(f^+ = \max\{f, 0\}\), \(f^- = -\min\{f, 0\}\) are measurable.
+\end{enumerate}
+
+\pf (1) \(\{x \mid \max\{f, g\} > a\} = \{x \mid f(x) > a\} \cup \{x \mid g(x) > a\}\), and \(\{x \mid \min\{f, g\} < a\} = \{x \mid f(x) < a\} \cup \{x \mid g(x) < a\}\). (2) is trivial from (1).
+
+\medskip
+
+\cor The limit of a convergent sequence of measurable functions is measurable.
+
+\pf Consider \(\lim f_n = \limsup f_n = \liminf f_n\).
+
+\pagebreak
+
+\thm{11.18} Let \(f, g\) be measurable real-valued functions on \(X\). If \(F: \R^2 \ra \R\) is continuous, \(h(x) = F\big(f(x), g(x)\big)\) is measurable. In particular, \(f + g\), \(fg\) are measurable.\footnote{Note that we don't want the case \(\infty - \infty\).}
+
+\pf Since \(G_a = \{(u, v)\in \R^2 \mid F(u, v) > a\}\) is open, we can write it as a union of open intervals.
+\begin{center}
+    \(G_a = \ds \bigcup_{n=1}^{\infty} I_n\) where \(I_n = (a_n, b_n) \times (c_n, d_n)\), \quad (\(a_n, b_n, c_n, d_n\in \R\))
+\end{center}
+Then
+\[
+    \begin{aligned}
+        \{x \in X \mid F\bigl(f(x), g(x)\bigr) > a\} = & \{x \in X \mid \bigl(f(x), g(x)\bigr) \in G_a\}                                                              \\
+        =                                              & \bigcup_{n=1}^{\infty} \{x \in X \mid a_n < f(x) < b_n,\, c_n < g(x) < d_n\}                                 \\
+        =                                              & \bigcup_{n=1}^{\infty} \{x \in X \mid a_n < f(x) < b_n\} \cap \{x \in X \mid c_n < g(x) < d_n\} \in \scr{F}.
+    \end{aligned}
+\]
+
+The class of measurable functions on \(X\) depends only on the \(\sigma\)-ring \(\mf{M}\). For example, Borel-measurable functions on \(\R^p\) are functions of which \(\{x \mid f(x) > a\}\) is always a Borel set.
+
+\defn. \note{Characteristic Function} For \(E \subset X\), the \textbf{characteristic function} \(\chi_E\) is defined as\footnote{Also known as the indicator function, also written as \(\mathbf{1}_E, K_E\).}\\
+\[
+    \chi_E(x) = \begin{cases}
+        1 & (x\in E) \\ 0 & (x \notin E)
+    \end{cases}
+\]
+
+\defn. \note{Simple Function} \(s: X\ra\R\) is called a \textbf{simple function} if the range \(s(X)\) is a finite set.\footnote{Not that the codomain is not \(\overline{\R}\).}
+
+\rmk If \(s(X) = \{c_1, c_2, \dots, c_n\}\) where \(c_i\) are distinct and nonzero, define \(E_i = s\inv(c_i)\). Then we can write
+\[
+    s(x) = \sum_{i=1}^{n} c_i \chi_{E_i}(x).
+\]
+If \(s\inv(0)\) is included as \(E_0\), \(X = \bigcup_{i=0}^{n}E_i\). All simple functions are a linear combination of \(\chi_{E_i}\) where \(E_i\) are disjoint. If \(E_i\) is \textit{measurable}, \(\chi_{E_i}\) is a \textit{measurable} function. So all \textit{measurable} simple functions are a linear combination of \textit{measurable} \(\chi_{E_i}\) where \(E_i\) are disjoint.
+
+\pagebreak
+
+All functions can be approximated by simple functions.
+
+\thm{11.20} Let \(f : X \ra \overline{\R}\). There exists a sequence \(s_n\) of simple functions such that \(\ds \lim_{n \ra \infty} s_n(x) = f(x)\) for every \(x \in X\), and \(\abs{s_n(x)} \leq \abs{f(x)}\).
+\begin{enumerate}
+    \item If \(f\) is measurable, \(s_n\) may be taken measurable.
+    \item If \(f\geq 0\), \(s_n\) may be chosen to be a monotonically increasing sequence, \(\ds \sup_{n\in \N} s_n = f\).
+    \item If \(f\) is bounded, the convergence is uniform.
+\end{enumerate}
+
+\pf Suppose \(f \geq 0\).
+\begin{enumerate}
+    \item For \(n \in \N\), define
+          \[
+              E_{n, i} = \begin{cases}
+                  \{x \mid i\cdot 2^{-n} \leq f(x) < (i+1)\cdot 2^{-n}\} & (i = 0, 1, \dots, n\cdot 2^n - 1) \\
+                  \{x \mid f(x) \geq n\}                                 & (i = n\cdot 2^n)
+              \end{cases}
+          \]
+          and let \(\ds s_n(x) = \sum_{n=0}^{n\cdot 2^n} \frac{i}{2^n} \chi_{E_{n, i}} (x)\) then \(s_n\) is simple. We also have \(s_n(x) \leq f(x)\), \(\abs{f(x) - s_n(x)} \leq 2^{-n}\) for \(x \in \{x \mid f(x) < n\}\).
+          \begin{enumerate}
+              \item[(i)] If \(f(x) < \infty\), \(f(x)< M\) for some \(M > 0\). So setting \(n > M\) large enough will give
+                  \[ \tag{\mast}
+                      \abs{f(x) - s_n(x)} \leq 2^{-n}
+                  \]
+                  for \(x \in \{x \mid f(x) < n\}\).
+              \item[(ii)] If \(f(x) \ra\infty\), then \(s_n(x) = n \ra \infty\) on \(\{x \mid f(x) \geq n\}\). \(s_n \ra f\) as \(n \ra \infty\).
+          \end{enumerate}
+          Therefore \(\ds \lim_{n \ra \infty} s_n(x) = f(x)\).
+
+    \item If \(f\) is measurable, \(E_{n, i}\) is measurable, so \(s_n\) is measurable.
+
+    \item Since \(s_n(x) \leq s_{n+1}(x)\), \(\ds \sup_{n\in \N} s_n(x) = f(x)\).
+
+    \item If \(f\) is bounded, (\mast) gives uniform convergence.
+\end{enumerate}
+
+For general \(f\), write \(f = f^+ - f^-\).\footnote{Note that \(\infty - \infty\) doesn't appear here.} We can find simple functions \(g_n, h_n\) such that \(g_n \ra f^+\), \(h_n \ra f^-\). Then set \(s_n = g_n - h_n\), then \(\abs{s_n(x)} \leq \abs{f(x)}\) and \(\abs{s_n(x)} \nearrow \abs{f(x)}\).
+
+\cor If \(f, g\) are measureable and \(f + g\), \(fg\) are well-defined, then \(f+g\), \(fg\) are measureable. (Approximated by simple functions)
+
+\pagebreak
