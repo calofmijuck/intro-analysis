@@ -1,0 +1,72 @@
+\section*{October 25th, 2022}
+
+\rmk \note{11.11}
+
+\prop. If \(A\) is open, then \(A \in \mf{M}(\mu)\). Also, \(A^C \in \mf{M}(\mu)\).
+
+\pf Let \(I(x, r)\) be an open box centered at \(x\), with radius \(r\). Then
+\begin{center}
+    \(\ds A = \bigcup_{\substack{x \in \Q^p, \; r \in \Q \\ I(x, r)\subset A}} I(x, r)\) \quad (countable union of \(\mf{M}_F(\mu)\))
+\end{center}
+Since \(\mf{M}(\mu)\) is a \(\sigma\)-algebra, \(A^C\in \mf{M}(\mu)\). Every closed set is also a member of \(\mf{M}(\mu)\).
+
+\prop. If \(A \in \mf{M}(\mu)\), there exists open set \(G\) and closed set \(F\) such that
+\begin{center}
+    \(F \subset A \subset G\) and \(\mu\paren{G \bs A} < \epsilon\) and \(\mu\paren{A \bs F} < \epsilon\).
+\end{center}
+
+\pf Let \(A = \bigcup_{n=1}^\infty A_n\) (\(A_n \in \mf{M}_F(\mu)\)), and fix \(\epsilon > 0\). For each \(n \in \N\), there exists open sets \(B_{n, k} \in \Sigma\) such that \(A_n \subset \bigcup_{k=1}^\infty B_{n, k}\) and
+\[
+    \mu\paren{\bigcup_{k=1}^{\infty} B_{n, k}} \leq \sum_{k=1}^{\infty} \mu\paren{B_{n, k}} < \mu\paren{A_n} + 2^{-n}\epsilon.\footnote{첫 번째 부등식은 countable subadditivity, 두 번째 부등식은 \(\mu^\ast\)의 정의에서 나온다.}
+\]
+Let \(G = \bigcup_{n=1}^{\infty} G_n\) where \(G_n = \bigcup_{k=1}^{\infty} B_{n, k}\). Since \(\mu\paren{A_n} < \infty\), (\(\because A_n \in \mf{M}_F(\mu)\))
+\[
+    \mu\paren{G \bs A} = \mu\paren{\bigcup_{n=1}^{\infty} G_n \bs \bigcup_{n=1}^{\infty} A_n} \leq \mu\paren{\bigcup_{n=1}^{\infty} G_n \bs A_n} \leq \sum_{n=1}^{\infty} \mu\paren{G_n \bs A_n} \leq \sum_{n=1}^{\infty} 2^{-n}\epsilon = \epsilon.
+\]
+Using a similar argument, there exists an open set \(F^C\) such that \(A^C \subset F^C\) and \(\mu\paren{F^C \bs A^C} < \epsilon\). (\(A\) had no conditions on open/closed) \(F\) is a closed set, and since \(F^C \bs A^C = F^C \cap A = A\bs F\), \(\mu\paren{A \bs F} < \epsilon\) and \(F\subset A\). Therefore the proposition is proven.\footnote{\(\mu\) is also regular on \(\mf{M}(\mu)\).}
+
+\defn. \note{Borel \(\sigma\)-algebra} \(\mf{B} = \mf{B}(\R^p)\) is the \(\sigma\)-algebra containing all open sets and closed sets. The definition is equivalent to the smallest \(\sigma\)-algebra on \(\R^p\) containing all open sets. Let \(O\) denote the collection of open sets of \(\R^p\). Then
+\[
+    \mf{B} = \bigcap_{O \subset G,\;G:\, \sigma\text{-algebra}} G.
+\]
+
+\rmk \(E\) is a \textbf{Borel set} if \(E \in \mf{B}\) and \(\mf{B} \subset \mf{M}(\mu)\) by definition.
+
+\defn. \note{\(\mu\)-measure zero set} \(A \in \mf{M}(\mu)\) is called a \textbf{\(\mu\)-measure zero set} if \(\mu(A) = 0\).
+
+\prop. If \(A \in \mf{M}(\mu)\), there exists Borel sets \(F, G\) such that \(F \subset A \subset G\). Also, \(A\) can be written as a union of a Borel set and a set \(\mu\)-measure zero set.
+
+\pf Take open sets \(G_n \in \Sigma\), closed sets \(F_n \in \Sigma\) such that
+\begin{center}
+    \(F_n \subset A \subset G_n\) and \(\ds \mu\paren{G_n \bs A} < \frac{1}{n}\) and \(\ds \mu\paren{A \bs F_n} < \frac{1}{n}\).
+\end{center}
+Define \(F = \bigcup_{n=1}^{\infty} F_n\), \(G = \bigcap_{n=1}^{\infty} G_n\), then \(F, G \in \mf{B}\) and \(F \subset A \subset G\). Also,
+\[
+    \begin{rcases}
+        \mu\paren{G \bs A}\leq \mu\paren{G_n \bs A} < \frac{1}{n} \\
+        \mu\paren{A \bs F} \leq \mu\paren{A \bs F_n} < \frac{1}{n}
+    \end{rcases} \ra 0 \text{ as } n \ra \infty.
+\]
+Now we can write \(A = F \cup (A \bs F)\), \(G = A \cup (G \bs A)\). So \(A \in \mf{M}(\mu)\) is a union of a Borel set, and a set of \(\mu\)-measure zero. Unioning \(A\in \mf{M}(\mu)\) with some \(\mu\)-measure zero set will make it a Borel set.
+
+\prop. For every \(\mu\), the set of \(\mu\)-measure zero form a \(\sigma\)-ring.
+
+\pf Check countable subadditivity, and the rest is trivial. If \(\mu\paren{A_n} = 0\) for all \(n\in \N\), then \(\mu\paren{\bigcup_{n=1}^{\infty} A_n} \leq \sum_{n=1}^{\infty} \mu\paren{A_n} = 0\).
+
+\prop. Countable sets have Lebesgue measure zero. Also, there are uncountable sets with measure zero.
+
+\pf Let \(A\) be a countable set. Then it is a countable union of points\footnote{Since points are closed, \(A \in \mf{B}(\R^p)\).} which have measure zero. Thus \(m(A) = 0\). As for the uncountable case, consider the Cantor set \(P\). Define \(E_n\) as in {\sffamily 2.44} then \(P = \bigcap_{n=1}^{\infty} E_n\), but \(m(E_n) = \paren{\frac{2}{3}}^n\) for all \(n \in \N\). \(P \subset E_n\) so \(m(P)\leq m(E_n)\) and setting \(n \ra \infty\) shows that \(m(P) = 0\).
+
+\rmk \(\mf{M}(m) \subsetneq \mc{P}(\R^p)\). (증명은 어려워 우리의 범위를 넘는다)
+
+\defn. \note{Measure Space} \(X\) is a \textbf{measure space} if there exists a \(\sigma\)-algebra/\(\sigma\)-ring \(\mf{M}\) on \(X\) and a measure \(\mu\) on \(\mf{M}\). We write \((X, \mf{M}, \mu)\).
+
+\defn. \note{Measurable Space} \(X\) is called a \textbf{measurable space} if \(\mf{M}\) is a \(\sigma\)-algebra on \(X\). (\(X \in \mf{M}\)) We write \((X, \mf{M})\).
+
+\ex.
+\begin{enumerate}
+    \item \((\R^p, \mf{M}(m), m)\) is the Lebesgue measure space.
+    \item \((\N, \mc{P}(\N), \mu)\), where \(\mu(E) = \abs{E}\) for \(E \in \mc{P}(\N)\). (counting measure)
+\end{enumerate}
+
+\pagebreak
