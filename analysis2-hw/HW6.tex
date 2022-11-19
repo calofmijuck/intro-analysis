@@ -85,20 +85,20 @@
 
     Since any elementary set is a finite union of disjoint intervals, take open sets/closed sets for each interval as above, and union open sets/closed sets respectively. Since \(m\) is additive on \(\Sigma\), it can be concluded that \(m\) is regular on \(\Sigma\).
 
-    \numl{2} It is enough to show the following claim.
+    \numl{2} It is enough to show the following claim, since intervals are \(m\)-measurable.
 
-        {\sffamily \bfseries Claim.} \(f\inv\bigl((a, \infty]\bigr) = \{x : f(x) > a\}\) is an interval.
+    {\sffamily \bfseries Claim.} \(f\inv\bigl((a, \infty]\bigr) = \{x : f(x) > a\}\) is an interval.
 
         {\sffamily Proof.} Suppose that \(t \in f\inv\bigl((a, \infty]\bigr)\). Then for all \(u \geq t\), \(a < f(t) \leq f(u) < \infty\). So \(u \in f\inv\bigl((a, \infty]\bigr)\). Thus this interval is one of \((-\infty, \infty)\), \((z, \infty)\), \([z, \infty)\). (\(z\) is some constant)
 
-    \numl{3} Define \(N = \{x \in \R : f(x) \neq g(x)\}\). Then \(m(N) = 0\), and by the completeness of the Lebesgue measure, any subset of \(N\) has measure \(0\). Now we show that \(g\) is measurable. Take any \(a \in \R\).
+    \numl{3} Define \(N = \{x \in \R : f(x) \neq g(x)\}\). Then \(m(N) = 0\), and by the completeness of the Lebesgue measure, any subset of \(N\) is measurable and has measure \(0\). Now we show that \(g\) is measurable. Take any \(a \in \R\).
     \[
         \begin{aligned}
-            \{x \in \R : g(x) > a\} & = \{x \in \R \bs N : g(x) > a\} \cup \{x \in N : g(x) > a\}  \\
-                                    & =\{x \in \R \bs N : f(x)  > a\} \cup \{x \in \N : g(x) > a\}
+            \{x \in \R : g(x) > a\} & = \{x \in \R \bs N : g(x) > a\} \cup \{x \in N : g(x) > a\} \\
+                                    & =\{x \in \R \bs N : f(x)  > a\} \cup \{x \in N : g(x) > a\}
         \end{aligned}
     \]
-    Since \(\{x \in \N : g(x) > a\} \subset N\), the set \(\{x \in \N : g(x) > a\}\) is measurable and has measure zero. Also, \(\{x \in \R \bs N : f(x) > a\}\) is measurable. Thus \(\{x \in \R : g(x) > a\}\) is measurable for all \(a \in \R\).
+    Since \(\{x \in N : g(x) > a\} \subset N\), the set \(\{x \in N : g(x) > a\}\) is measurable and has measure zero. Also, \(\{x \in \R \bs N : f(x) > a\} = \{x \in \R : f(x) > a\} \bs \{x \in N : f(x) > a\}\) is measurable. (\(\sigma\)-algebra) Thus \(\{x \in \R : g(x) > a\}\) is measurable for all \(a \in \R\).
 
     \numl{4} \(f_n(x)\) converges \miff \(\forall M > 0\), \(\exists N \in \N\) such that \(m, n \geq N \implies \abs{f_n(x) - f_m(x)} < \frac{1}{M}\).
     The set \(C\) which \(f_n(x)\) converges can be written as
@@ -109,11 +109,11 @@
 
     Since \(f_n\) are measurable, \(f_n - f_m\) is measurable and \(\abs{f_n - f_m}\) is also measurable. Thus the set \(\left\{x : \abs{f_n - f_m} < \frac{1}{M}\right\}\) is measurable, and its countable union \(C\) is measurable.
 
-    \numl{5} Define \(E_n =\{x \in E : f(x) > \frac{1}{n}\}\) for \(n \in \N\), and let \(A = \bigcup_{n=1}^{\infty} E_n\). We show that \(\mu(A) = 0\), by showing that \(\mu(E_n) = 0\) for all \(n \in \N\). Suppose that \(\mu(E_n) > 0\) for some \(n \in \N\). Then
+    \numl{5} Define \(E_n =\{x \in E : f(x) > \frac{1}{n}\}\) for \(n \in \N\), and let \(A = \bigcup_{n=1}^{\infty} E_n\). Since \(\mu(E_n) \leq \mu(A) \leq \sum_{n=1}^{\infty} \mu(E_n)\), we show that \(\mu(A) = 0\) by showing that \(\mu(E_n) = 0\) for all \(n \in \N\). Suppose that \(\mu(E_n) > 0\) for some \(n \in \N\). Then
     \[
         \int_E f \d{\mu} = \int_{E\bs E_n} f \d{\mu} + \int_{E_n} f \d{\mu} \geq \int_{E_n} f \d{\mu} \geq \int_{E_n} \frac{1}{n} \d{\mu} = \frac{\mu(E_n)}{n} > 0,
     \]
-    leading to a contradiction. Thus \(\mu(E_n) = 0\) for all \(n \in \N\), which leads to \(\mu(A) = 0\), since \(0 \leq \mu(A) \leq \sum_{n=1}^{\infty} \mu(E_n) = 0\). Therefore \(\{x : f(x) > 0\}\) is a measure zero set.
+    leading to a contradiction. Thus \(\mu(E_n) = 0\) for all \(n \in \N\), which leads to \(\mu(A) = 0\). Therefore \(\{x \in E : f(x) > 0\}\) is a measure zero set.
 
     \numl{6} Since \(\int_0^1 g(1-x) \d{x} = \int_0^1 g(x)\d{x}\), \(\int_0^1 f_n(x) \d{x} = \int_0^1 g(x) \d{x} = \frac{1}{2}\) regardless of the parity of \(n\). Check that
     \[
