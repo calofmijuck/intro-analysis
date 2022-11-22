@@ -1,0 +1,223 @@
+%!TEX encoding = utf-8
+\documentclass[12pt]{report}
+\usepackage{kotex}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\geometry{
+    top = 20mm,
+    left = 20mm,
+    right = 20mm,
+    bottom = 20mm
+}
+\geometry{a4paper}
+
+\pagenumbering{gobble}
+\renewcommand{\baselinestretch}{1.4}
+\newcommand{\numl}[1]{\item[\large\textbf{\sffamily #1.}]}
+\newcommand{\num}[1]{\item[\textbf{\sffamily #1}]}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\adj}{\text{*}}
+\newcommand{\bs}{\setminus}
+\renewcommand{\subset}{\subseteq}
+
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
+\renewcommand{\span}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\uc}{\overset{u}{\ra}}
+\newcommand{\imp}{\implies}
+\newcommand{\mimp}{\(\implies\)}
+\newcommand{\mimpd}{\(\impliedby\)}
+\newcommand{\miff}{\!\!\(\iff\)}
+\newcommand{\mast}{\(\ast\)}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\lint}[2]{\underline{\int_{#1}^{#2}}}
+\newcommand{\uint}[2]{\overline{\int_{#1}^{#2}}}
+\renewcommand{\d}[1]{\,d{#1}}
+
+\let\oldexists\exists
+\renewcommand{\exists}{\oldexists\,}
+
+\begin{document}
+\begin{center}
+    \textbf{\Large 해석개론 및 연습 2 과제 \#7}\\
+    \large 2017-18570 컴퓨터공학부 이성찬
+\end{center}
+\begin{enumerate}
+
+    \numl{1} We show that \(\int_0^\infty s(x) \d{x} < \infty\). Define \(g(0) = 1\) and \(g(x) = s(x)\) if \(x \neq 0\). Then \(\int_0^\infty s(x)\d{x} = \int_0^\infty g(x) \d{x}\), since
+    \[
+        \int_0^\infty s(x) \d{x} = \lim_{\substack{\epsilon \ra 0\\N \ra \infty}} \int_\epsilon^N s(x) \d{x} = \lim_{\substack{\epsilon \ra 0\\N \ra \infty}} \int_\epsilon^N g(x) \d{x} = \int_0^\infty g(x) \d{x}.
+    \]
+    \(g(x)\) is bounded by 1, so \(\int_0^A g(x)\d{x}\) converges for \(A > 0\). Now fix \(A > 0\), and as for \(\int_A^B g(x)\d{x}\) (\(B > A\)),
+    \[
+        \int_A^B \frac{\sin x}{x} \d{x} = \left[-\frac{\cos x}{x}\right]_A^B - \int_A^B \frac{\cos x}{x^2} \d{x}.
+    \]
+    So \(\int_A^B \frac{\sin x}{x}\d{x} < \infty\) if the right hand side converges as \(B \ra \infty\). Since
+    \[
+        \lim_{B \ra \infty} \left[\frac{\cos A}{A} - \frac{\cos B}{B}\right] = \frac{\cos A}{A}, \quad \int_A^\infty \frac{\cos x}{x^2} \d{x} < \int_A^\infty \frac{1}{x^2} \d{x} < \infty,
+    \]
+    we have \(\int_A^\infty \frac{\sin x}{x} \d{x} < \infty\). Therefore \(\int_0^\infty s(x)\d{x} < \infty\). However, for \(N \in \N\),
+    \[
+        \begin{aligned}
+            \int_0^\infty \abs{s(x)}\d{x} & \geq \int_0^{2\pi N} \abs{\frac{\sin x}{x}} \d{x} = \sum_{k=1}^{N} \int_{2(k-1)\pi}^{2k\pi}\abs{\frac{\sin x}{x}} \d{x}                                                              \\
+                                          & \geq \sum_{k=1}^{N} \frac{1}{2\pi k} \int_{2(k-1)\pi}^{2k\pi} \abs{\sin x}\d{x} =\sum_{k=1}^{N} \frac{1}{2\pi k} \int_{0}^{2\pi} \abs{\sin x}\d{x} = \sum_{k=1}^{N} \frac{2}{\pi k},
+        \end{aligned}
+    \]
+    which diverges to \(+\infty\) as \(N \ra \infty\). Thus \(s(x) \notin \mc{L}\) on \((0, \infty)\).
+
+    \numl{2} Rewrite \(f(x)\) as
+    \[
+        f(x) = \bigl(\log(m+1) - \log m\bigr) (x - m) + \log m
+    \]
+    to see that \(f(x)\) consists of line segments that connect \((m, \log m)\) and \((m+1, \log(m+1))\) for \(m = 1, 2, \dots.\) Also, \(g(x) = \frac{1}{m}(x - m) + \log m\) is the tangent line of \(y = \log x\) at \((m, \log m)\), restricted to \(\left[m - \frac{1}{2}, m + \frac{1}{2}\right)\). We additionally know that \(\log x\) is concave, so \(f(x) \leq \log x \leq g(x)\) for \(x\geq 1\). Using the above results, the graphs of \(f\) and \(g\) should look like Figure 1.
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[yscale=2.5]
+            \pgfmathsetmacro{\axislimit}{10}
+
+            \node [below left=1pt, scale=1] (origin) at (0,0) {\(\rm{O}\)};
+            \draw [-stealth, thick] (-1, 0) -- (\axislimit + 1, 0) node[below, scale=1] {\(x\)};
+            \draw [-stealth, thick] (0, -0.5) -- (0, 2.5) node[left, scale=1] {\(y\)};
+
+            \draw [dashed, black, domain=0.6:\axislimit, smooth, variable=\x, samples=100] plot ({\x}, {ln(\x)});
+            \foreach \m in {1,...,9}{
+                    \draw [thick, red, domain=\m:\m+1, smooth, variable=\x, samples=10] plot ({\x}, {(ln(\m+1) - ln(\m)) * (\x - \m) + ln(\m)});
+                }
+            \foreach \m in {1,...,9}{
+                    \draw [thick, blue, domain=\m-0.5:\m+0.5, smooth, variable=\x, samples=10] plot ({\x}, {\x/\m - 1 + ln(\m)});
+                }
+
+            \node [below, scale=1] at (1.2, -0.1) {\(1\)};
+            \node [scale=0.8] at (11, 2.2) {\(y = \log x\)};
+            \node [scale=0.8, red] at (9, 1.9) {\(y = f(x)\)};
+            \node [scale=0.8, blue] at (9, 2.5) {\(y = g(x)\)};
+            % \node [scale=0.8] at (4 * pi, -1.4) {\(y = \sin x\)};
+            % \node [scale=0.8] at (4 * pi, 5.5) {\(y = 7\cos x + \dfrac{8\sqrt{7}}{3}\)};
+        \end{tikzpicture}
+        \caption{Graph of \(\log x\) in dashed lines, \(f(x)\) in red, \(g(x)\) in blue.} \label{fig1}
+    \end{figure}
+
+    Now by direct calculation,
+    \[
+        \begin{aligned}
+            \int_1^n f(x) \d{x} & = \sum_{m=1}^{n - 1} \int_m^{m+1} f(x) \d{x} = \sum_{m=1}^{n-1}\left[-\frac{\log m}{2} (m+1-x)^2 + \frac{\log(m+1)}{2}(x - m)^2\right]_m^{m+1} \\
+                                & = \sum_{m=1}^{n-1} \left[\frac{\log(m+1)}{2} + \frac{\log m}{2}\right] = \log n! - \frac{1}{2}\log n.
+        \end{aligned}
+    \]
+    Also,
+    \[
+        \int_{m-1/2}^m g(x) \d{x} = \frac{1}{2}\log m - \frac{1}{8m}, \quad \int_{m}^{m+1/2} g(x) \d{x} = \frac{1}{2}\log m + \frac{1}{8m},
+    \]
+    so \(\ds \int_{m-1/2}^{m+1/2} g(x) \d{x} = \log m\). Therefore,
+    \[
+        \begin{aligned}
+            \int_1^n g(x)\d{x} & = \int_1^{3/2} g(x) \d{x} + \sum_{m=2}^{n-1} \int_{m-1/2}^{m+1/2} g(x) \d{x} + \int_{n-1/2}^n g(x)\d{x}                   \\
+                               & =\frac{1}{8} + \log (n-1)! + \frac{1}{2} \log n - \frac{1}{8n} = \log n! - \frac{1}{2} \log n +\frac{1}{8} - \frac{1}{8n} \\
+                               & = \int_1^n f(x) \d{x} + \frac{1}{8} - \frac{1}{8n}. \qquad (\ast)
+        \end{aligned}
+    \]
+    By (\mast),
+    \[
+        \int_1^n f(x) \d{x} = -\frac{1}{8} + \frac{1}{8n} + \int_1^n g(x)\d{x} > -\frac{1}{8} + \int_{1}^{n} g(x) \d{x}.
+    \]
+    For \(n \geq 2\), integrating \(f(x) \leq \log x \leq g(x)\) over \([1, n]\) gives
+    \[
+        \log n! - \frac{1}{2}\log n = \int_1^n f(x) \d{x} < n\log n - n + 1 < \int_1^n g(x) \d{x} < \frac{1}{8} + \log n! - \frac{1}{2}\log n.
+    \]
+    Subtracting \(n\log n - n\) from all sides and a bit of reordering terms will give
+    \[
+        \log n! - \left(n + \frac{1}{2}\right) \log n + n  < 1, \quad 1 - \frac{1}{8} < \log n! - \left(n + \frac{1}{2}\right) \log n + n
+    \]
+    which is the desired inequality. (The equalities were dropped because for \(n \geq 2\), it is evident that the areas under the curve \(f(x), \log x, g(x)\) from \(x = 1\) to \(x = n\) are different)
+
+    Finally, it suffices to show that \(\exp\left(\log n! - \left(n + \frac{1}{2}\right) \log n + n\right) = \frac{n!}{(n/e)^n \sqrt{n}}\).
+    \[
+        \begin{aligned}
+            \exp\paren{\log n! - \paren{n + \frac{1}{2}} \log n + n} = \frac{\exp(\log n!) \cdot \exp(n)}{\exp(n\log n) \cdot \exp(\log \sqrt{n})} = \frac{n!\cdot e^n}{n^n \sqrt{n}} = \frac{n!}{(n/e)^n \sqrt{n}}.
+        \end{aligned}
+    \]
+
+    \pagebreak
+
+    \numl{3} By {\sffamily Theorem 6.20}, if \(f(x)\) is continuous at \(x_0\), then \(F(x)\) is differentiable at \(x_0\) and \(F'(x_0) = f(x_0)\). Also by {\sffamily Theorem 11.33 (b)}, \(f\in \mc{R}\) so \(f\) is continuous almost everywhere. Let \(N = \{x \in [a, b] : f(x) \text{ is discontinuous at } x\}\) then \(m(N) = 0\). On \([a, b] \bs N\), \(F(x)\) is differentiable and \(F'(x) = f(x)\). Thus \(F'(x) = f(x)\) almost everywhere.
+
+    \numl{4} Take any sequence \(\seq{x_n}\) in \([a, b]\), that converges to \(x \in [a, b]\). Define \(f_n = \chi_{[a, x_n]}f\) then \(f_n\) is a sequence of measurable functions (\(\chi, f\) are measurable), dominated by \(\abs{f} \in \mc{L}\). We can see that \(f_n \ra \chi_{[a, x]}f\) as \(n \ra \infty\) almost everywhere. (Possibly except for \(x\), but a point has measure 0) Upon direct calculation,
+    \[
+        \lim_{n \ra \infty} \int_{a}^{b} f_n(t)\d{t} = \lim_{n \ra \infty} \int_{a}^{x_n} f(t)\d{t} = \lim_{n \ra \infty} F(x_n), \quad
+        \int_{a}^{b} \chi_{[a, x]}f \d{t} = \int_{a}^{x}f(t)\d{t} = F(x).
+    \]
+    By Lebesgue's dominated convergence theorem, \(\ds \lim_{n \ra \infty} F(x_n) = F(x)\). Since \(x_n\) was arbitrary, we can conclude that \(F\) is continuous at \(x \in [a, b]\).
+
+    \numl{5} Let \(d(f, g) = \int_X \abs{f - g} \d{\mu}\) for \(f, g \in \mc{L}(\mu)\). We first show that \(d(\cdot, \cdot)\) is a metric on \(\mc{L}(\mu)\). For \(f, g, h \in \mc{L}(\mu)\),
+    \begin{itemize}
+        \item If \(f \sim g\), \(d(f, g) = 0\). Otherwise, \(\ds d(f, g) = \int_X \abs{f - g} \d{\mu} > 0\).
+        \item \(d(f, g) = \ds \int_X \abs{f - g} \d{\mu} = \int_X \abs{g - f} \d{\mu} = d(g, f)\).
+        \item \(\ds d(f, g) = \int_X \abs{f - g} \d{\mu} \leq \int_X \bigl(\abs{f - h} + \abs{h - g}\bigr) \d{\mu} = d(f, h) + d(h, g)\).
+    \end{itemize}
+
+    Now we show that \(\bigl(\mc{L}(\mu), d\bigr)\) is complete. Let \(\seq{f_n}\) be a Cauchy sequence in \(\mc{L}(\mu)\). Take a sequence \(\seq{n_k}\) such that \(d(f_{n_k}, f_{n_{k+1}}) < \frac{1}{2^k}\) for \(k = 1, 2, \dots\). Then
+    \[
+        \sum_{k=1}^{\infty} d(f_{n_k}, f_{n_{k+1}})  = \sum_{k=1}^{\infty} \int_X \abs{f_{n_k} - f_{n_{k+1}}} \d{\mu} = \int_X \sum_{k=1}^{\infty} \abs{f_{n_k} - f_{n_{k+1}}} \d{\mu} \leq 1,
+    \]
+    since the partial sums of the series on the left hand side is non-negative and increasing. Monotone convergence theorem was applied to switch the order of summation and integration. Using the lemma covered in class, we can conlude that \(\sum_{k=1}^{\infty} \abs{f_{n_k} - f_{n_{k+1}}} < \infty\) \(\mu\)-a.e. on \(X\). Therefore \((\ast) = \sum_{k=1}^{\infty} \paren{f_{n_k} - f_{n_{k+1}}}\) converges \(\mu\)-a.e. on \(X\). Let
+    \[
+        f = \sum_{k=1}^{\infty} \paren{f_{n_k} - f_{n_{k+1}}} + f_1 = \lim_{k \ra \infty} f_{n_k},
+    \]
+    except for points that (\mast) does not converge. On the points that (\mast) does not converge, set \(f(x) = 0\). Now we show that \(f_n \ra f\) as \(n \ra \infty\). Let \(\epsilon > 0\) be given. Take large enough \(M \in \N\), so that if \(n_t, n_k > M\) then \(d(f_{n_t}, f_{n_k}) < \epsilon\). By Fatou's lemma,
+    \[
+        d(f, f_{n_k}) = \int_X \abs{f - f_{n_k}} \d{\mu} = \int_X \liminf_{t \ra \infty}\abs{f_{n_t} - f_{n_k}} \d{\mu} \leq \liminf_{t \ra \infty} \int_X \abs{f_{n_t} - f_{n_k}} \d{\mu} < \epsilon.
+    \]
+    Therefore we see that \(f - f_{n_k} \in \mc{L}(\mu)\), which implies \(f \in \mc{L}(\mu)\). Also, for large enough \(k\), \(d(f, f_{n_k}) < \epsilon\), so the right hand side of
+    \[
+        d(f, f_n) \leq d(f, f_{n_k}) + d(f_{n_k}, f_n)
+    \]
+    can be made arbitrarily small by choosing \(n, n_k\) large enough. Therefore any Cauchy sequence in \(\mc{L}(\mu)\) converges, and \(\bigl(\mc{L}(\mu), d\bigr)\) is complete.
+
+    \numl{6} We show that \(\int_X \abs{f_n - f} \d{\mu} \ra 0\) as \(n \ra \infty\). Since
+    \[
+        \abs{f_n - f} \leq \abs{f_n} + \abs{f} \leq \abs{g_n} + \abs{g}
+    \]
+    \(\mu\)-a.e. and \(\abs{f_n - f}, \abs{g_n}, \abs{g} \in \mc{L}\), Define \(h = \abs{g} + \abs{g_n} - \abs{f_n - f}\) then \(h \in \mc{L}\). Note that \(\liminf_{n \ra \infty} h = 2\abs{g}\). By Fatou's lemma,
+    \[
+        \int_X 2\abs{g} \d{\mu} = \int_X \liminf_{n \ra \infty} h \d{\mu} \leq \liminf_{n \ra \infty} \int_X h \d{\mu} = \int_X 2 \abs{g} \d{\mu} - \limsup_{n \ra \infty}\int_X \abs{f_n - f} \d{\mu}.
+    \]
+    Therefore \(0 \leq \liminf_{n \ra \infty} \int_X \abs{f_n - f} \d{\mu} \leq \limsup_{n \ra \infty} \int_X \abs{f_n - f} \d{\mu} \leq 0\), and thus \(\int_X \abs{f_n - f} \d{\mu} \ra 0\) as \(n \ra \infty\).
+
+    \numl{7} (\mimp) Observe that
+    \[
+        \abs{\int_X \abs{f_n} \d{\mu} - \int_X \abs{f} \d{\mu}} = \abs{\int_X \paren{\abs{f_n} - \abs{f}} \d{\mu}} \leq \int_X \abs{\abs{f_n} - \abs{f}} \d{\mu} \leq \int_X \abs{f_n - f}\d{\mu} \ra 0
+    \]
+    as \(n \ra \infty\). So \(\int_X \abs{f_n} \d{\mu} \ra \int_X \abs{f} \d{\mu}\) as \(n \ra \infty\).
+
+    (\mimpd) Set \(g_n = \abs{f_n}\) in {\sffamily Problem 6}. Then \(\abs{f_n}\leq \abs{g_n}\), \(\lim_{n \ra \infty} g_n = \lim_{n \ra \infty} \abs{f_n} = \abs{f} = \abs{g}\) \(\mu\)-a.e. and \(\int_X g_n \d{\mu} \ra \int_X g \d{\mu}\) as \(n \ra \infty\). All assumptions hold, so we can use the result of {\sffamily Problem 6} to conclude that \(\lim_{n \ra \infty} \int_X f_n \d{\mu} = \int_X f \d{\mu}\), which is equivalent to \(\int_X \abs{f_n - f} \d{\mu} \ra 0\) as \(n \ra \infty\).
+
+\end{enumerate}
+\end{document}
