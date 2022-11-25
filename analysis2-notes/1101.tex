@@ -1,0 +1,173 @@
+\section*{November 1st, 2022}
+
+\((X, \scr{F}, \mu)\) 라고 계속 가정합니다. \(\scr{F}\)는 \(\sigma\)-algebra on \(X\), \(\mu\)는 measure on \(\scr{F}\) 입니다.
+
+If \(E \in \scr{F}\), we can consider (\(X, \scr{F}_E, \mu_E\)) where
+\[
+    \scr{F}_E = \{A \cap E : A \in \scr{F}\}, \quad \mu_E = \mu|_{\scr{F}_E},
+\]
+and develop the integration theory with \(\int = \int_E\).
+
+Instead, we develop integration theory with \(\int = \int_X\) and set \(\ds \int_E f \d{\mu} = \int f \chi _E \d{\mu}\).
+
+\medskip
+
+\note{Step 1} For \(A \in \scr{F}\), we define \(\ds \int \chi_A \d{\mu} = \mu(A)\).
+
+\note{Step 2} Let \(f: X \ra [0, \infty)\) be a measurable simple function. \\
+Then there exists pairwise disjoint \(\seq{A_k}_{k=1}^n\) in \(\scr{F}\) and \(\seq{a_k}_{k=1}^n\) in \([0, \infty)\)\footnote{책에서는 \((0, \infty)\)이긴 한데, 우리는 \(0 \cdot\infty = 0\)이라 생각하고 \(\bigcup_{k=1}^n A_k = X\) 라고 생각할게요.} such that
+\[
+    f(x) = \sum_{k=1}^n a_k \chi_{A_k}.
+\]
+Then we can define
+\[ \tag{\mast}
+    \int f\d{\mu} = \sum_{k=1}^n a_k \mu(A_k) \in [0, \infty].
+\]
+
+이런 정의를 보면 여러분이 제일 먼저 생각해야 하는 것이 well-definedness 입니다!
+
+\rmk (\mast) is well-defined for all measurable simple functions.
+
+\pf Let
+\[
+    f(x) = \sum_{k=1}^n a_k \chi_{A_k} = \sum_{i=1}^m b_i \chi_{B_i},
+\]
+where \(0\leq a_k, b_i < \infty\) and \(A_k, B_i \in \scr{F}\) are partitions of \(X\).\footnote{Pairwise disjoint and their union is \(X\).} Let \(C_{k, i} = A_k \cap B_i\). Then
+\[
+    \sum_{k=1}^n a_k \mu(A_k) = \sum_{k=1}^n a_k \mu\paren{A_k \cap \bigcup_{i=1}^m B_i} = \sum_{k=1}^n \sum_{i=1}^m a_k \mu(C_{k, i}),
+\]
+\[
+    \sum_{i=1}^m b_i \mu(B_i) = \sum_{i=1}^{m} b_i \mu\paren{B_i \cap \bigcup_{k=1}^n A_k}= \sum_{i=1}^m \sum_{k=1}^n b_i \mu(C_{k, i}).
+\]
+If \(C_{k, i} \neq \varnothing\), then \(a_k = b_i\).\footnote{For \(x \in C_{k, i}\), \(f(x) = a_k = b_i\).} If \(C_{k, i} = \varnothing\), then \(\mu(C_{k, i}) = 0\). Therefore
+\[
+    b_i \mu(C_{k, i}) = a_k \mu(C_{k, i}), \quad (\forall k, i) \implies \int f \d\mu = \sum_{k=1}^n a_k \mu(A_k) = \sum_{i=1}^m b_i \mu(B_i).
+\]
+
+\pagebreak
+
+적분은 선형이고, monotonicity를 항상 유지합니다.
+
+\rmk For \(a, b \in [0, \infty)\) and measurable simple functions \(f, g \geq 0\),
+\[
+    \int \paren{af + bg} \d{\mu} = a \int f \d{\mu} + b \int g \d{\mu}.
+\]
+
+\pf Let
+\[
+    f = \sum_{j=1}^m y_j \chi_{A_j}, \quad g = \sum_{k=1}^n z_k \chi_{B_k}
+\]
+where \(A_j, B_k\) is a partition of \(X\) and \(y_j, z_k \geq 0\). Let \(C_{j, k} = A_j \cap B_k\).
+Then
+\[
+    \begin{aligned}
+        a \int f \d{\mu} + b \int g \d{\mu} & = \sum_{j} ay_j \mu(A_j) + \sum_k b z_k \mu(B_k)                                 \\
+                                            & = \sum_{j} ay_j \sum_k \mu(A_j \cap B_k) + \sum_k b z_k \sum_j \mu(B_k \cap A_j) \\
+                                            & = \sum_{j} \sum_k ay_j \mu(C_{j, k}) + \sum_k \sum_j b z_k \mu(C_{j, k})         \\
+                                            & = \sum_{j, k} (ay_j + bz_k) \mu(C_{j, k}) = \int \paren{af + bg} \d{\mu}.
+    \end{aligned}
+\]
+
+\rmk If \(f \geq g \geq 0\) are measurable simple functions, \(\ds \int f \d{\mu} \geq \int g \d{\mu}\).
+
+\pf Check from definition, or check that \(f - g \geq 0\) is simple and measurable.
+\[
+    \int f \d{\mu} = \int \left[g + (f - g)\right] \d{\mu} = \int g\d{\mu} + \int (f - g) \d{\mu} \geq \int g \d{\mu} \geq 0.\footnote{적분값이 무한대일 수 있으니 함부로 이항하면 안됩니다.}
+\]
+
+\note{Step 3} Let \(f: X \ra [0, \infty]\) be a measurable function. Define
+\[
+    \int f \d{\mu} = \sup\left\{\int h \d{\mu}: 0\leq h \leq f, h \text{ is measurable and simple}\right\}.
+\]
+Note that if \(f\) is simple, this accords with the definition in {\sffamily Step 2}.
+
+For measurable \(f \geq g \geq 0\),
+\[
+    \int g \d{\mu} = \sup_{0\leq h\leq g} \int h\d{\mu} \leq \sup_{0 \leq h\leq f} \int h \d{\mu} = \int f \d{\mu}.
+\]
+
+\pagebreak
+
+이걸 먼저 증명하면 유용해서 잠깐 이걸 먼저 할게요.
+
+\thm{11.28} \note{Lebesgue's Monotone Convergence Theorem} Let \(f_n: X \ra [0, \infty]\) be measurable functions\footnote{Non-negative인 것이 중요합니다!} and \(f_n(x) \leq f_{n+1}(x)\) for all \(x \in X\). Let \[
+    \lim_{n\ra\infty} f_n(x) = \sup_{n} f_n(x) = f(x).
+\]
+Then,
+\[
+    \int f \d{\mu} = \lim_{n\ra\infty} \int f_n \d{\mu} = \sup_{n} \int f_n \d{\mu}.
+\]
+
+\pf \\
+\note{\(\geq\)} Since \(f_n(x) \leq f(x)\), \(\int f_n \d{\mu} \leq \int f \d{\mu}\) for all \(n\in \N\) by monotonicity. Therefore
+\[
+    \sup_n \int f_n \d{\mu} \leq \int f \d{\mu}.
+\]
+
+\note{\(\leq\)} Let \(c \in (0, 1)\) (we will let \(c \nearrow 1\)). Let \(0 \leq s \leq f\) where \(s\) is measurable simple. We have \(c \cdot s(x) < f(x)\) for all \(x \in X\). Let \(E_n = \{x \in X : f_n(x) \geq cs(x)\} \in \scr{F}\).\footnote{\(f_n(x) - cs(x)\) is a measurable function.} Since \(f_n\) is increasing, \(E_n\subset E_{n+1} \subset \cdots\), and since \(f_n \ra f\), \(\bigcup_{n=1}^\infty E_n = X\). For every \(x\), \(\exists N\) such that \(f(x) \geq f_n(x) > cs(x)\) for all \(n \geq N\). Since \(f_n \geq f_n \chi_{E_n} \geq cs \chi_{E_n}\),
+\[ \tag{\mstar}
+    \int f_n \d{\mu} \geq \int f_n \chi_{E_n} \d{\mu} \geq c\int s \chi_{E_n} \d{\mu},
+\]
+where \(s, \chi_{E_n}\) are simple. So we can write \(s = \sum_{k=0}^m y_k \chi_{A_k}\), then
+\[
+    s\chi_{E_n} = \sum_{k=0}^m y_k \chi_{A_k\cap E_n} \implies \int s \chi_{E_n} \d{\mu} = \sum_{k=0}^m y_k \mu(A_k\cap E_n).
+\]
+\(A_k\cap E_n \nearrow A_k\) as \(n\ra\infty\). By continuity of measure, \(\mu(A_k \cap E_n) \nearrow \mu(A_k)\) and
+\[
+    \lim_{n\ra\infty} \int s \chi_{E_n}\d{\mu} = \int s \d{\mu}.
+\]
+By (\mstar),
+\[
+    \lim_{n\ra\infty} \int f_n \d{\mu} \geq c\int s \d{\mu}.
+\]
+Let \(c \nearrow 1\) and take supremum over \(0\leq s\leq f\), then
+\[
+    \lim_{n\ra\infty} \int f_n \d{\mu} \geq \sup_{0\leq s\leq f} \int s \d{\mu} = \int f \d{\mu}.
+\]
+
+\rmk If \(f \geq 0\) is measurable, we have already constructed measurable simple functions \(s_n\) such that \(s_n(x) \leq s_{n+1}(x)\). ({\sffamily Theorem 11.20}) Let \(f(x) = \ds \lim_{n\ra\infty} s_n(x)\). Observe that
+\[
+    \int_E s_n \d{\mu} = \sum_{i=1}^{n2^n} \frac{i - 1}{2^n}\mu\paren{\left\{x \in E : \frac{i-1}{2^n} \leq f(x) \leq \frac{i}{2^n}\right\}} + n\mu(\{x \in E : f(x)\geq n\}).
+\]
+Then by MCT,
+\[
+    \int f_E \d{\mu} = \lim_{n\ra\infty} \int_E s_n \d{\mu}.
+\]
+
+\bigskip
+
+Lebesgue integral이 Riemann이랑 어떻게 다른가? Riemann은 domain을 자르고 upper/lower sum을 고려해서 만든다면, Lebesgue의 경우 range를 잘라서, 자른 range의 preimage에 대한 measure를 이용해 preimage의 길이를 재는 것입니다. Riemann과 마찬가지로 domain의 길이와 높이를 곱해 모두 더하는 idea는 동일합니다.
+
+\bigskip
+
+\defn. If \(E \in \mc{F}\), and \(f \geq 0\) is measurable, then
+\[
+    \int_E f \d{\mu} = \int f \chi_{E} \d{\mu}.
+\]
+
+\rmk If \(0 \leq f_n \nearrow f\) on \(E\), then \(0\leq f_n \chi_E \nearrow f \chi_E\). So MCT also holds on \(E\).
+\begin{center}
+    \(0\leq f_n \nearrow f\) on \(E\) \(\implies \ds \lim_{n\ra\infty} \int_E f_n \d{\mu} = \int_E f \d{\mu}\).
+\end{center}
+
+\rmk Counterexample of MCT: \(\chi_{[n, \infty)} \searrow 0\) as \(n \ra \infty\). For Lebesgue measure \(m\),
+\[
+    \infty = \int \chi_{[n, \infty)} \d{m} \neq \int 0 \d{m} = 0.
+\]
+
+\rmk Suppose \(f, g \geq 0\) be measurable functions, and \(\alpha, \beta \in [0, \infty)\). Then
+\[
+    \int_E \paren{\alpha f + \beta g} \d{\mu} = \alpha \int_E f \d{\mu} + \beta \int_E g\d{\mu}.
+\]
+
+\pf Take \(0 \leq f_n \nearrow f\) and \(0 \leq g_n\nearrow g\) where \(f_n, g_n\) are measurable simple functions. Then \(\alpha f_n + \beta g_n \nearrow \alpha f + \beta g\) and is simple. So by MCT,
+\[
+    \int_E \paren{\alpha f_n + \beta g_n} \d{\mu} = \alpha \int_E f_n \d{\mu} + \beta \int_E g_n \d{\mu} \ra \alpha \int_E f \d{\mu} + \beta \int_E g\d{\mu}.
+\]
+
+\thm{11.30} For measurable \(f_n: X \ra [0, \infty]\), \(\ds \sum_{n=1}^\infty f_n\) is measurable and by MCT,
+\[
+    \int_E \sum_{n=1}^\infty f_n \d{\mu} = \sum_{n=1}^\infty \int_E f_n \d{\mu}.
+\]
+
+\pagebreak
