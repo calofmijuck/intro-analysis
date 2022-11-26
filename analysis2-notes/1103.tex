@@ -4,23 +4,26 @@
 
 \thm{11.31} \note{Fatou} If \(f_n \geq 0\) and measurable and \(E\) is measurable. Then
 \[
-    \int_E \liminf_{n\ra\infty} f_n \d{\mu} \leq \liminf_{n\ra\infty} \int f_n \d{\mu}.\footnote{ILLLI: integral of limit less than limit of integral.}
+    \int_E \liminf_{n\ra\infty} f_n \d{\mu} \leq \liminf_{n\ra\infty} \int_E f_n \d{\mu}.\footnote{ILLLI: integral of limit less than limit of integral.}
 \]
 
-\pf Let \(E = X\). Let \(g_n = \ds \inf_{k \geq n} f_k\). Then \(\ds \liminf_{n\ra\infty} f_n = \sup_{n\geq 1} g_n\), and we know that \(g_n\) is increasing and nonnegative. By MCT,
-\[
-    \int \liminf_{n\ra\infty} f_n \d{\mu} = \lim_{n \ra \infty} \int g_n \d{\mu}.
-\]
-By definition, \(g_n \leq f_k\) for all \(k \geq n\). Take integral on both sides and take infimum.
+\pf Let \(E = X\). Let \(g_n = \ds \inf_{k \geq n} f_k\). Then \(\ds \lim_{n \ra \infty} g_n = \liminf_{n\ra\infty} f_n\), and we know that \(g_n\) is increasing and non-negative. By definition, \(g_n \leq f_k\) for all \(k \geq n\). Therefore,
 \[
     \int g_n \d{\mu} \leq \inf_{k\geq n} \int f_k \d{\mu}.
 \]
-Therefore,
+Letting \(n \ra \infty\) gives
 \[
-    \int \liminf_{n\ra\infty} f_n \d{\mu} \leq \lim_{n \ra \infty} \inf_{k \geq n}\int f_k \d{\mu}.
+    \int \liminf_{n\ra\infty} f_n \d{\mu} = \lim_{n \ra \infty} \int g_n \d{\mu} \leq \lim_{n \ra \infty} \inf_{k \geq n}\int f_k \d{\mu} = \liminf_{n \ra \infty} \int f_n \d{\mu},
 \]
+where the first equality holds by the MCT.
 
-\rmk The above theorem doesn't work for \(\limsup\). Consider \(\chi_{[n, \infty)}\).
+\rmk The above theorem doesn't work for \(\limsup\).
+\[
+    \int_E \limsup_{n \ra \infty} f_n \d{\mu} \not\geq \limsup_{n \ra \infty} \int_E f_n \d{\mu}.
+\]
+Consider \(\chi_{[n, \infty)}\). \(\text{LHS} = 0\), but \(\text{RHS} = \infty\).\footnote{뒤에서 하겠지만, \(\abs{f_n} < g\)인 \(g \in \mc{L}^{1}\) 가 있어야 합니다.}
+
+\bigskip
 
 \note{Step 4} If \(f\) is measurable, then \(f^+, f^- \geq 0\) are measurable. So for \(E \in \scr{F}\), define
 \[
@@ -55,7 +58,7 @@ Note that \(f \in \mc{L}^{1}(E, \mu) \iff f^+, f^- \in \mc{L}^{1}(E, \mu)\iff \a
           \begin{center}
               \(\ds \int_E f^+ \d{\mu} \leq \int_E g^+ \d{\mu} < \infty\) and \(\ds \int_E g^- \d{\mu} \leq \int_E f^- \d{\mu} < \infty\).
           \end{center}
-          Therefore monotonicity holds without the nonnegative condition, i.e.
+          Therefore monotonicity holds without the non-negative condition, i.e.
           \[
               \int_E f\d{\mu} \leq \int_E g \d{\mu}.
           \]
@@ -71,7 +74,7 @@ Note that \(f \in \mc{L}^{1}(E, \mu) \iff f^+, f^- \in \mc{L}^{1}(E, \mu)\iff \a
           \[
               \int_E a \chi_E \d{\mu} \leq \int_E f\chi_E \d{\mu} \leq \int_E b \chi_E \d{\mu} \implies a \mu(E) \leq \int_E f \d{\mu} \leq b \mu(E).
           \]
-    \item If \(f \in \mc{L}^{1}(E, \mu)\) and \(A \subset E \in \scr{F}\) then \(f \in \mc{L}^{1}(A, \mu)\) since
+    \item If \(f \in \mc{L}^{1}(E, \mu)\) and for \(A \in \scr{F}\) such that \(A \subset E\) then \(f \in \mc{L}^{1}(A, \mu)\) since
           \[
               \int_A \abs{f} \d{\mu} \leq \int_E \abs{f}\d{\mu} < \infty.
           \]
@@ -119,11 +122,16 @@ Note that \(f \in \mc{L}^{1}(E, \mu) \iff f^+, f^- \in \mc{L}^{1}(E, \mu)\iff \a
 \]
 Let \(n\ra \infty\), by continuity of measure, \(\mu\paren{\{\abs{u} > 0\} \cap E} = 0\).
 
-\rmk If \(B \subset A \in \scr{F}\) and \(\mu\paren{A \bs B} = 0\) then \(\ds \int_A f \d{\mu} = \int_B f \d{\mu}\) for all \(f \in \mc{L}^{1}(A, \mu)\).
+\rmk Let \(A, B \in \scr{F}\). If \(B \subset A\) and \(\mu\paren{A \bs B} = 0\), then
+\begin{center}
+    \(\ds \int_A f \d{\mu} = \int_B f \d{\mu}\) for all \(f \in \mc{L}^{1}(A, \mu)\).
+\end{center}
+
+\pagebreak
 
 \thm. If \(u \in \mc{L}^{1}(E, \mu)\) then \(u(x) \in \R\) \(\mu\)-\ae on \(E\).\footnote{\(u(x) = \infty\) 인 집합의 measure가 0이다.}
 
-\pf \(\mu\paren{\{\abs{u} \geq 1\}\cap E} \leq \ds \int_E \abs{u} \d{\mu} < \infty\).\footnote{여기서 Markov Inequality가 반드시 필요한가?} So,
+\pf \(\mu\paren{\{\abs{u} \geq 1\}\cap E} \leq \ds \int_E \abs{u} \d{\mu} < \infty\).\footnote{Continuity of measure를 사용하기 위해서는 첫 번째 집합의 measure가 유한해야 한다.} So,
 \[
     \begin{aligned}
         \mu\paren{\{\abs{u} = \infty\} \cap E} & = \mu\paren{\bigcap_{n=1}^\infty \{x \in E : \abs{u(x)} \geq n\}}                                                            \\
