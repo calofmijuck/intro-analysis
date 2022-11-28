@@ -203,11 +203,11 @@
 
     \numl{6} We show that \(\int_X \abs{f_n - f} \d{\mu} \ra 0\) as \(n \ra \infty\). Since
     \[
-        \abs{f_n - f} \leq \abs{f_n} + \abs{f} \leq \abs{g_n} + \abs{g}
+        \abs{f_n - f} \leq \abs{f_n} + \abs{f} \leq g_n + g
     \]
-    \(\mu\)-a.e. and \(\abs{f_n - f}, \abs{g_n}, \abs{g} \in \mc{L}\), Define \(h = \abs{g} + \abs{g_n} - \abs{f_n - f}\) then \(h \in \mc{L}\). Note that \(\liminf_{n \ra \infty} h = 2\abs{g}\). By Fatou's lemma,
+    \(\mu\)-a.e. and \(\abs{f_n - f} \in \mc{L}\), Define \(h = g + g_n - \abs{f_n - f}\) then \(h \in \mc{L}\). Note that \(\liminf_{n \ra \infty} h = 2g\). By Fatou's lemma,
     \[
-        \int_X 2\abs{g} \d{\mu} = \int_X \liminf_{n \ra \infty} h \d{\mu} \leq \liminf_{n \ra \infty} \int_X h \d{\mu} = \int_X 2 \abs{g} \d{\mu} - \limsup_{n \ra \infty}\int_X \abs{f_n - f} \d{\mu}.
+        \int_X 2g \d{\mu} = \int_X \liminf_{n \ra \infty} h \d{\mu} \leq \liminf_{n \ra \infty} \int_X h \d{\mu} = \int_X 2g \d{\mu} - \limsup_{n \ra \infty}\int_X \abs{f_n - f} \d{\mu}.
     \]
     Therefore \(0 \leq \liminf_{n \ra \infty} \int_X \abs{f_n - f} \d{\mu} \leq \limsup_{n \ra \infty} \int_X \abs{f_n - f} \d{\mu} \leq 0\), and thus \(\int_X \abs{f_n - f} \d{\mu} \ra 0\) as \(n \ra \infty\).
 
@@ -217,7 +217,7 @@
     \]
     as \(n \ra \infty\). So \(\int_X \abs{f_n} \d{\mu} \ra \int_X \abs{f} \d{\mu}\) as \(n \ra \infty\).
 
-    (\mimpd) Set \(g_n = \abs{f_n}\) in {\sffamily Problem 6}. Then \(\abs{f_n}\leq \abs{g_n}\), \(\lim_{n \ra \infty} g_n = \lim_{n \ra \infty} \abs{f_n} = \abs{f} = g\) \(\mu\)-a.e. and \(\int_X g_n \d{\mu} \ra \int_X g \d{\mu}\) as \(n \ra \infty\). All assumptions hold, so we can use the result of {\sffamily Problem 6} to conclude that \(\lim_{n \ra \infty} \int_X f_n \d{\mu} = \int_X f \d{\mu}\), which is equivalent to \(\int_X \abs{f_n - f} \d{\mu} \ra 0\) as \(n \ra \infty\).
+    (\mimpd) Define \(h_n = \abs{f_n - f}\) and set \(g_n = \abs{f_n} + \abs{f}\) in {\sffamily Problem 6}. Then \(\abs{h_n}\leq g_n\), \(\lim_{n \ra \infty} g_n = 2\abs{f} = g\) \(\mu\)-a.e. and \(\int_X g_n \d{\mu} \ra \int_X g \d{\mu}\) as \(n \ra \infty\). All assumptions hold, so we can use the result of {\sffamily Problem 6} to conclude that \(\lim_{n \ra \infty} \int_X h_n \d{\mu} = \int_X h \d{\mu} = 0\), which is equivalent to \(\int_X \abs{f_n - f} \d{\mu} \ra 0\) as \(n \ra \infty\).
 
 \end{enumerate}
 \end{document}
