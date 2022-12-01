@@ -1,0 +1,135 @@
+\section*{November 15th, 2022}
+
+\thm. \note{Stirling's Formula}
+\[
+    \lim_{x \ra \infty} \frac{\Gamma(x+1)}{(x/e)^x \sqrt[]{2\pi x}} = 1.
+\]
+
+\pf
+\[
+    \begin{aligned}
+        \Gamma(x + 1) & = \int_{0}^{\infty} t^x e^{-t} \d{t}                                                                                                                                         \\
+                      & = e^{-x} \int_{-x}^{\infty} (x+v)^{x}e^{-v}\d{v}                                                                                          & (t = x+ v)                       \\
+                      & = e^{-x} x \int_{-1}^\infty x^x (1 + u)^x e^{-xu} \d{u} = x^{x+1}e^x \int_{-1}^\infty (1+u)^x e^{-xu} \d{u}                               & (v = xu)                         \\
+                      & = x^{x} e^{-x} \sqrt{2x}\int_{-\sqrt{x/2}}^{\infty} \paren{1 + s\sqrt{\frac{2}{x}}}^x e^{-xs\sqrt{\frac{2}{x}}} \d{s}                     & \paren{u = s \sqrt{\frac{2}{x}}} \\
+                      & = x^{x} e^{-x} \sqrt{2x}\int_{-\sqrt{x/2}}^{\infty} \exp\paren{-x\paren{s\sqrt{\frac{2}{x}} - \ln\paren{1 + s\sqrt{\frac{2}{x}}} }} \d{s}
+    \end{aligned}
+\]
+
+Now we try to approximate that the last integral (\mast) is \(\sqrt{\pi}\).
+\[
+    \begin{aligned}
+        (\ast) & = \int_{-\sqrt{x/2}}^\infty \exp\paren{-s^2 \frac{2}{\sqrt{\frac{2}{x}}s^2} \paren{s \sqrt{\frac{2}{x}} - \ln\paren{1 + s\sqrt{\frac{2}{x}}}}} \d{s}
+    \end{aligned}
+\]
+
+Let \(h(u) = \dfrac{2}{u^2} \paren{u - \ln(1+u)}\).
+
+Define
+\[
+    \psi_x (s) = \begin{cases}
+        \exp\paren{-s^2 h\paren{s\sqrt{\frac{2}{x}}}} & \paren{-\sqrt{\frac{x}{2}} < s < \infty} \\
+        0                                             & \paren{s \leq -\sqrt{\frac{x}{2}}}
+    \end{cases}
+\]
+
+So
+\[ \tag{\mstar}
+    \Gamma(x + 1) = x^x e^{-x} \sqrt{2\pi} \int_{-\infty}^\infty \psi_x(s) \d{s}.
+\] We will show that \((\star) \ra \int_{-\infty}^\infty e^{-s^2}\d{s} = \sqrt{\pi}\) as \(x \ra \infty\).
+
+Properties of \(h\).
+\begin{itemize}
+    \item \(h(u) \ra \infty\) as \(u \ra -1\).
+    \item By l'H\^opital's rule, \(h(0) \ra 1\).
+    \item \(h(u) \ra 0\) as \(u \ra \infty\).
+\end{itemize}
+
+\[
+    h'(u) = \frac{2}{(1+u)u^3}\paren{u^2 - 2(1 + u)(u - \ln(1+u))}
+\]
+
+Let \(a(u) = -u^2 - 2u + 2(1 + u) \ln(1+u)\). Then \(a(0) = 0\) and
+\[
+    a'(u) = -2 \paren{u - \ln(1+u)} \leq 0.\footnote{Note that \(u > -1\).}
+\]
+Therefore \(a(u) \leq 0\) on \(u\geq 0\) and \(a(u) \geq 0\) on \(-1 < u < 0\). So \(h'(u) \leq 0\) and \(h\) is decreasing on \((-1, \infty)\).
+
+If \(s > 0\), \(s\sqrt{2/x} \searrow 0\) as \(x \ra \infty\). So \(h(s\sqrt{2/x}) \nearrow 1\), and \(\exp(-s^2h(s\sqrt{2/x})) \searrow e^{-s^2}\). If \(s < 0\), \(\exp(-s^2 h(s\sqrt{2/x})) \nearrow e^{-s^2}\) as \(x \ra\infty\).
+
+Therefore \(\psi_x(s) \ra e^{-s^2}\). For \(x\geq 1\),
+\[
+    \psi_x(s) \leq \begin{cases}
+        \psi_1(s) & (s > 0) \\ e^{-s^2} & (x \leq 0)
+    \end{cases}.
+\]
+We see from (\mstar) that \(\psi_1(s) \chi_{(0, \infty)} + e^{-s^2} \chi_{(-\infty, 0]} \in \mc{L}^{1}(\R)\). By LDCT,
+\[
+    \lim_{x \ra \infty} \int_{-\infty}^{\infty} \psi_x(s) \d{s} = \int_{-\infty}^{\infty} \lim_{x \ra \infty} \psi_x(s) \d{s} = \int_{-\infty}^{\infty} e^{-s^2} \d{s} = \sqrt{\pi}.
+\]
+
+\subsection*{Integration on Complex Valued Function}
+
+Let \((X, \scr{F}, \mu)\) be a measure space, and \(E \in \scr{F}\).
+
+\defn.
+\begin{enumerate}
+    \item A complex valued function \(f = u + iv\), (\(u, v\) real function) is measurable if \(u\) and \(v\) are measurable.
+    \item A complex function \(f \in \mc{L}^{1}(E, \mu)\) \(\iff\) \(\ds \int_E \abs{f} \d{\mu} < \infty \iff u, v \in \mc{L}^{1}(E, \mu)\).
+    \item If \(f = u + iv \in \mc{L}^{1}(E, \mu)\), define
+          \[
+              \int_E f \d{\mu} = \int_E u \d{\mu} + i\int_E v \d{\mu}.
+          \]
+\end{enumerate}
+
+\rmk
+\begin{enumerate}
+    \item Linearity also holds for complex valued functions. \(f_1, f_2 \in \mc{L}^{1}(\mu)\), \(\alpha \in \C\)
+          \[
+              \int_E \paren{f_1 + \alpha f_2} \d{\mu} = \int_E f_1 \d{\mu} +  \alpha \int_E f_2 \d{\mu}.
+          \]
+    \item Choose \(c \in \C\) and \(\abs{c} = 1\) (rotation) such that \(c \int_E f \d{\mu} \geq 0\).
+          \[
+              \begin{aligned}
+                  \abs{\int_E f \d{\mu}} & = c \int_E f\d{\mu} = \int_E cf \d{\mu} = \int_E u \d{\mu}                              \\
+                                         & \leq \int_E (u^2+v^2)^{1/2} \d{\mu} = \int_E \abs{cf} \d{\mu} = \int_E \abs{f} \d{\mu}.
+              \end{aligned}
+          \]
+          Where \(cf = u + vi\). (\(u, v\) real) (integral of \(v\) is 0)
+\end{enumerate}
+
+\subsection*{Functions of Class \(\mc{L}^{p}\)}
+
+Assume that \((X, \scr{F}, \mu)\) is given and \(X = E\).
+
+\defn. \note{\(\mc{L}^{p}\)} A complex function \(f \in \mc{L}^{p}(\mu)\) if \(f\) is measurable and \(\ds \int_E \abs{f}^p \d{\mu} < \infty\).
+
+\defn. \note{\(\mc{L}^{p}\)-norm} \textbf{\(\mc{L}^{p}\)-norm} of \(f\) is defined as
+\[
+    \norm{f}_p = \left[\int_E \abs{f}^p \d{\mu} \right]^{1/p}.
+\]
+
+\recall \note{Young Inequality} {\sffamily Problem 6.10} (p139) \(u, v \geq 0\), \(p > 1\), \(1/p + 1/q = 1\) then
+\[
+    uv \leq \frac{u^p}{p} + \frac{v^q}{q}.
+\]
+Therefore for \(\scr{F}\)-measurable \(f, g\) on \(X\),
+\[
+    \abs{fg} \leq \frac{\abs{f}^p}{p} + \frac{\abs{g}^q}{q} \implies \norm{fg}_1 \leq \frac{\norm{f}_p^p}{p} + \frac{\norm{g}_q^q}{q}.
+\]
+So if \(\norm{f}_p = \norm{g}_q = 1\), then \(\norm{fg}_1 \leq 1\).
+
+\thm{11.35} \note{Hölder Inequality} Let \(1 < p < \infty\) and \(\ds \frac{1}{p} + \frac{1}{q} = 1\). If \(f, g\) are measurable,
+\[
+    \norm{fg}_1 \leq \norm{f}_p \norm{g}_q.\footnote{\(q\)를 \(p\)의 conjugate라고 합니다.}
+\]
+So if \(f \in \mc{L}^{p}(\mu)\), \(g \in \mc{L}^{q}(\mu)\), then \(fg \in \mc{L}^{1}(\mu)\).
+
+\pf If \(\norm{f}_p = 0\) or \(\norm{g}_q = 0\) then \(f = 0\) \ae or \(g = 0\) \ae So \(fg = 0\) \ae and \(\norm{fg}_1 = 0\).
+
+Now suppose that \(\norm{f}_p > 0\) and \(\norm{g}_q > 0\). Then the result directly follows from
+\[
+    \norm{\frac{f}{\norm{f}_p} \cdot \frac{g}{\norm{g}_q}}_1 \leq 1.
+\]
+
+\pagebreak

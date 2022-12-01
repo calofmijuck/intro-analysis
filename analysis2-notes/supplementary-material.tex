@@ -1,0 +1,206 @@
+\section*{Supplementary Material}
+
+\defn. Let \(G_n\) be sets. We define
+\[
+    \limsup_{n \ra \infty} G_n = \bigcap_{N=1}^{\infty}\bigcup_{n=N}^{\infty} G_n, \qquad \liminf_{n \ra \infty} G_n = \bigcup_{N=1}^{\infty} \bigcap_{n=N}^{\infty} G_n.
+\]
+
+\rmk
+\begin{enumerate}
+    \item \(\ds x \in \limsup_{n \ra \infty} G_n \iff x \in \bigcup_{n=N}^{\infty} G_n\) for all \(N\) \(\iff \forall N, \exists n \geq N\) such that \(x \in G_n\). (\(x \in G_n\) for infinitely many \(n\))
+    \item \(\ds x \in \liminf_{n \ra \infty} G_n \iff \exists N\) such that \(x\in G_n\) for all \(n \geq N\).
+    \item \(\ds \limsup_{n \ra \infty} G_n = \{x : \limsup_{n \ra \infty} \chi_{G_n}(x) = 1\}\).
+    \item \(\ds \paren{\limsup_{n \ra \infty} G_n}^C = \liminf_{n \ra \infty} G_n\).
+\end{enumerate}
+
+In measure space \((X, \scr{F}, \mu)\), suppose that \(G_n \in \scr{F}\).
+
+If \(\mu\paren{\bigcup_{n=1}^{\infty} G_n} < \infty\), then \(\mu\paren{\limsup_{n \ra \infty} G_n} = \lim_{N \ra \infty} \mu\paren{\bigcup_{n\geq N}^{\infty} G_n}\). If \(\sum_{n=1}^{\infty} \mu\paren{G_n} < \infty\), then \(\mu\paren{\bigcup_{n\geq N}^{\infty} G_n} \leq \sum_{n\geq N}^{\infty} \mu\paren{G_n} \ra 0\). Therefore \(\mu\paren{\limsup_{n \ra \infty} G_n} = 0\).
+
+\prop. Let \(f \in \mc{L}^{1}([a, b], m)\) and \(\epsilon > 0\). Then, there exists \(\delta > 0\) such that for every \(A \in \mf{M}\) with \(m(A) < \delta\), \(\int_A \abs{f} \d{x} < \epsilon\).
+
+To prove this, we consider the reverse version of Fatou's lemma.
+
+\lemma Let \(f_n\) be measurable functions. If there exists \(\abs{f_n} \leq g \in \mc{L}^1[a, b]\), then
+\[
+    \int_X \limsup_{n \ra \infty} f_n \d{x} \geq \limsup_{n \ra \infty} \int_X f_n \d{x}.
+\]
+
+\pf of Lemma. Consider \(g - f_n\).
+
+\pf Suppose not. Then for some \(\epsilon_0 > 0\), there exists \(F_n \in \mf{M}\) such that \(m(F_n) < 2^{-n}\) but \(\int_{F_n} \abs{f} \d{x} \geq \epsilon_0\). We see that \(\sum_{n=1}^{\infty} m(F_n) < \infty\), so \(m\paren{\limsup_{n \ra \infty} F_n} = 0\). Then,
+\[
+    0 = \int_{\limsup_{n} F_n} \abs{f} \d{x} = \int_X \abs{f} \limsup_{n \ra \infty} K_{F_n} \geq \limsup_{n \ra \infty} \int_{F_n} \abs{f}\d{x} \geq \epsilon_0,
+\]
+which is a contradiction.
+
+\pagebreak
+
+\defn. \note{Uniformly Integrable} Suppose that \(\seq{f_\alpha}\) is a collection of measurable functions on \([a, b]\).\footnote{May be uncountable.} \(\seq{f_\alpha}\) is called \textbf{uniformly integrable} on \([a, b]\) if
+\begin{center}
+    \(\forall \epsilon > 0\), \(\exists \delta > 0\) such that if \(A \in \mf{M}\) and \(m(A) < \delta\), then \(\ds \sup_\alpha \int_A \abs{f_\alpha} < \epsilon\).
+\end{center}
+
+\thm. \note{Vitali Convergence Theorem} Suppose \(\seq{f_n}\) is uniformly integrable on \([a, b]\) and \(f_n \ra f\) pointwise \ae Then
+\[
+    \lim_{n \ra \infty} \int_a^b f_n \d{x} = \int_a^b f \d{x}.
+\]
+
+\pf Set \(\epsilon = 1\). Consider a partition \(\seq{I_i}_{i=1}^M\) of \([a, b]\). Then
+\[
+    \int_a^b \abs{f} \d{x} = \sum_{i=1}^{M} \int_{I_i} \abs{f} \d{x} \leq \sum_{i=1}^{M} \liminf_{n \ra \infty} \int_{I_i} \abs{f_n}\d{x} \leq \sum_{i=1}^{M} \sup_n \int_{I_i} \abs{f_n} \d{x} \leq M < \infty.
+\]
+Therefore \(f \in \mc{L}^1\).
+
+Given \(\epsilon > 0\), \(\exists \delta > 0\) such that if \(m(A) < \delta\) then \(\int_A \abs{f_n} < \frac{\epsilon}{3}\), \(\int_A \abs{f} < \frac{\epsilon}{3}\) for all \(n\). Using HW problem, there exists \(B \in \mf{M}\) such that if \(m(B) < \delta\) and \(N \geq 1\),  \(\sup_{x \in [a, b]\bs B} \abs{f_n(x) - f(x)} < \frac{\epsilon}{3(b-a)}\) for all \(n\).
+
+Therefore,
+\[
+    \int_a^b \abs{f_n - f} \leq \int_{[a, b]\bs B} \abs{f_n - f} + \int_B \abs{f_n} + \int_B \abs{f} < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+\]
+
+\thm. \note{Lebesgue's Theorem on Monotone Functions} Suppose that \(f : (a, b) \ra \R\) is monotone. Then \(f\) is differentiable \ae on \((a, b)\).
+
+\cor If \(f\) is non-decreasing on \([a, b]\), then \(\int_a^b f' \d{x} \leq f(b) - f(a)\).
+
+\pf Consider \(g_n(x) = n \paren{f\paren{x + \frac{1}{n}} - f(x)}\) and \(f(x) = f(b)\) for \(x\geq b\). Then \(g_n(x) \geq 0\) and \(g_n \ra f'\) \ae by Lebesgue's Theorem. Note that
+\[
+    \begin{aligned}
+        \int_a^b g_n \d{x} & = n\paren{\int_a^b f\paren{x + \frac{1}{n}} \d{x} - \int_a^b f(x)\d{x}} = n\paren{\int_b^{b + \frac{1}{n}} f \d{x} - \int_a^{a + \frac{1}{n}} f \d{x}} \\
+                           & = f(b) - n \int_a^{a + \frac{1}{n}} f \d{x} \leq f(b) - f(a).
+    \end{aligned}
+\]
+By Fatou's lemma,
+\[
+    \int_a^b f' \d{x} \leq \liminf_{n \ra \infty} \int_a^b g_n \d{x} \leq f(b) - f(a).
+\]
+
+\rmk If \(f\) is non-increasing on \((a, b)\), then \(\int_a^b f'\d{x} \geq f(b) - f(a)\).
+
+\defn. \note{Total Variation} \textbf{Total variation} of \(f: [a, b] \ra \R\) over \([a, b]\) is defined as
+\[
+    T_a^b(f) = \sup_{P \in \mc{P}[a, b]} \sum_{k=1}^{n} \abs{f(x_k) - f(x_{k-1})}.
+\]
+
+\defn. \note{Bounded Variation} \(f\) is of \textbf{bounded variation} on \([a, b]\) if \(T_a^b(f) < \infty\).
+
+\rmk
+\begin{enumerate}
+    \item \(T_a^b(f) \geq \abs{f(b) - f(a)} \geq 0\).
+    \item \(T_a^b(f) = T_a^c(f) + T_c^b(f)\) if \(a < c < b\).
+    \item \(T_a^b(f + g) \leq T_a^b(f) + T_a^b(g)\).
+    \item \(T_a^b(cf) = \abs{c}T_a^b(f)\).
+\end{enumerate}
+
+\prop. Let \(f(x) = \int_a^x \phi(t)\d{t}\) on \(a < x \leq b\), where \(\phi\) is measurable. Then \(T_a^x(f) \leq \int_a^x \abs{\phi(t)} \d{t}\). Thus if \(\phi \in \mc{L}^{1}[a, b]\), then \(f\) is of bounded variation.
+
+\pf Observe that
+\[
+    \sum_{k=1}^{n} \abs{f(x_k) - f(x_{k-1})} \leq \sum_{k=1}^{n} \int_{x_{k-1}}^{x_k} \abs{\phi} \d{t} = \int_a^x \abs{\phi} \d{t}.
+\]
+Now take \(\sup\) over all partitions of \([a, x]\).
+
+\thm. If \(f\) is of bounded variation if and only if \(f = g - h\) where \(g, h\) are non-decreasing real-valued functions. In fact,
+\[
+    g(x) = \frac{1}{2}\left[T_a^x(f) + f(x)\right], \qquad h(x) = \frac{1}{2}\left[T_a^x(f) - f(x)\right].
+\]
+
+\pf \note{\mimpd} \(T_a^b(f) = T_a^b(g-h) \leq T_a^b(g) + T_a^b(h) = (g+h)(b) - (g+h)(a) < \infty\).\\
+\note{\mimp} For \(y > x\), we show that \(g, h\) are non-decreasing.
+\[
+    T_a^y(f) \pm f(y) - \paren{T_a^x(f) \pm f(x)} = T_x^y(f) \pm \paren{f(y) - f(x)} \geq T_x^y(f) - \abs{f(y) - f(x)} \geq 0.
+\]
+
+\prop. Suppose \(f\) is of bounded variation on \([a, b]\). Then by Lebesgue's Theorem, \(f\) is differentiable \ae and \(\int_a^b \abs{f'} \d{x} \leq T_a^b(f)\).
+
+\pf It suffices to show that \(\abs{f'(x)} \leq \frac{d}{dx} T_a^x(f)\) \ae Let \(h > 0\) and \(x < x + h < b\).
+\[
+    \frac{1}{h}\paren{T_a^{x+h} (f) - T_a^x(f)} = \frac{1}{h}T_x^{x+h}(f) \geq \frac{1}{h} \abs{f(x+h) - f(x)}.
+\]
+Let \(h \ra 0\) then the inequality holds \ae Now we have
+\[
+    \int_a^b \frac{d}{dx}T_a^x(f)\d{x} \leq T_a^b(f) - T_a^a(f) = T_a^b(f).
+\]
+
+\lemma If \(f \in \mc{L}^{1}[a, b]\) and \(\int_{(c, d)} f\d{x} \geq 0\) for all \(a\leq c<d\leq b\) then \(f\geq 0\) \ae\footnote{Use the fact that the Lebesgue measure is regular.}
+
+\cor Suppose \(f \in \mc{L}^{1}[a, b]\). Let \(F(x) = \int_a^x f\d{x}\), then \(\abs{F'} \leq \abs{f}\) \ae
+
+\pf We know that \(F\) is continuous and of bounded variation and differentiable \ae For \(a\leq c < d \leq b\),
+\[
+    \int_c^d \abs{f} \geq T_c^d (F) \geq \int_c^d \abs{F'}.
+\]
+By Lemma, \(\abs{F'}\leq \abs{f}\) \ae
+
+\thm. \note{1st Fundamental Theorem of Calculus for Lebesgue Integral} Suppose \(f \in \mc{L}^{1}[a, b]\), let \(F(x) = \int_a^x f\d{x}\). Then \(F'(x) = f(x)\) \ae
+
+\pf For \(n \in \Z\),
+\[
+    \int_a^x (f - n)\d{x} = F(x) - n(x - a), \quad (x \in [a, b]).
+\]
+By the corollary above, \(\abs{f - n} \geq \abs{F'(x) - n}\) \ae We see that
+\[
+    \pm f(x) = \lim_{n \ra -\infty} \abs{f(x) - n} \pm n \leq \lim_{n \ra -\infty} \abs{F'(x) - n} \pm n = \pm F'(x)
+\]
+holds \ae Therefore \(F'(x) \leq f(x) \leq F'(x)\) \ae and \(F'(x) = f(x)\) \ae
+
+% 12/1
+
+Suppose that \(f : [a, b] \ra \R\).
+
+\defn. \note{Absolute Continuity} \(f: [a, b] \ra \R\) is \textbf{absolutely continuous} on \([a, b]\) if \(\forall \epsilon > 0\), \(\exists \delta > 0\) such that
+\begin{center}
+    whenever \((x_j, x_j')\) are disjoint and \(\ds \sum_{j=1}^{n}(x_j' - x_j) < \delta\), we have \(\ds \sum_{j=1}^{n} \abs{f(x_j') - f(x_j)} < \epsilon\).
+\end{center}
+
+\rmk
+\begin{enumerate}
+    \item If \(f\) is absolutely continuous, then \(f\) is continuous.
+    \item If \(f\) is absolutely continuous, then \(f\) is of bounded variation on \([a, b]\).
+    \item If \(f\) is Lipschitz continuous, then \(f\) is absolutely continuous.
+\end{enumerate}
+
+\cor If \(f\) is absolutely continuous, then \(f\) is differentiable \ae\footnote{Since it is of bounded variation.}
+
+\thm. If \(f\) is absolutely continuous, then \(f = g - h\) where \(g, h\) are non-decreasing and \(g, h\) are absolutely continuous.
+
+\pf \(f\) is of bounded variation, so we can write \(f = g - h\) where \(g, h\) are non-decreasing. Considering the representation of \(g, h\) where
+\[
+    g(x) = \frac{1}{2}\left[T_a^x(f) + f(x)\right], \qquad h(x) = \frac{1}{2}\left[T_a^x(f) - f(x)\right],
+\]
+it suffices to show that \(T_a^x(f)\) is absolutely continuous.
+
+Let \(\{(c_k, d_k)\}_{k=1}^n\) be disjoint and \(\sum_{k=1}^{n}(d_k - c_k) < \delta\). Now let \(P_k = \{c_k = x_1^k < x_2^k < \cdots < x_n^k = d_k\}\) be a partition of \((c_k, d_k)\). Then by absolute continuity,
+\[
+    \sum_{k=1}^{n} \sum_{j=1}^{n_k} \abs{f(x_j^k) - f(x_{j-1}^k)} < \frac{\epsilon}{2}.
+\]
+Take \(\sup\) on partition \(P_k\) of each \((c_k, d_k)\). Then
+\[
+    \sum_{k=1}^{n}T_{c_k}^{d_k} (f)  = \sum_{k=1}^{n} \abs{T_a^{d_k}(f)- T_a^{c_k}(f)} \leq \frac{\epsilon}{2} < \epsilon.
+\]
+Therefore \(T_a^x(f)\) is absolutely continuous.
+
+\thm. Define \(\Delta_h f(x) = \frac{1}{h} \paren{f(x+h) - f(x)}\) for \(h > 0\). Suppose that \(f\) is absolutely continuous on \([a, b]\). Then \(\seq{\Delta_h f}_{0<h<1}\) is uniformly integrable on \([a, b]\).
+
+\pf By the above theorem, we can assume that \(f\) is non-decreasing, so \(\Delta_h f \geq 0\). By regularity of Lebesgue measure, we just need to show that \(\sup_{0 < h \leq 1} \int_E \Delta_h f\d{x} < \epsilon\) if \(m(E) < \delta\) and \(E = \bigcup_{k=1}^{n} (c_k, d_k)\) where \((c_k, d_k)\) are disjoint. Assume that \(f(y) = f(b)\) for \(b <y \leq b + 1\). If
+\(\sum_{k=1}^{n} (d_k - c_k) < \delta\) (which implies \(m(E) < \delta\)) then \(\sum_{k=1}^{n}\left[(d_k+t) - (c_k+t)\right] < \delta\) for any \(0 < t < 1\). So \(\sum_{k=1}^{n} \left[f(d_k+t) - f(c_k+t)\right] < \frac{\epsilon}{2}\) for all \(0 < t < 1\). (\(f\) is non-decreasing) Then
+\[
+    \int_E \Delta_h f \d{t} = \frac{1}{h}\sum_{k=1}^{n}\int_{0}^{h} \left[f(d_k + t) - f(c_k + t)\right] \d{t} < \frac{\epsilon}{2}, \qquad (0 \leq h \leq 1).
+\]
+Therefore \(\sup_{0 < h \leq 1} \int_E \Delta_h f\d{t} \leq \frac{\epsilon}{2} < \epsilon\) and \(\seq{\Delta_h f}_{0 < h < 1}\) is uniformly integrable.
+
+\thm. \note{2nd Fundamental Theorem of Calculus for Lebesgue Integral} Suppose that \(f\) is absolutely continuous on \([a, b]\). Then \(f' \in \mc{L}^{1}\) and
+\[
+    \int_a^b f' \d{x} = f(b) - f(a).
+\]
+
+\pf Since \(f\) is differentiable \ae, \(\lim_{n \ra \infty} \Delta_{\frac{1}{n}} f(x) = f'(x)\) \ae and by the above theorem, \(\seq{\Delta_{\frac{1}{n}} f}_n\) is uniformly integrable. Extend \(f\) as \(f(x) = f(b)\) for \(x \geq b\). Then by Vitali convergence theorem,
+\[
+    \lim_{n \ra \infty} \int_{a}^{b} \Delta_{\frac{1}{n}} f \d{x} = \int_{a}^{b} f'(x) \d{x}.
+\]
+Note that the expression inside the limit on the left is equal to
+\[
+    \int_{a}^{b} \Delta_{\frac{1}{n}} f \d{x} = \frac{1}{n} \int_{a}^{b} \left[f\paren{x + \frac{1}{n}} - f(x)\right] \d{x} = \frac{1}{n}\int_{b}^{b + \frac{1}{n}} f\d{x} - \frac{1}{n} \int_{a}^{a + \frac{1}{n}} f \d{x}.
+\]
+Since \(f\) is continuous, the last two terms converge to \(f(b), f(a)\) as \(n \ra \infty\) respectively.
+\pagebreak

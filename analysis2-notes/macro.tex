@@ -40,6 +40,8 @@
 \newcommand{\uint}[2]{\overline{\int_{#1}^{#2}}}
 \renewcommand{\d}[1]{\,d{#1}}
 
+\renewcommand{\ae}{a.e. }
+
 \DeclareMathOperator{\symd}{\triangle}
 
 \let\oldexists\exists
@@ -47,32 +49,32 @@
 
 \newcommand{\defn}[1]{%
     \ifthenelse{\equal{#1}{.}}
-        {\textbf{\sffamily Definition.}}%
-        {\textbf{\sffamily Definition #1}}%
+    {\textbf{\sffamily Definition.}}%
+    {\textbf{\sffamily Definition #1}}%
 }
 
 \newcommand{\thm}[1]{%
     \ifthenelse{\equal{#1}{.}}
-        {\textbf{\sffamily Theorem.}}%
-        {\textbf{\sffamily Theorem #1}}%
+    {\textbf{\sffamily Theorem.}}%
+    {\textbf{\sffamily Theorem #1}}%
 }
 
 \newcommand{\prop}[1]{%
     \ifthenelse{\equal{#1}{.}}
-        {\textbf{\sffamily Proposition.}}%
-        {\textbf{\sffamily Proposition #1}}%
+    {\textbf{\sffamily Proposition.}}%
+    {\textbf{\sffamily Proposition #1}}%
 }
 
 \newcommand{\ex}[1]{%
     \ifthenelse{\equal{#1}{.}}
-        {\textbf{\sffamily Example.}}%
-        {\textbf{\sffamily Example #1}}%
+    {\textbf{\sffamily Example.}}%
+    {\textbf{\sffamily Example #1}}%
 }
 
 \newcommand{\prob}[1]{%
     \ifthenelse{\equal{#1}{.}}
-        {\textbf{\sffamily Problem.}}%
-        {\textbf{\sffamily Problem #1}}%
+    {\textbf{\sffamily Problem.}}%
+    {\textbf{\sffamily Problem #1}}%
 }
 
 \newcommand{\recall}{\textbf{\sffamily Recall.\;}}

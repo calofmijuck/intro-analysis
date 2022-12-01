@@ -1,0 +1,85 @@
+\section*{November 22nd, 2022}
+
+지금부터는 \(\mc{L}^{2}(\mu)\)로 한정해서 논의를 전개합니다.
+
+Check that
+\[
+    \span{f, g} = \int_X f \overline{g} \d{\mu}
+\]
+is a inner product in \(\mc{L}^{2}(X, \mu)\). Then \(\mc{L}^{2}(X, \mu)\) is a complete inner product space, a.k.a. \textbf{Hilbert space} with scalar \(\C\). Now that we have a new tool, we revisit the Fourier series.
+
+\defn. \note{Orthonormal set} A sequence \(\seq{\phi_n}_{n=1}^{\infty} \subset \mc{L}^{2}(\mu)\) is an \textbf{orthonormal set of functions on \(X\)} if
+\[
+    \span{\phi_n, \phi_m} = \begin{cases}
+        1 & (n = m) \\ 0 & (n\neq m)
+    \end{cases}.
+\]
+
+\defn. For \(f \in \mc{L}^{2}(\mu)\), we define the \textbf{Fourier series of \(f\)} as
+\begin{center}
+    \(\ds \sum_{n=1}^{\infty} c_n \phi_n\) where \(c_n = \span{f, \phi_n}\) and write \(f \sim \ds \sum_{n=1}^{\infty} c_n \phi_n\).
+\end{center}
+
+\medskip
+
+\thm{8.11 \& 8.12} \note{in \(\mc{L}^{2}\)} Suppose that \(\seq{\phi_n}\) is an orthonormal set in \(\mc{L}^{2}(\mu)\) and \(f \in \mc{L}^{2}(\mu)\). Let
+\begin{center}
+    \(c_m = \span{f, \phi_m} = \ds \int_{X} f \overline{\phi_m} \d{\mu}\) \quad and \quad \(\ds s_n = \sum_{m=1}^{n} c_m \phi_m\).
+\end{center}
+Suppose that \(t_n = \ds \sum_{m=1}^{n} \gamma_m \phi_m\) for some \(\gamma_m \in \C\). Then
+\begin{enumerate}
+    \item \(\norm{f - s_n}_2 \leq \norm{f - t_n}_2\), and equality holds when \(\gamma_m = c_m\) for all \(m = 1, 2, \dots, n\).
+    \item \note{Bessel Inequality} \(\ds \sum_{n=1}^{\infty} \abs{c_n}^2 \leq \norm{f}_2^2 < \infty\), so \(\ds \lim_{n \ra \infty} c_n = 0\).
+\end{enumerate}
+
+\pf Calculate!
+\[
+    \norm{f - t_n}_2^2 = \norm{f}_2^2 - \sum_{m=1}^{n} \abs{c_m}^2 + \sum_{m=1}^{n}\abs{\gamma_m - c_m}^2 = \norm{f - s_n}_2^2 + \sum_{m=1}^{n}\abs{\gamma_m - c_m}^2.
+\]
+
+연속함수를 넘어 \(\mc{L}^{2}(\mu)\) 에서 성립한다!
+
+\thm{11.40} \note{Parseval in \(\mc{L}^{2}\)} Suppose that \(f \in \mc{L}^{2}([-\pi, \pi], m)\) and
+\begin{center}
+    \(s_n = \ds \sum_{k = -n}^{n} c_k e^{ikx}\) \quad where \quad \(\ds c_k = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x)e^{ikx} \d{x}\),
+\end{center}
+(Lebesgue integral) the following holds.
+\begin{enumerate}
+    \item \(f = \ds \lim_{n \ra \infty} s_n\) in \(\mc{L}^{2}[-\pi, \pi]\). (\(\ds \lim_{n \ra \infty} \norm{s_n -f}_2 = 0\))
+    \item \(\ds \sum_{-\infty}^{\infty} \abs{c_n}^2 = \frac{1}{2\pi} \int_{-\pi}^{\pi} \abs{f}^2 \d{x}\).
+\end{enumerate}
+
+\pf \note{1} Let \(\epsilon > 0\) be given. By {\sffamily Theorem 11.38}, there exists a continuous function \(\widetilde{g}\) such that \(\norm{f - \widetilde{g}}_2 < \frac{\epsilon}{4}\). Suppose that \(\widetilde{g}(\pi) = a < b = \widetilde{g}(-\pi)\). Then take \(\delta_0\) small enough so that \(\abs{\widetilde{g}(\pi - \delta_0)- a} + \abs{\widetilde{g}(-\pi + \delta_0) - b} < b-a\).\footnote{???} There exists continuous and periodic \(g\) with \(g(\pi) = g(-\pi)\) and \(\norm{f - g}_2 \leq \norm{f - \widetilde{g}}_2 + \norm{\widetilde{g} - g}_2 < \frac{\epsilon}{2}\).
+
+By {\sffamily Theorem 8.15}, we can approximate \(g\) with a trigonometric polynomial \(T\) with degree \(N\), and
+\[
+    \norm{g - T}_2^2 = \int_{-\pi}^{\pi} \abs{g - T}^2 \d{x} \leq 2\pi \sup_{x \in [-\pi, \pi]} \abs{g(x) - T(x)}^2 < \frac{\epsilon^2}{4}.
+\]
+Now by {\sffamily Theorem 8.11}, if \(n \geq N\), \(\norm{s_n - f}_2 \leq \norm{T - f}_2 \leq \norm{T-g}_2 + \norm{g - f}_2 < \epsilon\).
+
+\note{2} Note that as \(n \ra \infty\),
+\[
+    \abs{\norm{f}_2^2 - \span{s_n, f}} = \abs{\span{f - s_n, f}} \leq \norm{f - s_n}_2 \norm{f}_2 \ra 0
+\]
+by (1). Therefore,
+\[
+    \span{s_n, f} = \int_{-\pi}^{\pi} s_n \overline{f} \d{x} = \sum_{-n}^{n} c_k \int_{-\pi}^{\pi} e^{ikx}\overline{f} \d{x} = 2 \pi \sum_{-n}^{n} \abs{c_n}^2 \ra 2\pi \sum_{-\infty}^{\infty} \abs{c_n}^2.
+\]
+
+\cor If \(f \in \mc{L}^{2}[-\pi, \pi]\) and \(\ds \int_{-\pi}^{\pi} f(x) e^{-inx}\d{x} = 0\)
+for all \(n \in \Z\), then \(\norm{f}_2 = 0\).
+
+\thm{11.43} \note{Riesz-Fischer} Suppose \(\seq{\phi_n}\) is a orthonormal set in \(\mc{L}^{2}(X, \mu)\) and \(\sum_{n=1}^{\infty} \abs{c_n}^2 < \infty\). Define \(s_n = \sum_{k=1}^{n} c_k\phi_k\). Then there exists \(f \in \mc{L}^{2}(\mu)\) such that \(s_n \ra f\) in \(\mc{L}^{2}(\mu)\). Moreover, \(c_n = \span{f, \phi_n} = \int_X f \overline{\phi_n} \d{\mu}\).
+
+\pf We show that \(s_n\) is a Cauchy sequence. WLOG, let \(n > m\). Then
+\[
+    \norm{s_n - s_m}_2^2 = \norm{\sum_{k=m+1}^{n} c_k \phi_k}_2^2 = \sum_{k=m+1}^{n} \abs{c_k}^2 \ra 0
+\]
+as \(n, m \ra \infty\). So \(s_n\) converges in \(\mc{L}^{2}(\mu)\), let \(f \in \mc{L}^{2}(\mu)\) be its limit.
+
+For \(k < n\), \(c_k = \span{s_n, \phi_k}\). So we see that \(\span{f, \phi_k} = c_k\) since as \(n \ra \infty\),
+\[
+    \abs{\span{f, \phi_k} - c_k} = \abs{\span{f - s_n, \phi_k}} \leq \norm{f - s_n}_2 \norm{\phi_k}_2 = \norm{f - s_n}_2 \ra 0.
+\]
+
+\pagebreak

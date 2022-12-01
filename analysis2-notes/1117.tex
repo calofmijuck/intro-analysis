@@ -1,0 +1,139 @@
+\section*{November 17th, 2022}
+
+Complex measurable function \(f \in \mc{L}^p(X, \mu) = \mc{L}^p(\mu)\).
+
+\thm{11.36} \note{Minkowski Inequality} For \(1 \leq p < \infty\), if \(f, g\) are measurable, then
+\[
+    \norm{f + g}_p \leq \norm{f}_p + \norm{g}_p.
+\]
+
+\pf If \(f, g \notin \mc{L}^{p}\), the right hand side is \(\infty\) and we are done. For \(p = 1\), the equality is equivalent to the triangle inequality. Also if \(\norm{f + g}_p = 0\), the inequality holds trivially. We suppose that \(p > 1\), \(f, g \in \mc{L}^p\) and \(\norm{f+g}_p > 0\).
+
+Let \(q = \frac{p}{p-1}\). Since
+\[
+    \abs{f + g}^p = \abs{f + g}\cdot \abs{f + g}^{p - 1} \leq \bigl(\abs{f} + \abs{g}\bigr) \abs{f + g}^{p-1},
+\]
+we have
+\[
+    \begin{aligned}
+        \int \abs{f+g}^p & \leq \int \abs{f} \cdot \abs{f+g}^{p-1} + \int \abs{g} \cdot \abs{f+g}^{p-1}                                                                 \\
+                         & \leq \paren{\int \abs{f}^p }^{1/p}\paren{\int \abs{f+g}^{(p-1)q}}^{1/q} + \paren{\int \abs{q}^p }^{1/p}\paren{\int \abs{f+g}^{(p-1)q}}^{1/q} \\
+                         & = \paren{\norm{f}_p + \norm{g}_p} \paren{\int \abs{f+g}^p}^{1/q}.
+    \end{aligned}
+\]
+Since \(\norm{f + g}_p^p > 0\), we have
+\[
+    \norm{f + g}_p = \paren{\int \abs{f+g}^p}^{1/p} = \paren{\int \abs{f+g}^p}^{1 - \frac{1}{q}} \leq \norm{f}_p + \norm{g}_p.
+\]
+
+\defn. \(f \sim g \iff f = g\) \(\mu\)-\ae and define
+\[
+    [f] = \{g : f \sim g\}.
+\]
+We treat \([f]\) as an element in \(\mc{L}^{p}(X, \mu)\), and write \(f = [f]\).
+
+\rmk
+\begin{enumerate}
+    \item We write \(\norm{f}_p = 0 \iff f = [0] = 0\) in the sense that \(f = 0\) \(\mu\)-\ae
+    \item Now \(\norm{\cdot}_p\) is a \textbf{norm} in \(\mc{L}^{p}(X, \mu)\) so \(d(f, g) = \norm{f - g}_p\) is a \textbf{metric} in \(\mc{L}^{p}(X, \mu)\).
+\end{enumerate}
+
+잠시 {\sffamily 11.41}, {\sffamily 11.42}로 갑니다. 함수 공간이 나왔으니 completeness가 궁금하죠.
+
+\pagebreak
+
+\defn{11.41} \note{Convergence in \(\mc{L}^p\)} Let \(f, f_n \in \mc{L}^{p}(\mu)\).
+\begin{enumerate}
+    \item \(f_n \ra f\) in \(\mc{L}^p(\mu) \iff \norm{f_n-f}_p \ra 0\) as \(n \ra \infty\).
+    \item \(\seq{f_n}_{n=1}^\infty\) is a Cauchy sequence in \(\mc{L}^{p}(\mu)\) if and only if
+          \begin{center}
+              \(\forall \epsilon > 0\), \(\exists N > 0\) such that \(n, m \geq N \implies \norm{f_n-f_m}_p < \epsilon\).
+          \end{center}
+\end{enumerate}
+
+\lemma Let \(\seq{g_n}\) be a sequence of measurable functions. Then,
+\[
+    \norm{\sum_{n=1}^{\infty} \abs{g_n}}_p \leq \sum_{n=1}^{\infty} \norm{g_n}_p.
+\]
+Thus, if \(\ds \sum_{n=1}^{\infty} \norm{g_n}_p < \infty\), then \(\ds \sum_{n=1}^{\infty} \abs{g_n} < \infty\) \(\mu\)-\ae So \(\ds \sum_{n=1}^{\infty} g_n < \infty\) \(\mu\)-\ae
+
+\pf By MCT and Minkowski inequality,
+\[
+    \norm{\sum_{n=1}^{\infty} \abs{g_n}}_p = \lim_{m \ra \infty} \norm{\sum_{n=1}^{m} \abs{g_n}}_p \leq \lim_{n \ra \infty} \sum_{n=1}^{m} \norm{g_n}_p = \sum_{n=1}^{\infty} \norm{g_n}_p < \infty.
+\]
+Thus \(\sum_{n=1}^{\infty} \abs{g_n} < \infty\) \(\mu\)-\ae and \(\sum_{n=1}^{\infty} g_n < \infty\) \(\mu\)-\ae by absolute convergence.
+
+\medskip
+
+\thm{11.42} \note{Fischer} Suppose \(\seq{f_n}\) is a Cauchy sequence in \(\mc{L}^{p}(\mu)\). Then there exists \(f \in \mc{L}^{p}(\mu)\) such that \(f_n \ra f\) in \(\mc{L}^{p}(\mu)\).
+
+\pf We construct \(\seq{n_k}\) by the following procedure.
+
+\quad \(\exists n_1 \in \N\) such that \(\norm{f_m - f_{n_1}}_p < \frac{1}{2}\) for all \(m \geq n_1\).
+
+\quad \(\exists n_2 \in \N\) such that \(\norm{f_m - f_{n_2}}_p < \frac{1}{2^2}\) for all \(m \geq n_2\).
+
+Then, \(\exists 1 \leq n_1 < n_2 < \cdots < n_k\) such that \(\norm{f_m - f_{n_k}}_p < \frac{1}{2^k}\) for \(m \geq n_k\).
+
+Since \(\norm{f_{n_{k+1} - f_{n_k}}}_p < \frac{1}{2^k}\), \(\sum_{k=1}^{\infty} \norm{f_{n_{k+1}} - f_{n_k}}_p < \infty\). By the above lemma, \(\sum \abs{f_{n_{k+1}} - f_{n_k}}\) and \(\sum (f_{n_{k+1}} - f_{n_k})\) are finite. Let \(f_{n_0} \equiv 0\). Then as \(m \ra \infty\),
+\[
+    f_{n_{m+1}} = \sum_{k=0}^{m} \paren{f_{n_{k+1}} - f_{n_k}}
+\]
+converges \(\mu\)-\ae Take \(N \in \scr{F}\) with \(\mu(N) = 0\) such that \(f_{n_k}\) converges on \(X \bs N\). Let
+\[
+    f(x) = \begin{cases}
+        \ds \lim_{k \ra \infty} f_{n_k} (x) & (x \in X \bs N) \\ 0 & (x\in N)
+    \end{cases}
+\]
+then \(f\) is measurable. Using the convergence,
+\[
+    \begin{aligned}
+        \norm{f - f_{n_m}}_p & = \norm{\sum_{k=m}^{\infty} \paren{f_{n_{k+1}} (x) - f_{n_k}(x)}}_p \leq \norm{\sum_{k=m}^{\infty} \abs{f_{n_{k+1}} (x) - f_{n_k}(x)}}_p \\
+                             & \leq \sum_{k=m}^{\infty} \norm{f_{n_{k+1}} - f_{n_k}}_p \leq 2^{-m}
+    \end{aligned}
+\]
+by the choice of \(f_{n_k}\). So \(f_{n_k} \ra f\) in \(\mc{L}^{p}(\mu)\).\footnote{Pointwise 이면서 \(\mc{L}^{p}\)에서도 수렴한다.} Also, \(f = (f - f_{n_k}) + f_{n_k} \in \mc{L}^{p}(\mu)\).
+
+Let \(\epsilon > 0\) be given. Since \(\seq{f_n}\) is a Cauchy sequence in \(\mc{L}^{p}\), \(\exists N \in \N\) such that for all \(n, m \geq N\), \(\norm{f_n - f_m} < \frac{\epsilon}{2}\). Note that \(n_k \geq k\), so \(n_k \geq N\) if \(k \geq N\). Choose \(N_1 \geq N\) such that for \(k \geq N\), \(\norm{f - f_{n_k}}_p < \frac{\epsilon}{2}\). Then for all \(k \geq N_1\),
+\[
+    \norm{f - f_k}_p \leq \norm{f - f_{n_k}}_p + \norm{f_{n_k} - f_k}_p < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+\]
+
+\rmk \(\mc{L}^{p}\) is a complete normed vector space, a.k.a. \textbf{Banach space}.
+
+\thm{11.38} \(C[a, b]\) is a dense subset of \(\mc{L}^{p}[a, b]\). That is,
+\begin{center}
+    for every \(f \in \mc{L}^{p}[a, b]\) and \(\epsilon > 0\), \(\exists g \in C[a, b]\) such that \(\norm{f - g}_p < \epsilon\).
+\end{center}
+
+\pf Let \(A\) be a closed subset in \([a, b]\), and consider a distance function
+\[
+    d(x, A) = \inf_{y\in A} \abs{x - y}, \quad x \in [a, b].
+\]
+Since \(d(x, A) \leq \abs{x - z} \leq \abs{x - y} + \abs{y - z}\) for all \(z \in A\), taking \(\inf\) over \(z \in A\) gives \(d(x, A) \leq \abs{x - y} + d(y, A)\). So
+\[
+    \abs{d(x, A) - d(y, A)} \leq \abs{x - y},
+\]
+and \(d(x, A)\) is continuous. If \(d(x, A) = 0\), \(\exists x_n \in A\) such that \(\abs{x_n - x} \ra d(x, A) = 0\). Since \(A\) is closed, \(x \in A\). We know that \(x \in A \iff d(x, A) = 0\).
+
+Let \(g_n(x) = \frac{1}{1 + n d(x, A)}\). \(g_n\) is continuous, \(g_n(x) = 1\) if and only if \(x \in A\). Also for all \(x \in [a, b] \bs A\), \(g_n(x) \ra 0\) as \(n \ra \infty\).
+\[
+    \norm{g_n - \chi_A}_p^p = \int_A \abs{g_n - \chi_A}^p \d{x} + \int_{[a, b]\bs A} \abs{g_n - \chi_A}^p \d{x} = 0 + \int_{[a, b]\bs A} \abs{g_n}^p  \d{x} \ra 0
+\]
+by LDCT. (\(\abs{g_n}^p \leq 1\)) We have shown that characteristic functions of closed sets can be approximated by continuous functions in \(\mc{L}^{p}[a, b]\).
+
+For every \(A \in \mf{M}(m)\), \(\exists F_\text{closed} \subset A\) such that \(m(A \bs F) < \epsilon\). Since \(\chi_A - \chi_F = \chi_{A \bs F}\),
+\[
+    \int \abs{\chi_A-\chi_F}^p \d{x} = \int \abs{\chi_{A\bs F}}^p \d{x} = \int_{A\bs F} \d{x} = m(A \bs F) < \epsilon.
+\]
+Therefore, for every \(A \in \mf{M}\), \(\exists g_n \in C[a, b]\) such that \(\norm{g_n - \chi_A}_p \ra 0\) as \(n \ra \infty\). So characteristic functions of any measurable set can be approximated by continuous functions in \(\mc{L}^{p}[a, b]\).
+
+Next, for any measurable simple function \(f = \sum_{k=1}^{m}a_k \chi_{A_k}\), we can find \(g_n^k \in C[a, b]\) so that
+\[
+    \norm{f - \sum_{k=1}^{m} a_k g_n^k}_p = \norm{\sum_{k=1}^{m}a_k \paren{\chi_{A_k} - g_n^k}}_p \ra 0.
+\]
+Next for \(f \in \mc{L}^{p}\) and \(f \geq 0\), there exists simple functions \(f_n \geq 0\) such that \(f_n \nearrow f\) in \(\mc{L}^{p}\). Finally, any \(f \in \mc{L}^{p}\) can be written as \(f = f^+ - f^-\), which completes the proof.\footnote{이러한 확장을 몇 번 해보면 굉장히 routine해요.
+    \begin{center}
+        \(\chi_F\) for closed \(F\) \(\ra\) \(\chi_A\) for measurable \(A\) \(\ra\) measurable simple \(f\) \(\ra\) \(0\leq f \in \mc{L}^{p} \ra\) \(f \in \mc{L}^{p}\).
+    \end{center}}
+\pagebreak

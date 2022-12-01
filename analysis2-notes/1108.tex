@@ -1,0 +1,167 @@
+\section*{November 8th, 2022}
+
+\rmk \(f \geq 0\) and measurable, \(E \in \scr{F}\). Then we defined \(\int_E f \d{\mu} = \int f \chi_E \d{\mu}\).
+If \(E, F \in \scr{F}\) and \(E\cap F = \varnothing\),
+\[
+    \int_{E\cup F} f \d{\mu}  = \int f (\chi_E + \chi_F) \d{\mu} = \int_E f \d{\mu} + \int_F f \d{\mu}.
+\]
+So if \(f \in \mc{L}^{1}(E\cup F, \mu)\),
+\[
+    \int_{E\cup F} f \d{\mu} = \int_E f \d{\mu} + \int_F f \d{\mu}.
+\]
+
+\rmk If \(A, B \in \scr{F}\), \(B\subset A\) and \(\mu\paren{A \bs B} = 0\) then
+\begin{center}
+    \(\ds \int_A f \d{\mu} = \int_B f \d{\mu}\) if \(f \in \mc{L}^{1}(A, \mu)\) or \(f\) is measurable.
+\end{center}
+
+\thm{11.28} \note{Monotone Convergence Theorem} Suppose \(f_n\) are measurable and \(0 \leq f_n(x) \leq f_{n+1}(x)\) \(\mu\)-\ae Then
+\[
+    \lim_{n \ra \infty} \int_E f_n \d{\mu} = \int_E f \d{\mu}.\footnote{증명은 \(f_n \leq f_{n+1}\)이 성립하지 않는 집합을 빼고 증명하면 됩니다.}
+\]
+
+\thm{11.31} \note{Fatou} Suppose \(f_n\) are measurable and \(f_n(x) \geq 0\) \(\mu\)-\ae Then
+\[
+    \int_E \liminf_{n\ra\infty} f_n \d{\mu} \leq \liminf_{n\ra\infty} \int_E f_n \d{\mu}.
+\]
+
+\rmk Let \(f, g\) be measurable functions on \(E \in \scr{F}\). If \(\abs{f} \leq \abs{g}\) \(\mu\)-\ae on \(E\). From
+\[
+    \int \abs{f} \d{\mu} \leq \int \abs{g} \d{\mu},
+\]
+we see that if \(g \in \mc{L}^{1}(E, \mu)\) then \(f \in \mc{L}^{1}(E, \mu)\).
+
+\defn. Fix \(E \in \scr{F}\), and consider a relation \(\sim\) on the functions of \(\mc{L}^{1}(E, \mu)\). We define \(f \sim g\) if and only if \(f = g\) \(\mu\)-\ae on \(E\). Then \(\sim\) is an equivalence relation, so we can write
+\[
+    [f] = \{g \in \mc{L}^{1}(E, \mu) : f \sim g\}.
+\]
+
+Equivalence class의 대표에 대해서만 생각해도 충분하다!
+
+\thm{11.32} \note{Lebesgue's Dominated Convergence Theorem} Suppose that \(E\in \scr{F}\) and \(f\) is measurable. Let \(\seq{f_n}\) be a sequence of measurable functions such that \(f(x) = \ds \lim_{n \ra \infty} f_n(x)\) exists in \(\overline{\R}\) \(\mu\)-\ae on \(E\). (pointwise convergence) If there exists
+\begin{center}
+    \(g \in \mc{L}^{1}(E, \mu)\) such that \(\abs{f_n} \leq g\; (\forall n \geq 1)\) \(\mu\)-\ae on \(E\),
+\end{center}
+then
+\[
+    \lim_{n \ra \infty} \int_E \abs{f_n - f} \d{\mu} = 0.
+\]
+
+\rmk
+\begin{enumerate}
+    \item Note that \(f_n, f \in \mc{L}^{1}(E, \mu)\).
+    \item Since
+          \[
+              \abs{\int f_n \d{\mu} - \int f \d{\mu}} \leq \int \abs{f_n - f} \d{\mu},
+          \] the conclusion implies that \(\ds \lim_{n \ra \infty} \int f_n \d{\mu} = \int f \d{\mu}\).
+\end{enumerate}
+
+\pf Let
+\[
+    A = \left\{\ds x \in E : \lim_{n \ra \infty} f_n(x) \text{ exists and is real}, f_n(x), f(x), g(x) \in \R, \abs{f_n(x)} \leq g(x)\right\}.
+\]
+Then \(E\bs A\) has measure zero. Now we only consider \(x \in A\). Then
+\[
+    2g - \abs{f_n - f} \geq 2g - \bigl(\abs{f_n} + \abs{f} \bigr) \geq 0.
+\]
+Since \(\abs{f_n - f} \ra 0\), \(2g - \abs{f_n - f} \ra 2g\). By Fatou's lemma,
+\[
+    \begin{aligned}
+        2 \int_E g \d{\mu} = \int_A 2g \d{\mu} & = \int_A \liminf_{n \ra \infty} \big(2g - \abs{f_n - f}\big) \d{\mu}                               \\
+                                               & \leq \liminf_{n \ra \infty} \paren{2 \int_A g \d{\mu} - \int_A \abs{f_n - f} \d{\mu}}              \\
+                                               & = 2\int_A g \d{\mu} - \limsup_{n \ra \infty} \int_A \abs{f_n - f} \d{\mu} \leq 2 \int_A g \d{\mu}.
+    \end{aligned}
+\]
+So we conclude that
+\[
+    2 \int_A g \d{\mu} - \limsup_{n \ra \infty} \int_A \abs{f_n - f} \d{\mu} = 2 \int_A g \d{\mu},
+\]
+and since \(\ds 0 \leq \int_A g \d{\mu} < \infty\), \(\ds \limsup_{n \ra \infty} \int_A \abs{f_n - f} \d{\mu} = 0\).
+
+\bigskip
+
+We suppose \((X, \scr{F}, \mu)\).
+
+\thm{11.24} Let \(f\) be a measurable function such that \(f \geq 0\) \(\mu\)-\ae Define a set function on \(\scr{F}\) as
+\[
+    \nu(A) = \int_A f \d{\mu}, \quad (A \in \scr{F}).
+\]
+Then \(\nu\) is a measure on \(\scr{F}\).
+
+\pf \(\nu(\varnothing) = 0\). If \(\seq{A_n} \subset \scr{F}\) is disjoint,
+\[
+    \nu\paren{\bigcup_{n=1}^{\infty} A_n} = \int \paren{\chi_{\bigcup_{n=1}^{\infty} A_n}} f \d{\mu} = \int \sum_{n=1}^{\infty} \chi_{A_n} f \d{\mu} = \sum_{n=1}^{\infty} \int_{A_n} f \d{\mu} = \sum_{n=1}^{\infty} \nu(A_n),
+\]
+by MCT.
+
+\rmk If \(f \in \mc{L}^{1}\), \(\nu\) is countably additive. Hint: Set \(\chi_{\cup A_n} \abs{f} \leq \abs{f}\) and use LDCT.
+
+\bigskip
+
+\subsection*{Comparison with the Riemann Integral}
+
+For Lebesgue measure \(m\), we write
+\[
+    \int_{[a, b]} f \d{m} = \int_{[a, b]} f \d{x} = \int_a^b f \d{x},
+\]
+and denote the Riemann integral as \(\ds \mc{R}\int_a^b f\d{x}\).
+
+\thm{11.33} Let \(a, b \in \R\), \(a < b\), \(f\) be bounded.
+\begin{enumerate}
+    \item If \(f \in \mc{R}[a, b]\), then \(f \in \mc{L}^{1}[a, b]\) and \(\ds \int_a^b f\d{x} = \mc{R}\int_a^b f \d{x}\).
+    \item \(f \in \mc{R}[a, b]\) \(\iff\) \(f\) is continuous \ae on \([a, b]\).\footnote{\(\mc{L}^{1}\)의 equivalence를 고려하면 사실상 연속함수에 대해서만 리만적분할 수 있다는 뜻입니다.}
+\end{enumerate}
+
+\pf Choose partitions \(P_k = \{a = x_0^k < x_1^k < \cdots < x_{n_k}^k = b\}\) on \([a, b]\) such that \(P_k \subset P_{k+1}\) (refinement) and \(\abs{x_{i}^k - x_{i-1}^k} < \frac{1}{k}\). Then
+\[
+    \lim_{k \ra \infty} L(P_k, f) = \mc{R}\lint{}{} f\d{x}, \quad \lim_{k \ra \infty} U(P_k, f) = \mc{R} \uint{}{} f \d{x}.
+\]
+Define a sequence of measurable simple functions \(U_k, L_k\).
+\[
+    U_k = \sum_{i=1}^{n_k} \sup_{x_{i-1}^k \leq y \leq x_{i}^k} f(y) \chi_{(x_{i-1}^k, x_i^k]}, \quad L_k = \sum_{i=1}^{n_k} \inf_{x_{i-1}^k \leq y \leq x_{i}^k} f(y) \chi_{(x_{i-1}^k, x_i^k]}.
+\]
+We have \(L_k \leq f \leq U_k\),
+\[
+    \int_a^b L_k \d{x} = L(P_k, f), \quad \int_a^b U_k \d{x} = U(P_k, f),
+\]
+with \(L_k\) increasing, \(U_k\) decreasing. (By refinement) Let
+\[
+    L(x) = \lim_{k \ra \infty} L_k(x), \quad U(x) = \lim_{k \ra \infty} U_k(x).
+\]
+The limits exist, and since \(f, L_k, U_k\) are bounded,
+\[
+    \int_a^b L \d{x} = \lim_{k \ra \infty} \int_a^b L_k \d{x} = \mc{R}\lint{}{} f\d{x} < \infty, \int_a^b U\d{x} = \mc{R} \uint{}{} f \d{x} < \infty
+\]
+by LDCT. Thus \(L, U \in \mc{L}^{1}[a, b]\), and
+\begin{center}
+    \(f \in \mc{R}[a, b]\) \(\iff\) \(\ds \int_a^b (U - L)\d{x} = 0\) \(\iff\) \(U = L\) \ae on \([a, b]\).
+\end{center}
+
+\note{1} If \(f \in \mc{R}[a, b]\), we have \(f = U = L\) \ae on \(E\). Thus \(f\) is measurable, and
+\[
+    \int_a^b f \d{x} = \mc{R}\int_a^b f\d{x} < \infty \implies f \in \mc{L}^{1}([a, b]).
+\]
+
+\note{2} Suppose \(x \notin \bigcup_{k=1}^{\infty} P_k\), then for every \(\epsilon > 0\),
+\begin{center}
+    \(\exists n, j_0\) such that \(x \in (t_{j_0-1}^n, t_{j_0}^n)\) and \(\abs{L_n(x) - L(x)} + \abs{U_n(x) - U(x)} < \epsilon\).
+\end{center}
+Then for all \(y \in (t_{j_0-1}^n, t_{j_0}^n)\),
+\[
+    \abs{f(x) - f(y)} \leq M_{j_0}^n - m_{j_0}^n = M_{j_0}^n - U(x) + U(x) - L(x) + L(x) - m_{j_0}^n \leq U(x) - L(x) + \epsilon.
+\]
+Therefore \(\{x : U(x) = L(x)\} \bs \bigcup_{k=1}^{\infty} P_k \subset \{x : f(x) \text{ is continuous}\} \subset \{x : U(x) = L(x)\}\).
+
+Since \(\bigcup_{k=1}^{\infty} P_k\) has measure zero, \(U = L\) \ae \(\iff f\) is continuous \ae Therefore,
+\begin{center}
+    \(f \in \mc{R}[a, b] \iff U = L\) \ae \(\iff f\) is continuous \ae
+\end{center}
+
+\rmk
+\begin{enumerate}
+    \item If \(x \notin P_k\) for all \(k\), \(f\) is continuous at \(x \iff f(x) = U(x) = L(x)\).
+    \item \(L(x) \leq f(x) \leq U(x)\) and \(L(x), U(x)\) are measurable.\footnote{Limit of measurable functions.}
+    \item Since \(\abs{f} \leq M\), we can assume that \(f \geq 0\), because we can consider \(f + M\).
+\end{enumerate}
+
+\pagebreak

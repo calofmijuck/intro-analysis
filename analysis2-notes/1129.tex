@@ -1,0 +1,58 @@
+\section*{November 29th, 2022}
+
+Does \(\sum c_n \phi_n\) converge in \(\mc{L}^2\)?
+\begin{itemize}
+    \item \(\ds \norm{\sum_{n=1}^{m} a_n \phi_n}_2^2 = \sum_{n=1}^{m} \abs{a_n}^2\).
+    \item \(\ds \norm{f - \sum_{n=1}^{m}\span{f, \phi_n}\phi_n}_2^2 = \norm{f}_2^2 - \sum_{n=1}^{m} \abs{\span{f, \phi_n}}^2\).
+    \item \note{Bessel Inequality} \(\ds \sum_{n=1}^{\infty} \abs{\span{f, \phi_n}}^2 \leq \norm{f}_2^2\).
+\end{itemize}
+
+\defn{11.44} \note{Completeness} An orthonormal set \(\seq{\phi_n}\) is said to be \textbf{complete} if
+\begin{center}
+    \(\ds \span{f, \phi_n} = \int f\overline{\phi_n} \d{\mu} = 0\) for all \(n\) and \(f \in \mc{L}^2\), then \(f = 0\) in \(\mc{L}^2\).\footnote{Also known as \textit{countable orthonormal basis}.}
+\end{center}
+
+\ex. In \(\mc{L}^{2}[-\pi, \pi]\), we know that
+\[
+    \sum_{-\infty}^{\infty} \abs{\span{f, e^{inx}}}^2 = \frac{1}{2\pi} \int_{-\pi}^{\pi} \abs{f}^2 \d{x}.
+\]
+Therefore \(\norm{f}_2 = 0 \iff \span{f, e^{inx}} = 0\) for all \(n\).
+
+\medskip
+
+\thm{11.45} \note{Parseval} Suppose \(\seq{\phi_n}\) is a complete orthonormal set in \(\mc{L}^{2}(\mu)\), and \(f \in \mc{L}^{2}(\mu)\). Then
+\begin{center}
+    \(\ds \int_X \abs{f}^2 \d{\mu} = \sum_{n=1}^{\infty} \abs{\span{f, \phi_n}}^2\) \quad and \quad \(\ds \sum_{n=1}^{m} \span{f, \phi_n}\phi_n \ra f\) in \(\mc{L}^{2}(\mu)\).
+\end{center}
+
+\pf Let \(c_n = \span{f, \phi_n}\). Then by Bessel inequality, \(\sum_{n=1}^{\infty} \abs{c_n}^2 \leq \norm{f}_2^2 < \infty\). By Riesz-Fischer theorem, \(\exists g \in \mc{L}^{2}\) such that \(s_m = \sum_{n=1}^{m} c_n \phi_n \ra g\) in \(\mc{L}^{2}\), where \(c_n = \span{g, \phi_n}\).
+
+Since \(\norm{s_m}_2^2 \ra \norm{g}_2^2\),
+\[
+    \int \abs{g}^2 \d{\mu} = \lim_{m \ra \infty} \int \abs{s_m}^2 \d{\mu} = \lim_{m \ra \infty} \sum_{n=1}^{m}\abs{c_n}^2 = \sum_{n=1}^{\infty} \abs{c_n}^2.
+\]
+We have that for all \(n\in \N\),
+\[
+    \int g \overline{\phi_n} \d{\mu} = c_n = \int f \overline{\phi_n} \d{\mu} \implies \int (g-f) \overline{\phi_n} \d{\mu} = 0.
+\]
+Therefore by completeness, \(f \sim g\) in \(\mc{L}^2\).
+
+\cor Suppose that \(\seq{\phi_n}\) is a complete orthonormal set in \(\mc{L}^{2}(\mu)\). Then
+\[
+    \mc{L}^{2}(\mu) = \left\{\sum_{n=1}^{\infty} c_n \phi_n : \sum_{n=1}^{\infty} \abs{c_n}^2 < \infty \right\}.
+\]
+
+\pf \note{\(\supseteq\)} by {\sffamily 11.43}, \note{\(\subset\)} by {\sffamily 11.45}.
+
+\cor Suppose that \(\seq{\phi_n}\) is an orthonormal set in \(\mc{L}^{2}(\mu)\). The following are equivalent.
+\begin{enumerate}
+    \item \(\seq{\phi_n}\) is complete.
+    \item \(\ds \int \abs{f}^2 \d{\mu} = \sum_{n=1}^{\infty} \abs{\span{f, \phi_n}}^2\) for all \(f \in \mc{L}^{2}\).
+    \item For every \(f \in \mc{L}^{2}\), \(\ds \sum_{n=1}^{m} \span{f, \phi_n}\phi_n \ra f\) in \(\mc{L}^{2}(\mu)\).
+\end{enumerate}
+
+\pf (1)\mimp(2), (3) by {\sffamily Theorem 11.45}, (3)\mimp(2) by {\sffamily Theorem 8.11}, (2)\mimp(1) is clear.
+
+Therefore, \(\mc{L}^{2}(\mu)\) may be regarded as an infinite-dimensional Euclidean vector space, in which a vector \(f\) has coordinates \(c_n\) with respect to the basis \(\seq{\phi_n}\).
+
+\pagebreak

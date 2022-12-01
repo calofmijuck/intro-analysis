@@ -1,0 +1,77 @@
+\section*{November 10th, 2022}
+
+\rmk If \(A \subset B\), \(B \in \mf{M}\) and \(m(B) = 0\) then \(B\) should be finitely measurable. So \(\exists E_n \in \Sigma\) such that \(m^\ast(B\symd E_n) \ra 0\). Thus, \(m^\ast(A \symd E_n) \leq m^\ast(B\symd E_n) \ra 0\). Therefore \(A \in \mf{M}\).
+
+\defn. \note{Complete Measure Space} \((X, \scr{F}, \mu)\) is called a \textbf{complete measure space} if every subset of measurable measure zero set is measurable. i.e,
+\begin{center}
+    if \(A \subset B\), \(B \in \scr{F}\) and \(\mu(B) = 0\) then \(A \in \scr{F}\).
+\end{center}
+
+\ex. \(f(x) = x^{\alpha} e^{-\beta x}\) on \(x > 0\), \(\alpha > - 1\), \(\beta > 0\).\footnote{엄밀하게는 \(((0, \infty), \mf{M}, m)\) 입니다.}
+\[
+    f(x) = x^\alpha e^{-\beta x} = \begin{cases}
+        x^\alpha & (0 < x < 1) \\ c_N x^{\alpha - N} & (1 \leq x < \infty)
+    \end{cases}
+\]
+since we can take \(N \geq 3 + \alpha\) such that \(e^{-\beta x} \leq c_N x^{-N}\) if \(x \geq 1\). Therefore
+\[
+    f(x) \leq c\bigl(x^\alpha \chi_{(0, 1)} + x^{-2} \chi_{[1, \infty)}\bigr)
+\]
+for some constant \(c\) and \(f \in \mc{L}^{1}(0, \infty)\).
+
+\rmk 리만적분의 유용한 성질들을 가지고 와서 사용할 수 있다!
+\begin{enumerate}
+    \item If \(f \geq 0\) and measurable, set \(f_n = f\chi_{[0, n]}\). Then by MCT,
+          \[
+              \int_0^\infty f \d{x} = \lim_{n \ra \infty} \int_0^\infty f_n \d{x} = \lim_{n \ra \infty} \int_0^n f \d{x}.
+          \]
+    \item If \(f \in \mc{R}(I)\) for any closed, finite interval \(I \subset (0, \infty)\), \(f \in \mc{L}^{1}(I)\). Setting \(f_n = f\chi_{[0, n]}\) and using LDCT with dominator \(f\) gives
+          \[
+              \int_0^\infty f \d{x} = \lim_{n \ra \infty} \int_0^\infty f_n \d{x} = \lim_{n \ra \infty} \int_0^n f \d{x} = \lim_{n \ra \infty} \mc{R} \int_0^n f \d{x}.
+          \]
+          Similarly, setting \(f_n = f\chi_{(1/n, 1)}\) and using LDCT with dominator \(f\) gives
+          \[
+              \int_0^1 f\d{x} = \lim_{n \ra \infty} \int_{0}^1 f_n \d{x} = \lim_{n \ra \infty}\int_{1/n}^1 f \d{x} = \lim_{n \ra \infty} \mc{R}\int_{1/n}^1 f \d{x}.
+          \]
+\end{enumerate}
+
+\pagebreak
+
+\recall \note{Gamma Function} For \(t > 0\),
+\[
+    \Gamma(t) = \int_{(0, \infty)} x^{t-1} e^{-x} \d{x} = \int_0^\infty x^{t-1} e^{-x} \d{x}.
+\]
+\begin{enumerate}
+    \item \(\Gamma\) is continuous at \(t\) for all \(t \in (0, \infty)\).
+    \item \(\Gamma \in C^\infty(0, \infty)\).
+\end{enumerate}
+
+\pf \\
+\note{1} We show that \(\Gamma\) is continuous at \(t \in (a, b) \subset (0, \infty)\). Let \(u(t, x) = x^{t-1}e^{-x}\) and \(g(x) = x^{a - 1} \chi_{(0, 1)} + c_b x^{-2} \chi_{[1, \infty)}\). Then \(u(t, x) \leq g(x)\) for all \(x > 0\), \(t \in [a, b]\).\footnote{\(c_b\) is chosen to satisfy this. Refer to the example above.} For any given sequence \(t_n \ra t\), choose large enough \(N_0\) so that \(t_n, t \in (a, b)\) for \(n\geq N_0\). Then \(f_n(x) = u(t_n, x) \leq g(x)\). Since \(g(x) \in \mc{L}^{1}(0, \infty)\) and \(u(t_n, x) \ra u(t, x)\), by LDCT,
+\[
+    \lim_{n \ra \infty} \Gamma(t_n) = \lim_{n \ra \infty} \int_{0}^{\infty} u(t_n, x) \d{x} = \int_0^\infty u(t, x) \d{x} = \Gamma(t).
+\]
+
+\note{2} We just show that \(\Gamma\) is differentiable at \(t \in (a, b) \subset (0, \infty)\).
+\[
+    \frac{\partial u}{\partial t}(t, x) = x^{t-1} e^{-x} \ln x
+\]
+We also try to bound \(\frac{\partial u}{\partial t}\). For \(0 < x < 1\), take \(c x^{a/2-1}\) where \(c = \sup_{0<x<1} x^{a/2 - 1} \abs{\ln x}\), for \(1 \leq x < \infty\), take \(x^b e^{-x}\). Therefore \(\sup_{x \in [a, b]} \abs{\partial_t u} \leq c(x^{a/2 -1} \chi_{(0, 1)} + x^be^{-x} \chi_{[1, \infty)}) \in \mc{L}^{1}(0, \infty)\).
+
+Take \(h\) small enough that \(t, t+h \in (a, b)\). Then
+\[
+    \frac{u(t+h, x) - u(t, x)}{h} \leq \sup_{x \in [a, b]} \abs{\frac{\partial u}{\partial t}} \in \mc{L}^{1}(0, \infty)
+\]
+by the mean value theorem. For any \(h_n \ra 0\), choose \(n_0\) large enough so that \(t, t + h_n \in (a, b)\) for \(n \geq n_0\). Then
+\[
+    \frac{u(t+h_n, x) - u(t, x)}{h_n} \leq \sup_{x \in [a, b]} \abs{\frac{\partial u}{\partial t}} \in \mc{L}^{1}(0, \infty).
+\]
+Since \(\frac{u(t+h_n, x) - u(t, x)}{h_n} \ra \frac{\partial u}{\partial t}\), by LDCT,
+\[
+    \lim_{n \ra \infty}\int_0^\infty \frac{u(t+h_n, x) - u(t, x)}{h_n} \d{x} = \int_0^\infty \frac{\partial u}{\partial t}(t, x) \d{x}.
+\]
+\(\Gamma\) is differentiable at \(t\), and \(\Gamma'(t) = \ds\int_0^\infty x^{t-1} e^{-x} \ln x \d{x}\).
+
+\rmk Write \(\ds \Gamma(t) = \lim_{n \ra \infty} \mc{R} \int_{1/n}^{n} x^{t-1}e^{-x} \d{x}\). We can prove \(\Gamma(t + 1) = t \Gamma(t)\) and other properties.
+
+\pagebreak
