@@ -4,7 +4,7 @@ We will discuss measurable functions on a general measurable space \((X, \scr{F}
 
 \defn{11.13} \note{Measurable Function} Let \((X, \scr{F})\) be a measurable space where \(\scr{F}\) is a \(\sigma\)-algebra on \(X\). \(f : X \ra \overline{\R}\) is an \textbf{\(\scr{F}\)-measurable function} if the set
 \[
-    \{x \mid f(x) > a\}
+    \{x : f(x) > a\}
 \]
 is measurable for all \(a \in \R\).
 
@@ -12,32 +12,32 @@ We directly observe the following corollary.
 
 \cor Every continuous function \(f\) on \(\R^p\) is Lebesgue measurable.
 
-\pf The set \(\{x \mid f(x) > a\}\) is open in \(\R^p\), so it is an element of \(\mf{M}(m)\).
+\pf The set \(\{x : f(x) > a\}\) is open in \(\R^p\), so it is an element of \(\mf{M}(m)\).
 
 \thm{11.15} Let \(f\) be a function defined on a measurable space \(X\). The following are equivalent.
 \begin{enumerate}
-    \item \(\{x \mid f(x) > a\}\) is measurable for all \(a \in \R\).
-    \item \(\{x \mid f(x) \geq a\}\) is measurable for all \(a \in \R\).
-    \item \(\{x \mid f(x) < a\}\) is measurable for all \(a \in \R\).
-    \item \(\{x \mid f(x) \leq a\}\) is measurable for all \(a \in \R\).
+    \item \(\{x : f(x) > a\}\) is measurable for all \(a \in \R\).
+    \item \(\{x : f(x) \geq a\}\) is measurable for all \(a \in \R\).
+    \item \(\{x : f(x) < a\}\) is measurable for all \(a \in \R\).
+    \item \(\{x : f(x) \leq a\}\) is measurable for all \(a \in \R\).
 \end{enumerate}
 
 \pf The following relations can be used to prove the result.\\
 \note{1\mimp2} \vspace*{-10px}
 \begin{equation*}
-    \{x \mid f(x) \geq a\} = f\inv\paren{[a, \infty)} = f\inv\paren{\bigcup_{n=1}^{\infty} \paren{a + \frac{1}{n}, \infty}} = \bigcup_{n=1}^{\infty} f\inv\paren{\paren{a + \frac{1}{n}, \infty}}.
+    \{x : f(x) \geq a\} = f\inv\paren{[a, \infty)} = f\inv\paren{\bigcup_{n=1}^{\infty} \paren{a + \frac{1}{n}, \infty}} = \bigcup_{n=1}^{\infty} f\inv\paren{\paren{a + \frac{1}{n}, \infty}}.
 \end{equation*}
-\note{2\mimp3} \(\{x \mid f(x) < a\} = X \bs \{x \mid f(x) \geq a\}\).
+\note{2\mimp3} \(\{x : f(x) < a\} = X \bs \{x : f(x) \geq a\}\).
 
 \note{3\mimp4} \vspace*{-10px}
 \[
-    \{x \mid f(x) \leq a\} = f\inv \paren{(-\infty, a]} = f\inv\paren{\bigcup_{n=1}^{\infty} \paren{-\infty, a - \frac{1}{n}}} = \bigcup_{n=1}^{\infty} f\inv\paren{\paren{-\infty, a - \frac{1}{n}}}.
+    \{x : f(x) \leq a\} = f\inv \paren{(-\infty, a]} = f\inv\paren{\bigcup_{n=1}^{\infty} \paren{-\infty, a - \frac{1}{n}}} = \bigcup_{n=1}^{\infty} f\inv\paren{\paren{-\infty, a - \frac{1}{n}}}.
 \]
-\note{4\mimp1} \(\{x \mid f(x) > a\} = X \bs \{x \mid f(x) \leq a\}\).
+\note{4\mimp1} \(\{x : f(x) > a\} = X \bs \{x : f(x) \leq a\}\).
 
 \thm{11.16} If \(f\) is measurable, then \(\abs{f}\) is also measurable.
 
-\pf \(\{x \mid \abs{f(x)} > a\} = \{x \mid f(x) > a\} \cap \{x \mid f(x) < -a\}\).
+\pf \(\{x : \abs{f(x)} < a\} = \{x : f(x) < a\} \cap \{x : f(x) > -a\}\).
 
 \rmk 역은 성립하지 않는다. Suppose that \(S \subset (0, \infty)\) is not measurable. Define
 \[
@@ -45,7 +45,7 @@ We directly observe the following corollary.
         x & (x \in S) \\ -x & (x \notin S)
     \end{cases}
 \]
-then \(\abs{g(x)} = x\) for all \(x \in \R\). Thus \(\abs{g(x)}\) is a measurable function, but \(g(x)\) is not measurable since \(\{x \mid g(x) > 0\} = \R \bs (-\infty, 0] = S\) is not measurable.
+then \(\abs{g(x)} = x\) for all \(x \in \R\). Thus \(\abs{g(x)}\) is a measurable function, but \(g(x)\) is not measurable since \(\{x : g(x) > 0\} = \R \bs (-\infty, 0] = S\) is not measurable.
 
 \medskip
 
@@ -59,12 +59,12 @@ are measurable.
 \[
     \inf f_n = -\sup\paren{-f_n}, \quad \limsup f_n = \inf_n \sup_{k\geq n} f_k, \quad \liminf f_n = -\limsup\paren{-f_n}.
 \]
-\quad \claim. \(\ds \{x \mid \sup_{n\in\N} f_n(x) > a\} =  \bigcup_{n=1}^{\infty} \{x \mid f_n(x) > a\} \in \scr{F}\).
+\quad \claim. \(\ds \{x : \sup_{n\in\N} f_n(x) > a\} =  \bigcup_{n=1}^{\infty} \{x : f_n(x) > a\} \in \scr{F}\).
 
 \quad \pf \\
-\note{\(\subset\)} If \(\sup f_n(x) > a\), \(\exists N \in \N\) such that \(f_N(x) > a\), so \(x \in \bigcup_{n=1}^{\infty} \{x \mid f_n(x) > a\}\).
+\note{\(\subset\)} If \(\sup f_n(x) > a\), \(\exists N \in \N\) such that \(f_N(x) > a\), so \(x \in \bigcup_{n=1}^{\infty} \{x : f_n(x) > a\}\).
 
-\note{\(\supseteq\)} If \(x \in \bigcup_{n=1}^{\infty} \{x \mid f_n(x) > a\}\), \(\exists N \in \N\) such that \(f_N(x) > a\). Then \(\sup f_n(a) > a\).
+\note{\(\supseteq\)} If \(x \in \bigcup_{n=1}^{\infty} \{x : f_n(x) > a\}\), \(\exists N \in \N\) such that \(f_N(x) > a\). Then \(\sup f_n(a) > a\).
 
 \medskip
 
@@ -74,7 +74,7 @@ are measurable.
     \item \(f^+ = \max\{f, 0\}\), \(f^- = -\min\{f, 0\}\) are measurable.
 \end{enumerate}
 
-\pf (1) \(\{x \mid \max\{f, g\} > a\} = \{x \mid f(x) > a\} \cup \{x \mid g(x) > a\}\), and \(\{x \mid \min\{f, g\} < a\} = \{x \mid f(x) < a\} \cup \{x \mid g(x) < a\}\). (2) is trivial from (1).
+\pf (1) \(\{x : \max\{f, g\} > a\} = \{x : f(x) > a\} \cup \{x : g(x) > a\}\), and \(\{x : \min\{f, g\} < a\} = \{x : f(x) < a\} \cup \{x : g(x) < a\}\). (2) is trivial from (1).
 
 \medskip
 
@@ -86,20 +86,20 @@ are measurable.
 
 \thm{11.18} Let \(f, g\) be measurable real-valued functions on \(X\). If \(F: \R^2 \ra \R\) is continuous, \(h(x) = F\big(f(x), g(x)\big)\) is measurable. In particular, \(f + g\), \(fg\) are measurable.\footnote{Note that we don't want the case \(\infty - \infty\).}
 
-\pf Since \(G_a = \{(u, v)\in \R^2 \mid F(u, v) > a\}\) is open, we can write it as a union of open intervals.
+\pf Since \(G_a = \{(u, v)\in \R^2 : F(u, v) > a\}\) is open, we can write it as a union of open intervals.
 \begin{center}
     \(G_a = \ds \bigcup_{n=1}^{\infty} I_n\) where \(I_n = (a_n, b_n) \times (c_n, d_n)\), \quad (\(a_n, b_n, c_n, d_n\in \R\))
 \end{center}
 Then
 \[
     \begin{aligned}
-        \{x \in X \mid F\bigl(f(x), g(x)\bigr) > a\} = & \{x \in X \mid \bigl(f(x), g(x)\bigr) \in G_a\}                                                              \\
-        =                                              & \bigcup_{n=1}^{\infty} \{x \in X \mid a_n < f(x) < b_n,\, c_n < g(x) < d_n\}                                 \\
-        =                                              & \bigcup_{n=1}^{\infty} \{x \in X \mid a_n < f(x) < b_n\} \cap \{x \in X \mid c_n < g(x) < d_n\} \in \scr{F}.
+        \{x \in X : F\bigl(f(x), g(x)\bigr) > a\} = & \{x \in X : \bigl(f(x), g(x)\bigr) \in G_a\}                                                           \\
+        =                                           & \bigcup_{n=1}^{\infty} \{x \in X : a_n < f(x) < b_n,\, c_n < g(x) < d_n\}                              \\
+        =                                           & \bigcup_{n=1}^{\infty} \{x \in X : a_n < f(x) < b_n\} \cap \{x \in X : c_n < g(x) < d_n\} \in \scr{F}.
     \end{aligned}
 \]
 
-The class of measurable functions on \(X\) depends only on the \(\sigma\)-ring \(\mf{M}\). For example, Borel-measurable functions on \(\R^p\) are functions of which \(\{x \mid f(x) > a\}\) is always a Borel set.
+The class of measurable functions on \(X\) depends only on the \(\sigma\)-ring \(\mf{M}\). For example, Borel-measurable functions on \(\R^p\) are functions of which \(\{x : f(x) > a\}\) is always a Borel set.
 
 \defn. \note{Characteristic Function} For \(E \subset X\), the \textbf{characteristic function} \(\chi_E\) is defined as\footnote{Also known as the indicator function, also written as \(\mathbf{1}_E, K_E\).}\\
 \[
@@ -132,18 +132,18 @@ All functions can be approximated by simple functions.
     \item For \(n \in \N\), define
           \[
               E_{n, i} = \begin{cases}
-                  \{x \mid i\cdot 2^{-n} \leq f(x) < (i+1)\cdot 2^{-n}\} & (i = 0, 1, \dots, n\cdot 2^n - 1) \\
-                  \{x \mid f(x) \geq n\}                                 & (i = n\cdot 2^n)
+                  \{x : i\cdot 2^{-n} \leq f(x) < (i+1)\cdot 2^{-n}\} & (i = 0, 1, \dots, n\cdot 2^n - 1) \\
+                  \{x : f(x) \geq n\}                                 & (i = n\cdot 2^n)
               \end{cases}
           \]
-          and let \(\ds s_n(x) = \sum_{n=0}^{n\cdot 2^n} \frac{i}{2^n} \chi_{E_{n, i}} (x)\) then \(s_n\) is simple. We also have \(s_n(x) \leq f(x)\), \(\abs{f(x) - s_n(x)} \leq 2^{-n}\) for \(x \in \{x \mid f(x) < n\}\).
+          and let \(\ds s_n(x) = \sum_{n=0}^{n\cdot 2^n} \frac{i}{2^n} \chi_{E_{n, i}} (x)\) then \(s_n\) is simple. We also have \(s_n(x) \leq f(x)\), \(\abs{f(x) - s_n(x)} \leq 2^{-n}\) for \(x \in \{x : f(x) < n\}\).
           \begin{enumerate}
               \item[(i)] If \(f(x) < \infty\), \(f(x)< M\) for some \(M > 0\). So setting \(n > M\) large enough will give
                   \[ \tag{\mast}
                       \abs{f(x) - s_n(x)} \leq 2^{-n}
                   \]
-                  for \(x \in \{x \mid f(x) < n\}\).
-              \item[(ii)] If \(f(x) \ra\infty\), then \(s_n(x) = n \ra \infty\) on \(\{x \mid f(x) \geq n\}\). \(s_n \ra f\) as \(n \ra \infty\).
+                  for \(x \in \{x : f(x) < n\}\).
+              \item[(ii)] If \(f(x) \ra\infty\), then \(s_n(x) = n \ra \infty\) on \(\{x : f(x) \geq n\}\). \(s_n \ra f\) as \(n \ra \infty\).
           \end{enumerate}
           Therefore \(\ds \lim_{n \ra \infty} s_n(x) = f(x)\).
 

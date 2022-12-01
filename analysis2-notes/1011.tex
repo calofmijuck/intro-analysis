@@ -1,0 +1,180 @@
+\section*{October 11th, 2022}
+
+\defn{8.17} \note{Gamma Function}
+\[
+    \Gamma (x) = \int_0^\infty t^{x-1} e^{-t}\d{t}, \quad (0 < x < \infty).
+\]
+
+\rmk Gamma function can be also written as
+\[
+    \Gamma(x) = \lim_{N \ra \infty} \lim_{\epsilon \ra 0^+} \int_\epsilon^N t^{x-1}e^{-t}\d{t}.
+\]
+
+Let
+\[
+    g_{\epsilon, N}(x) = \int_{\epsilon}^{N} t^{x-1}e^{-t}\d{t}.
+\]
+Then \(g_{\epsilon, N}\) is continuous on \((0, \infty)\).\footnote{나중에 Lebesgue 이론을 공부하면 엄청 쉬워집니다!} (Check!)
+
+Fix \(a, b \in (0, \infty)\) where \(0 < a < 1 < b < \infty\).
+\[
+    \sup_{x\in [a, b]}\abs{e^{-t}t^{x-1}} \leq \begin{cases}
+        t^{a-1}                                                                            & (t \in (0, 1])     \\
+        \ds e^{-t/2}e^{-t/2} t^{b-1} \leq e^{-t/2} \sup_{s\in [1, \infty)} e^{-s/2}s^{b-1} & (t\in [1, \infty))
+    \end{cases}
+\]
+Therefore \(g_{\epsilon, N}\) converges uniformly to \(\Gamma\) on \([a, b]\) because
+\[
+    \sup_{x\in [a, b]} \abs{\int_n^m e^{-t}t^{x-1}\d{t}} \leq M \int_n^m e^{-t/2}\d{t} \ra 0
+\]
+as \(n, m \ra \infty\). (\(M = \sup_{s\in [1, \infty)} e^{-s/2}s^{b-1}\)) and
+\[
+    \sup_{x\in [a, b]} \abs{\int_{1/n}^{1/m} e^{-t}t^{x-1}\d{t}} \leq \int_{1/n}^{1/m} t^{a-1}\d{t} \ra 0
+\]
+as \(n, m \ra\infty\). Therefore \(\Gamma(x)\) is well-defined and continuous on \((0, \infty)\). Note that \(\Gamma(1) = 1\), and \(\Gamma(x)\) is infinitely differentiable.
+
+\thm{8.18}
+\begin{enumerate}
+    \item \(\Gamma(x + 1) = x \Gamma(x)\) for \(x > 0\).
+    \item \(\Gamma(n + 1) = n!\) for \(n \in \N\).
+    \item \(\log \Gamma\) is convex on \((0, \infty)\). (\(\log\)-convex)
+\end{enumerate}
+
+\pf
+(1)
+\[
+    \int_\epsilon^N e^{-t}t^x \d{t} = \left[-e^{-t}t^{x}\right]_{\epsilon}^N + x \int_{\epsilon}^N e^{-t}t^{x-1}\d{t}.
+\]
+As \(\epsilon \ra 0\) and \(N \ra \infty\), \(\Gamma(x + 1) = x\Gamma(x)\). Now (2) directly follows by induction.
+
+(3) We just need to show that for \(p > 1\) and \(\ds\frac{1}{p} + \frac{1}{q} = 1\),
+\[
+    \Gamma\paren{\frac{x}{p} + \frac{y}{q}} \leq \Gamma(x)^{1/p} \Gamma(y)^{1/q}.
+\]
+\[
+    \begin{aligned}
+        \Gamma\paren{\frac{x}{p} + \frac{y}{q}} & = \int_0^\infty t^{\frac{x}{p} + \frac{y}{q} - \frac{1}{p} - \frac{1}{q}} e^{ -\frac{t}{q} -\frac{t}{q}} \d{t}                                    \\
+                                                & = \int_0^\infty (t^{x-1}e^{-t})^{1/p} (t^{y-1}e^{-t})^{1/q} \d{t}                                                                                 \\
+                                                & \leq \left(\int_0^\infty t^{x-1} e^{-t}\d{t}\right)^{1/p} \left(\int_0^\infty t^{x-1} e^{-t}\d{t}\right)^{1/q} = \Gamma(x)^{1/p} \Gamma(y)^{1/q}.
+    \end{aligned}
+\]
+
+\medskip
+
+\rmk \note{Problem 4.23} If \(f\) is convex on \((a, b)\), then for \(a < s < t < u < b\),
+\[
+    \frac{f(t) - f(s)}{t-s} \leq \frac{f(u) - f(s)}{u - s} \leq \frac{f(u) - f(t)}{u-t}.
+\]
+
+\thm{8.19} Suppose \(f : (0, \infty) \ra (0, \infty)\). If \(f\) satisfies
+\begin{enumerate}
+    \item \(f(x + 1) = xf(x)\) for \(x > 0\).
+    \item \(f(1) = 1\).
+    \item \(\log f\) is convex on \((0, \infty)\).
+\end{enumerate}
+Then \(f(x) = \Gamma(x)\) for \(x > 0\).
+
+\pf We only need to show that (1), (2), (3) uniquely determines \(\varphi = \log f\) for \(x \in (0, 1)\). We consider \(x \in (0, 1)\) and \(n \in \N\). By {\sffamily Problem 4.23},
+\[
+    \log n = \varphi(n+1) - \varphi(n) \leq \frac{\varphi(n+1+x) - \varphi(n + 1)}{x} \leq \varphi(n+2) - \varphi(n+1) = \log(n+1).
+\]
+Therefore
+\[
+    x\log n \leq \varphi(n+1+x) - \varphi(n+1) \leq x \log(n+1),
+\]
+and
+\[
+    0 \leq \varphi(n+1+x) - \log n! - x\log n\leq x \log\paren{1 + \frac{1}{n}}.
+\]
+We know that \(\varphi(n+1+x) = \varphi(x + n) + \log(x + n)\). By induction,
+\[
+    \varphi(n+1 + x) = \varphi(x) + \log x(x+1)\cdots(x + n).
+\]
+Therefore,
+\[
+    0 \leq \varphi(x) - \log\paren{\frac{n!\cdot n^x}{x(x+1)\cdots(x+n)}} \leq x \log \paren{1 + \frac{1}{n}}
+\]
+and the right-hand side goes to \(0\) as \(n \ra \infty\).
+\[
+    \varphi(x) = \lim_{n\ra\infty} \log\paren{\frac{n!\cdot n^x}{x(x+1)\cdots(x+n)}}, \quad (0 < x < 1).
+\]
+Therefore \(f\) is determined uniquely as
+\[
+    f(x) = \lim_{n\ra\infty} \frac{n!\cdot n^x}{x(x+1)\cdots(x+n)} = \Gamma(x).
+\]
+
+\defn. \note{Beta Function} For \(x > 0\), \(y > 0\),
+\[
+    B(x, y) = \int_0^1 t^{x-1}(1-t)^{y-1} \d{t}.
+\]
+\rmk The following are properties of the Beta function.
+\begin{enumerate}
+    \item \(B(x, y) = B(y, x)\) for \(x, y > 0\).
+    \item \(B(x, y) = \ds \int_0^\infty \frac{u^{x-1}}{(1+u)^{x+y}} \d{u}\) (\(t = \frac{u}{1+u}\)).
+    \item \(B(1, y) = \ds \int_0^1 (1-t)^{y-1} \d{t} = \frac{1}{y}\) for \(y > 0\).
+    \item \(B(x + 1, y) = \ds \frac{x}{x+y} B(x, y)\). (integration by parts)
+\end{enumerate}
+
+\thm{8.20} For \(x > 0\), \(y > 0\),
+\[
+    B(x, y) = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}.
+\]
+
+\pf Fix \(y > 0\) and define
+\[
+    f(x) = \frac{\Gamma(x + y)}{\Gamma(y)} B(x, y).
+\]
+We check the 3 conditions in {\sffamily Theorem 8.19}.
+\[
+    f(1) = \frac{\Gamma(1+y)}{\Gamma(y)} B(1, y) = y \cdot \frac{1}{y} = 1
+\]
+by (3) in the above remark.
+\[
+    f(x + 1) = \frac{\Gamma(x + y + 1)}{\Gamma(y)} B(x + 1, y) = \frac{(x+y)\Gamma(x+y)}{\Gamma(y)} \cdot \frac{x}{x + y} B(x, y) = xf(x)
+\]
+by (4) in the above remark. Now to show convexity,
+\[
+    \log f(x) = \log \Gamma(x+y) + \log B(x, y) - \log \Gamma(y),
+\]
+we only have to check convexity for \(\log B(x, y)\).
+
+Let \(\frac{1}{p} + \frac{1}{q} = 1\), \(p > 1\). Then
+\[
+    \begin{aligned}
+        B\paren{\frac{x_1}{p} + \frac{x_2}{q}, y} & = \int_0^1 t^{\frac{x_1}{p} + \frac{x_2}{q} - \frac{1}{p} - \frac{1}{q}} (1-t)^{\frac{y}{p} + \frac{y}{q} - \frac{1}{p} - \frac{1}{q}} \d{t} \\
+                                                  & = \int_0^1 \paren{t^{x_1-1}(1-t)^{y-1}}^{1/p} \paren{t^{x_2-1}(1-t)^{y-1}}^{1/q} \d{t}                                                       \\
+                                                  & \leq \paren{\int_0^1 t^{x_1-1}(1-t)^{y-1} \d{t}}^{1/p}\paren{\int_0^1 t^{x_2-1}(1-t)^{y-1} \d{t}}^{1/q}
+    \end{aligned}
+\]
+Therefore \(\log B(x, y)\) is convex (w.r.t \(x\)). By {\sffamily Theorem 8.19}, \(f(x) = \Gamma(x)\).
+
+\rmk Consequences of {\sffamily Theorem 8.20}.
+\begin{enumerate}
+    \item Using change of variables \(t = \sin^2 \theta\),
+          \[
+              B(x, y) = 2 \int_0^{\pi/2} \sin^{2x-1}\theta \cos^{2y-1}\theta \d{\theta}.
+          \]
+          Let \(y = x = \frac{1}{2}\).
+          \[
+              2 \int_0^{\pi/2}\d{\theta} = \Gamma\paren{\frac{1}{2}}^2.
+          \]
+    \item Using change of variables \(t = s^2\),
+          \[
+              \Gamma(x) = 2 \int_0^\infty s^{2x-1}e^{-s^2} \d{s}.
+          \]
+          Setting \(s = \frac{1}{2}\),
+          \[
+              \Gamma\paren{\frac{1}{2}} = 2 \int_0^\infty e^{-s^2} \d{s} = \int_{-\infty}^\infty e^{-s^2} \d{s} = \sqrt{\pi}.
+          \]
+    \item We can show that
+          \[
+              \Gamma(x) = \frac{2^{x-1}}{\sqrt{\pi}} \Gamma\paren{\frac{x}{2}} \Gamma \paren{\frac{x+1}{2}}.
+          \]
+          Setting \(f(x) = \) RHS, check that \(f(1) = 1\), \(f(x + 1) = xf(x + 1)\) and
+          \[
+              \log \Gamma(x) = \log \Gamma\paren{\frac{x}{2}} + \log \Gamma \paren{\frac{x+1}{2}} + \log 2(x - 1) - \log \sqrt{\pi}
+          \]
+          is convex.
+\end{enumerate}
+
+\pagebreak
