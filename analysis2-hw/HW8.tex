@@ -1,0 +1,187 @@
+%!TEX encoding = utf-8
+\documentclass[12pt]{report}
+\usepackage{kotex}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\geometry{
+    top = 20mm,
+    left = 20mm,
+    right = 20mm,
+    bottom = 20mm
+}
+\geometry{a4paper}
+
+\pagenumbering{gobble}
+\renewcommand{\baselinestretch}{1.4}
+\newcommand{\numl}[1]{\item[\large\textbf{\sffamily #1.}]}
+\newcommand{\num}[1]{\item[\textbf{\sffamily #1}]}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\adj}{\text{*}}
+\newcommand{\bs}{\setminus}
+\renewcommand{\subset}{\subseteq}
+
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
+\renewcommand{\span}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\uc}{\overset{u}{\ra}}
+\newcommand{\imp}{\implies}
+\newcommand{\mimp}{\(\implies\)}
+\newcommand{\mimpd}{\(\impliedby\)}
+\newcommand{\miff}{\!\!\(\iff\)}
+\newcommand{\mast}{\(\ast\)}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\lint}[2]{\underline{\int_{#1}^{#2}}}
+\newcommand{\uint}[2]{\overline{\int_{#1}^{#2}}}
+\renewcommand{\d}[1]{\,d{#1}}
+
+\let\oldexists\exists
+\renewcommand{\exists}{\oldexists\,}
+
+\begin{document}
+\begin{center}
+    \textbf{\Large 해석개론 및 연습 2 과제 \#8}\\
+    \large 2017-18570 컴퓨터공학부 이성찬
+\end{center}
+\begin{enumerate}
+
+    \numl{1} Set \(u_n = \abs{f - f_n}\), \(v_n = \abs{f - f_n}^{1/2}\). Then \(u_n\) is measurable, and \(v_n\) is also measurable since for \(a \in \R\),
+    \[
+        \{x \in \R : v_n > a\} = \{x \in \R : u_n > a^2\} \in \mf{M}.
+    \]
+    Next, since \(\lim_{n \ra \infty} \int_\R \abs{f - f_n} \d{x}= 0\) and \(\lim_{n \ra \infty} \int_\R \abs{f - f_n}^2 \d{x}= 0\), both \(\int_\R \abs{f - f_n} \d{x}\) and \(\int_\R \abs{f - f_n}^2 \d{x}\) should be finite for large enough \(n \in \N\). Therefore, there exists \(N \in \N\) such that \(n \geq N \implies u_n, v_n \in \mc{L}^{2}\). Now, from Schwarz inequality,
+    \[
+        0 \leq \int_\R \abs{f - f_n}^{3/2} \d{x} \leq \paren{\int_\R \abs{f - f_n}^2 \d{x}}^{1/2} \paren{\int_\R \abs{f - f_n} \d{x}}^{1/2}.
+    \]
+    Taking limit \(n \ra \infty\) on both sides will give \(\lim_{n \ra \infty} \int_\R \abs{f - f_n}^{3/2} \d{x} = 0\).
+
+    \numl{2} Let \(\phi_n = e^{inx}\) for \(n \in \N\). We use the fact that \(\seq{\phi_n}_{n\in \N}\) is a complete orthonormal set. Let \(c_n = \frac{1}{n}\) and \(s_m = \sum_{n=1}^{m} c_n \phi_n\). Since \(\sum_{n=1}^{\infty}\abs{c_n}^2 = \sum_{n=1}^{\infty} \frac{1}{n^2} < \infty\), \(s_m\) converges to some function \(f \in \mc{L}^{2}[-\pi, \pi]\) by Riesz-Fischer theorem. Therefore \(\sum_{n=1}^{\infty} \frac{1}{n}e^{inx} \in \mc{L}^{2}[-\pi, \pi]\).
+
+    Now suppose that \(g = \sum_{n=1}^{\infty} \frac{1}{\sqrt{n}} e^{inx} \in \mc{L}^{2}[-\pi, \pi]\). Then by {\sffamily Theorem 11.45}, we have that \(\sum_{n=1}^{\infty} \abs{\frac{1}{\sqrt{n}}}^2 = \int_{-\pi}^{\pi} \abs{g}^2 \d{x}\). However, the left hand side diverges to \(\infty\) (harmonic series), contradicting that \(g \in \mc{L}^{2}[-\pi, \pi]\) (the integral should be finite).
+
+    \numl{3} First, boundedness can be checked easily by calculation.
+    \[
+        \norm{f_n}_2^2 = \int_{-\pi}^{\pi} \sin^2 nx \d{x} = \int_{-\pi}^{\pi} \frac{1 - \cos 2nx}{2} \d{x} = \pi. \quad (n \in \N)
+    \]
+    Next, to see that \(A = \{f_n : n \in \N\} \subset \mc{L}^{2}[-\pi, \pi]\) is closed, we show that all \(f_i \in A\) are isolated points. Direct calculation yields
+    \[
+        \begin{aligned}
+            \norm{f_n - f_m}_2^2 & = \int_{-\pi}^{\pi} \abs{\sin nx - \sin mx}^2 \d{x}                                                                           \\
+                                 & = \int_{-\pi}^{\pi}  \sin^2 nx \d{x} + \int_{-\pi}^{\pi} \sin^2 mx \d{x} - 2 \int_{-\pi}^{\pi}  \sin nx \sin mx \d{x} = 2\pi.
+        \end{aligned}
+    \]
+    Thus, each \(f_i\) are \(\sqrt{2\pi}\) distance apart. So if we define
+    \[
+        B_{\frac{\sqrt{2\pi}}{2}}(f_i) = \left\{f \in \mc{L}^{2}[-\pi, \pi] : \norm{f - f_i}_2 < \frac{\sqrt{2\pi}}{2}\right\},
+    \]
+    then \(B_{\sqrt{2\pi}/2}(f_i) \bs \{f_i\} \cap A = \varnothing\). So \(A\) has no limit point, and \(A' = \varnothing\). Since \(A' \subset A\), \(A\) is closed.
+
+    Finally, suppose that \(A\) is compact. Since \(A\) is infinite, \(A\) has a limit point in \(A\) by {\sffamily Theorem 2.37}. But \(A\) has no limit point, which is a contradiction. Thus \(A\) cannot be compact.
+
+    \numl{4} Let \(\mu\) denote the Lebesgue measure for this problem. Let
+    \[
+        C_{m, N} = \bigcup_{n=N}^{\infty} \left\{x \in [a, b] : \abs{f_n(x) - f(x)} \geq \frac{1}{m} \right\}, \quad (m, N \in \N).
+    \]
+    Note that \(C_{m, N}\) is indeed measurable (because \(f_n, f\) are) and \(C_{m, N+1} \subset C_{m, N}\) for fixed \(m\). Also let \(C_m = \bigcap_{N=1}^{\infty} C_{m, N}\). For \(x \in [a, b]\), if \(f_n(x)\) converges to \(f(x)\), \(x\) cannot be in \(C_{m, N}\) for all \(N\), since for large enough \(N_0\), \(\abs{f_{N_0}(x) - f(x)} < \frac{1}{m}\) for fixed \(m\). So if \(C\) is the set of \(x \in [a, b]\) where \(f_n(x)\) does not converge to \(f(x)\), then \(\mu(C) = 0\) by the given condition. Also, we can write \(C = \bigcup_{m=1}^{\infty} C_m\). So using the completeness of Lebesgue measure, \(\mu(C_m) = 0\). (\(C_m \subset C\)) Since \(\mu([a, b]) < \infty\) and \(C_{m, N} \searrow C_m\), continuity of the measure from above gives \(\mu(C_{m, N}) \ra 0\) as \(N \ra \infty\).
+
+    To construct a measurable set \(A \subset [a, b]\) with \(\mu(A) < \delta\), we can choose \(N_m \in \N\) for each \(m \in \N\) to construct a sequence \(\seq{N_m}_{m=1}^\infty\) such that \(\mu(C_{m, N_m}) < \frac{\delta}{2^m}\). If we set \(A = \bigcup_{m=1}^{\infty} C_{m, N_m}\), then
+    \[
+        \mu(A) \leq \sum_{m=1}^{\infty} \mu(C_{m, N_m}) < \sum_{m=1}^{\infty} \frac{\delta}{2^m} = \delta.
+    \]
+    Now we show that \(f_n(x)\) converges uniformly on \([a, b] \bs A\). We need to choose \(N\) large enough so that for \(n \geq N\), \(\abs{f_n(x) - f(x)} < \epsilon\) on \([a, b] \bs A\). For given \(\epsilon > 0\) choose \(m\) such that \(\frac{1}{m} < \epsilon\) and with this \(m\), choose \(N_\ast\) such that \(N_\ast > N_m\). Then if we consider
+    \[
+        \sup_{n \geq N_\ast,\; x \in [a, b] \bs A} \abs{f_n(x) - f(x)},
+    \]
+    we see that all \(x \in [a, b]\) such that \(\abs{f_n(x) - f(x)} \geq \frac{1}{m}\) for \(n \geq N_\ast\), \(m \in \N\) has been taken out by \(A\).\footnotemark[1] Therefore,
+    \[
+        \sup_{n \geq N_\ast,\; x \in [a, b] \bs A} \abs{f_n(x) - f(x)} < \frac{1}{m} < \epsilon.
+    \]
+    \footnotetext[1]{By the choice of \(A = \bigcup_{m=1}^{\infty} C_{m, N_m}\), for each \(m\), all [\(x \in [a, b]\) such that \(\abs{f_n(x) - f(x)} \geq \frac{1}{m}\) for \(n \geq N_m\)] has been taken out. But by the choice of \(N_m\), there may still be \(x \in [a, b] \bs A\) such that \(n < N_m\) and \(\abs{f_n(x) - f(x)} \geq \frac{1}{m}\). Thus, we have to set \(N_m\) large enough so that \(\abs{f_n(x) - f(x)} < \frac{1}{m}\) for \(n \geq N_m\).}
+
+    \numl{5} First we prove the following claim.
+
+    \quad {\sffamily \bfseries Claim.} Let \(A\) be a measurable subset of \([-\pi, \pi]\). Then
+    \begin{center}
+        \(\ds \int_A \sin nx \d{x}, \int_A \cos nx \d{x} \ra 0\) as \(n \ra \infty\).
+    \end{center}
+
+    \quad {\sffamily Proof.} On \(\mc{L}^{2}[-\pi, \pi]\), we consider the Fourier coefficients of \(\chi_A\). Then by Bessel's inequality,
+    \[
+        c_n = \frac{1}{2\pi} \int_{-\pi}^{\pi} \chi_A e^{inx} \d{x} = \frac{1}{2\pi} \int_A e^{inx} \d{x} \ra 0
+    \]
+    as \(n \ra \infty\). Therefore \(\int_A \sin nx \d{x}, \int_A \cos nx \d{x} \ra 0\).
+
+    For measurable \(A \subset E\), we have \(\int_A \sin n_kx \d{x} \ra 0\) and
+    \[
+        2 \int_A (\sin n_k x)^2 \d{x} = \int_A (1 - \cos 2n_k x) \d{x} = m(A) - \int_A \cos 2n_k x\d{x} \ra m(A)
+    \]
+    as \(k \ra \infty\) by the above claim and the half-angle formula.
+
+    Now consider \(f(x) = \lim_{k \ra \infty} \sin n_k x\) for \(x \in E\). \(f\) is measurable, and since \(\abs{2\sin n_k x} \leq 2\) for all \(x \in E\), we can use LDCT and conclude that
+    \[
+        m(A) = \lim_{k \ra \infty} \int_A 2\sin^2 n_k x\d{x} = \int_A 2f^2\d{x}.
+    \]
+    Therefore \(\int_A \left[2f^2 - 1\right] \d{x} = 0\) for all measurable \(A \subset E\). By {\sffamily Problem 7} of {\sffamily Homework 6}, \(f^2(x) = \frac{1}{2}\) a.e. on \(E\). Now consider \(f\inv(1/\sqrt{2})\) and \(f\inv(-1/\sqrt{2})\). \(f\inv(1/\sqrt{2}) \subset E\) trivially, and
+    \[
+        0 = \int_{f\inv(1/\sqrt{2})} f(x) \d{x} =\int_{f\inv(1/\sqrt{2})} \frac{1}{\sqrt{2}} \d{x} = \frac{1}{\sqrt{2}} m(f\inv(1/\sqrt{2})).
+    \]
+    Thus \(m(f\inv(1/\sqrt{2})) = 0\), and similarly \(m(f\inv(-1/\sqrt{2})) = 0\). Therefore, \[m(E) = m(f\inv(1/\sqrt{2})) + m(f\inv(-1/\sqrt{2})) = 0.\]
+
+    \numl{6} Suppose that \(\sin nx \geq \delta\) for all \(x \in E\) holds for infinitely many \(n \in \N\). Then from
+    \[
+        \int_E \sin nx \d{x} \geq \int_E \delta \d{x} = \delta m(E) > 0.
+    \]
+    But the left hand side should approach 0 as \(n \ra \infty\). (\(\because\;\){\sffamily Claim} in {\sffamily Problem 5}) This is impossible, so \(\sin nx \geq \delta\) can only hold for finitely many \(n \in \N\).
+
+    \numl{7} If \(f \sim 0\) or \(g \sim 0\) in \(\mc{L}^{2}(\mu)\), the statement is trivial, so we assume that this is not the case. (In fact, the statement is false when \(f \sim 0\) but \(g \not\sim 0\).)
+
+    (\mimpd) Suppose that \(\exists c \in \C\) such that \(g(x) = cf(x)\) \(\mu\)-a.e.. Then \(f \overline{g} = \overline{c} \abs{f}^2\), \(\abs{g}^2 = \abs{c}^2 \abs{f}^2\) \(\mu\)-a.e.. Therefore,
+    \[
+        \text{LHS} = \abs{\int f\overline{g} \d{\mu}}^2 =\abs{\int \overline{c} \abs{f}^2 \d{\mu}}^2 = \abs{c}^2 \norm{f}_2^4,
+    \]
+    \[
+        \text{RHS} = \paren{\int \abs{f}^2 \d{\mu}} \paren{\int \abs{c}^2 \abs{f}^2 \d{\mu}} = \abs{c}^2 \norm{f}_2^4.
+    \]
+    (\mimp) Denote \(\span{f, g} = \int f\overline{g} \d{\mu}\). The assumption can be written as
+    \[
+        \abs{\span{f, g}}^2 = \norm{f}_2^2 \norm{g}_2^2.
+    \]
+    Let \(u = f - \frac{\span{f, g}}{\norm{g}_2^2}g\). Then \(u\) is indeed measurable. Now by calculation,
+    \[
+        \begin{aligned}
+            \int \abs{u}^2 \d{\mu} & = \int \paren{f - \frac{\span{f, g}}{\norm{g}_2^2}g} \overline{\paren{f - \frac{\span{f, g}}{\norm{g}_2^2}g}} \d{\mu}                                                                                                            \\
+                                   & = \int \abs{f}^2 \d{\mu} - \int \frac{\span{f, g}}{\norm{g}_2^2} \overline{f} g \d{\mu} - \int \frac{\overline{\span{f, g}}}{\norm{g}_2^2}f\overline{g}\d{\mu} + \int \frac{\abs{\span{f, g}}^2}{\norm{g}_2^4} \abs{g}^2 \d{\mu} \\
+                                   & = \norm{f}_2^2 - \frac{\span{f, g}}{\norm{g}_2^2} \span{g, f} - \frac{\overline{\span{f, g}}}{\norm{g}_2^2}\span{f, g} + \frac{\abs{\span{f, g}}^2}{\norm{g}_2^4} \cdot\norm{g}_2^2                                              \\
+                                   & =\norm{f}_2^2 - \frac{\span{f, g}}{\norm{g}_2^2} \overline{\span{f, g}} - \frac{\overline{\span{f, g}}}{\norm{g}_2^2}\span{f, g} + \norm{f}_2^2                                                                                  \\
+                                   & = \norm{f}_2^2 - \norm{f}_2^2 - \norm{f}_2^2 + \norm{f}_2^2 = 0.
+        \end{aligned}
+    \]
+    \(\span{f, g} = \overline{\span{g, f}}\) and the given assumption was used. Since \(\abs{u}^2 \geq 0\), \(u = 0\) \(\mu\)-a.e. by {\sffamily Problem 5} of {\sffamily Homework 6}. Therefore, \(g = cf\) for some constant \(c \in \C\) \(\mu\)-a.e..
+\end{enumerate}
+\end{document}
