@@ -1,0 +1,34 @@
+\section*{October 27th, 2022 (Practice)}
+
+The gamma function
+\[
+    \Gamma(x) = \int_{0}^{\infty} t^{x-1}e^{-t} \d{t}
+\]
+is the unique function that satisfies the following properties.
+\begin{enumerate}
+    \item \(\Gamma(x + 1) = x \Gamma(x)\).
+    \item \(\Gamma(1) = 1\).
+    \item \(\log \Gamma\) is convex.
+\end{enumerate}
+
+\bigskip
+
+\defn. \note{Borel Set} \(A\) is a \textbf{Borel set} if there exists a countable collection of open\footnote{closed도 가능하다.} sets \(\seq{A_n}_{n=1}^\infty\) such that \(A = A_1 \circ A_2 \circ A_3 \circ \cdots\) where each \(\circ\) is any of \(\cup, \cap, \bs\).
+
+The collection \(\mf{B}\) of all Borel sets in \(\R^p\) is a \(\sigma\)-ring. Borel \(\sigma\)-algebra has the following properties.
+\begin{enumerate}
+    \item \(\R^p \in \mf{B}\).
+    \item \(A\cup B \in \mf{B}\) for any \(A, B \in \mf{B}\).
+    \item \(A \bs B \in \mf{B}\) for any \(A, B \in \mf{B}\).
+\end{enumerate}
+
+\defn. \note{Borel \(\sigma\)-algebra} \textbf{Borel \(\sigma\)-algebra} is the smallest \(\sigma\)-algebra containing all open sets in \(\R^p\).
+
+Check that the two definitions are equivalent!
+
+\bigskip
+
+\prob. Show that if \(f:\R \ra \R\) is differentiable, then \(f'\) is measurable.
+
+\prob. Let \(f: \R \ra \R\) be bounded, continuous and \(f(x) \neq 0\). Show that \(g(x) = \ds\int_0^x f(t) \d{t}\) is measurable.
+\pagebreak
