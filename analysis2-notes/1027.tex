@@ -4,7 +4,7 @@ We will discuss measurable functions on a general measurable space \((X, \scr{F}
 
 \defn{11.13} \note{Measurable Function} Let \((X, \scr{F})\) be a measurable space where \(\scr{F}\) is a \(\sigma\)-algebra on \(X\). \(f : X \ra \overline{\R}\) is an \textbf{\(\scr{F}\)-measurable function} if the set
 \[
-    \{x : f(x) > a\}
+    \{x \in X : f(x) > a\}
 \]
 is measurable for all \(a \in \R\).
 
@@ -64,7 +64,7 @@ are measurable.
 \quad \pf \\
 \note{\(\subset\)} If \(\sup f_n(x) > a\), \(\exists N \in \N\) such that \(f_N(x) > a\), so \(x \in \bigcup_{n=1}^{\infty} \{x : f_n(x) > a\}\).
 
-\note{\(\supseteq\)} If \(x \in \bigcup_{n=1}^{\infty} \{x : f_n(x) > a\}\), \(\exists N \in \N\) such that \(f_N(x) > a\). Then \(\sup f_n(a) > a\).
+\note{\(\supseteq\)} If \(x \in \bigcup_{n=1}^{\infty} \{x : f_n(x) > a\}\), \(\exists N \in \N\) such that \(f_N(x) > a\). Then \(\sup f_n(x) > a\).
 
 \medskip
 
@@ -154,7 +154,7 @@ All functions can be approximated by simple functions.
     \item If \(f\) is bounded, (\mast) gives uniform convergence.
 \end{enumerate}
 
-For general \(f\), write \(f = f^+ - f^-\).\footnote{Note that \(\infty - \infty\) doesn't appear here.} We can find simple functions \(g_n, h_n\) such that \(g_n \ra f^+\), \(h_n \ra f^-\). Then set \(s_n = g_n - h_n\), then \(\abs{s_n(x)} \leq \abs{f(x)}\) and \(\abs{s_n(x)} \nearrow \abs{f(x)}\).
+For general \(f\), write \(f = f^+ - f^-\).\footnote{Note that \(\infty - \infty\) doesn't appear here.} We can find simple functions \(g_n, h_n\) such that \(g_n \nearrow f^+\), \(h_n \nearrow f^-\). Then set \(s_n = g_n - h_n\), then \(\abs{s_n(x)} \leq \abs{f(x)}\) and \(\abs{s_n(x)} \nearrow \abs{f(x)}\).
 
 \cor If \(f, g\) are measureable and \(f + g\), \(fg\) are well-defined, then \(f+g\), \(fg\) are measureable. (Approximated as a limit of measurable simple functions)
 

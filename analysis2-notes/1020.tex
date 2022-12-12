@@ -97,7 +97,7 @@ since \(\mu^\ast\) is taken as the infimum. Now take \(\epsilon \ra 0\) and the 
 
 \notation \note{Symmetric Difference} \(A \symd B = (A\bs B) \cup (B \bs A)\).
 
-\defn. \(d(A, B) = \mu^\ast(A \symd B)\), \(A_n \ra A\) is defined as \(d(A_n, A) \ra 0\).\footnote{\(\mu\)라는 set function에 의해 \(\mu^\ast (A \symd B) \ra 0\) 이 되는 sequence of elementary sets \(A_n\)이 존재한다.}
+\defn. \(d(A, B) = \mu^\ast(A \symd B)\), \(A_n \ra A\) is defined as \(d(A_n, A) \ra 0\).
 
 \rmk
 \begin{itemize}
@@ -106,14 +106,14 @@ since \(\mu^\ast\) is taken as the infimum. Now take \(\epsilon \ra 0\) and the 
           \[
               \begin{rcases}
                   d(A_1 \cup A_2, B_1 \cup B_2) \\d(A_1 \cap A_2, B_1 \cap B_2) \\d(A_1 \bs A_2, B_1 \bs B_2)
-              \end{rcases} \subset d(A_1, A_2) + d(B_1, B_2).
+              \end{rcases} \leq d(A_1, B_1) + d(A_2, B_2).
           \]
 \end{itemize}
 
 
 \defn. \note{Finitely \(\mu\)-measurable} \(A\) is \textbf{finitely \(\mu\)-measurable} if \(\exists A_n \in \Sigma\) such that \(A_n \ra A\). We write
 \[
-    \mf{M}_F(\mu) = \{A : A \text{ is finitely } \mu \text{-measurable}\}.
+    \mf{M}_F(\mu) = \{A : A \text{ is finitely } \mu \text{-measurable}\}.\footnote{\(\mu\)라는 set function에 의해 \(\mu^\ast (A_n \symd A) \ra 0\) 이 되는 sequence of elementary sets \(A_n\)이 존재한다.}
 \]
 
 \defn. \note{\(\mu\)-measurable} \(A\) is \textbf{\(\mu\)-measurable} if \(A = \ds \bigcup_{n=1}^\infty A_n\) where \(A_n \in \mf{M}_F(\mu)\).\\

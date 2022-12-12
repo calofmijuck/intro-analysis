@@ -9,7 +9,7 @@
 
 \ex. \(f(x) = x^{\alpha} e^{-\beta x}\) on \(x > 0\), \(\alpha > - 1\), \(\beta > 0\).\footnote{엄밀하게는 \(((0, \infty), \mf{M}, m)\) 입니다.}
 \[
-    f(x) = x^\alpha e^{-\beta x} = \begin{cases}
+    f(x) = x^\alpha e^{-\beta x} \leq \begin{cases}
         x^\alpha & (0 < x < 1) \\ c_N x^{\alpha - N} & (1 \leq x < \infty)
     \end{cases}
 \]
@@ -56,7 +56,7 @@ for some constant \(c\) and \(f \in \mc{L}^{1}(0, \infty)\).
 \[
     \frac{\partial u}{\partial t}(t, x) = x^{t-1} e^{-x} \ln x
 \]
-We also try to bound \(\frac{\partial u}{\partial t}\). For \(0 < x < 1\), take \(c x^{a/2-1}\) where \(c = \sup_{0<x<1} x^{a/2 - 1} \abs{\ln x}\), for \(1 \leq x < \infty\), take \(x^b e^{-x}\). Therefore \(\sup_{x \in [a, b]} \abs{\partial_t u} \leq c(x^{a/2 -1} \chi_{(0, 1)} + x^be^{-x} \chi_{[1, \infty)}) \in \mc{L}^{1}(0, \infty)\).
+We also try to bound \(\frac{\partial u}{\partial t}\). For \(0 < x < 1\), take \(c x^{a/2-1}\) where \(c = \sup_{0<x<1} x^{a/2} \abs{\ln x}\), for \(1 \leq x < \infty\), take \(x^b e^{-x}\). Therefore \(\sup_{x \in [a, b]} \abs{\partial_t u} \leq c(x^{a/2 -1} \chi_{(0, 1)} + x^be^{-x} \chi_{[1, \infty)}) \in \mc{L}^{1}(0, \infty)\).
 
 Take \(h\) small enough that \(t, t+h \in (a, b)\). Then
 \[

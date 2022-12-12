@@ -12,7 +12,7 @@ Since \(\mf{M}(\mu)\) is a \(\sigma\)-algebra, \(A^C\in \mf{M}(\mu)\). Every clo
 
 \prop. If \(A \in \mf{M}(\mu)\), there exists open set \(G\) and closed set \(F\) such that
 \begin{center}
-    \(F \subset A \subset G\) and \(\mu\paren{G \bs A} < \epsilon\) and \(\mu\paren{A \bs F} < \epsilon\).
+    \(F \subset A \subset G\) and \(\mu\paren{G \bs A} < \epsilon\) and \(\mu\paren{A \bs F} < \epsilon\).\footnote{\(\mu\) is also regular on \(\mf{M}(\mu)\).}
 \end{center}
 
 \pf Let \(A = \bigcup_{n=1}^\infty A_n\) (\(A_n \in \mf{M}_F(\mu)\)), and fix \(\epsilon > 0\). For each \(n \in \N\), there exists open sets \(B_{n, k} \in \Sigma\) such that \(A_n \subset \bigcup_{k=1}^\infty B_{n, k}\) and
@@ -23,7 +23,7 @@ Let \(G = \bigcup_{n=1}^{\infty} G_n\) where \(G_n = \bigcup_{k=1}^{\infty} B_{n
 \[
     \mu\paren{G \bs A} = \mu\paren{\bigcup_{n=1}^{\infty} G_n \bs \bigcup_{n=1}^{\infty} A_n} \leq \mu\paren{\bigcup_{n=1}^{\infty} G_n \bs A_n} \leq \sum_{n=1}^{\infty} \mu\paren{G_n \bs A_n} \leq \sum_{n=1}^{\infty} 2^{-n}\epsilon = \epsilon.
 \]
-Using a similar argument, there exists an open set \(F^C\) such that \(A^C \subset F^C\) and \(\mu\paren{F^C \bs A^C} < \epsilon\). (\(A\) had no conditions on open/closed) \(F\) is a closed set, and since \(F^C \bs A^C = F^C \cap A = A\bs F\), \(\mu\paren{A \bs F} < \epsilon\) and \(F\subset A\). Therefore the proposition is proven.\footnote{\(\mu\) is also regular on \(\mf{M}(\mu)\).}
+Using a similar argument, there exists an open set \(F^C\) such that \(A^C \subset F^C\) and \(\mu\paren{F^C \bs A^C} < \epsilon\). (\(A\) had no conditions on open/closed) \(F\) is a closed set, and since \(F^C \bs A^C = F^C \cap A = A\bs F\), \(\mu\paren{A \bs F} < \epsilon\) and \(F\subset A\). Therefore the proposition is proven.
 
 \defn. \note{Borel \(\sigma\)-algebra} \(\mf{B} = \mf{B}(\R^p)\) is the \(\sigma\)-algebra containing all open sets and closed sets. The definition is equivalent to the smallest \(\sigma\)-algebra on \(\R^p\) containing all open sets. Let \(O\) denote the collection of open sets of \(\R^p\). Then
 \[
@@ -47,7 +47,7 @@ Define \(F = \bigcup_{n=1}^{\infty} F_n\), \(G = \bigcap_{n=1}^{\infty} G_n\), t
         \mu\paren{A \bs F} \leq \mu\paren{A \bs F_n} < \frac{1}{n}
     \end{rcases} \ra 0 \text{ as } n \ra \infty.
 \]
-Now we can write \(A = F \cup (A \bs F)\), \(G = A \cup (G \bs A)\). So \(A \in \mf{M}(\mu)\) is a union of a Borel set, and a set of \(\mu\)-measure zero. Unioning \(A\in \mf{M}(\mu)\) with some \(\mu\)-measure zero set will make it a Borel set.
+Now we can write \(A = F \cup (A \bs F)\), \(G = A \cup (G \bs A)\). So \(A \in \mf{M}(\mu)\) is a union of a Borel set, and a set of \(\mu\)-measure zero. Unioning \(A\in \mf{M}(\mu)\) with some \(\mu\)-measure zero set can make it a Borel set.
 
 \prop. For every \(\mu\), the set of \(\mu\)-measure zero form a \(\sigma\)-ring.
 
